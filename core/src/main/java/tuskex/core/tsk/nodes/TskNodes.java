@@ -68,29 +68,20 @@ public class TskNodes {
         switch (Config.baseCurrencyNetwork()) {
             case TSK_LOCAL:
                 return Arrays.asList(
-                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 28081, 1, "@local")
+                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 30241, 1, "@local")
                 );
             case TSK_STAGENET:
                 return Arrays.asList(
-                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 38081, 1, "@local"),
-                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 39081, 1, "@local"),
-                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "45.63.8.26", 38081, 2, "@tuskex"),
-                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "stagenet.community.rino.io", 38081, 3, "@RINOwallet"),
-                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "stagenet.melo.tools", 38081, 3, null),
-                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "node.sethforprivacy.com", 38089, 3, null),
-                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "node2.sethforprivacy.com", 38089, 3, null),
-                    new TskNode(MoneroNodesOption.PUBLIC, null, "plowsof3t5hogddwabaeiyrno25efmzfxyro2vligremt7sxpsclfaid.onion", null, 38089, 3, null)
+                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 40241, 1, "@local"),
+                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 40241, 1, "@local"),
                 );
             case TSK_MAINNET:
                 return Arrays.asList(
-                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 18081, 1, "@local"),
-                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "tsk-node.cakewallet.com", 18081, 2, "@cakewallet"),
-                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "node.community.rino.io", 18081, 2, "@RINOwallet"),
-                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "node.monerodevs.org", 18089, 2, "@monerodevs.org"),
-                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "node3.monerodevs.org", 18089, 2, "@monerodevs.org"),
-                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "nodex.monerujo.io", 18081, 2, "@monerujo.io"),
-                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "rucknium.me", 18081, 2, "@Rucknium"),
-                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "node.sethforprivacy.com", 18089, 2, "@sethforprivacy")
+                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 20241, 1, "@local"),
+                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "node-us.tuske.network", 2024, 2, "@tuskeTeam"),
+                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "node-jp.tuske.network", 2024, 2, "@tuskeTeam")
+                    new TskNode(MoneroNodesOption.PROVIDED, null, "tuske5hkcseb6srksudc2eiuhkcetf7ibbkz3hsbfbar2kyi2lykkrid.onion",null, 20243, 2, "@tuskeTeam"),
+                    new TskNode(MoneroNodesOption.PROVIDED, null, "tusketluwz3igsax57dpwetybs5oacvrfcre6xdwl6cheax3i5wh5uyd.onion",null, 20243, 2, "@tuskeTeam")
                 );
             default:
                 throw new IllegalStateException("Unexpected base currency network: " + Config.baseCurrencyNetwork());

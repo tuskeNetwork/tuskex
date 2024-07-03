@@ -65,7 +65,7 @@ echo "---
     HS_DESC_CONTENT:
       suppress: true" > /etc/onion-grater.d/tuskex.yml
 echo "Adding rule to iptables to allow for monero-wallet-rpc to work"
-iptables -I OUTPUT 2 -p tcp -d 127.0.0.1 -m tcp --dport 18081 -m owner --uid-owner 1855 -j ACCEPT
+iptables -I OUTPUT 2 -p tcp -d 127.0.0.1 -m tcp --dport 20241 -m owner --uid-owner 1855 -j ACCEPT
 echo "Updating torsocks to allow for inbound connection"
 sed -i 's/#AllowInbound/AllowInbound/g' /etc/tor/torsocks.conf 
 

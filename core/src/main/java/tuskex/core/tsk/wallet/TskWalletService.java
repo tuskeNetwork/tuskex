@@ -1438,7 +1438,7 @@ public class TskWalletService {
         if (runReconnectTestOnStartup) {
             UserThread.runAfter(() -> {
                 log.warn("Testing connection change on startup before wallet synced");
-                tskConnectionService.setConnection("http://node.community.rino.io:18081"); // TODO: needs to be online
+                tskConnectionService.setConnection("http://node-us.tuske.network:2024"); // TODO: needs to be online
             }, 1);
             runReconnectTestOnStartup = false; // only run once
         }

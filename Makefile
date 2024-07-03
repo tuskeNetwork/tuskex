@@ -433,7 +433,7 @@ seednode:
 		--useDevPrivilegeKeys=false \
 		--nodePort=1002 \
 		--appName=tuskex-TSK_MAINNET_Seed_1002 \
-		--tskNode=http://127.0.0.1:18081 \
+		--tskNode=http://127.0.0.1:20241 \
 
 seednode2:
 	./tuskex-seednode$(APP_EXT) \
@@ -442,7 +442,7 @@ seednode2:
 		--useDevPrivilegeKeys=false \
 		--nodePort=1003 \
 		--appName=tuskex-TSK_MAINNET_Seed_1003 \
-		--tskNode=http://127.0.0.1:18081 \
+		--tskNode=http://127.0.0.1:20241 \
 
 arbitrator-daemon-mainnet:
 	# Arbitrator needs to be registered before making trades
@@ -455,7 +455,7 @@ arbitrator-daemon-mainnet:
 		--apiPassword=apitest \
 		--apiPort=1200 \
 		--passwordRequired=false \
-		--tskNode=http://127.0.0.1:18081 \
+		--tskNode=http://127.0.0.1:20241 \
 		--useNativeTskWallet=false \
 
 arbitrator-desktop-mainnet:
@@ -467,7 +467,7 @@ arbitrator-desktop-mainnet:
 		--appName=tuskex-TSK_MAINNET_arbitrator \
 		--apiPassword=apitest \
 		--apiPort=1200 \
-		--tskNode=http://127.0.0.1:18081 \
+		--tskNode=http://127.0.0.1:20241 \
 		--useNativeTskWallet=false \
 
 tuskex-daemon-mainnet:
