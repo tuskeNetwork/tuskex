@@ -447,19 +447,19 @@ configure(project(':core')) {
         mainClass = 'tuskex.core.util.GenerateKeyPairs'
         classpath = sourceSets.main.runtimeClasspath
     }
-    /*
+    
     task tuskexDeps {
         doLast {
             // get monero binaries download url
             Map moneroBinaries = [
-                'linux-x86_64'         : 'https://github.com/tuskeNetwork/monero/releases/download/release3/monero-bins-tuskex-linux-x86_64.tar.gz',
-                'linux-x86_64-sha256'  : '591e63c1e3249e0cfbba74f0302022160f64f049d06abff95417ad3ecb588581',
+                'linux-x86_64'         : 'https://github.com/tuskeNetwork/tuskeDex/releases/download/rpc/tuske-linux-x86_64.tar.gz',
+                'linux-x86_64-sha256'  : '3cf88ec8432ddd55a1ed279651161a619294f3d32c98a8c09178e5129a277426',
                 'linux-aarch64'        : 'https://github.com/tuskeNetwork/monero/releases/download/release3/monero-bins-tuskex-linux-aarch64.tar.gz',
                 'linux-aarch64-sha256' : 'fb0a91d07dbbc30646af8007205dbd11c59fb1d124a3b2d703511d8ee2739acc',
-                'mac'                  : 'https://github.com/tuskeNetwork/monero/releases/download/release3/monero-bins-tuskex-mac.tar.gz',
-                'mac-sha256'           : '9eb01951976767372a3d10180c092af937afe6494928ea73e311476be5c0eba3',
-                'windows'              : 'https://github.com/tuskeNetwork/monero/releases/download/release3/monero-bins-tuskex-windows.zip',
-                'windows-sha256'       : '49b84fab3a1f69564068fecff105b6079b843d99792409dffca4a66eb279288f'
+                'mac'                  : 'https://github.com/tuskeNetwork/tuskeDex/releases/download/rpc/tuske-mac-x64.tar.gz',
+                'mac-sha256'           : 'daa8c24c5f46e1d18f44c4ca6ff8e08974fc4d0e619786394941b9f21742000f',
+                'windows'              : 'https://github.com/tuskeNetwork/tuskeDex/releases/download/rpc/tuske-windows-x64-v1.0.1.zip',
+                'windows-sha256'       : '13D0291685A8FD9604EA51446206FF8DF8AE1655562B12B1AD6113DBCD4FDEB9'
             ]
 
             String osKey
@@ -489,11 +489,11 @@ configure(project(':core')) {
             File monerodFile
             File moneroRpcFile
             if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-                monerodFile = new File(localnetDir, 'monerod.exe')
-                moneroRpcFile = new File(localnetDir, 'monero-wallet-rpc.exe')
+                monerodFile = new File(localnetDir, 'tusked.exe')
+                moneroRpcFile = new File(localnetDir, 'tuske-wallet-rpc.exe')
             } else {
-                monerodFile = new File(localnetDir, 'monerod')
-                moneroRpcFile = new File(localnetDir, 'monero-wallet-rpc')
+                monerodFile = new File(localnetDir, 'tusked')
+                moneroRpcFile = new File(localnetDir, 'tuske-wallet-rpc')
             }
             if (ext.dependencyDownloadedAndVerified || !monerodFile.exists() || !moneroRpcFile.exists()) {
                 if (Os.isFamily(Os.FAMILY_WINDOWS)) {
@@ -564,7 +564,7 @@ configure(project(':core')) {
     }
     
     processResources.dependsOn tuskexDeps // before both test and build
-    */
+    
 }
 
 configure(project(':cli')) {

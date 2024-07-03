@@ -22,9 +22,9 @@ import tuskex.asset.Coin;
 import tuskex.asset.CryptoNoteAddressValidator;
 
 @CryptoAccountDisclaimer("account.crypto.popup.tsk.msg")
-public class Monero extends Coin {
+public class Tuske extends Coin {
 
-    public Monero() {
+    public Tuske() {
         super("Tuske", "TSK", new CryptoNoteAddressValidator(356135456L, 8415490592L, 56727581216L));
     }
 }

@@ -360,7 +360,7 @@ public class TuskexSetup {
             File monerodFile = new File(TskLocalNode.MONEROD_PATH);
             String monerodResourcePath = "bin/" + TskLocalNode.MONEROD_NAME;
             if (!monerodFile.exists() || !FileUtil.resourceEqualToFile(monerodResourcePath, monerodFile)) {
-                log.info("Installing monerod");
+                log.info("Installing tusked");
                 monerodFile.getParentFile().mkdirs();
                 FileUtil.resourceToFile("bin/" + TskLocalNode.MONEROD_NAME, monerodFile);
                 monerodFile.setExecutable(true);
@@ -370,7 +370,7 @@ public class TuskexSetup {
             File moneroWalletRpcFile = new File(TskWalletService.MONERO_WALLET_RPC_PATH);
             String moneroWalletRpcResourcePath = "bin/" + TskWalletService.MONERO_WALLET_RPC_NAME;
             if (!moneroWalletRpcFile.exists() || !FileUtil.resourceEqualToFile(moneroWalletRpcResourcePath, moneroWalletRpcFile)) {
-                log.info("Installing monero-wallet-rpc");
+                log.info("Installing tuske-wallet-rpc");
                 moneroWalletRpcFile.getParentFile().mkdirs();
                 FileUtil.resourceToFile(moneroWalletRpcResourcePath, moneroWalletRpcFile);
                 moneroWalletRpcFile.setExecutable(true);

@@ -535,7 +535,7 @@ public class Config {
                         .defaultsTo("");
 
         ArgumentAcceptingOptionSpec<Boolean> useNativeTskWalletOpt =
-                parser.accepts(USE_NATIVE_TSK_WALLET, "Use native wallet libraries instead of monero-wallet-rpc server")
+                parser.accepts(USE_NATIVE_TSK_WALLET, "Use native wallet libraries instead of tuske-wallet-rpc server")
                         .withRequiredArg()
                         .ofType(boolean.class)
                         .defaultsTo(false);
