@@ -330,10 +330,10 @@ configure(project(':p2p')) {
         implementation "com.google.protobuf:protobuf-java:$protobufVersion"
         implementation "org.fxmisc.easybind:easybind:$easybindVersion"
         implementation "org.slf4j:slf4j-api:$slf4jVersion"
-        implementation("com.github.tuskenetwork.netlayer:tor.external:$netlayerVersion") {
+        implementation("com.github.haveno-dex.netlayer:tor.external:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
-        implementation("com.github.tuskenetwork.netlayer:tor.native:$netlayerVersion") {
+        implementation("com.github.haveno-dex.netlayer:tor.native:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
         implementation("com.github.bisq-network:bitcoinj:$bitcoinjVersion") {
@@ -395,10 +395,10 @@ configure(project(':core')) {
         implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion") {
             exclude(module: 'jackson-annotations')
         }
-        implementation("com.github.tuskenetwork.netlayer:tor.native:$netlayerVersion") {
+        implementation("com.github.haveno-dex.netlayer:tor.native:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
-        implementation("com.github.tuskenetwork.netlayer:tor.external:$netlayerVersion") {
+        implementation("com.github.haveno-dex.netlayer:tor.external:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
         implementation("com.github.bisq-network:bitcoinj:$bitcoinjVersion") {
@@ -700,10 +700,10 @@ configure(project(':monitor')) {
         implementation "ch.qos.logback:logback-core:$logbackVersion"
         implementation "com.google.guava:guava:$guavaVersion"
         implementation "org.slf4j:slf4j-api:$slf4jVersion"
-        implementation("com.github.tuskenetwork.netlayer:tor.external:$netlayerVersion") {
+        implementation("com.github.haveno-dex.netlayer:tor.external:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
-        implementation("com.github.tuskenetwork.netlayer:tor.native:$netlayerVersion") {
+        implementation("com.github.haveno-dex.netlayer:tor.native:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
         implementation("com.google.inject:guice:$guiceVersion") {
