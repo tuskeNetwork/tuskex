@@ -60,7 +60,7 @@ Tuskex data folder on Windows: `~\AppData\Roaming\Tuskex\`
 
 ### Icons
 
-Icons (Tuskex.zip) were obtained from https://github.com/tuskex-dex/tuskex-meta/issues/1#issuecomment-819741689.
+Icons (Tuskex.zip) were obtained from https://github.com/tuskeNetwork/tuskex-meta/issues/1#issuecomment-819741689.
 
 #### Linux
 

@@ -7,7 +7,7 @@ For a more robust and decentralized deployment to VPS for reliable uptime, see t
 ## Clone and build Tuskex
 
 ```
-git clone https://github.com/tuskex-dex/tuskex.git
+git clone https://github.com/tuskeNetwork/tuskex.git
 cd tuskex
 git checkout master
 make clean && make
@@ -39,17 +39,17 @@ For demonstration, we can use the first generated public/private keypair for all
 
 Hardcode the public key(s) in these files:
 
-- [AlertManager.java](https://github.com/tuskex-dex/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/tuskex/core/alert/AlertManager.java#L111)
-- [ArbitratorManager.java](https://github.com/tuskex-dex/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/tuskex/core/support/dispute/arbitration/arbitrator/ArbitratorManager.java#L81)
-- [FilterManager.java](https://github.com/tuskex-dex/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/tuskex/core/filter/FilterManager.java#L117)
-- [PrivateNotificationManager.java](https://github.com/tuskex-dex/tuskex/blob/mainnet_placeholders/core/src/main/java/tuskex/core/alert/PrivateNotificationManager.java#L110)
+- [AlertManager.java](https://github.com/tuskeNetwork/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/tuskex/core/alert/AlertManager.java#L111)
+- [ArbitratorManager.java](https://github.com/tuskeNetwork/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/tuskex/core/support/dispute/arbitration/arbitrator/ArbitratorManager.java#L81)
+- [FilterManager.java](https://github.com/tuskeNetwork/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/tuskex/core/filter/FilterManager.java#L117)
+- [PrivateNotificationManager.java](https://github.com/tuskeNetwork/tuskex/blob/mainnet_placeholders/core/src/main/java/tuskex/core/alert/PrivateNotificationManager.java#L110)
 
 ## Change the default folder name for Tuskex application data
 
 To avoid user data corruption when using multiple Tuskex networks, change the default folder name for Tuskex's application data on your network:
 
-- Change `DEFAULT_APP_NAME` in [TuskexExecutable.java](https://github.com/tuskex-dex/tuskex/blob/64acf86fbea069b0ae9f9bce086f8ecce1e91b87/core/src/main/java/tuskex/core/app/TuskexExecutable.java#L85).
-- Change `appName` throughout the [Makefile](https://github.com/tuskex-dex/tuskex/blob/64acf86fbea069b0ae9f9bce086f8ecce1e91b87/Makefile#L479) accordingly.
+- Change `DEFAULT_APP_NAME` in [TuskexExecutable.java](https://github.com/tuskeNetwork/tuskex/blob/64acf86fbea069b0ae9f9bce086f8ecce1e91b87/core/src/main/java/tuskex/core/app/TuskexExecutable.java#L85).
+- Change `appName` throughout the [Makefile](https://github.com/tuskeNetwork/tuskex/blob/64acf86fbea069b0ae9f9bce086f8ecce1e91b87/Makefile#L479) accordingly.
 
 For example, change "Tuskex" to "TuskexX", which will use this application folder:
 
@@ -108,13 +108,13 @@ Otherwise set `ARBITRATOR_ASSIGNS_TRADE_FEE_ADDRESS` to `false` and set the TSK 
 
 ### Optionally start a price node
 
-The price node is separated from Tuskex and is run as a standalone service. To deploy a pricenode on both TOR and clearnet, see the instructions on the repository: https://github.com/tuskex-dex/tuskex-pricenode.
+The price node is separated from Tuskex and is run as a standalone service. To deploy a pricenode on both TOR and clearnet, see the instructions on the repository: https://github.com/tuskeNetwork/tuskex-pricenode.
 
-After the price node is built and deployed, add the price node to `DEFAULT_NODES` in [ProvidersRepository.java](https://github.com/tuskex-dex/tuskex/blob/3cdd88b56915c7f8afd4f1a39e6c1197c2665d63/core/src/main/java/tuskex/core/provider/ProvidersRepository.java#L50).
+After the price node is built and deployed, add the price node to `DEFAULT_NODES` in [ProvidersRepository.java](https://github.com/tuskeNetwork/tuskex/blob/3cdd88b56915c7f8afd4f1a39e6c1197c2665d63/core/src/main/java/tuskex/core/provider/ProvidersRepository.java#L50).
 
 ## Review all local changes
 
-For comparison, placeholders to run on mainnet are marked [here on this branch](https://github.com/tuskex-dex/tuskex/tree/mainnet_placeholders).
+For comparison, placeholders to run on mainnet are marked [here on this branch](https://github.com/tuskeNetwork/tuskex/tree/mainnet_placeholders).
 
 ## Start users for testing
 
@@ -145,8 +145,8 @@ However a [more robust VPS setup](./deployment-guide.md) should be used for actu
 
 ## Build the installers for distribution
 
-To build the installers for distribution, first change `TSK_STAGENET` to `TSK_MAINNET` in [package.gradle](https://github.com/tuskex-dex/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/desktop/package/package.gradle#L278).
+To build the installers for distribution, first change `TSK_STAGENET` to `TSK_MAINNET` in [package.gradle](https://github.com/tuskeNetwork/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/desktop/package/package.gradle#L278).
 
-Then [follow instructions](https://github.com/tuskex-dex/tuskex/blob/master/desktop/package/README.md) to build the installers for distribution.
+Then [follow instructions](https://github.com/tuskeNetwork/tuskex/blob/master/desktop/package/README.md) to build the installers for distribution.
 
 Alternatively, the installers are built automatically by GitHub.

@@ -2,7 +2,7 @@
 
 Thanks for wishing to help! Here there are some guidelines and information about the development process. We suggest you to join the [matrix](https://app.element.io/#/room/#tuskex-dev:tuskex.network) room `#tuskex-dev` (relayed on [IRC/Libera](irc://irc.libera.chat/#tuskex-dev)) and have a chat with the devs, so that we can help get you started.
 
-Issues are tracked on GitHub. We use [a label system](https://github.com/tuskex-dex/tuskex/issues/50) and GitHub's [project boards](https://github.com/tuskex-dex/tuskex/projects) to simplify development. Make sure to take a look at those and to follow the priorities suggested.
+Issues are tracked on GitHub. We use [a label system](https://github.com/tuskeNetwork/tuskex/issues/50) and GitHub's [project boards](https://github.com/tuskeNetwork/tuskex/projects) to simplify development. Make sure to take a look at those and to follow the priorities suggested.
 
 ## General guidelines
 

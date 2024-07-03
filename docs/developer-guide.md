@@ -8,7 +8,7 @@ This document is a guide for Tuskex development.
 
 ## Run the UI proof of concept
 
-Follow [instructions](https://github.com/tuskex-dex/tuskex-ts#run-in-a-browser) to run Tuskex's UI proof of concept in a browser.
+Follow [instructions](https://github.com/tuskeNetwork/tuskex-ts#run-in-a-browser) to run Tuskex's UI proof of concept in a browser.
 
 This proof of concept demonstrates using Tuskex's gRPC server with a web frontend (react and typescript) instead of Tuskex's JFX application.
 
@@ -20,28 +20,28 @@ Otherwise follow [instructions](import-tuskex.md) to import Tuskex into a Eclips
 
 ## Run end-to-end API tests
 
-Follow [instructions](https://github.com/tuskex-dex/tuskex-ts#run-tests) to run end-to-end API tests in the UI project.
+Follow [instructions](https://github.com/tuskeNetwork/tuskex-ts#run-tests) to run end-to-end API tests in the UI project.
 
 ## Add new API functions and tests
 
-1. Follow [instructions](https://github.com/tuskex-dex/tuskex-ts#run-tests) to run Tuskex's existing API tests successfully.
+1. Follow [instructions](https://github.com/tuskeNetwork/tuskex-ts#run-tests) to run Tuskex's existing API tests successfully.
 2. Define the new service or message in Tuskex's [protobuf definition](../proto/src/main/proto/grpc.proto).
 3. Clean and build Tuskex after modifying the protobuf definition: `make clean && make`
 4. Implement the new service in Tuskex's backend, following existing patterns.<br>
-   For example, the gRPC function to get offers is implemented by [`GrpcServer`](https://github.com/tuskex-dex/tuskex/blob/master/daemon/src/main/java/tuskex/daemon/grpc/GrpcServer.java) > [`GrpcOffersService.getOffers(...)`](https://github.com/tuskex-dex/tuskex/blob/b761dbfd378faf49d95090c126318b419af7926b/daemon/src/main/java/tuskex/daemon/grpc/GrpcOffersService.java#L104) > [`CoreApi.getOffers(...)`](https://github.com/tuskex-dex/tuskex/blob/b761dbfd378faf49d95090c126318b419af7926b/core/src/main/java/tuskex/core/api/CoreApi.java#L128) > [`CoreOffersService.getOffers(...)`](https://github.com/tuskex-dex/tuskex/blob/b761dbfd378faf49d95090c126318b419af7926b/core/src/main/java/tuskex/core/api/CoreOffersService.java#L126) > [`OfferBookService.getOffers()`](https://github.com/tuskex-dex/tuskex/blob/b761dbfd378faf49d95090c126318b419af7926b/core/src/main/java/tuskex/core/offer/OfferBookService.java#L193).
+   For example, the gRPC function to get offers is implemented by [`GrpcServer`](https://github.com/tuskeNetwork/tuskex/blob/master/daemon/src/main/java/tuskex/daemon/grpc/GrpcServer.java) > [`GrpcOffersService.getOffers(...)`](https://github.com/tuskeNetwork/tuskex/blob/b761dbfd378faf49d95090c126318b419af7926b/daemon/src/main/java/tuskex/daemon/grpc/GrpcOffersService.java#L104) > [`CoreApi.getOffers(...)`](https://github.com/tuskeNetwork/tuskex/blob/b761dbfd378faf49d95090c126318b419af7926b/core/src/main/java/tuskex/core/api/CoreApi.java#L128) > [`CoreOffersService.getOffers(...)`](https://github.com/tuskeNetwork/tuskex/blob/b761dbfd378faf49d95090c126318b419af7926b/core/src/main/java/tuskex/core/api/CoreOffersService.java#L126) > [`OfferBookService.getOffers()`](https://github.com/tuskeNetwork/tuskex/blob/b761dbfd378faf49d95090c126318b419af7926b/core/src/main/java/tuskex/core/offer/OfferBookService.java#L193).
 5. Build Tuskex: `make`
 6. Update the gRPC client in tuskex-ts: `npm install`
-7. Add the corresponding typescript method(s) to [tuskex.ts](https://github.com/tuskex-dex/tuskex-ts/blob/master/src/tuskex.ts) with clear and concise documentation.
-8. Add clean and comprehensive tests to [tuskex.test.ts](https://github.com/tuskex-dex/tuskex-ts/blob/master/src/tuskex.test.ts), following existing patterns.
+7. Add the corresponding typescript method(s) to [tuskex.ts](https://github.com/tuskeNetwork/tuskex-ts/blob/master/src/tuskex.ts) with clear and concise documentation.
+8. Add clean and comprehensive tests to [tuskex.test.ts](https://github.com/tuskeNetwork/tuskex-ts/blob/master/src/tuskex.test.ts), following existing patterns.
 9. Run the tests with `npm run test -- -t 'my test'` to run tests by name and `npm test` to run all tests together. Ensure all tests pass and there are no exception stacktraces in the terminals of Alice, Bob, or the arbitrator.
 10. Open pull requests to the tuskex and tuskex-ts projects for the backend and frontend implementations.
 
 ## Release portable Monero binaries for each platform
 
-1. Update the release-v0.18 branch on Tuskex's [monero repo](https://github.com/tuskex-dex/monero) to the latest release from upstream + any customizations (e.g. a commit to speed up testnet hardforks for local development).
+1. Update the release-v0.18 branch on Tuskex's [monero repo](https://github.com/tuskeNetwork/monero) to the latest release from upstream + any customizations (e.g. a commit to speed up testnet hardforks for local development).
 2. `git tag <tag> && git push origin <tag>`
 3. Follow instructions to [build portable binaries for each platform](#build-portable-monero-binaries-for-each-platform).
-4. Publish a new release at https://github.com/tuskex-dex/monero/releases with the updated binaries and hashes.
+4. Publish a new release at https://github.com/tuskeNetwork/monero/releases with the updated binaries and hashes.
 5. Update the paths and hashes in build.gradle and PR.
 
 ### Build portable Monero binaries for each platform
@@ -57,7 +57,7 @@ Based on these instructions: https://github.com/monero-project/monero#cross-comp
 2. `sudo apt-get update && sudo apt-get upgrade`
 3. Install monero dependencies: `sudo apt update && sudo apt install build-essential cmake pkg-config libssl-dev libzmq3-dev libsodium-dev libunwind8-dev liblzma-dev libreadline6-dev libpgm-dev qttools5-dev-tools libhidapi-dev libusb-1.0-0-dev libprotobuf-dev protobuf-compiler libudev-dev libboost-chrono-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev libboost-program-options-dev libboost-regex-dev libboost-serialization-dev libboost-system-dev libboost-thread-dev python3 ccache`
 4. `sudo apt install cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev libtinfo5 autoconf libtool libtool-bin gperf git curl`
-5. `git clone https://github.com/tuskex-dex/monero.git`
+5. `git clone https://github.com/tuskeNetwork/monero.git`
 6. `cd ./monero` (or rename to tuskex-monero: `mv monero/ tuskex-monero && cd ./tuskex-monero`)
 7. `git fetch origin && git reset --hard origin/release-v0.18`
 8. `git submodule update --init --force`
@@ -91,7 +91,7 @@ Based on these instructions: https://github.com/monero-project/monero#cross-comp
 2. `sudo apt-get update && sudo apt-get upgrade`
 3. Install monero dependencies: `sudo apt update && sudo apt install build-essential cmake pkg-config libssl-dev libzmq3-dev libsodium-dev libunwind8-dev liblzma-dev libreadline6-dev libpgm-dev qttools5-dev-tools libhidapi-dev libusb-1.0-0-dev libprotobuf-dev protobuf-compiler libudev-dev libboost-chrono-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev libboost-program-options-dev libboost-regex-dev libboost-serialization-dev libboost-system-dev libboost-thread-dev python3 ccache`
 4. `sudo apt install cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev libtinfo5 autoconf libtool libtool-bin gperf git curl`
-5. `git clone https://github.com/tuskex-dex/monero.git`
+5. `git clone https://github.com/tuskeNetwork/monero.git`
 6. `cd ./monero` (or rename to tuskex-monero: `mv monero/ tuskex-monero && cd ./tuskex-monero`)
 7. `git fetch origin && git reset --hard origin/release-v0.18`
 8. `git submodule update --init --force`

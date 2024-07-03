@@ -29,7 +29,7 @@ On Windows, install MSYS2 and Java JDK 21:
 If it's the first time you are building Tuskex, run the following commands to download the repository, the needed dependencies, and build the latest release:
 
 ```
-git clone https://github.com/tuskex-dex/tuskex.git
+git clone https://github.com/tuskeNetwork/tuskex.git
 cd tuskex
 git checkout master
 make
@@ -89,7 +89,7 @@ If you don't use *screen*, open 4 terminal windows and run in each one of them:
   2. `make user1-desktop-local` or if you want to run user1 as a daemon: `make user1-daemon-local`
   3. `make user2-desktop-local` or if you want to run user2 as a daemon: `make user2-daemon-local`
   4. `make arbitrator-desktop-local` or if you want to run arbitrator as a daemon: `make arbitrator-daemon-local`
-  5. Optionally run a [local price node](https://github.com/tuskex-dex/tuskex-pricenode/blob/main/README.md)
+  5. Optionally run a [local price node](https://github.com/tuskeNetwork/tuskex-pricenode/blob/main/README.md)
 
 If this is the first time launching the arbitrator desktop application, register the arbitrator after the interface opens. Go to the *Account* tab and press `cmd+r`. Confirm the registration of the arbitrator.
 

@@ -52,9 +52,9 @@ public class AboutView extends ActivatableView<GridPane, Void> {
         GridPane.setHalignment(label, HPos.LEFT);
         HyperlinkWithIcon hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.web"), "https://tuskex.exchange");
         GridPane.setColumnSpan(hyperlinkWithIcon, 2);
-        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.code"), "https://github.com/tuskex-dex/tuskex");
+        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.code"), "https://github.com/tuskeNetwork/tuskex");
         GridPane.setColumnSpan(hyperlinkWithIcon, 2);
-        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.agpl"), "https://github.com/tuskex-dex/tuskex/blob/master/LICENSE");
+        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.agpl"), "https://github.com/tuskeNetwork/tuskex/blob/master/LICENSE");
         GridPane.setColumnSpan(hyperlinkWithIcon, 2);
 
         addTitledGroupBg(root, ++gridRow, 2, Res.get("setting.about.support"), Layout.GROUP_DISTANCE);
@@ -63,7 +63,7 @@ public class AboutView extends ActivatableView<GridPane, Void> {
         label.setWrapText(true);
         GridPane.setColumnSpan(label, 2);
         GridPane.setHalignment(label, HPos.LEFT);
-        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.contribute"), "https://github.com/tuskex-dex/tuskex#support");
+        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.contribute"), "https://github.com/tuskeNetwork/tuskex#support");
         GridPane.setColumnSpan(hyperlinkWithIcon, 2);
 
         boolean isTsk = Res.getBaseCurrencyCode().equals("TSK");

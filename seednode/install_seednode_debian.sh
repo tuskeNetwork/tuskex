@@ -13,10 +13,10 @@ ROOT_HOME=/root
 SYSTEMD_SERVICE_HOME=/etc/systemd/system
 SYSTEMD_ENV_HOME=/etc/default
 
-TUSKEX_REPO_URL=https://github.com/tuskex-dex/tuskex
+TUSKEX_REPO_URL=https://github.com/tuskeNetwork/tuskex
 TUSKEX_REPO_NAME=tuskex
 TUSKEX_REPO_TAG=master
-TUSKEX_LATEST_RELEASE=$(curl -s https://api.github.com/repos/tuskex-dex/tuskex/releases/latest|grep tag_name|head -1|cut -d '"' -f4)
+TUSKEX_LATEST_RELEASE=$(curl -s https://api.github.com/repos/tuskeNetwork/tuskex/releases/latest|grep tag_name|head -1|cut -d '"' -f4)
 TUSKEX_HOME=/tuskex
 TUSKEX_USER=tuskex
 
@@ -172,7 +172,7 @@ fi
 echo "[*] Adding notes to motd"
 sudo -H -i -u "${ROOT_USER}" sh -c 'echo " " >> /etc/motd'
 sudo -H -i -u "${ROOT_USER}" sh -c 'echo "Tuskex Seednode instructions:" >> /etc/motd'
-sudo -H -i -u "${ROOT_USER}" sh -c 'echo "https://github.com/tuskex-dex/tuskex/tree/master/seednode" >> /etc/motd'
+sudo -H -i -u "${ROOT_USER}" sh -c 'echo "https://github.com/tuskeNetwork/tuskex/tree/master/seednode" >> /etc/motd'
 sudo -H -i -u "${ROOT_USER}" sh -c 'echo " " >> /etc/motd'
 sudo -H -i -u "${ROOT_USER}" sh -c 'echo "How to check logs for Tuskex-Seednode service:" >> /etc/motd'
 sudo -H -i -u "${ROOT_USER}" sh -c 'echo "sudo journalctl --no-pager --unit tuskex-seednode" >> /etc/motd'

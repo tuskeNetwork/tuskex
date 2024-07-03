@@ -330,10 +330,10 @@ configure(project(':p2p')) {
         implementation "com.google.protobuf:protobuf-java:$protobufVersion"
         implementation "org.fxmisc.easybind:easybind:$easybindVersion"
         implementation "org.slf4j:slf4j-api:$slf4jVersion"
-        implementation("com.github.tuskex-dex.netlayer:tor.external:$netlayerVersion") {
+        implementation("com.github.tuskenetwork.netlayer:tor.external:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
-        implementation("com.github.tuskex-dex.netlayer:tor.native:$netlayerVersion") {
+        implementation("com.github.tuskenetwork.netlayer:tor.native:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
         implementation("com.github.bisq-network:bitcoinj:$bitcoinjVersion") {
@@ -395,10 +395,10 @@ configure(project(':core')) {
         implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion") {
             exclude(module: 'jackson-annotations')
         }
-        implementation("com.github.tuskex-dex.netlayer:tor.native:$netlayerVersion") {
+        implementation("com.github.tuskenetwork.netlayer:tor.native:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
-        implementation("com.github.tuskex-dex.netlayer:tor.external:$netlayerVersion") {
+        implementation("com.github.tuskenetwork.netlayer:tor.external:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
         implementation("com.github.bisq-network:bitcoinj:$bitcoinjVersion") {
@@ -452,13 +452,13 @@ configure(project(':core')) {
         doLast {
             // get monero binaries download url
             Map moneroBinaries = [
-                'linux-x86_64'         : 'https://github.com/tuskex-dex/monero/releases/download/release3/monero-bins-tuskex-linux-x86_64.tar.gz',
+                'linux-x86_64'         : 'https://github.com/tuskeNetwork/monero/releases/download/release3/monero-bins-tuskex-linux-x86_64.tar.gz',
                 'linux-x86_64-sha256'  : '591e63c1e3249e0cfbba74f0302022160f64f049d06abff95417ad3ecb588581',
-                'linux-aarch64'        : 'https://github.com/tuskex-dex/monero/releases/download/release3/monero-bins-tuskex-linux-aarch64.tar.gz',
+                'linux-aarch64'        : 'https://github.com/tuskeNetwork/monero/releases/download/release3/monero-bins-tuskex-linux-aarch64.tar.gz',
                 'linux-aarch64-sha256' : 'fb0a91d07dbbc30646af8007205dbd11c59fb1d124a3b2d703511d8ee2739acc',
-                'mac'                  : 'https://github.com/tuskex-dex/monero/releases/download/release3/monero-bins-tuskex-mac.tar.gz',
+                'mac'                  : 'https://github.com/tuskeNetwork/monero/releases/download/release3/monero-bins-tuskex-mac.tar.gz',
                 'mac-sha256'           : '9eb01951976767372a3d10180c092af937afe6494928ea73e311476be5c0eba3',
-                'windows'              : 'https://github.com/tuskex-dex/monero/releases/download/release3/monero-bins-tuskex-windows.zip',
+                'windows'              : 'https://github.com/tuskeNetwork/monero/releases/download/release3/monero-bins-tuskex-windows.zip',
                 'windows-sha256'       : '49b84fab3a1f69564068fecff105b6079b843d99792409dffca4a66eb279288f'
             ]
 
@@ -700,10 +700,10 @@ configure(project(':monitor')) {
         implementation "ch.qos.logback:logback-core:$logbackVersion"
         implementation "com.google.guava:guava:$guavaVersion"
         implementation "org.slf4j:slf4j-api:$slf4jVersion"
-        implementation("com.github.tuskex-dex.netlayer:tor.external:$netlayerVersion") {
+        implementation("com.github.tuskenetwork.netlayer:tor.external:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
-        implementation("com.github.tuskex-dex.netlayer:tor.native:$netlayerVersion") {
+        implementation("com.github.tuskenetwork.netlayer:tor.native:$netlayerVersion") {
             exclude(module: 'slf4j-api')
         }
         implementation("com.google.inject:guice:$guiceVersion") {

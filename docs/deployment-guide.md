@@ -45,9 +45,9 @@ You can also start the Monero node in your current terminal session by running `
 
 ## Build and start price nodes
 
-The price node is separated from Tuskex and is run as a standalone service. To deploy a pricenode on both TOR and clearnet, see the instructions on the repository: https://github.com/tuskex-dex/tuskex-pricenode.
+The price node is separated from Tuskex and is run as a standalone service. To deploy a pricenode on both TOR and clearnet, see the instructions on the repository: https://github.com/tuskeNetwork/tuskex-pricenode.
 
-After the price node is built and deployed, add the price node to `DEFAULT_NODES` in [ProvidersRepository.java](https://github.com/tuskex-dex/tuskex/blob/3cdd88b56915c7f8afd4f1a39e6c1197c2665d63/core/src/main/java/tuskex/core/provider/ProvidersRepository.java#L50).
+After the price node is built and deployed, add the price node to `DEFAULT_NODES` in [ProvidersRepository.java](https://github.com/tuskeNetwork/tuskex/blob/3cdd88b56915c7f8afd4f1a39e6c1197c2665d63/core/src/main/java/tuskex/core/provider/ProvidersRepository.java#L50).
 
 Customize and deploy tuskex-pricenode.env and tuskex-pricenode.service to run as a system service.
 
@@ -100,7 +100,7 @@ For each arbitrator:
 
 1. [Build the Tuskex repository](#fork-and-build-tuskex).
 2. Generate a public/private keypair for the arbitrator: `./gradlew generateKeypairs`
-3. Add the public key to `getPubKeyList()` in [ArbitratorManager.java](https://github.com/tuskex-dex/tuskex/blob/3cdd88b56915c7f8afd4f1a39e6c1197c2665d63/core/src/main/java/tuskex/core/support/dispute/arbitration/arbitrator/ArbitratorManager.java#L62).
+3. Add the public key to `getPubKeyList()` in [ArbitratorManager.java](https://github.com/tuskeNetwork/tuskex/blob/3cdd88b56915c7f8afd4f1a39e6c1197c2665d63/core/src/main/java/tuskex/core/support/dispute/arbitration/arbitrator/ArbitratorManager.java#L62).
 4. Update all seed nodes, arbitrators, and user applications for the change to take effect.
 5. [Start a local Monero node](#start-a-local-monero-node).
 6. Start the Tuskex desktop application using the application launcher or e.g. `make arbitrator-desktop-mainnet`
@@ -138,8 +138,8 @@ To set the network's filter object:
 
 To avoid user data corruption when using multiple Tuskex networks, change the default folder name for Tuskex's application data on your network:
 
-- Change `DEFAULT_APP_NAME` in [TuskexExecutable.java](https://.com/tuskex-dex/tuskex/blob/1aa62863f49a15e8322a8d96e58dc0ed37dec4eb/core/src/main/java/tuskex/core/app/TuskexExecutable.java#L85).
-- Change `appName` throughout the [Makefile](https://github.com/tuskex-dex/tuskex/blob/64acf86fbea069b0ae9f9bce086f8ecce1e91b87/Makefile#L479) accordingly.
+- Change `DEFAULT_APP_NAME` in [TuskexExecutable.java](https://.com/tuskeNetwork/tuskex/blob/1aa62863f49a15e8322a8d96e58dc0ed37dec4eb/core/src/main/java/tuskex/core/app/TuskexExecutable.java#L85).
+- Change `appName` throughout the [Makefile](https://github.com/tuskeNetwork/tuskex/blob/64acf86fbea069b0ae9f9bce086f8ecce1e91b87/Makefile#L479) accordingly.
 
 For example, change "Tuskex" to "TuskexX", which will use this application folder:
 
@@ -175,9 +175,9 @@ Test trades among the users and arbitrator.
 
 ## Build Tuskex installers for distribution
 
-For mainnet, first modify [package.gradle](https://github.com/tuskex-dex/tuskex/blob/aeb0822f9fc72bd5a0e23d0c42c2a8f5f87625bb/desktop/package/package.gradle#L252) to `--arguments --baseCurrencyNetwork=TSK_MAINNET`.
+For mainnet, first modify [package.gradle](https://github.com/tuskeNetwork/tuskex/blob/aeb0822f9fc72bd5a0e23d0c42c2a8f5f87625bb/desktop/package/package.gradle#L252) to `--arguments --baseCurrencyNetwork=TSK_MAINNET`.
 
-Then follow these instructions: https://github.com/tuskex-dex/tuskex/blob/master/desktop/package/README.md.
+Then follow these instructions: https://github.com/tuskeNetwork/tuskex/blob/master/desktop/package/README.md.
 
 ## Send alerts to update the application
 

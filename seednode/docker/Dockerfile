@@ -18,7 +18,7 @@ USER tuskex
 
 WORKDIR /home/tuskex
 
-RUN set -ex && git clone https://github.com/tuskex-dex/tuskex.git && \
+RUN set -ex && git clone https://github.com/tuskeNetwork/tuskex.git && \
     cd tuskex && \
     make skip-tests
 
