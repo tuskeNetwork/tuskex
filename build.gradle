@@ -562,8 +562,9 @@ configure(project(':core')) {
             ext.dependencyDownloadedAndVerified = true
         }
     }
-    */
+    
     processResources.dependsOn tuskexDeps // before both test and build
+    */
 }
 
 configure(project(':cli')) {
