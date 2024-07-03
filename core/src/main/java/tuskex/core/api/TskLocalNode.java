@@ -46,7 +46,7 @@ public class TskLocalNode {
 
     // constants
     public static final long REFRESH_PERIOD_LOCAL_MS = 5000; // refresh period for local node
-    public static final String MONEROD_NAME = Utilities.isWindows() ? "monerod.exe" : "monerod";
+    public static final String MONEROD_NAME = Utilities.isWindows() ? "tusked.exe" : "tusked";
     public static final String MONEROD_PATH = TskWalletService.MONERO_BINS_DIR + File.separator + MONEROD_NAME;
     private static final String MONEROD_DATADIR =  Config.baseCurrencyNetwork() == BaseCurrencyNetwork.TSK_LOCAL ? TskWalletService.MONERO_BINS_DIR + File.separator + Config.baseCurrencyNetwork().toString().toLowerCase() + File.separator + "node1" : null; // use default directory unless local
 
