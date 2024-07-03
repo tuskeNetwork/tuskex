@@ -1,4 +1,4 @@
-package haveno.desktop.util.normalization;
+package tuskex.desktop.util.normalization;
 
 import javafx.util.StringConverter;
 

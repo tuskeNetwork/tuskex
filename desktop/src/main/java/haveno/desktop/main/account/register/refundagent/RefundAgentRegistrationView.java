@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.register.refundagent;
+package tuskex.desktop.main.account.register.refundagent;
 
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.config.Config;
-import haveno.core.locale.Res;
-import haveno.core.support.dispute.refund.refundagent.RefundAgent;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.main.account.register.AgentRegistrationView;
+import tuskex.common.config.Config;
+import tuskex.core.locale.Res;
+import tuskex.core.support.dispute.refund.refundagent.RefundAgent;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.main.account.register.AgentRegistrationView;
 
 @FxmlView
 public class RefundAgentRegistrationView extends AgentRegistrationView<RefundAgent, RefundAgentRegistrationViewModel> {

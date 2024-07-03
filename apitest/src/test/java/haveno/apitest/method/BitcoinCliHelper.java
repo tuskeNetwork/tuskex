@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.method;
+package tuskex.apitest.method;
 
-import haveno.apitest.config.ApiTestConfig;
-import haveno.apitest.linux.BitcoinCli;
+import tuskex.apitest.config.ApiTestConfig;
+import tuskex.apitest.linux.BitcoinCli;
 
 import java.io.IOException;
 

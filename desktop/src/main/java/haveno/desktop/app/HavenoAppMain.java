@@ -15,18 +15,18 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.app;
+package tuskex.desktop.app;
 
-import haveno.common.UserThread;
-import haveno.common.app.AppModule;
-import haveno.common.app.Version;
-import haveno.common.crypto.IncorrectPasswordException;
-import haveno.core.app.AvoidStandbyModeService;
-import haveno.core.app.HavenoExecutable;
-import haveno.desktop.common.UITimer;
-import haveno.desktop.common.view.guice.InjectorViewFactory;
-import haveno.desktop.setup.DesktopPersistedDataHost;
-import haveno.desktop.util.ImageUtil;
+import tuskex.common.UserThread;
+import tuskex.common.app.AppModule;
+import tuskex.common.app.Version;
+import tuskex.common.crypto.IncorrectPasswordException;
+import tuskex.core.app.AvoidStandbyModeService;
+import tuskex.core.app.TuskexExecutable;
+import tuskex.desktop.common.UITimer;
+import tuskex.desktop.common.view.guice.InjectorViewFactory;
+import tuskex.desktop.setup.DesktopPersistedDataHost;
+import tuskex.desktop.util.ImageUtil;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.ButtonBar;
@@ -45,12 +45,12 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 @Slf4j
-public class HavenoAppMain extends HavenoExecutable {
+public class TuskexAppMain extends TuskexExecutable {
 
-    private HavenoApp application;
+    private TuskexApp application;
 
-    public HavenoAppMain() {
-        super("Haveno Desktop", "haveno-desktop", HavenoExecutable.DEFAULT_APP_NAME, Version.VERSION);
+    public TuskexAppMain() {
+        super("Tuskex Desktop", "tuskex-desktop", TuskexExecutable.DEFAULT_APP_NAME, Version.VERSION);
     }
 
     public static void main(String[] args) {
@@ -58,9 +58,9 @@ public class HavenoAppMain extends HavenoExecutable {
         // context class loader: reset it. In order to work around a bug in JavaFX 8u25
         // and below, you must include the following code as the first line of your
         // realMain method:
-        Thread.currentThread().setContextClassLoader(HavenoAppMain.class.getClassLoader());
+        Thread.currentThread().setContextClassLoader(TuskexAppMain.class.getClassLoader());
 
-        new HavenoAppMain().execute(args);
+        new TuskexAppMain().execute(args);
     }
 
     @Override
@@ -80,13 +80,13 @@ public class HavenoAppMain extends HavenoExecutable {
 
     @Override
     protected void launchApplication() {
-        HavenoApp.setAppLaunchedHandler(application -> {
-            HavenoAppMain.this.application = (HavenoApp) application;
+        TuskexApp.setAppLaunchedHandler(application -> {
+            TuskexAppMain.this.application = (TuskexApp) application;
             // Map to user thread!
             UserThread.execute(this::onApplicationLaunched);
         });
 
-        Application.launch(HavenoApp.class);
+        Application.launch(TuskexApp.class);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -111,7 +111,7 @@ public class HavenoAppMain extends HavenoExecutable {
 
     @Override
     protected AppModule getModule() {
-        return new HavenoAppModule(config);
+        return new TuskexAppModule(config);
     }
 
     @Override
@@ -195,7 +195,7 @@ public class HavenoAppMain extends HavenoExecutable {
 
         public PasswordDialog(String errorMessage) {
             setTitle("Enter Password");
-            setHeaderText("Please enter your Haveno password:");
+            setHeaderText("Please enter your Tuskex password:");
 
             // Add an icon to the dialog
             Stage stage = (Stage) getDialogPane().getScene().getWindow();
@@ -224,7 +224,7 @@ public class HavenoAppMain extends HavenoExecutable {
                 if (buttonType == okButton) {
                     return passwordField.getText();
                 } else {
-                    new Thread(() -> HavenoApp.getShutDownHandler().run()).start();
+                    new Thread(() -> TuskexApp.getShutDownHandler().run()).start();
                     return null;
                 }
             });

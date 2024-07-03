@@ -290,13 +290,13 @@ Creating a fiat payment account using the Api involves three steps:
 
 Unlike more complex fiat payment account setups, the `createcryptopaymentacct` command does not require a json form.
 
-#### XMR Altcoin Payment Accounts
+#### TSK Altcoin Payment Accounts
 
-To create an XMR Altcoin payment account associated with example XMR address
+To create an TSK Altcoin payment account associated with example TSK address
 `44G4jWmSvTEfifSUZzTDnJVLPvYATmq9XhhtDqUof1BGCLceG82EQsVYG9Q9GN4bJcjbAJEc1JD1m5G7iK4UPZqACubV4Mq`:
 ```
-$ ./bisq-cli --password=xyz --port=9999 createcryptopaymentacct --account-name=XMR-Account \
-        --currency-code=XMR
+$ ./bisq-cli --password=xyz --port=9999 createcryptopaymentacct --account-name=TSK-Account \
+        --currency-code=TSK
         --address=44G4jWmSvTEfifSUZzTDnJVLPvYATmq9XhhtDqUof1BGCLceG82EQsVYG9Q9GN4bJcjbAJEc1JD1m5G7iK4UPZqACubV4Mq
 ```
 

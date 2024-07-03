@@ -15,22 +15,22 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.support.dispute.client;
+package tuskex.desktop.main.support.dispute.client;
 
-import haveno.common.crypto.KeyRing;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.DisputeList;
-import haveno.core.support.dispute.DisputeManager;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.core.trade.TradeManager;
-import haveno.core.user.Preferences;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.main.overlays.windows.ContractWindow;
-import haveno.desktop.main.overlays.windows.DisputeSummaryWindow;
-import haveno.desktop.main.overlays.windows.TradeDetailsWindow;
-import haveno.desktop.main.support.dispute.DisputeView;
+import tuskex.common.crypto.KeyRing;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.DisputeList;
+import tuskex.core.support.dispute.DisputeManager;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.main.overlays.windows.ContractWindow;
+import tuskex.desktop.main.overlays.windows.DisputeSummaryWindow;
+import tuskex.desktop.main.overlays.windows.TradeDetailsWindow;
+import tuskex.desktop.main.support.dispute.DisputeView;
 
 public abstract class DisputeClientView extends DisputeView {
     public DisputeClientView(DisputeManager<? extends DisputeList<Dispute>> DisputeManager,

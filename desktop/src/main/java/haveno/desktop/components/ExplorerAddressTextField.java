@@ -15,14 +15,14 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.fontawesome.AwesomeDude;
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.common.util.Utilities;
-import haveno.core.locale.Res;
-import haveno.core.user.Preferences;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.Res;
+import tuskex.core.user.Preferences;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;

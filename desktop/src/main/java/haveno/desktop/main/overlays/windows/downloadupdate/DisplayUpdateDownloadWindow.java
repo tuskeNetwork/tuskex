@@ -15,21 +15,21 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows.downloadupdate;
+package tuskex.desktop.main.overlays.windows.downloadupdate;
 
 import com.google.common.base.Joiner;
 import static com.google.common.base.Preconditions.checkNotNull;
-import haveno.common.config.Config;
-import haveno.common.util.Utilities;
-import haveno.core.alert.Alert;
-import haveno.core.locale.Res;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.overlays.popups.Popup;
-import static haveno.desktop.util.FormBuilder.addLabel;
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
+import tuskex.common.config.Config;
+import tuskex.common.util.Utilities;
+import tuskex.core.alert.Alert;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.overlays.popups.Popup;
+import static tuskex.desktop.util.FormBuilder.addLabel;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -167,7 +167,7 @@ public class DisplayUpdateDownloadWindow extends Overlay<DisplayUpdateDownloadWi
         GridPane.setMargin(separator2, new Insets(20, 0, 20, 0));
         gridPane.getChildren().add(separator2);
 
-        HavenoInstaller installer = new HavenoInstaller();
+        TuskexInstaller installer = new TuskexInstaller();
         String downloadFailedString = Res.get("displayUpdateDownloadWindow.download.failed");
         downloadButton.setOnAction(e -> {
             if (installer.isSupportedOS()) {
@@ -203,9 +203,9 @@ public class DisplayUpdateDownloadWindow extends Overlay<DisplayUpdateDownloadWi
                         downloadingFileLabel.setOpacity(0.2);
                         statusLabel.setText(Res.get("displayUpdateDownloadWindow.status.verifying"));
 
-                        List<HavenoInstaller.FileDescriptor> downloadResults = downloadTask.getValue();
-                        Optional<HavenoInstaller.FileDescriptor> downloadFailed = downloadResults.stream()
-                                .filter(fileDescriptor -> !HavenoInstaller.DownloadStatusEnum.OK.equals(fileDescriptor.getDownloadStatus()))
+                        List<TuskexInstaller.FileDescriptor> downloadResults = downloadTask.getValue();
+                        Optional<TuskexInstaller.FileDescriptor> downloadFailed = downloadResults.stream()
+                                .filter(fileDescriptor -> !TuskexInstaller.DownloadStatusEnum.OK.equals(fileDescriptor.getDownloadStatus()))
                                 .findFirst();
                         downloadedFilesLabel.getStyleClass().removeAll("error-text", "success-text");
                         if (downloadResults == null || downloadResults.isEmpty() || downloadFailed.isPresent()) {
@@ -216,7 +216,7 @@ public class DisplayUpdateDownloadWindow extends Overlay<DisplayUpdateDownloadWi
                             downloadedFilesLabel.getStyleClass().add("success-text");
 
                             downloadTask.getFileDescriptors().stream()
-                                    .filter(fileDescriptor -> fileDescriptor.getType() == HavenoInstaller.DownloadType.JAR_HASH)
+                                    .filter(fileDescriptor -> fileDescriptor.getType() == TuskexInstaller.DownloadType.JAR_HASH)
                                     .findFirst()
                                     .ifPresent(this::copyJarHashToDataDir);
 
@@ -234,10 +234,10 @@ public class DisplayUpdateDownloadWindow extends Overlay<DisplayUpdateDownloadWi
                                 statusLabel.setText("");
                                 stopAnimations();
 
-                                List<HavenoInstaller.VerifyDescriptor> verifyResults = verifyTask.getValue();
+                                List<TuskexInstaller.VerifyDescriptor> verifyResults = verifyTask.getValue();
                                 // check that there are no failed verifications
-                                Optional<HavenoInstaller.VerifyDescriptor> verifyFailed = verifyResults.stream()
-                                        .filter(verifyDescriptor -> !HavenoInstaller.VerifyStatusEnum.OK.equals(verifyDescriptor.getVerifyStatusEnum())).findFirst();
+                                Optional<TuskexInstaller.VerifyDescriptor> verifyFailed = verifyResults.stream()
+                                        .filter(verifyDescriptor -> !TuskexInstaller.VerifyStatusEnum.OK.equals(verifyDescriptor.getVerifyStatusEnum())).findFirst();
                                 if (verifyResults == null || verifyResults.isEmpty() || verifyFailed.isPresent()) {
                                     showErrorMessage(downloadButton, statusLabel, Res.get("displayUpdateDownloadWindow.verify.failed"));
                                 } else {
@@ -269,7 +269,7 @@ public class DisplayUpdateDownloadWindow extends Overlay<DisplayUpdateDownloadWi
         });
     }
 
-    private void copyJarHashToDataDir(HavenoInstaller.FileDescriptor fileDescriptor) {
+    private void copyJarHashToDataDir(TuskexInstaller.FileDescriptor fileDescriptor) {
         StringBuilder sb = new StringBuilder();
         final File sourceFile = fileDescriptor.getSaveFile();
         try (Scanner scanner = new Scanner(new FileReader(sourceFile))) {

@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.arbitration;
+package tuskex.core.arbitration;
 
 import com.google.common.collect.Lists;
-import haveno.common.crypto.PubKeyRing;
-import haveno.core.support.dispute.arbitration.arbitrator.Arbitrator;
-import haveno.network.p2p.NodeAddress;
+import tuskex.common.crypto.PubKeyRing;
+import tuskex.core.support.dispute.arbitration.arbitrator.Arbitrator;
+import tuskex.network.p2p.NodeAddress;
 import org.apache.commons.lang3.RandomUtils;
 import org.junit.jupiter.api.Disabled;
 
@@ -29,7 +29,7 @@ import java.util.Date;
 @SuppressWarnings({"SameParameterValue", "UnusedAssignment"})
 public class ArbitratorTest {
 
-    @Disabled("TODO InvalidKeySpecException at haveno.common.crypto.Sig.getPublicKeyFromBytes(Sig.java:135)")
+    @Disabled("TODO InvalidKeySpecException at tuskex.common.crypto.Sig.getPublicKeyFromBytes(Sig.java:135)")
     public void testRoundtrip() {
         Arbitrator arbitrator = getArbitratorMock();
 

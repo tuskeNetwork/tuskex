@@ -15,24 +15,24 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.common.config.Config;
-import haveno.core.filter.Filter;
-import haveno.core.filter.FilterManager;
-import haveno.core.filter.PaymentAccountFilter;
-import haveno.core.locale.Res;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.overlays.popups.Popup;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addLabelCheckBox;
-import static haveno.desktop.util.FormBuilder.addTopLabelInputTextField;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.common.config.Config;
+import tuskex.core.filter.Filter;
+import tuskex.core.filter.FilterManager;
+import tuskex.core.filter.PaymentAccountFilter;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.overlays.popups.Popup;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addLabelCheckBox;
+import static tuskex.desktop.util.FormBuilder.addTopLabelInputTextField;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -137,16 +137,16 @@ public class FilterWindow extends Overlay<FilterWindow> {
                 Res.get("filterWindow.mediators"));
         InputTextField refundAgentsTF = addInputTextField(gridPane, ++rowIndex,
                 Res.get("filterWindow.refundAgents"));
-        InputTextField xmrFeeReceiverAddressesTF = addInputTextField(gridPane, ++rowIndex,
-                Res.get("filterWindow.xmrFeeReceiverAddresses"));
+        InputTextField tskFeeReceiverAddressesTF = addInputTextField(gridPane, ++rowIndex,
+                Res.get("filterWindow.tskFeeReceiverAddresses"));
         InputTextField seedNodesTF = addInputTextField(gridPane, ++rowIndex,
                 Res.get("filterWindow.seedNode"));
         InputTextField priceRelayNodesTF = addInputTextField(gridPane, ++rowIndex,
                 Res.get("filterWindow.priceRelayNode"));
-        InputTextField xmrNodesTF = addInputTextField(gridPane, ++rowIndex,
-                Res.get("filterWindow.xmrNode"));
-        CheckBox preventPublicXmrNetworkCheckBox = addLabelCheckBox(gridPane, ++rowIndex,
-                Res.get("filterWindow.preventPublicXmrNetwork"));
+        InputTextField tskNodesTF = addInputTextField(gridPane, ++rowIndex,
+                Res.get("filterWindow.tskNode"));
+        CheckBox preventPublicTskNetworkCheckBox = addLabelCheckBox(gridPane, ++rowIndex,
+                Res.get("filterWindow.preventPublicTskNetwork"));
         CheckBox disableAutoConfCheckBox = addLabelCheckBox(gridPane, ++rowIndex,
                 Res.get("filterWindow.disableAutoConf"));
         InputTextField disableTradeBelowVersionTF = addInputTextField(gridPane, ++rowIndex,
@@ -172,14 +172,14 @@ public class FilterWindow extends Overlay<FilterWindow> {
             setupFieldFromList(arbitratorsTF, filter.getArbitrators());
             setupFieldFromList(mediatorsTF, filter.getMediators());
             setupFieldFromList(refundAgentsTF, filter.getRefundAgents());
-            setupFieldFromList(xmrFeeReceiverAddressesTF, filter.getXmrFeeReceiverAddresses());
+            setupFieldFromList(tskFeeReceiverAddressesTF, filter.getTskFeeReceiverAddresses());
             setupFieldFromList(seedNodesTF, filter.getSeedNodes());
             setupFieldFromList(priceRelayNodesTF, filter.getPriceRelayNodes());
-            setupFieldFromList(xmrNodesTF, filter.getXmrNodes());
+            setupFieldFromList(tskNodesTF, filter.getTskNodes());
             setupFieldFromList(bannedPrivilegedDevPubKeysTF, filter.getBannedPrivilegedDevPubKeys());
             setupFieldFromList(autoConfExplorersTF, filter.getBannedAutoConfExplorers());
 
-            preventPublicXmrNetworkCheckBox.setSelected(filter.isPreventPublicXmrNetwork());
+            preventPublicTskNetworkCheckBox.setSelected(filter.isPreventPublicTskNetwork());
             disableAutoConfCheckBox.setSelected(filter.isDisableAutoConf());
             disableTradeBelowVersionTF.setText(filter.getDisableTradeBelowVersion());
             disableMempoolValidationCheckBox.setSelected(filter.isDisableMempoolValidation());
@@ -203,13 +203,13 @@ public class FilterWindow extends Overlay<FilterWindow> {
                         readAsList(arbitratorsTF),
                         readAsList(seedNodesTF),
                         readAsList(priceRelayNodesTF),
-                        preventPublicXmrNetworkCheckBox.isSelected(),
-                        readAsList(xmrNodesTF),
+                        preventPublicTskNetworkCheckBox.isSelected(),
+                        readAsList(tskNodesTF),
                         disableTradeBelowVersionTF.getText(),
                         readAsList(mediatorsTF),
                         readAsList(refundAgentsTF),
                         readAsList(bannedAccountWitnessSignerPubKeysTF),
-                        readAsList(xmrFeeReceiverAddressesTF),
+                        readAsList(tskFeeReceiverAddressesTF),
                         filterManager.getOwnerPubKey(),
                         signerPubKeyAsHex,
                         readAsList(bannedPrivilegedDevPubKeysTF),

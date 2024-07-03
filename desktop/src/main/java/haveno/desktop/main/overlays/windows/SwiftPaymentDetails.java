@@ -15,34 +15,34 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.Res;
-import haveno.core.payment.payload.SwiftAccountPayload;
-import haveno.core.trade.Trade;
-import haveno.core.util.VolumeUtil;
-import haveno.desktop.main.overlays.Overlay;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.payload.SwiftAccountPayload;
+import tuskex.core.trade.Trade;
+import tuskex.core.util.VolumeUtil;
+import tuskex.desktop.main.overlays.Overlay;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static haveno.common.util.Utilities.cleanString;
-import static haveno.common.util.Utilities.copyToClipboard;
-import static haveno.core.payment.payload.SwiftAccountPayload.ADDRESS;
-import static haveno.core.payment.payload.SwiftAccountPayload.BANKPOSTFIX;
-import static haveno.core.payment.payload.SwiftAccountPayload.BENEFICIARYPOSTFIX;
-import static haveno.core.payment.payload.SwiftAccountPayload.BRANCH;
-import static haveno.core.payment.payload.SwiftAccountPayload.COUNTRY;
-import static haveno.core.payment.payload.SwiftAccountPayload.INTERMEDIARYPOSTFIX;
-import static haveno.core.payment.payload.SwiftAccountPayload.PHONE;
-import static haveno.core.payment.payload.SwiftAccountPayload.SNAME;
-import static haveno.core.payment.payload.SwiftAccountPayload.SWIFT_ACCOUNT;
-import static haveno.core.payment.payload.SwiftAccountPayload.SWIFT_CODE;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelLabel;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.common.util.Utilities.cleanString;
+import static tuskex.common.util.Utilities.copyToClipboard;
+import static tuskex.core.payment.payload.SwiftAccountPayload.ADDRESS;
+import static tuskex.core.payment.payload.SwiftAccountPayload.BANKPOSTFIX;
+import static tuskex.core.payment.payload.SwiftAccountPayload.BENEFICIARYPOSTFIX;
+import static tuskex.core.payment.payload.SwiftAccountPayload.BRANCH;
+import static tuskex.core.payment.payload.SwiftAccountPayload.COUNTRY;
+import static tuskex.core.payment.payload.SwiftAccountPayload.INTERMEDIARYPOSTFIX;
+import static tuskex.core.payment.payload.SwiftAccountPayload.PHONE;
+import static tuskex.core.payment.payload.SwiftAccountPayload.SNAME;
+import static tuskex.core.payment.payload.SwiftAccountPayload.SWIFT_ACCOUNT;
+import static tuskex.core.payment.payload.SwiftAccountPayload.SWIFT_CODE;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelLabel;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
 
 public class SwiftPaymentDetails extends Overlay<SwiftPaymentDetails> {
     private final SwiftAccountPayload payload;

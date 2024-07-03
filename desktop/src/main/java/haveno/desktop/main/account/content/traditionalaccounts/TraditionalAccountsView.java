@@ -15,129 +15,129 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.content.traditionalaccounts;
+package tuskex.desktop.main.account.content.traditionalaccounts;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.config.Config;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple3;
-import haveno.common.util.Utilities;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Res;
-import haveno.core.offer.OfferRestrictions;
-import haveno.core.payment.AmazonGiftCardAccount;
-import haveno.core.payment.AustraliaPayidAccount;
-import haveno.core.payment.CashAppAccount;
-import haveno.core.payment.CashAtAtmAccount;
-import haveno.core.payment.CashDepositAccount;
-import haveno.core.payment.F2FAccount;
-import haveno.core.payment.HalCashAccount;
-import haveno.core.payment.MoneyGramAccount;
-import haveno.core.payment.PayByMailAccount;
-import haveno.core.payment.PayPalAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.PaymentAccountFactory;
-import haveno.core.payment.RevolutAccount;
-import haveno.core.payment.USPostalMoneyOrderAccount;
-import haveno.core.payment.VenmoAccount;
-import haveno.core.payment.WesternUnionAccount;
-import haveno.core.payment.ZelleAccount;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.payment.validation.AdvancedCashValidator;
-import haveno.core.payment.validation.AliPayValidator;
-import haveno.core.payment.validation.AustraliaPayidValidator;
-import haveno.core.payment.validation.BICValidator;
-import haveno.core.payment.validation.CapitualValidator;
-import haveno.core.payment.validation.ChaseQuickPayValidator;
-import haveno.core.payment.validation.EmailOrMobileNrValidator;
-import haveno.core.payment.validation.EmailOrMobileNrOrCashtagValidator;
-import haveno.core.payment.validation.EmailOrMobileNrOrUsernameValidator;
-import haveno.core.payment.validation.F2FValidator;
-import haveno.core.payment.validation.HalCashValidator;
-import haveno.core.payment.validation.InteracETransferValidator;
-import haveno.core.payment.validation.JapanBankTransferValidator;
-import haveno.core.payment.validation.LengthValidator;
-import haveno.core.payment.validation.MoneyBeamValidator;
-import haveno.core.payment.validation.PerfectMoneyValidator;
-import haveno.core.payment.validation.PopmoneyValidator;
-import haveno.core.payment.validation.PromptPayValidator;
-import haveno.core.payment.validation.RevolutValidator;
-import haveno.core.payment.validation.SwishValidator;
-import haveno.core.payment.validation.TransferwiseValidator;
-import haveno.core.payment.validation.USPostalMoneyOrderValidator;
-import haveno.core.payment.validation.UpholdValidator;
-import haveno.core.payment.validation.WeChatPayValidator;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.components.paymentmethods.AchTransferForm;
-import haveno.desktop.components.paymentmethods.AdvancedCashForm;
-import haveno.desktop.components.paymentmethods.AliPayForm;
-import haveno.desktop.components.paymentmethods.AmazonGiftCardForm;
-import haveno.desktop.components.paymentmethods.AustraliaPayidForm;
-import haveno.desktop.components.paymentmethods.BizumForm;
-import haveno.desktop.components.paymentmethods.CapitualForm;
-import haveno.desktop.components.paymentmethods.CashAppForm;
-import haveno.desktop.components.paymentmethods.CashAtAtmForm;
-import haveno.desktop.components.paymentmethods.CashDepositForm;
-import haveno.desktop.components.paymentmethods.CelPayForm;
-import haveno.desktop.components.paymentmethods.ChaseQuickPayForm;
-import haveno.desktop.components.paymentmethods.DomesticWireTransferForm;
-import haveno.desktop.components.paymentmethods.F2FForm;
-import haveno.desktop.components.paymentmethods.FasterPaymentsForm;
-import haveno.desktop.components.paymentmethods.HalCashForm;
-import haveno.desktop.components.paymentmethods.ImpsForm;
-import haveno.desktop.components.paymentmethods.InteracETransferForm;
-import haveno.desktop.components.paymentmethods.JapanBankTransferForm;
-import haveno.desktop.components.paymentmethods.MoneseForm;
-import haveno.desktop.components.paymentmethods.MoneyBeamForm;
-import haveno.desktop.components.paymentmethods.MoneyGramForm;
-import haveno.desktop.components.paymentmethods.NationalBankForm;
-import haveno.desktop.components.paymentmethods.NeftForm;
-import haveno.desktop.components.paymentmethods.NequiForm;
-import haveno.desktop.components.paymentmethods.PaxumForm;
-import haveno.desktop.components.paymentmethods.PayByMailForm;
-import haveno.desktop.components.paymentmethods.PayPalForm;
-import haveno.desktop.components.paymentmethods.PaymentMethodForm;
-import haveno.desktop.components.paymentmethods.PayseraForm;
-import haveno.desktop.components.paymentmethods.PaytmForm;
-import haveno.desktop.components.paymentmethods.PerfectMoneyForm;
-import haveno.desktop.components.paymentmethods.PixForm;
-import haveno.desktop.components.paymentmethods.PopmoneyForm;
-import haveno.desktop.components.paymentmethods.PromptPayForm;
-import haveno.desktop.components.paymentmethods.RevolutForm;
-import haveno.desktop.components.paymentmethods.RtgsForm;
-import haveno.desktop.components.paymentmethods.SameBankForm;
-import haveno.desktop.components.paymentmethods.SatispayForm;
-import haveno.desktop.components.paymentmethods.SepaForm;
-import haveno.desktop.components.paymentmethods.SepaInstantForm;
-import haveno.desktop.components.paymentmethods.SpecificBankForm;
-import haveno.desktop.components.paymentmethods.StrikeForm;
-import haveno.desktop.components.paymentmethods.SwiftForm;
-import haveno.desktop.components.paymentmethods.SwishForm;
-import haveno.desktop.components.paymentmethods.TikkieForm;
-import haveno.desktop.components.paymentmethods.TransferwiseForm;
-import haveno.desktop.components.paymentmethods.TransferwiseUsdForm;
-import haveno.desktop.components.paymentmethods.USPostalMoneyOrderForm;
-import haveno.desktop.components.paymentmethods.UpholdForm;
-import haveno.desktop.components.paymentmethods.UpiForm;
-import haveno.desktop.components.paymentmethods.VenmoForm;
-import haveno.desktop.components.paymentmethods.VerseForm;
-import haveno.desktop.components.paymentmethods.WeChatPayForm;
-import haveno.desktop.components.paymentmethods.WesternUnionForm;
-import haveno.desktop.components.paymentmethods.ZelleForm;
-import haveno.desktop.main.account.content.PaymentAccountsView;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.FormBuilder;
-import static haveno.desktop.util.FormBuilder.add2ButtonsAfterGroup;
-import static haveno.desktop.util.FormBuilder.add3ButtonsAfterGroup;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelListView;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.Layout;
+import tuskex.common.config.Config;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple3;
+import tuskex.common.util.Utilities;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OfferRestrictions;
+import tuskex.core.payment.AmazonGiftCardAccount;
+import tuskex.core.payment.AustraliaPayidAccount;
+import tuskex.core.payment.CashAppAccount;
+import tuskex.core.payment.CashAtAtmAccount;
+import tuskex.core.payment.CashDepositAccount;
+import tuskex.core.payment.F2FAccount;
+import tuskex.core.payment.HalCashAccount;
+import tuskex.core.payment.MoneyGramAccount;
+import tuskex.core.payment.PayByMailAccount;
+import tuskex.core.payment.PayPalAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.PaymentAccountFactory;
+import tuskex.core.payment.RevolutAccount;
+import tuskex.core.payment.USPostalMoneyOrderAccount;
+import tuskex.core.payment.VenmoAccount;
+import tuskex.core.payment.WesternUnionAccount;
+import tuskex.core.payment.ZelleAccount;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.payment.validation.AdvancedCashValidator;
+import tuskex.core.payment.validation.AliPayValidator;
+import tuskex.core.payment.validation.AustraliaPayidValidator;
+import tuskex.core.payment.validation.BICValidator;
+import tuskex.core.payment.validation.CapitualValidator;
+import tuskex.core.payment.validation.ChaseQuickPayValidator;
+import tuskex.core.payment.validation.EmailOrMobileNrValidator;
+import tuskex.core.payment.validation.EmailOrMobileNrOrCashtagValidator;
+import tuskex.core.payment.validation.EmailOrMobileNrOrUsernameValidator;
+import tuskex.core.payment.validation.F2FValidator;
+import tuskex.core.payment.validation.HalCashValidator;
+import tuskex.core.payment.validation.InteracETransferValidator;
+import tuskex.core.payment.validation.JapanBankTransferValidator;
+import tuskex.core.payment.validation.LengthValidator;
+import tuskex.core.payment.validation.MoneyBeamValidator;
+import tuskex.core.payment.validation.PerfectMoneyValidator;
+import tuskex.core.payment.validation.PopmoneyValidator;
+import tuskex.core.payment.validation.PromptPayValidator;
+import tuskex.core.payment.validation.RevolutValidator;
+import tuskex.core.payment.validation.SwishValidator;
+import tuskex.core.payment.validation.TransferwiseValidator;
+import tuskex.core.payment.validation.USPostalMoneyOrderValidator;
+import tuskex.core.payment.validation.UpholdValidator;
+import tuskex.core.payment.validation.WeChatPayValidator;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.components.paymentmethods.AchTransferForm;
+import tuskex.desktop.components.paymentmethods.AdvancedCashForm;
+import tuskex.desktop.components.paymentmethods.AliPayForm;
+import tuskex.desktop.components.paymentmethods.AmazonGiftCardForm;
+import tuskex.desktop.components.paymentmethods.AustraliaPayidForm;
+import tuskex.desktop.components.paymentmethods.BizumForm;
+import tuskex.desktop.components.paymentmethods.CapitualForm;
+import tuskex.desktop.components.paymentmethods.CashAppForm;
+import tuskex.desktop.components.paymentmethods.CashAtAtmForm;
+import tuskex.desktop.components.paymentmethods.CashDepositForm;
+import tuskex.desktop.components.paymentmethods.CelPayForm;
+import tuskex.desktop.components.paymentmethods.ChaseQuickPayForm;
+import tuskex.desktop.components.paymentmethods.DomesticWireTransferForm;
+import tuskex.desktop.components.paymentmethods.F2FForm;
+import tuskex.desktop.components.paymentmethods.FasterPaymentsForm;
+import tuskex.desktop.components.paymentmethods.HalCashForm;
+import tuskex.desktop.components.paymentmethods.ImpsForm;
+import tuskex.desktop.components.paymentmethods.InteracETransferForm;
+import tuskex.desktop.components.paymentmethods.JapanBankTransferForm;
+import tuskex.desktop.components.paymentmethods.MoneseForm;
+import tuskex.desktop.components.paymentmethods.MoneyBeamForm;
+import tuskex.desktop.components.paymentmethods.MoneyGramForm;
+import tuskex.desktop.components.paymentmethods.NationalBankForm;
+import tuskex.desktop.components.paymentmethods.NeftForm;
+import tuskex.desktop.components.paymentmethods.NequiForm;
+import tuskex.desktop.components.paymentmethods.PaxumForm;
+import tuskex.desktop.components.paymentmethods.PayByMailForm;
+import tuskex.desktop.components.paymentmethods.PayPalForm;
+import tuskex.desktop.components.paymentmethods.PaymentMethodForm;
+import tuskex.desktop.components.paymentmethods.PayseraForm;
+import tuskex.desktop.components.paymentmethods.PaytmForm;
+import tuskex.desktop.components.paymentmethods.PerfectMoneyForm;
+import tuskex.desktop.components.paymentmethods.PixForm;
+import tuskex.desktop.components.paymentmethods.PopmoneyForm;
+import tuskex.desktop.components.paymentmethods.PromptPayForm;
+import tuskex.desktop.components.paymentmethods.RevolutForm;
+import tuskex.desktop.components.paymentmethods.RtgsForm;
+import tuskex.desktop.components.paymentmethods.SameBankForm;
+import tuskex.desktop.components.paymentmethods.SatispayForm;
+import tuskex.desktop.components.paymentmethods.SepaForm;
+import tuskex.desktop.components.paymentmethods.SepaInstantForm;
+import tuskex.desktop.components.paymentmethods.SpecificBankForm;
+import tuskex.desktop.components.paymentmethods.StrikeForm;
+import tuskex.desktop.components.paymentmethods.SwiftForm;
+import tuskex.desktop.components.paymentmethods.SwishForm;
+import tuskex.desktop.components.paymentmethods.TikkieForm;
+import tuskex.desktop.components.paymentmethods.TransferwiseForm;
+import tuskex.desktop.components.paymentmethods.TransferwiseUsdForm;
+import tuskex.desktop.components.paymentmethods.USPostalMoneyOrderForm;
+import tuskex.desktop.components.paymentmethods.UpholdForm;
+import tuskex.desktop.components.paymentmethods.UpiForm;
+import tuskex.desktop.components.paymentmethods.VenmoForm;
+import tuskex.desktop.components.paymentmethods.VerseForm;
+import tuskex.desktop.components.paymentmethods.WeChatPayForm;
+import tuskex.desktop.components.paymentmethods.WesternUnionForm;
+import tuskex.desktop.components.paymentmethods.ZelleForm;
+import tuskex.desktop.main.account.content.PaymentAccountsView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.FormBuilder;
+import static tuskex.desktop.util.FormBuilder.add2ButtonsAfterGroup;
+import static tuskex.desktop.util.FormBuilder.add3ButtonsAfterGroup;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelListView;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.Layout;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -274,7 +274,7 @@ public class TraditionalAccountsView extends PaymentAccountsView<GridPane, Tradi
             new Popup().information(Res.get("payment.f2f.info"))
                     .width(700)
                     .closeButtonText(Res.get("payment.f2f.info.openURL"))
-                    .onClose(() -> GUIUtil.openWebPage("https://haveno.exchange/wiki/Face-to-face_(payment_method)"))
+                    .onClose(() -> GUIUtil.openWebPage("https://tuskex.exchange/wiki/Face-to-face_(payment_method)"))
                     .actionButtonText(Res.get("shared.iUnderstand"))
                     .onAction(() -> doSaveNewAccount(paymentAccount))
                     .show();
@@ -306,17 +306,17 @@ public class TraditionalAccountsView extends PaymentAccountsView<GridPane, Tradi
         } else {
 
             String limitsInfoKey = "payment.limits.info";
-            String initialLimit = HavenoUtils.formatXmr(maxTradeLimitFirstMonth, true);
+            String initialLimit = TuskexUtils.formatTsk(maxTradeLimitFirstMonth, true);
 
             if (PaymentMethod.hasChargebackRisk(paymentAccount.getPaymentMethod(), paymentAccount.getTradeCurrencies())) {
                 limitsInfoKey = "payment.limits.info.withSigning";
-                initialLimit = HavenoUtils.formatXmr(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true);
+                initialLimit = TuskexUtils.formatTsk(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true);
             }
 
             new Popup().information(Res.get(limitsInfoKey,
                     initialLimit,
-                    HavenoUtils.formatXmr(maxTradeLimitSecondMonth, true),
-                    HavenoUtils.formatXmr(maxTradeLimit, true)))
+                    TuskexUtils.formatTsk(maxTradeLimitSecondMonth, true),
+                    TuskexUtils.formatTsk(maxTradeLimit, true)))
                     .width(700)
                     .closeButtonText(Res.get("shared.cancel"))
                     .actionButtonText(Res.get("shared.iUnderstand"))

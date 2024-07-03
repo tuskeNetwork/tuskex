@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer;
+package tuskex.desktop.main.offer;
 
-import haveno.core.locale.Res;
-import haveno.core.monetary.Volume;
-import haveno.core.offer.OfferUtil;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.GUIUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.monetary.Volume;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.GUIUtil;
 
 import java.math.BigInteger;
 import java.util.Optional;
@@ -45,13 +45,13 @@ public class OfferViewModelUtil {
                                                                     BigInteger tradeFee,
                                                                     BigInteger tradeAmount,
                                                                     CoinFormatter formatter) {
-        String feeAsXmr = HavenoUtils.formatXmr(tradeFee, true);
+        String feeAsTsk = TuskexUtils.formatTsk(tradeFee, true);
         String percentage;
         percentage = GUIUtil.getPercentage(tradeFee, tradeAmount) + " " + Res.get("guiUtil.ofTradeAmount");
         return offerUtil.getFeeInUserFiatCurrency(tradeFee,
                 formatter)
                 .map(VolumeUtil::formatAverageVolumeWithCode)
-                .map(feeInFiat -> Res.get("feeOptionWindow.xmrFeeWithFiatAndPercentage", feeAsXmr, feeInFiat, percentage))
-                .orElseGet(() -> Res.get("feeOptionWindow.xmrFeeWithPercentage", feeAsXmr, percentage));
+                .map(feeInFiat -> Res.get("feeOptionWindow.tskFeeWithFiatAndPercentage", feeAsTsk, feeInFiat, percentage))
+                .orElseGet(() -> Res.get("feeOptionWindow.tskFeeWithPercentage", feeAsTsk, percentage));
     }
 }

@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.common.view;
+package tuskex.desktop.common.view;
 
 public interface ViewLoader {
     View load(Class<? extends View> viewClass);

@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.maker;
+package tuskex.desktop.maker;
 
 import com.natpryce.makeiteasy.Instantiator;
 import com.natpryce.makeiteasy.Property;
 import com.natpryce.makeiteasy.SameValueDonor;
-import haveno.common.config.Config;
-import haveno.common.persistence.PersistenceManager;
-import haveno.core.api.XmrLocalNode;
-import haveno.core.user.Preferences;
+import tuskex.common.config.Config;
+import tuskex.common.persistence.PersistenceManager;
+import tuskex.core.api.TskLocalNode;
+import tuskex.core.user.Preferences;
 
 import static com.natpryce.makeiteasy.MakeItEasy.a;
 import static com.natpryce.makeiteasy.MakeItEasy.make;
@@ -32,7 +32,7 @@ public class PreferenceMakers {
 
     public static final Property<Preferences, PersistenceManager> storage = new Property<>();
     public static final Property<Preferences, Config> config = new Property<>();
-    public static final Property<Preferences, XmrLocalNode> xmrLocalNode = new Property<>();
+    public static final Property<Preferences, TskLocalNode> tskLocalNode = new Property<>();
     public static final Property<Preferences, String> useTorFlagFromOptions = new Property<>();
     public static final Property<Preferences, String> referralID = new Property<>();
 

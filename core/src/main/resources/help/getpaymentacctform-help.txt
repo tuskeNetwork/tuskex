@@ -32,13 +32,13 @@ EXAMPLES
 --------
 To create a new ZELLE payment account,  find the payment-method-id for
 the getpaymentacctform command:
-$ ./haveno-cli --password=xyz --port=9998 getpaymentmethods
+$ ./tuskex-cli --password=xyz --port=9998 getpaymentmethods
 
 Get a new, blank ZELLE payment account form:
-$ ./haveno-cli --password=xyz --port=9998 getpaymentacctform --payment-method-id=ZELLE_ID
+$ ./tuskex-cli --password=xyz --port=9998 getpaymentacctform --payment-method-id=ZELLE_ID
 
 The previous command created a json file named zelle_1610818248040.json.  The timestamp
 in the file name is to ensure each generated file is uniquely named (you can rename the file).
 
 Manually edit the json file, and pass the file's path to the createpaymentacct command:
-$ ./haveno-cli --password=xyz --port=9998 createpaymentacct --payment-account-form=zelle_1610818248040.json
+$ ./tuskex-cli --password=xyz --port=9998 createpaymentacct --payment-account-form=zelle_1610818248040.json

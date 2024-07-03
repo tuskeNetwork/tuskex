@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util.filtering;
+package tuskex.desktop.util.filtering;
 
 public interface FilterableListItem {
     boolean match(String filterString);

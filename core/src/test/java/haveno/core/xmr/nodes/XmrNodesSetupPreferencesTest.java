@@ -15,29 +15,29 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.xmr.nodes;
+package tuskex.core.tsk.nodes;
 
-import haveno.core.user.Preferences;
-import haveno.core.xmr.nodes.XmrNodes.XmrNode;
+import tuskex.core.user.Preferences;
+import tuskex.core.tsk.nodes.TskNodes.TskNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static haveno.core.xmr.nodes.XmrNodes.MoneroNodesOption.CUSTOM;
-import static haveno.core.xmr.nodes.XmrNodes.MoneroNodesOption.PUBLIC;
+import static tuskex.core.tsk.nodes.TskNodes.MoneroNodesOption.CUSTOM;
+import static tuskex.core.tsk.nodes.TskNodes.MoneroNodesOption.PUBLIC;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class XmrNodesSetupPreferencesTest {
+public class TskNodesSetupPreferencesTest {
     @Test
     public void testSelectPreferredNodesWhenPublicOption() {
         Preferences delegate = mock(Preferences.class);
         when(delegate.getMoneroNodesOptionOrdinal()).thenReturn(PUBLIC.ordinal());
 
-        XmrNodesSetupPreferences preferences = new XmrNodesSetupPreferences(delegate);
-        List<XmrNode> nodes = preferences.selectPreferredNodes(mock(XmrNodes.class));
+        TskNodesSetupPreferences preferences = new TskNodesSetupPreferences(delegate);
+        List<TskNode> nodes = preferences.selectPreferredNodes(mock(TskNodes.class));
 
         assertTrue(nodes.isEmpty());
     }
@@ -48,8 +48,8 @@ public class XmrNodesSetupPreferencesTest {
         when(delegate.getMoneroNodesOptionOrdinal()).thenReturn(CUSTOM.ordinal());
         when(delegate.getMoneroNodes()).thenReturn("aaa.onion,bbb.onion");
 
-        XmrNodesSetupPreferences preferences = new XmrNodesSetupPreferences(delegate);
-        List<XmrNode> nodes = preferences.selectPreferredNodes(mock(XmrNodes.class));
+        TskNodesSetupPreferences preferences = new TskNodesSetupPreferences(delegate);
+        List<TskNode> nodes = preferences.selectPreferredNodes(mock(TskNodes.class));
 
         assertEquals(2, nodes.size());
     }

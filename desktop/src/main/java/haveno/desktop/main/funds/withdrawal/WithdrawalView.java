@@ -16,46 +16,46 @@
  */
 
 /*
- * This file is part of Haveno.
+ * This file is part of Tuskex.
  *
- * Haveno is free software: you can redistribute it and/or modify it
+ * Tuskex is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or (at
  * your option) any later version.
  *
- * Haveno is distributed in the hope that it will be useful, but WITHOUT
+ * Tuskex is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
  * License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Haveno. If not, see <http://www.gnu.org/licenses/>.
+ * along with Tuskex. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.withdrawal;
+package tuskex.desktop.main.funds.withdrawal;
 
 import com.google.inject.Inject;
-import haveno.common.util.Tuple3;
-import haveno.core.locale.Res;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.TradeManager;
-import haveno.core.trade.protocol.TradeProtocol;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.util.validation.BtcAddressValidator;
-import haveno.core.xmr.listeners.XmrBalanceListener;
-import haveno.core.xmr.setup.WalletsSetup;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.TxDetails;
-import haveno.desktop.main.overlays.windows.WalletPasswordWindow;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.P2PService;
+import tuskex.common.util.Tuple3;
+import tuskex.core.locale.Res;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.trade.protocol.TradeProtocol;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.util.validation.BtcAddressValidator;
+import tuskex.core.tsk.listeners.TskBalanceListener;
+import tuskex.core.tsk.setup.WalletsSetup;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.TxDetails;
+import tuskex.desktop.main.overlays.windows.WalletPasswordWindow;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.P2PService;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
@@ -72,9 +72,9 @@ import monero.wallet.model.MoneroTxWallet;
 import java.math.BigInteger;
 import java.util.Arrays;
 
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelInputTextField;
-import static haveno.desktop.util.FormBuilder.addButton;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelInputTextField;
+import static tuskex.desktop.util.FormBuilder.addButton;
 
 @FxmlView
 public class WithdrawalView extends ActivatableView<VBox, Void> {
@@ -90,11 +90,11 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
     private Label amountLabel;
     private TextField amountTextField, withdrawToTextField, withdrawMemoTextField;
 
-    private final XmrWalletService xmrWalletService;
+    private final TskWalletService tskWalletService;
     private final TradeManager tradeManager;
     private final P2PService p2PService;
     private final WalletPasswordWindow walletPasswordWindow;
-    private XmrBalanceListener balanceListener;
+    private TskBalanceListener balanceListener;
     private BigInteger amount = BigInteger.ZERO;
     private ChangeListener<String> amountListener;
     private ChangeListener<Boolean> amountFocusListener;
@@ -107,13 +107,13 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     @Inject
-    private WithdrawalView(XmrWalletService xmrWalletService,
+    private WithdrawalView(TskWalletService tskWalletService,
                            TradeManager tradeManager,
                            P2PService p2PService,
                            WalletsSetup walletsSetup,
                            BtcAddressValidator btcAddressValidator,
                            WalletPasswordWindow walletPasswordWindow) {
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.tradeManager = tradeManager;
         this.p2PService = p2PService;
         this.walletPasswordWindow = walletPasswordWindow;
@@ -172,7 +172,7 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
             amountTextField.setText(Res.get("funds.withdrawal.maximum"));
         });
 
-        balanceListener = new XmrBalanceListener() {
+        balanceListener = new TskBalanceListener() {
             @Override
             public void onBalanceChanged(BigInteger balance) {
 
@@ -182,7 +182,7 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
             if (amountTextField.focusedProperty().get()) {
                 sendMax = false; // disable max if amount changed while focused
                 try {
-                    amount = HavenoUtils.parseXmr(amountTextField.getText());
+                    amount = TuskexUtils.parseTsk(amountTextField.getText());
                 } catch (Throwable t) {
                     log.error("Error at amountTextField input. " + t.toString());
                 }
@@ -193,7 +193,7 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
             // parse amount on focus out unless sending max
             if (oldValue && !newValue && !sendMax) {
                 if (amount.compareTo(BigInteger.ZERO) > 0)
-                    amountTextField.setText(HavenoUtils.formatXmr(amount));
+                    amountTextField.setText(TuskexUtils.formatTsk(amount));
                 else
                     amountTextField.setText("");
             }
@@ -220,7 +220,7 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
 
         amountTextField.textProperty().addListener(amountListener);
         amountTextField.focusedProperty().addListener(amountFocusListener);
-        xmrWalletService.addBalanceListener(balanceListener);
+        tskWalletService.addBalanceListener(balanceListener);
 
         GUIUtil.requestFocus(withdrawToTextField);
     }
@@ -228,7 +228,7 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
     @Override
     protected void deactivate() {
         spinningWheel.stop();
-        xmrWalletService.removeBalanceListener(balanceListener);
+        tskWalletService.removeBalanceListener(balanceListener);
         amountTextField.textProperty().removeListener(amountListener);
         amountTextField.focusedProperty().removeListener(amountFocusListener);
     }
@@ -239,17 +239,17 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     private void onWithdraw() {
-        if (GUIUtil.isReadyForTxBroadcastOrShowPopup(xmrWalletService)) {
+        if (GUIUtil.isReadyForTxBroadcastOrShowPopup(tskWalletService)) {
             try {
 
                 // validate address
                 final String withdrawToAddress = withdrawToTextField.getText();
-                if (!MoneroUtils.isValidAddress(withdrawToAddress, XmrWalletService.getMoneroNetworkType())) {
-                    throw new IllegalArgumentException(Res.get("validation.xmr.invalidAddress"));
+                if (!MoneroUtils.isValidAddress(withdrawToAddress, TskWalletService.getMoneroNetworkType())) {
+                    throw new IllegalArgumentException(Res.get("validation.tsk.invalidAddress"));
                 }
 
                 // set max amount if requested
-                if (sendMax) amount = xmrWalletService.getAvailableBalance();
+                if (sendMax) amount = tskWalletService.getAvailableBalance();
 
                 // check sufficient available balance
                 if (amount.compareTo(BigInteger.ZERO) <= 0) throw new RuntimeException(Res.get("portfolio.pending.step5_buyer.amountTooLow"));
@@ -260,7 +260,7 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
                     try {
                         log.info("Creating withdraw tx");
                         long startTime = System.currentTimeMillis();
-                        tx = xmrWalletService.createTx(new MoneroTxConfig()
+                        tx = tskWalletService.createTx(new MoneroTxConfig()
                                 .setAccountIndex(0)
                                 .setAmount(amount)
                                 .setAddress(withdrawToAddress)
@@ -271,7 +271,7 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
                         if (isNotEnoughMoney(e.getMessage())) throw e;
                         log.warn("Error creating creating withdraw tx, attempt={}/{}, error={}", i + 1, MAX_ATTEMPTS, e.getMessage());
                         if (i == MAX_ATTEMPTS - 1) throw e;
-                        HavenoUtils.waitFor(TradeProtocol.REPROCESS_DELAY_MS); // wait before retrying
+                        TuskexUtils.waitFor(TradeProtocol.REPROCESS_DELAY_MS); // wait before retrying
                     }
                 }
 
@@ -296,10 +296,10 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
         BigInteger receiverAmount = tx.getOutgoingTransfer().getDestinations().get(0).getAmount();
         BigInteger fee = tx.getFee();
         String messageText = Res.get("shared.sendFundsDetailsWithFee",
-                HavenoUtils.formatXmr(amount, true),
+                TuskexUtils.formatTsk(amount, true),
                 withdrawToAddress,
-                HavenoUtils.formatXmr(fee, true),
-                HavenoUtils.formatXmr(receiverAmount, true));
+                TuskexUtils.formatTsk(fee, true),
+                TuskexUtils.formatTsk(receiverAmount, true));
 
         // popup confirmation message
         Popup popup = new Popup();
@@ -307,7 +307,7 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
                 .confirmation(messageText)
                 .actionButtonText(Res.get("shared.yes"))
                 .onAction(() -> {
-                    if (xmrWalletService.isWalletEncrypted()) {
+                    if (tskWalletService.isWalletEncrypted()) {
                         walletPasswordWindow.headLine(Res.get("walletPasswordWindow.headline")).onSuccess(() -> {
                             relayTx(tx, withdrawToAddress, receiverAmount, fee);
                         }).onClose(() -> {
@@ -323,11 +323,11 @@ public class WithdrawalView extends ActivatableView<VBox, Void> {
 
     private void relayTx(MoneroTxWallet tx, String withdrawToAddress, BigInteger receiverAmount, BigInteger fee) {
         try {
-            xmrWalletService.getWallet().relayTx(tx);
-            xmrWalletService.getWallet().setTxNote(tx.getHash(), withdrawMemoTextField.getText()); // TODO (monero-java): tx note does not persist when tx created then relayed
+            tskWalletService.getWallet().relayTx(tx);
+            tskWalletService.getWallet().setTxNote(tx.getHash(), withdrawMemoTextField.getText()); // TODO (monero-java): tx note does not persist when tx created then relayed
             String key = "showTransactionSent";
             if (DontShowAgainLookup.showAgain(key)) {
-                new TxDetails(tx.getHash(), withdrawToAddress, HavenoUtils.formatXmr(receiverAmount, true), HavenoUtils.formatXmr(fee, true), xmrWalletService.getWallet().getTxNote(tx.getHash()))
+                new TxDetails(tx.getHash(), withdrawToAddress, TuskexUtils.formatTsk(receiverAmount, true), TuskexUtils.formatTsk(fee, true), tskWalletService.getWallet().getTxNote(tx.getHash()))
                         .dontShowAgainId(key)
                         .show();
             }

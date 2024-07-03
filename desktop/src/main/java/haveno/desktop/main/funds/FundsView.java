@@ -15,20 +15,20 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds;
+package tuskex.desktop.main.funds;
 
 import com.google.inject.Inject;
-import haveno.core.locale.Res;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.CachingViewLoader;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.common.view.View;
-import haveno.desktop.common.view.ViewLoader;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.funds.deposit.DepositView;
-import haveno.desktop.main.funds.transactions.TransactionsView;
-import haveno.desktop.main.funds.withdrawal.WithdrawalView;
+import tuskex.core.locale.Res;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.CachingViewLoader;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.common.view.View;
+import tuskex.desktop.common.view.ViewLoader;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.funds.deposit.DepositView;
+import tuskex.desktop.main.funds.transactions.TransactionsView;
+import tuskex.desktop.main.funds.withdrawal.WithdrawalView;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;

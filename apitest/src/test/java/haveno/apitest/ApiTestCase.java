@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest;
+package tuskex.apitest;
 
-import haveno.apitest.config.ApiTestConfig;
-import haveno.apitest.method.BitcoinCliHelper;
-import haveno.cli.GrpcClient;
+import tuskex.apitest.config.ApiTestConfig;
+import tuskex.apitest.method.BitcoinCliHelper;
+import tuskex.cli.GrpcClient;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.TestInfo;
 
@@ -30,25 +30,25 @@ import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 import static com.google.common.util.concurrent.Uninterruptibles.sleepUninterruptibly;
-import static haveno.apitest.config.ApiTestRateMeterInterceptorConfig.getTestRateMeterInterceptorConfig;
-import static haveno.apitest.config.HavenoAppConfig.alicedaemon;
-import static haveno.apitest.config.HavenoAppConfig.arbdaemon;
-import static haveno.apitest.config.HavenoAppConfig.bobdaemon;
+import static tuskex.apitest.config.ApiTestRateMeterInterceptorConfig.getTestRateMeterInterceptorConfig;
+import static tuskex.apitest.config.TuskexAppConfig.alicedaemon;
+import static tuskex.apitest.config.TuskexAppConfig.arbdaemon;
+import static tuskex.apitest.config.TuskexAppConfig.bobdaemon;
 import static java.net.InetAddress.getLoopbackAddress;
 import static java.util.Arrays.stream;
 
 /**
  * Base class for all test types:  'method', 'scenario' and 'e2e'.
  * <p>
- * During scaffold setup, various combinations of bitcoind and haveno instances
+ * During scaffold setup, various combinations of bitcoind and tuskex instances
  * can be started in the background before test cases are run.  Currently, this test
- * harness supports only the "Haveno DAO development environment running against a
+ * harness supports only the "Tuskex DAO development environment running against a
  * local Bitcoin regtest network" as described in
  * <a href="https://github.com/bisq-network/bisq/blob/master/docs/dev-setup.md">dev-setup.md</a>
  * and <a href="https://github.com/bisq-network/bisq/blob/master/docs/dao-setup.md">dao-setup.md</a>.
  * <p>
  * Those documents contain information about the configurations used by this test harness:
- * bitcoin-core's bitcoin.conf and blocknotify values, haveno instance options, the DAO genesis
+ * bitcoin-core's bitcoin.conf and blocknotify values, tuskex instance options, the DAO genesis
  * transaction id, initial BTC balances for Bob & Alice accounts, and Bob and
  * Alice's default payment accounts.
  * <p>
@@ -81,7 +81,7 @@ public class ApiTestCase {
         String[] params = new String[]{
                 "--supportingApps", stream(supportingApps).map(Enum::name).collect(Collectors.joining(",")),
                 "--callRateMeteringConfigPath", getTestRateMeterInterceptorConfig().getAbsolutePath(),
-                "--enableHavenoDebugging", "false"
+                "--enableTuskexDebugging", "false"
         };
         setUpScaffold(params);
     }

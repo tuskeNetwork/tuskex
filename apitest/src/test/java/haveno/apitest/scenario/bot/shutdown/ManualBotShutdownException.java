@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario.bot.shutdown;
+package tuskex.apitest.scenario.bot.shutdown;
 
-import haveno.common.HavenoException;
+import tuskex.common.TuskexException;
 
 @SuppressWarnings("unused")
-public class ManualBotShutdownException extends HavenoException {
+public class ManualBotShutdownException extends TuskexException {
     public ManualBotShutdownException(Throwable cause) {
         super(cause);
     }

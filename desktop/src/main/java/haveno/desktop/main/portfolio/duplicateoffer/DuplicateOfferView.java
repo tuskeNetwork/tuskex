@@ -15,20 +15,20 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.duplicateoffer;
+package tuskex.desktop.main.portfolio.duplicateoffer;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.offer.OfferPayload;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.main.offer.MutableOfferView;
-import haveno.desktop.main.overlays.windows.OfferDetailsWindow;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.offer.OfferPayload;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.main.offer.MutableOfferView;
+import tuskex.desktop.main.overlays.windows.OfferDetailsWindow;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 

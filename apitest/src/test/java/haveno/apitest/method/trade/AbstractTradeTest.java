@@ -1,10 +1,10 @@
-package haveno.apitest.method.trade;
+package tuskex.apitest.method.trade;
 
-import haveno.apitest.method.offer.AbstractOfferTest;
-import haveno.cli.CliMain;
-import haveno.cli.GrpcClient;
-import haveno.cli.table.builder.TableBuilder;
-import haveno.proto.grpc.TradeInfo;
+import tuskex.apitest.method.offer.AbstractOfferTest;
+import tuskex.cli.CliMain;
+import tuskex.cli.GrpcClient;
+import tuskex.cli.table.builder.TableBuilder;
+import tuskex.proto.grpc.TradeInfo;
 import lombok.Getter;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInfo;
@@ -14,12 +14,12 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import static haveno.cli.table.builder.TableType.TRADE_DETAIL_TBL;
-import static haveno.core.trade.Trade.Phase.DEPOSITS_UNLOCKED;
-import static haveno.core.trade.Trade.Phase.PAYMENT_SENT;
-import static haveno.core.trade.Trade.State.BUYER_SAW_ARRIVED_PAYMENT_SENT_MSG;
-import static haveno.core.trade.Trade.State.BUYER_SENT_PAYMENT_SENT_MSG;
-import static haveno.core.trade.Trade.State.DEPOSIT_TXS_UNLOCKED_IN_BLOCKCHAIN;
+import static tuskex.cli.table.builder.TableType.TRADE_DETAIL_TBL;
+import static tuskex.core.trade.Trade.Phase.DEPOSITS_UNLOCKED;
+import static tuskex.core.trade.Trade.Phase.PAYMENT_SENT;
+import static tuskex.core.trade.Trade.State.BUYER_SAW_ARRIVED_PAYMENT_SENT_MSG;
+import static tuskex.core.trade.Trade.State.BUYER_SENT_PAYMENT_SENT_MSG;
+import static tuskex.core.trade.Trade.State.DEPOSIT_TXS_UNLOCKED_IN_BLOCKCHAIN;
 import static java.lang.String.format;
 import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertEquals;

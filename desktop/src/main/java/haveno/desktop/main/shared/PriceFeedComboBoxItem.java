@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.shared;
+package tuskex.desktop.main.shared;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.trades;
+package tuskex.desktop.main.market.trades;
 
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.statistics.TradeStatistics3;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.desktop.util.DisplayUtils;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.statistics.TradeStatistics3;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.desktop.util.DisplayUtils;
 import lombok.experimental.Delegate;
 import org.jetbrains.annotations.Nullable;
 
@@ -84,7 +84,7 @@ public class TradeStatistics3ListItem {
 
     public String getAmountString() {
         if (amountString == null) {
-            amountString = tradeStatistics3 != null ? HavenoUtils.formatXmr(getAmount(), false, 4) : "";
+            amountString = tradeStatistics3 != null ? TuskexUtils.formatTsk(getAmount(), false, 4) : "";
         }
         return amountString;
     }

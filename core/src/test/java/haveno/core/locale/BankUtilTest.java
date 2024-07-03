@@ -1,4 +1,4 @@
-package haveno.core.locale;
+package tuskex.core.locale;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class BankUtilTest {
     public void setup() {
         Locale.setDefault(new Locale("en", "US"));
         GlobalSettings.setLocale(new Locale("en", "US"));
-        Res.setBaseCurrencyCode("XMR");
+        Res.setBaseCurrencyCode("TSK");
         Res.setBaseCurrencyName("Monero");
     }
 

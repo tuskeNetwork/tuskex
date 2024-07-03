@@ -1,13 +1,13 @@
-package haveno.apitest.scenario.bot.protocol;
+package tuskex.apitest.scenario.bot.protocol;
 
-import haveno.apitest.method.BitcoinCliHelper;
-import haveno.apitest.scenario.bot.BotClient;
-import haveno.apitest.scenario.bot.RandomOffer;
-import haveno.apitest.scenario.bot.script.BashScriptGenerator;
-import haveno.apitest.scenario.bot.shutdown.ManualBotShutdownException;
-import haveno.cli.table.builder.TableBuilder;
-import haveno.proto.grpc.OfferInfo;
-import haveno.proto.grpc.TradeInfo;
+import tuskex.apitest.method.BitcoinCliHelper;
+import tuskex.apitest.scenario.bot.BotClient;
+import tuskex.apitest.scenario.bot.RandomOffer;
+import tuskex.apitest.scenario.bot.script.BashScriptGenerator;
+import tuskex.apitest.scenario.bot.shutdown.ManualBotShutdownException;
+import tuskex.cli.table.builder.TableBuilder;
+import tuskex.proto.grpc.OfferInfo;
+import tuskex.proto.grpc.TradeInfo;
 import lombok.extern.slf4j.Slf4j;
 import protobuf.PaymentAccount;
 
@@ -16,11 +16,11 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static haveno.apitest.scenario.bot.protocol.ProtocolStep.DONE;
-import static haveno.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_OFFER_TAKER;
-import static haveno.apitest.scenario.bot.shutdown.ManualShutdown.checkIfShutdownCalled;
-import static haveno.cli.table.builder.TableType.OFFER_TBL;
-import static haveno.cli.table.builder.TableType.TRADE_DETAIL_TBL;
+import static tuskex.apitest.scenario.bot.protocol.ProtocolStep.DONE;
+import static tuskex.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_OFFER_TAKER;
+import static tuskex.apitest.scenario.bot.shutdown.ManualShutdown.checkIfShutdownCalled;
+import static tuskex.cli.table.builder.TableType.OFFER_TBL;
+import static tuskex.cli.table.builder.TableType.TRADE_DETAIL_TBL;
 
 @Slf4j
 public class MakerBotProtocol extends BotProtocol {

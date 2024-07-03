@@ -15,23 +15,23 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.createoffer;
+package tuskex.desktop.main.offer.createoffer;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.offer.OfferDirection;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.main.offer.MutableOfferView;
-import haveno.desktop.main.offer.OfferView;
-import haveno.desktop.main.overlays.windows.OfferDetailsWindow;
-import haveno.desktop.util.GUIUtil;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.main.offer.MutableOfferView;
+import tuskex.desktop.main.offer.OfferView;
+import tuskex.desktop.main.overlays.windows.OfferDetailsWindow;
+import tuskex.desktop.util.GUIUtil;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;

@@ -15,50 +15,50 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.offerbook;
+package tuskex.desktop.main.offer.offerbook;
 
 import com.google.common.base.Joiner;
-import haveno.common.handlers.ErrorMessageHandler;
-import haveno.common.handlers.ResultHandler;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.api.CoreApi;
-import haveno.core.locale.BankUtil;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.monetary.Price;
-import haveno.core.monetary.Volume;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferFilterService;
-import haveno.core.offer.OpenOffer;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.PaymentAccountUtil;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.ClosedTradableManager;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.Trade;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.PriceUtil;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.setup.WalletsSetup;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.model.ActivatableViewModel;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.offer.OfferView;
-import haveno.desktop.main.settings.SettingsView;
-import haveno.desktop.main.settings.preferences.PreferencesView;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.NodeAddress;
-import haveno.network.p2p.P2PService;
+import tuskex.common.handlers.ErrorMessageHandler;
+import tuskex.common.handlers.ResultHandler;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.api.CoreApi;
+import tuskex.core.locale.BankUtil;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.monetary.Price;
+import tuskex.core.monetary.Volume;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferFilterService;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.PaymentAccountUtil;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.ClosedTradableManager;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.Trade;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.PriceUtil;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.setup.WalletsSetup;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.model.ActivatableViewModel;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.offer.OfferView;
+import tuskex.desktop.main.settings.SettingsView;
+import tuskex.desktop.main.settings.preferences.PreferencesView;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.NodeAddress;
+import tuskex.network.p2p.P2PService;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -456,11 +456,11 @@ abstract class OfferBookViewModel extends ActivatableViewModel {
             result = Res.getWithCol("shared.paymentMethod") + " " + Res.get(offer.getPaymentMethod().getId());
             result += "\n" + Res.getWithCol("shared.currency") + " " + CurrencyUtil.getNameAndCode(offer.getCurrencyCode());
 
-            if (offer.isXmr()) {
-                String isAutoConf = offer.isXmrAutoConf() ?
+            if (offer.isTsk()) {
+                String isAutoConf = offer.isTskAutoConf() ?
                         Res.get("shared.yes") :
                         Res.get("shared.no");
-                result += "\n" + Res.getWithCol("offerbook.xmrAutoConf") + " " + isAutoConf;
+                result += "\n" + Res.getWithCol("offerbook.tskAutoConf") + " " + isAutoConf;
             }
 
             String countryCode = offer.getCountryCode();
@@ -553,7 +553,7 @@ abstract class OfferBookViewModel extends ActivatableViewModel {
 
     boolean canCreateOrTakeOffer() {
         return GUIUtil.canCreateOrTakeOfferOrShowPopup(user, navigation) &&
-                GUIUtil.isWalletSyncedWithinToleranceOrShowPopup(openOfferManager.getXmrWalletService()) &&
+                GUIUtil.isWalletSyncedWithinToleranceOrShowPopup(openOfferManager.getTskWalletService()) &&
                 GUIUtil.isBootstrappedOrShowPopup(p2PService);
     }
 
@@ -620,14 +620,14 @@ abstract class OfferBookViewModel extends ActivatableViewModel {
 
     private static String getDirectionWithCodeDetailed(OfferDirection direction, String currencyCode) {
         if (CurrencyUtil.isTraditionalCurrency(currencyCode))
-            return (direction == OfferDirection.BUY) ? Res.get("shared.buyingXMRWith", currencyCode) : Res.get("shared.sellingXMRFor", currencyCode);
+            return (direction == OfferDirection.BUY) ? Res.get("shared.buyingTSKWith", currencyCode) : Res.get("shared.sellingTSKFor", currencyCode);
         else
             return (direction == OfferDirection.SELL) ? Res.get("shared.buyingCurrency", currencyCode) : Res.get("shared.sellingCurrency", currencyCode);
     }
 
     public String formatDepositString(BigInteger deposit, long amount) {
-        var percentage = FormattingUtils.formatToRoundedPercentWithSymbol(HavenoUtils.divide(deposit, BigInteger.valueOf(amount)));
-        return HavenoUtils.formatXmr(deposit) + " (" + percentage + ")";
+        var percentage = FormattingUtils.formatToRoundedPercentWithSymbol(TuskexUtils.divide(deposit, BigInteger.valueOf(amount)));
+        return TuskexUtils.formatTsk(deposit) + " (" + percentage + ")";
     }
 
     PaymentMethod getShowAllEntryForPaymentMethod() {

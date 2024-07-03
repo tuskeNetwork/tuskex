@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario.bot;
+package tuskex.apitest.scenario.bot;
 
 import com.google.gson.GsonBuilder;
-import haveno.apitest.method.MethodTest;
-import haveno.apitest.scenario.bot.script.BashScriptGenerator;
-import haveno.apitest.scenario.bot.script.BotScript;
-import haveno.core.locale.Country;
+import tuskex.apitest.method.MethodTest;
+import tuskex.apitest.scenario.bot.script.BashScriptGenerator;
+import tuskex.apitest.scenario.bot.script.BotScript;
+import tuskex.core.locale.Country;
 import lombok.extern.slf4j.Slf4j;
 import protobuf.PaymentAccount;
 
@@ -29,9 +29,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-import static haveno.core.locale.CountryUtil.findCountryByCode;
-import static haveno.core.payment.payload.PaymentMethod.ZELLE_ID;
-import static haveno.core.payment.payload.PaymentMethod.getPaymentMethod;
+import static tuskex.core.locale.CountryUtil.findCountryByCode;
+import static tuskex.core.payment.payload.PaymentMethod.ZELLE_ID;
+import static tuskex.core.payment.payload.PaymentMethod.getPaymentMethod;
 import static java.lang.String.format;
 import static java.lang.System.getProperty;
 import static java.nio.file.Files.readAllBytes;

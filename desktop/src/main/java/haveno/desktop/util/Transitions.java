@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import haveno.common.UserThread;
-import haveno.core.user.Preferences;
+import tuskex.common.UserThread;
+import tuskex.core.user.Preferences;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;

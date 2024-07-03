@@ -1,4 +1,4 @@
-package haveno.apitest.scenario.bot.protocol;
+package tuskex.apitest.scenario.bot.protocol;
 
 public enum ProtocolStep {
     START,

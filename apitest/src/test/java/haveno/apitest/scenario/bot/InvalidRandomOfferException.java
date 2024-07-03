@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario.bot;
+package tuskex.apitest.scenario.bot;
 
-import haveno.common.HavenoException;
+import tuskex.common.TuskexException;
 
 @SuppressWarnings("unused")
-public class InvalidRandomOfferException extends HavenoException {
+public class InvalidRandomOfferException extends TuskexException {
     public InvalidRandomOfferException(Throwable cause) {
         super(cause);
     }

@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
-import haveno.common.util.Tuple2;
-import haveno.core.util.InlierUtil;
+import tuskex.common.util.Tuple2;
+import tuskex.core.util.InlierUtil;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.NumberAxis;

@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import de.jensd.fx.fontawesome.AwesomeDude;
 import de.jensd.fx.fontawesome.AwesomeIcon;
 import de.jensd.fx.glyphs.GlyphIcons;
-import haveno.desktop.util.FormBuilder;
+import tuskex.desktop.util.FormBuilder;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;

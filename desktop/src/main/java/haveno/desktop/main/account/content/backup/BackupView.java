@@ -15,28 +15,28 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.content.backup;
+package tuskex.desktop.main.account.content.backup;
 
 import com.google.inject.Inject;
-import haveno.common.UserThread;
-import haveno.common.config.Config;
-import haveno.common.file.FileUtil;
-import haveno.common.persistence.PersistenceManager;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Utilities;
-import haveno.core.api.XmrLocalNode;
-import haveno.core.locale.Res;
-import haveno.core.user.Preferences;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.app.HavenoApp;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.main.overlays.popups.Popup;
-import static haveno.desktop.util.FormBuilder.add2Buttons;
-import static haveno.desktop.util.FormBuilder.add2ButtonsAfterGroup;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import haveno.desktop.util.Layout;
+import tuskex.common.UserThread;
+import tuskex.common.config.Config;
+import tuskex.common.file.FileUtil;
+import tuskex.common.persistence.PersistenceManager;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Utilities;
+import tuskex.core.api.TskLocalNode;
+import tuskex.core.locale.Res;
+import tuskex.core.user.Preferences;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.app.TuskexApp;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import static tuskex.desktop.util.FormBuilder.add2Buttons;
+import static tuskex.desktop.util.FormBuilder.add2ButtonsAfterGroup;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import tuskex.desktop.util.Layout;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -71,7 +71,7 @@ public class BackupView extends ActivatableView<GridPane, Void> {
         super();
         this.preferences = preferences;
         dataDir = new File(config.appDataDir.getPath());
-        logFile = new File(Paths.get(dataDir.getPath(), "haveno.log").toString());
+        logFile = new File(Paths.get(dataDir.getPath(), "tuskex.log").toString());
     }
 
 
@@ -136,8 +136,8 @@ public class BackupView extends ActivatableView<GridPane, Void> {
                     .actionButtonText(Res.get("shared.applyAndShutDown"))
                     .onAction(() -> {
                         UserThread.runAfter(() -> {
-                            HavenoApp.setOnGracefulShutDownHandler(() -> doBackup());
-                            HavenoApp.getShutDownHandler().run();
+                            TuskexApp.setOnGracefulShutDownHandler(() -> doBackup());
+                            TuskexApp.getShutDownHandler().run();
                         }, 500, TimeUnit.MILLISECONDS);
                     })
                     .closeButtonText(Res.get("shared.cancel"))
@@ -160,14 +160,14 @@ public class BackupView extends ActivatableView<GridPane, Void> {
 
                     // copy data directory to backup directory
                     String dateString = new SimpleDateFormat("yyyy-MM-dd-HHmmss").format(new Date());
-                    String destination = Paths.get(backupDirectory, "haveno_backup_" + dateString).toString();
+                    String destination = Paths.get(backupDirectory, "tuskex_backup_" + dateString).toString();
                     File destinationFile = new File(destination);
                     FileUtil.copyDirectory(dataDir, new File(destination));
 
                     // delete monerod and monero-wallet-rpc binaries from backup so they're reinstalled with permissions
-                    File monerod = new File(destinationFile, XmrLocalNode.MONEROD_NAME);
+                    File monerod = new File(destinationFile, TskLocalNode.MONEROD_NAME);
                     if (monerod.exists()) monerod.delete();
-                    File moneroWalletRpc = new File(destinationFile, XmrWalletService.MONERO_WALLET_RPC_NAME);
+                    File moneroWalletRpc = new File(destinationFile, TskWalletService.MONERO_WALLET_RPC_NAME);
                     if (moneroWalletRpc.exists()) moneroWalletRpc.delete();
                     new Popup().feedback(Res.get("account.backup.success", destination)).show();
                 } catch (IOException e) {

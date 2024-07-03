@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer;
+package tuskex.desktop.main.offer;
 
 public interface SelectableView {
     public void onTabSelected(boolean isSelected);

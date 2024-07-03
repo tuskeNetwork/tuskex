@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer;
+package tuskex.desktop.main.offer;
 
-import haveno.common.UserThread;
-import haveno.core.offer.OfferUtil;
-import haveno.core.xmr.model.XmrAddressEntry;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.common.model.ActivatableDataModel;
+import tuskex.common.UserThread;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.tsk.model.TskAddressEntry;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.common.model.ActivatableDataModel;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -38,11 +38,11 @@ import java.math.BigInteger;
  */
 public abstract class OfferDataModel extends ActivatableDataModel {
     @Getter
-    protected final XmrWalletService xmrWalletService;
+    protected final TskWalletService tskWalletService;
     protected final OfferUtil offerUtil;
 
     @Getter
-    protected final BooleanProperty isXmrWalletFunded = new SimpleBooleanProperty();
+    protected final BooleanProperty isTskWalletFunded = new SimpleBooleanProperty();
     @Getter
     protected final ObjectProperty<BigInteger> totalToPay = new SimpleObjectProperty<>();
     @Getter
@@ -57,11 +57,11 @@ public abstract class OfferDataModel extends ActivatableDataModel {
     protected BigInteger totalBalance;
     @Getter
     protected BigInteger totalAvailableBalance;
-    protected XmrAddressEntry addressEntry;
+    protected TskAddressEntry addressEntry;
     protected boolean useSavingsWallet;
 
-    public OfferDataModel(XmrWalletService xmrWalletService, OfferUtil offerUtil) {
-        this.xmrWalletService = xmrWalletService;
+    public OfferDataModel(TskWalletService tskWalletService, OfferUtil offerUtil) {
+        this.tskWalletService = tskWalletService;
         this.offerUtil = offerUtil;
     }
 
@@ -69,8 +69,8 @@ public abstract class OfferDataModel extends ActivatableDataModel {
         updateBalances();
         UserThread.await(() -> {
             missingCoin.set(offerUtil.getBalanceShortage(totalToPay.get(), balance.get()));
-            isXmrWalletFunded.set(offerUtil.isBalanceSufficient(totalToPay.get(), balance.get()));
-            if (totalToPay.get() != null && isXmrWalletFunded.get() && !showWalletFundedNotification.get()) {
+            isTskWalletFunded.set(offerUtil.isBalanceSufficient(totalToPay.get(), balance.get()));
+            if (totalToPay.get() != null && isTskWalletFunded.get() && !showWalletFundedNotification.get()) {
                 showWalletFundedNotification.set(true);
             }
         });
@@ -80,18 +80,18 @@ public abstract class OfferDataModel extends ActivatableDataModel {
         updateBalances();
         UserThread.await(() -> {
             missingCoin.set(offerUtil.getBalanceShortage(totalToPay.get(), availableBalance.get()));
-            isXmrWalletFunded.set(offerUtil.isBalanceSufficient(totalToPay.get(), availableBalance.get()));
-            if (totalToPay.get() != null && isXmrWalletFunded.get() && !showWalletFundedNotification.get()) {
+            isTskWalletFunded.set(offerUtil.isBalanceSufficient(totalToPay.get(), availableBalance.get()));
+            if (totalToPay.get() != null && isTskWalletFunded.get() && !showWalletFundedNotification.get()) {
                 showWalletFundedNotification.set(true);
             }
         });
     }
 
     private void updateBalances() {
-        BigInteger tradeWalletBalance = xmrWalletService.getBalanceForSubaddress(addressEntry.getSubaddressIndex());
-        BigInteger tradeWalletAvailableBalance = xmrWalletService.getAvailableBalanceForSubaddress(addressEntry.getSubaddressIndex());
-        BigInteger walletBalance = xmrWalletService.getBalance();
-        BigInteger walletAvailableBalance = xmrWalletService.getAvailableBalance();
+        BigInteger tradeWalletBalance = tskWalletService.getBalanceForSubaddress(addressEntry.getSubaddressIndex());
+        BigInteger tradeWalletAvailableBalance = tskWalletService.getAvailableBalanceForSubaddress(addressEntry.getSubaddressIndex());
+        BigInteger walletBalance = tskWalletService.getBalance();
+        BigInteger walletAvailableBalance = tskWalletService.getAvailableBalance();
         UserThread.await(() -> {
             if (useSavingsWallet) {
                 totalBalance = walletBalance;

@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;

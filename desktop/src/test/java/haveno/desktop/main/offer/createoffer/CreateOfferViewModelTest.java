@@ -15,33 +15,33 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.createoffer;
+package tuskex.desktop.main.offer.createoffer;
 
-import haveno.common.config.Config;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Country;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
-import haveno.core.offer.CreateOfferService;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferUtil;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.payment.validation.SecurityDepositValidator;
-import haveno.core.payment.validation.XmrValidator;
-import haveno.core.provider.price.MarketPrice;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.statistics.TradeStatisticsManager;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.coin.ImmutableCoinFormatter;
-import haveno.core.util.validation.AmountValidator8Decimals;
-import haveno.core.util.validation.AmountValidator4Decimals;
-import haveno.core.util.validation.InputValidator;
-import haveno.core.xmr.model.XmrAddressEntry;
-import haveno.core.xmr.wallet.XmrWalletService;
+import tuskex.common.config.Config;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Country;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.CreateOfferService;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.payment.validation.SecurityDepositValidator;
+import tuskex.core.payment.validation.TskValidator;
+import tuskex.core.provider.price.MarketPrice;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.statistics.TradeStatisticsManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.coin.ImmutableCoinFormatter;
+import tuskex.core.util.validation.AmountValidator8Decimals;
+import tuskex.core.util.validation.AmountValidator4Decimals;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.core.tsk.model.TskAddressEntry;
+import tuskex.core.tsk.wallet.TskWalletService;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,7 +51,7 @@ import java.math.BigInteger;
 import java.time.Instant;
 import java.util.UUID;
 
-import static haveno.desktop.maker.PreferenceMakers.empty;
+import static tuskex.desktop.maker.PreferenceMakers.empty;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -67,16 +67,16 @@ public class CreateOfferViewModelTest {
 
     @BeforeEach
     public void setUp() {
-        final CryptoCurrency xmr = new CryptoCurrency("XMR", "monero");
-        GlobalSettings.setDefaultTradeCurrency(xmr);
+        final CryptoCurrency tsk = new CryptoCurrency("TSK", "monero");
+        GlobalSettings.setDefaultTradeCurrency(tsk);
         Res.setup();
 
-        final XmrValidator btcValidator = new XmrValidator();
+        final TskValidator btcValidator = new TskValidator();
         final AmountValidator8Decimals priceValidator8Decimals = new AmountValidator8Decimals();
         final AmountValidator4Decimals priceValidator4Decimals = new AmountValidator4Decimals();
 
-        XmrAddressEntry addressEntry = mock(XmrAddressEntry.class);
-        XmrWalletService xmrWalletService = mock(XmrWalletService.class);
+        TskAddressEntry addressEntry = mock(TskAddressEntry.class);
+        TskWalletService tskWalletService = mock(TskWalletService.class);
         PriceFeedService priceFeedService = mock(PriceFeedService.class);
         User user = mock(User.class);
         PaymentAccount paymentAccount = mock(PaymentAccount.class);
@@ -87,8 +87,8 @@ public class CreateOfferViewModelTest {
         OfferUtil offerUtil = mock(OfferUtil.class);
         var tradeStats = mock(TradeStatisticsManager.class);
 
-        when(xmrWalletService.getOrCreateAddressEntry(anyString(), any())).thenReturn(addressEntry);
-        when(xmrWalletService.getBalanceForSubaddress(any(Integer.class))).thenReturn(BigInteger.valueOf(10000000L));
+        when(tskWalletService.getOrCreateAddressEntry(anyString(), any())).thenReturn(addressEntry);
+        when(tskWalletService.getBalanceForSubaddress(any(Integer.class))).thenReturn(BigInteger.valueOf(10000000L));
         when(priceFeedService.updateCounterProperty()).thenReturn(new SimpleIntegerProperty());
         when(priceFeedService.getMarketPrice(anyString())).thenReturn(
                 new MarketPrice("USD",
@@ -107,7 +107,7 @@ public class CreateOfferViewModelTest {
         CreateOfferDataModel dataModel = new CreateOfferDataModel(createOfferService,
             null,
             offerUtil,
-            xmrWalletService,
+            tskWalletService,
             empty,
             user,
             null,
@@ -116,7 +116,7 @@ public class CreateOfferViewModelTest {
             coinFormatter,
             tradeStats,
             null);
-        dataModel.initWithData(OfferDirection.BUY, new CryptoCurrency("XMR", "monero"));
+        dataModel.initWithData(OfferDirection.BUY, new CryptoCurrency("TSK", "monero"));
         dataModel.activate();
 
         model = new CreateOfferViewModel(dataModel,

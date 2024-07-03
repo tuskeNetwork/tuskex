@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
-import haveno.common.crypto.PubKeyRing;
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.support.dispute.refund.RefundManager;
-import haveno.core.trade.Tradable;
-import haveno.core.trade.Trade;
-import haveno.core.xmr.wallet.XmrWalletService;
+import tuskex.common.crypto.PubKeyRing;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.support.dispute.refund.RefundManager;
+import tuskex.core.trade.Tradable;
+import tuskex.core.trade.Trade;
+import tuskex.core.tsk.wallet.TskWalletService;
 import javafx.collections.ObservableList;
 import lombok.extern.slf4j.Slf4j;
 import monero.wallet.model.MoneroTxWallet;
@@ -34,18 +34,18 @@ class TransactionAwareTrade implements TransactionAwareTradable {
     private final Trade trade;
     private final ArbitrationManager arbitrationManager;
     private final RefundManager refundManager;
-    private final XmrWalletService xmrWalletService;
+    private final TskWalletService tskWalletService;
     private final PubKeyRing pubKeyRing;
 
     TransactionAwareTrade(Trade trade,
                           ArbitrationManager arbitrationManager,
                           RefundManager refundManager,
-                          XmrWalletService xmrWalletService,
+                          TskWalletService tskWalletService,
                           PubKeyRing pubKeyRing) {
         this.trade = trade;
         this.arbitrationManager = arbitrationManager;
         this.refundManager = refundManager;
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.pubKeyRing = pubKeyRing;
     }
 

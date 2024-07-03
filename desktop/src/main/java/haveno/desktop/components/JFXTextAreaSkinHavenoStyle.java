@@ -1,4 +1,4 @@
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.adapters.ReflectionHelper;
 import com.jfoenix.controls.JFXTextArea;
@@ -22,7 +22,7 @@ import java.util.Arrays;
  * Code copied and adapted from com.jfoenix.skins.JFXTextAreaSkin
  */
 
-public class JFXTextAreaSkinHavenoStyle extends TextAreaSkin {
+public class JFXTextAreaSkinTuskexStyle extends TextAreaSkin {
 
     private boolean invalid = true;
 
@@ -32,7 +32,7 @@ public class JFXTextAreaSkinHavenoStyle extends TextAreaSkin {
     private ValidationPane<JFXTextArea> errorContainer;
     private PromptLinesWrapper<JFXTextArea> linesWrapper;
 
-    public JFXTextAreaSkinHavenoStyle(JFXTextArea textArea) {
+    public JFXTextAreaSkinTuskexStyle(JFXTextArea textArea) {
         super(textArea);
         // init text area properties
         scrollPane = (ScrollPane) getChildren().get(0);

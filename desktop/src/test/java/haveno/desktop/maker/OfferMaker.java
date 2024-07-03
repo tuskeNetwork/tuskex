@@ -15,18 +15,18 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.maker;
+package tuskex.desktop.maker;
 
 import com.natpryce.makeiteasy.Instantiator;
 import com.natpryce.makeiteasy.Maker;
 import com.natpryce.makeiteasy.Property;
-import haveno.common.crypto.Encryption;
-import haveno.common.crypto.PubKeyRing;
-import haveno.common.crypto.Sig;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferPayload;
-import haveno.network.p2p.NodeAddress;
+import tuskex.common.crypto.Encryption;
+import tuskex.common.crypto.PubKeyRing;
+import tuskex.common.crypto.Sig;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferPayload;
+import tuskex.network.p2p.NodeAddress;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -87,7 +87,7 @@ public class OfferMaker {
                     lookup.valueOf(penaltyFeePct, 0.03),
                     lookup.valueOf(buyerSecurityDepositPct, .15),
                     lookup.valueOf(sellerSecurityDepositPct, .15),
-                    lookup.valueOf(baseCurrencyCode, "XMR"),
+                    lookup.valueOf(baseCurrencyCode, "TSK"),
                     lookup.valueOf(counterCurrencyCode, "USD"),
                     lookup.valueOf(paymentMethodId, "SEPA"),
                     lookup.valueOf(paymentAccountId, "00002c4d-1ffc-4208-8ff3-e669817b0000"),
@@ -113,7 +113,7 @@ public class OfferMaker {
                     null,
                     null));
 
-    public static final Maker<Offer> xmrUsdOffer = a(Offer);
+    public static final Maker<Offer> tskUsdOffer = a(Offer);
     public static final Maker<Offer> btcBCHCOffer = a(Offer).but(with(counterCurrencyCode, "BCHC"));
 
     static NodeAddress getLocalHostNodeWithPort(int port) {

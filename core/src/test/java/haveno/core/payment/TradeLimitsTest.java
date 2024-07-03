@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.payment;
+package tuskex.core.payment;
 
 import org.junit.jupiter.api.Test;
 

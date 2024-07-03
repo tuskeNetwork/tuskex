@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
-import haveno.common.UserThread;
-import haveno.core.trade.Tradable;
-import haveno.core.xmr.wallet.XmrWalletService;
+import tuskex.common.UserThread;
+import tuskex.core.trade.Tradable;
+import tuskex.core.tsk.wallet.TskWalletService;
 import monero.wallet.model.MoneroTxWallet;
 
 import java.util.List;
@@ -27,15 +27,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 class DisplayedTransactions extends ObservableListDecorator<TransactionsListItem> {
-    private final XmrWalletService xmrWalletService;
+    private final TskWalletService tskWalletService;
     private final TradableRepository tradableRepository;
     private final TransactionListItemFactory transactionListItemFactory;
     private final TransactionAwareTradableFactory transactionAwareTradableFactory;
 
-    DisplayedTransactions(XmrWalletService xmrWalletService, TradableRepository tradableRepository,
+    DisplayedTransactions(TskWalletService tskWalletService, TradableRepository tradableRepository,
                           TransactionListItemFactory transactionListItemFactory,
                           TransactionAwareTradableFactory transactionAwareTradableFactory) {
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.tradableRepository = tradableRepository;
         this.transactionListItemFactory = transactionListItemFactory;
         this.transactionAwareTradableFactory = transactionAwareTradableFactory;
@@ -50,7 +50,7 @@ class DisplayedTransactions extends ObservableListDecorator<TransactionsListItem
     }
 
     private List<TransactionsListItem> getTransactionListItems() {
-        List<MoneroTxWallet> transactions = xmrWalletService.getTxs(false);
+        List<MoneroTxWallet> transactions = tskWalletService.getTxs(false);
         return transactions.stream()
                 .map(this::convertTransactionToListItem)
                 .collect(Collectors.toList());

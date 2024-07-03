@@ -15,22 +15,22 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.settings;
+package tuskex.desktop.main.settings;
 
 import com.google.inject.Inject;
-import haveno.core.locale.Res;
-import haveno.core.user.Preferences;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.CachingViewLoader;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.common.view.View;
-import haveno.desktop.common.view.ViewLoader;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.presentation.SettingsPresentation;
-import haveno.desktop.main.settings.about.AboutView;
-import haveno.desktop.main.settings.network.NetworkSettingsView;
-import haveno.desktop.main.settings.preferences.PreferencesView;
+import tuskex.core.locale.Res;
+import tuskex.core.user.Preferences;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.CachingViewLoader;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.common.view.View;
+import tuskex.desktop.common.view.ViewLoader;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.presentation.SettingsPresentation;
+import tuskex.desktop.main.settings.about.AboutView;
+import tuskex.desktop.main.settings.network.NetworkSettingsView;
+import tuskex.desktop.main.settings.preferences.PreferencesView;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;

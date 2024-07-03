@@ -15,20 +15,20 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.closedtrades;
+package tuskex.desktop.main.portfolio.closedtrades;
 
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.monetary.Price;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.trade.ArbitratorTrade;
-import haveno.core.trade.ClosedTradableFormatter;
-import haveno.core.trade.ClosedTradableManager;
-import haveno.core.trade.Tradable;
-import haveno.core.trade.Trade;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.filtering.FilterableListItem;
-import haveno.desktop.util.filtering.FilteringUtils;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.monetary.Price;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.trade.ArbitratorTrade;
+import tuskex.core.trade.ClosedTradableFormatter;
+import tuskex.core.trade.ClosedTradableManager;
+import tuskex.core.trade.Tradable;
+import tuskex.core.trade.Trade;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.filtering.FilterableListItem;
+import tuskex.desktop.util.filtering.FilteringUtils;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 

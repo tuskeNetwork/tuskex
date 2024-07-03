@@ -15,24 +15,24 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.content.cryptoaccounts;
+package tuskex.desktop.main.account.content.cryptoaccounts;
 
 import com.google.inject.Inject;
-import haveno.common.crypto.KeyRing;
-import haveno.common.file.CorruptedStorageFileHandler;
-import haveno.common.proto.persistable.PersistenceProtoResolver;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.TraditionalCurrency;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.payment.AssetAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.trade.TradeManager;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.desktop.common.model.ActivatableDataModel;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.file.CorruptedStorageFileHandler;
+import tuskex.common.proto.persistable.PersistenceProtoResolver;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.TraditionalCurrency;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.payment.AssetAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.desktop.common.model.ActivatableDataModel;
+import tuskex.desktop.util.GUIUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.SetChangeListener;

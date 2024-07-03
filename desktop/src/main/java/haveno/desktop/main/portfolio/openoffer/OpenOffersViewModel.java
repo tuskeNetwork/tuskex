@@ -15,27 +15,27 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.openoffer;
+package tuskex.desktop.main.portfolio.openoffer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.handlers.ErrorMessageHandler;
-import haveno.common.handlers.ResultHandler;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.monetary.Price;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OpenOffer;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.PriceUtil;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.common.model.ActivatableWithDataModel;
-import haveno.desktop.common.model.ViewModel;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.P2PService;
+import tuskex.common.handlers.ErrorMessageHandler;
+import tuskex.common.handlers.ResultHandler;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.monetary.Price;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.PriceUtil;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.common.model.ActivatableWithDataModel;
+import tuskex.desktop.common.model.ViewModel;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.P2PService;
 import javafx.collections.ObservableList;
 
 class OpenOffersViewModel extends ActivatableWithDataModel<OpenOffersDataModel> implements ViewModel {

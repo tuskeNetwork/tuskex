@@ -5,14 +5,14 @@ if [[ -z "$VERSION" ]]; then
    VERSION="SNAPSHOT"
 fi
 
-export HAVENO_RELEASE_NAME="haveno-cli-$VERSION"
-export HAVENO_RELEASE_ZIP_NAME="$HAVENO_RELEASE_NAME.zip"
+export TUSKEX_RELEASE_NAME="tuskex-cli-$VERSION"
+export TUSKEX_RELEASE_ZIP_NAME="$TUSKEX_RELEASE_NAME.zip"
 
 export GRADLE_DIST_NAME="cli.tar"
 export GRADLE_DIST_PATH="../build/distributions/$GRADLE_DIST_NAME"
 
 arrangegradledist() {
-    # Arrange $HAVENO_RELEASE_NAME directory structure to contain a runnable
+    # Arrange $TUSKEX_RELEASE_NAME directory structure to contain a runnable
     # jar at the top-level, and a lib dir containing dependencies:
     # .
     # |
@@ -24,22 +24,22 @@ arrangegradledist() {
     # Copy the build's distribution tarball to this directory.
 	cp -v $GRADLE_DIST_PATH .
 	# Create a clean directory to hold the tarball's content.
-	rm -rf $HAVENO_RELEASE_NAME
-	mkdir $HAVENO_RELEASE_NAME
-	# Extract the tarball's content into $HAVENO_RELEASE_NAME.
-	tar -xf $GRADLE_DIST_NAME -C $HAVENO_RELEASE_NAME
-	cd $HAVENO_RELEASE_NAME
-	# Rearrange $HAVENO_RELEASE_NAME contents:  move the lib directory up one level.
+	rm -rf $TUSKEX_RELEASE_NAME
+	mkdir $TUSKEX_RELEASE_NAME
+	# Extract the tarball's content into $TUSKEX_RELEASE_NAME.
+	tar -xf $GRADLE_DIST_NAME -C $TUSKEX_RELEASE_NAME
+	cd $TUSKEX_RELEASE_NAME
+	# Rearrange $TUSKEX_RELEASE_NAME contents:  move the lib directory up one level.
 	mv -v cli/lib .
-	# Rearrange $HAVENO_RELEASE_NAME contents:  remove the cli/bin and cli directories.
+	# Rearrange $TUSKEX_RELEASE_NAME contents:  remove the cli/bin and cli directories.
 	rm -rf cli
-	# Rearrange $HAVENO_RELEASE_NAME contents:  move the lib/cli.jar up one level.
+	# Rearrange $TUSKEX_RELEASE_NAME contents:  move the lib/cli.jar up one level.
 	mv -v lib/cli.jar .
 }
 
 writemanifest() {
     # Make the cli.jar runnable, and define its dependencies in a MANIFEST.MF update.
-	echo "Main-Class: haveno.cli.CliMain" > manifest-update.txt
+	echo "Main-Class: tuskex.cli.CliMain" > manifest-update.txt
 	printf "Class-Path:  " >> manifest-update.txt
 	for file in lib/*
 	do
@@ -55,12 +55,12 @@ updatemanifest() {
 
 ziprelease() {
 	cd ..
-	zip -r $HAVENO_RELEASE_ZIP_NAME $HAVENO_RELEASE_NAME/lib $HAVENO_RELEASE_NAME/cli.jar
+	zip -r $TUSKEX_RELEASE_ZIP_NAME $TUSKEX_RELEASE_NAME/lib $TUSKEX_RELEASE_NAME/cli.jar
 }
 
 cleanup() {
     rm -v ./$GRADLE_DIST_NAME
-    rm -r ./$HAVENO_RELEASE_NAME
+    rm -r ./$TUSKEX_RELEASE_NAME
 }
 
 arrangegradledist

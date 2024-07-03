@@ -1,8 +1,8 @@
-# Contributing to Haveno
+# Contributing to Tuskex
 
-Thanks for wishing to help! Here there are some guidelines and information about the development process. We suggest you to join the [matrix](https://app.element.io/#/room/#haveno-dev:haveno.network) room `#haveno-dev` (relayed on [IRC/Libera](irc://irc.libera.chat/#haveno-dev)) and have a chat with the devs, so that we can help get you started.
+Thanks for wishing to help! Here there are some guidelines and information about the development process. We suggest you to join the [matrix](https://app.element.io/#/room/#tuskex-dev:tuskex.network) room `#tuskex-dev` (relayed on [IRC/Libera](irc://irc.libera.chat/#tuskex-dev)) and have a chat with the devs, so that we can help get you started.
 
-Issues are tracked on GitHub. We use [a label system](https://github.com/haveno-dex/haveno/issues/50) and GitHub's [project boards](https://github.com/haveno-dex/haveno/projects) to simplify development. Make sure to take a look at those and to follow the priorities suggested.
+Issues are tracked on GitHub. We use [a label system](https://github.com/tuskex-dex/tuskex/issues/50) and GitHub's [project boards](https://github.com/tuskex-dex/tuskex/projects) to simplify development. Make sure to take a look at those and to follow the priorities suggested.
 
 ## General guidelines
 
@@ -12,12 +12,12 @@ Issues are tracked on GitHub. We use [a label system](https://github.com/haveno-
 
 ## Development process
 
-When you have something new built for Haveno, submit a pull request for review to be merged.
+When you have something new built for Tuskex, submit a pull request for review to be merged.
 
 - Pull requests should contain as many details as possible about what you are going to change and why. Avoid "title only" PRs, unless they are self-explanatory.
 - Pull requests should contain one single commit, unless it makes sense to have more. Please become familiar with git if you are not.
-- Pull requests won't be merged before 24 hours has passed. This timeframe will be extended when Haveno will have more active developers.
+- Pull requests won't be merged before 24 hours has passed. This timeframe will be extended when Tuskex will have more active developers.
 
 ## Developer guide
 
-See the [developer guide](developer-guide.md) to get started developing Haveno.
+See the [developer guide](developer-guide.md) to get started developing Tuskex.

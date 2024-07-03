@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.presentation;
+package tuskex.desktop.main.portfolio.presentation;
 
-import haveno.core.offer.OfferPayload;
-import haveno.desktop.Navigation;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.portfolio.PortfolioView;
-import haveno.desktop.main.portfolio.duplicateoffer.DuplicateOfferView;
+import tuskex.core.offer.OfferPayload;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.portfolio.PortfolioView;
+import tuskex.desktop.main.portfolio.duplicateoffer.DuplicateOfferView;
 
 public class PortfolioUtil {
 

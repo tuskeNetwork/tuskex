@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
-import haveno.common.UserThread;
-import haveno.desktop.components.controlsfx.control.PopOver;
+import tuskex.common.UserThread;
+import tuskex.desktop.components.controlsfx.control.PopOver;
 
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;

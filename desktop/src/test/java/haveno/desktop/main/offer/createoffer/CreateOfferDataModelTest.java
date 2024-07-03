@@ -1,21 +1,21 @@
-package haveno.desktop.main.offer.createoffer;
+package tuskex.desktop.main.offer.createoffer;
 
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.TraditionalCurrency;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
-import haveno.core.offer.CreateOfferService;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferUtil;
-import haveno.core.payment.ZelleAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.RevolutAccount;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.statistics.TradeStatisticsManager;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.xmr.model.XmrAddressEntry;
-import haveno.core.xmr.wallet.XmrWalletService;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.TraditionalCurrency;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.CreateOfferService;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.payment.ZelleAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.RevolutAccount;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.statistics.TradeStatisticsManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.tsk.model.TskAddressEntry;
+import tuskex.core.tsk.wallet.TskWalletService;
 import javafx.collections.FXCollections;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,12 +38,12 @@ public class CreateOfferDataModelTest {
 
     @BeforeEach
     public void setUp() {
-        final CryptoCurrency xmr = new CryptoCurrency("XMR", "monero");
-        GlobalSettings.setDefaultTradeCurrency(xmr);
+        final CryptoCurrency tsk = new CryptoCurrency("TSK", "monero");
+        GlobalSettings.setDefaultTradeCurrency(tsk);
         Res.setup();
 
-        XmrAddressEntry addressEntry = mock(XmrAddressEntry.class);
-        XmrWalletService xmrWalletService = mock(XmrWalletService.class);
+        TskAddressEntry addressEntry = mock(TskAddressEntry.class);
+        TskWalletService tskWalletService = mock(TskWalletService.class);
         PriceFeedService priceFeedService = mock(PriceFeedService.class);
         CreateOfferService createOfferService = mock(CreateOfferService.class);
         preferences = mock(Preferences.class);
@@ -51,7 +51,7 @@ public class CreateOfferDataModelTest {
         user = mock(User.class);
         var tradeStats = mock(TradeStatisticsManager.class);
 
-        when(xmrWalletService.getOrCreateAddressEntry(anyString(), any())).thenReturn(addressEntry);
+        when(tskWalletService.getOrCreateAddressEntry(anyString(), any())).thenReturn(addressEntry);
         when(preferences.isUsePercentageBasedPrice()).thenReturn(true);
         when(preferences.getBuyerSecurityDepositAsPercent(null)).thenReturn(0.01);
         when(createOfferService.getRandomOfferId()).thenReturn(UUID.randomUUID().toString());
@@ -60,7 +60,7 @@ public class CreateOfferDataModelTest {
         model = new CreateOfferDataModel(createOfferService,
                 null,
                 offerUtil,
-                xmrWalletService,
+                tskWalletService,
                 preferences,
                 user,
                 null,

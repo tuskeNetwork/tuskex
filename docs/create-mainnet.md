@@ -1,14 +1,14 @@
-# Create Haveno network quick start guide
+# Create Tuskex network quick start guide
 
-These instructions describe how to quickly start a public Haveno network running on Monero's main network from your local machine, which is useful for demonstration and testing.
+These instructions describe how to quickly start a public Tuskex network running on Monero's main network from your local machine, which is useful for demonstration and testing.
 
 For a more robust and decentralized deployment to VPS for reliable uptime, see the [deployment guide](./deployment-guide.md).
 
-## Clone and build Haveno
+## Clone and build Tuskex
 
 ```
-git clone https://github.com/haveno-dex/haveno.git
-cd haveno
+git clone https://github.com/tuskex-dex/tuskex.git
+cd tuskex
 git checkout master
 make clean && make
 ```
@@ -23,11 +23,11 @@ Seed nodes and arbitrators require a local, unrestricted Monero node for perform
 
 In a new terminal window, run: `make seednode`.
 
-The seed node's onion address will print to the screen (denoted by `Hidden service`). Record the seed node's URL to xmr_mainnet.seednodes with port 1002. For example, `4op7nzb65z4xg2taqmt2uhih7uwi3ya25yx5bvskbkjisnq7rwepzvad.onion:1002`.
+The seed node's onion address will print to the screen (denoted by `Hidden service`). Record the seed node's URL to tsk_mainnet.seednodes with port 1002. For example, `4op7nzb65z4xg2taqmt2uhih7uwi3ya25yx5bvskbkjisnq7rwepzvad.onion:1002`.
 
 In a new terminal window, run: `make seednode2`.
 
-The seed node's onion address will print to the screen (denoted by `Hidden service`). Record the seed node's URL to xmr_mainnet.seednodes with port 1003. For example, `abwyc7ccjq4oyiej5z3dpwupzql34nnedaft5jc5l2dbocko7naosrjqd.onion:1003`.
+The seed node's onion address will print to the screen (denoted by `Hidden service`). Record the seed node's URL to tsk_mainnet.seednodes with port 1003. For example, `abwyc7ccjq4oyiej5z3dpwupzql34nnedaft5jc5l2dbocko7naosrjqd.onion:1003`.
 
 Stop both seed nodes.
 
@@ -39,23 +39,23 @@ For demonstration, we can use the first generated public/private keypair for all
 
 Hardcode the public key(s) in these files:
 
-- [AlertManager.java](https://github.com/haveno-dex/haveno/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/haveno/core/alert/AlertManager.java#L111)
-- [ArbitratorManager.java](https://github.com/haveno-dex/haveno/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/haveno/core/support/dispute/arbitration/arbitrator/ArbitratorManager.java#L81)
-- [FilterManager.java](https://github.com/haveno-dex/haveno/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/haveno/core/filter/FilterManager.java#L117)
-- [PrivateNotificationManager.java](https://github.com/haveno-dex/haveno/blob/mainnet_placeholders/core/src/main/java/haveno/core/alert/PrivateNotificationManager.java#L110)
+- [AlertManager.java](https://github.com/tuskex-dex/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/tuskex/core/alert/AlertManager.java#L111)
+- [ArbitratorManager.java](https://github.com/tuskex-dex/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/tuskex/core/support/dispute/arbitration/arbitrator/ArbitratorManager.java#L81)
+- [FilterManager.java](https://github.com/tuskex-dex/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/core/src/main/java/tuskex/core/filter/FilterManager.java#L117)
+- [PrivateNotificationManager.java](https://github.com/tuskex-dex/tuskex/blob/mainnet_placeholders/core/src/main/java/tuskex/core/alert/PrivateNotificationManager.java#L110)
 
-## Change the default folder name for Haveno application data
+## Change the default folder name for Tuskex application data
 
-To avoid user data corruption when using multiple Haveno networks, change the default folder name for Haveno's application data on your network:
+To avoid user data corruption when using multiple Tuskex networks, change the default folder name for Tuskex's application data on your network:
 
-- Change `DEFAULT_APP_NAME` in [HavenoExecutable.java](https://github.com/haveno-dex/haveno/blob/64acf86fbea069b0ae9f9bce086f8ecce1e91b87/core/src/main/java/haveno/core/app/HavenoExecutable.java#L85).
-- Change `appName` throughout the [Makefile](https://github.com/haveno-dex/haveno/blob/64acf86fbea069b0ae9f9bce086f8ecce1e91b87/Makefile#L479) accordingly.
+- Change `DEFAULT_APP_NAME` in [TuskexExecutable.java](https://github.com/tuskex-dex/tuskex/blob/64acf86fbea069b0ae9f9bce086f8ecce1e91b87/core/src/main/java/tuskex/core/app/TuskexExecutable.java#L85).
+- Change `appName` throughout the [Makefile](https://github.com/tuskex-dex/tuskex/blob/64acf86fbea069b0ae9f9bce086f8ecce1e91b87/Makefile#L479) accordingly.
 
-For example, change "Haveno" to "HavenoX", which will use this application folder:
+For example, change "Tuskex" to "TuskexX", which will use this application folder:
 
-- Linux: ~/.local/share/HavenoX/
-- macOS: ~/Library/Application Support/HavenoX/
-- Windows: ~\AppData\Roaming\HavenoX\
+- Linux: ~/.local/share/TuskexX/
+- macOS: ~/Library/Application Support/TuskexX/
+- Windows: ~\AppData\Roaming\TuskexX\
 
 ## Start the seed nodes
 
@@ -83,42 +83,42 @@ On mainnet, the p2p network is expected to have a filter object for offers, onio
 
 To set the network's filter object:
 
-1. Enter `ctrl + f` in the arbitrator or other Haveno instance to open the Filter window.
+1. Enter `ctrl + f` in the arbitrator or other Tuskex instance to open the Filter window.
 2. Enter a developer private key from the previous steps and click "Add Filter" to register.
 
 ## Other configuration
 
 ### Set the network's release date
 
-Set the network's approximate release date by setting `RELEASE_DATE` in HavenoUtils.java.
+Set the network's approximate release date by setting `RELEASE_DATE` in TuskexUtils.java.
 
 This will prevent posting sell offers which no buyers can take before any buyer accounts are signed and aged, while the network bootstraps.
 
 After a period (default 60 days), the limit is lifted and sellers can post offers exceeding unsigned buy limits, but they will receive an informational warning for an additional period (default 6 months after release).
 
-The defaults can be adjusted with the related constants in HavenoUtils.java.
+The defaults can be adjusted with the related constants in TuskexUtils.java.
 
 ### Optionally configure trade fees
 
-Trade fees can be configured in HavenoUtils.java. The maker and taker fee percents can be adjusted.
+Trade fees can be configured in TuskexUtils.java. The maker and taker fee percents can be adjusted.
 
 Set `ARBITRATOR_ASSIGNS_TRADE_FEE_ADDRESS` to `true` for the arbitrator to assign the trade fee address, which defaults to their own wallet.
 
-Otherwise set `ARBITRATOR_ASSIGNS_TRADE_FEE_ADDRESS` to `false` and set the XMR address in `getGlobalTradeFeeAddress()` to collect all trade fees to a single address (e.g. a multisig wallet shared among network administrators).
+Otherwise set `ARBITRATOR_ASSIGNS_TRADE_FEE_ADDRESS` to `false` and set the TSK address in `getGlobalTradeFeeAddress()` to collect all trade fees to a single address (e.g. a multisig wallet shared among network administrators).
 
 ### Optionally start a price node
 
-The price node is separated from Haveno and is run as a standalone service. To deploy a pricenode on both TOR and clearnet, see the instructions on the repository: https://github.com/haveno-dex/haveno-pricenode.
+The price node is separated from Tuskex and is run as a standalone service. To deploy a pricenode on both TOR and clearnet, see the instructions on the repository: https://github.com/tuskex-dex/tuskex-pricenode.
 
-After the price node is built and deployed, add the price node to `DEFAULT_NODES` in [ProvidersRepository.java](https://github.com/haveno-dex/haveno/blob/3cdd88b56915c7f8afd4f1a39e6c1197c2665d63/core/src/main/java/haveno/core/provider/ProvidersRepository.java#L50).
+After the price node is built and deployed, add the price node to `DEFAULT_NODES` in [ProvidersRepository.java](https://github.com/tuskex-dex/tuskex/blob/3cdd88b56915c7f8afd4f1a39e6c1197c2665d63/core/src/main/java/tuskex/core/provider/ProvidersRepository.java#L50).
 
 ## Review all local changes
 
-For comparison, placeholders to run on mainnet are marked [here on this branch](https://github.com/haveno-dex/haveno/tree/mainnet_placeholders).
+For comparison, placeholders to run on mainnet are marked [here on this branch](https://github.com/tuskex-dex/tuskex/tree/mainnet_placeholders).
 
 ## Start users for testing
 
-Optionally set `--ignoreLocalXmrNode` to `true` in Makefile for the user applications to use public nodes and ignore the locally running Monero node, in order test real network conditions.
+Optionally set `--ignoreLocalTskNode` to `true` in Makefile for the user applications to use public nodes and ignore the locally running Monero node, in order test real network conditions.
 
 Start user1: `make user1-desktop-mainnet`.
 
@@ -136,7 +136,7 @@ After sharing your git repository, others can build and start their application 
 
 ```
 git clone <your repo url>
-cd haveno
+cd tuskex
 make skip-tests
 make user1-desktop-mainnet
 ```
@@ -145,8 +145,8 @@ However a [more robust VPS setup](./deployment-guide.md) should be used for actu
 
 ## Build the installers for distribution
 
-To build the installers for distribution, first change `XMR_STAGENET` to `XMR_MAINNET` in [package.gradle](https://github.com/haveno-dex/haveno/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/desktop/package/package.gradle#L278).
+To build the installers for distribution, first change `TSK_STAGENET` to `TSK_MAINNET` in [package.gradle](https://github.com/tuskex-dex/tuskex/blob/1bf83ecb8baa06b6bfcc30720f165f20b8f77025/desktop/package/package.gradle#L278).
 
-Then [follow instructions](https://github.com/haveno-dex/haveno/blob/master/desktop/package/README.md) to build the installers for distribution.
+Then [follow instructions](https://github.com/tuskex-dex/tuskex/blob/master/desktop/package/README.md) to build the installers for distribution.
 
 Alternatively, the installers are built automatically by GitHub.

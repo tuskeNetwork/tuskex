@@ -15,35 +15,35 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.settings.network;
+package tuskex.desktop.main.settings.network;
 
 import com.google.inject.Inject;
-import haveno.common.ClockWatcher;
-import haveno.common.UserThread;
-import haveno.core.api.XmrConnectionService;
-import haveno.core.api.XmrLocalNode;
-import haveno.core.filter.Filter;
-import haveno.core.filter.FilterManager;
-import haveno.core.locale.Res;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.validation.RegexValidator;
-import haveno.core.util.validation.RegexValidatorFactory;
-import haveno.core.xmr.nodes.XmrNodes;
-import haveno.core.xmr.setup.WalletsSetup;
-import haveno.desktop.app.HavenoApp;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.TorNetworkSettingsWindow;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.P2PService;
-import haveno.network.p2p.network.Statistic;
+import tuskex.common.ClockWatcher;
+import tuskex.common.UserThread;
+import tuskex.core.api.TskConnectionService;
+import tuskex.core.api.TskLocalNode;
+import tuskex.core.filter.Filter;
+import tuskex.core.filter.FilterManager;
+import tuskex.core.locale.Res;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.validation.RegexValidator;
+import tuskex.core.util.validation.RegexValidatorFactory;
+import tuskex.core.tsk.nodes.TskNodes;
+import tuskex.core.tsk.setup.WalletsSetup;
+import tuskex.desktop.app.TuskexApp;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.TorNetworkSettingsWindow;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.P2PService;
+import tuskex.network.p2p.network.Statistic;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -73,15 +73,15 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
     @FXML
     TitledGroupBg p2pHeader, btcHeader;
     @FXML
-    Label useTorForXmrLabel, xmrNodesLabel, moneroNodesLabel, localhostXmrNodeInfoLabel;
+    Label useTorForTskLabel, tskNodesLabel, moneroNodesLabel, localhostTskNodeInfoLabel;
     @FXML
-    InputTextField xmrNodesInputTextField;
+    InputTextField tskNodesInputTextField;
     @FXML
     TextField onionAddress, sentDataTextField, receivedDataTextField, chainHeightTextField;
     @FXML
     Label p2PPeersLabel, moneroPeersLabel;
     @FXML
-    RadioButton useTorForXmrAfterSyncRadio, useTorForXmrOffRadio, useTorForXmrOnRadio;
+    RadioButton useTorForTskAfterSyncRadio, useTorForTskOffRadio, useTorForTskOnRadio;
     @FXML
     RadioButton useProvidedNodesRadio, useCustomNodesRadio, usePublicNodesRadio;
     @FXML
@@ -100,14 +100,14 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
     AutoTooltipButton rescanOutputsButton, openTorSettingsButton;
 
     private final Preferences preferences;
-    private final XmrNodes xmrNodes;
+    private final TskNodes tskNodes;
     private final FilterManager filterManager;
-    private final XmrLocalNode xmrLocalNode;
+    private final TskLocalNode tskLocalNode;
     private final TorNetworkSettingsWindow torNetworkSettingsWindow;
     private final ClockWatcher clockWatcher;
     private final WalletsSetup walletsSetup;
     private final P2PService p2PService;
-    private final XmrConnectionService connectionService;
+    private final TskConnectionService connectionService;
 
     private final ObservableList<P2pNetworkListItem> p2pNetworkListItems = FXCollections.observableArrayList();
     private final SortedList<P2pNetworkListItem> p2pSortedList = new SortedList<>(p2pNetworkListItems);
@@ -119,23 +119,23 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
     private Subscription moneroPeersSubscription;
     private Subscription moneroBlockHeightSubscription;
     private Subscription nodeAddressSubscription;
-    private ChangeListener<Boolean> xmrNodesInputTextFieldFocusListener;
-    private ToggleGroup useTorForXmrToggleGroup;
+    private ChangeListener<Boolean> tskNodesInputTextFieldFocusListener;
+    private ToggleGroup useTorForTskToggleGroup;
     private ToggleGroup moneroPeersToggleGroup;
-    private Preferences.UseTorForXmr selectedUseTorForXmr;
-    private XmrNodes.MoneroNodesOption selectedMoneroNodesOption;
-    private ChangeListener<Toggle> useTorForXmrToggleGroupListener;
+    private Preferences.UseTorForTsk selectedUseTorForTsk;
+    private TskNodes.MoneroNodesOption selectedMoneroNodesOption;
+    private ChangeListener<Toggle> useTorForTskToggleGroupListener;
     private ChangeListener<Toggle> moneroPeersToggleGroupListener;
     private ChangeListener<Filter> filterPropertyListener;
 
     @Inject
     public NetworkSettingsView(WalletsSetup walletsSetup,
                                P2PService p2PService,
-                               XmrConnectionService connectionService,
+                               TskConnectionService connectionService,
                                Preferences preferences,
-                               XmrNodes xmrNodes,
+                               TskNodes tskNodes,
                                FilterManager filterManager,
-                               XmrLocalNode xmrLocalNode,
+                               TskLocalNode tskLocalNode,
                                TorNetworkSettingsWindow torNetworkSettingsWindow,
                                ClockWatcher clockWatcher) {
         super();
@@ -143,31 +143,31 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
         this.p2PService = p2PService;
         this.connectionService = connectionService;
         this.preferences = preferences;
-        this.xmrNodes = xmrNodes;
+        this.tskNodes = tskNodes;
         this.filterManager = filterManager;
-        this.xmrLocalNode = xmrLocalNode;
+        this.tskLocalNode = tskLocalNode;
         this.torNetworkSettingsWindow = torNetworkSettingsWindow;
         this.clockWatcher = clockWatcher;
     }
 
     @Override
     public void initialize() {
-        btcHeader.setText(Res.get("settings.net.xmrHeader"));
+        btcHeader.setText(Res.get("settings.net.tskHeader"));
         p2pHeader.setText(Res.get("settings.net.p2pHeader"));
         onionAddress.setPromptText(Res.get("settings.net.onionAddressLabel"));
-        xmrNodesLabel.setText(Res.get("settings.net.xmrNodesLabel"));
+        tskNodesLabel.setText(Res.get("settings.net.tskNodesLabel"));
         moneroPeersLabel.setText(Res.get("settings.net.moneroPeersLabel"));
-        useTorForXmrLabel.setText(Res.get("settings.net.useTorForXmrJLabel"));
-        useTorForXmrAfterSyncRadio.setText(Res.get("settings.net.useTorForXmrAfterSyncRadio"));
-        useTorForXmrOffRadio.setText(Res.get("settings.net.useTorForXmrOffRadio"));
-        useTorForXmrOnRadio.setText(Res.get("settings.net.useTorForXmrOnRadio"));
+        useTorForTskLabel.setText(Res.get("settings.net.useTorForTskJLabel"));
+        useTorForTskAfterSyncRadio.setText(Res.get("settings.net.useTorForTskAfterSyncRadio"));
+        useTorForTskOffRadio.setText(Res.get("settings.net.useTorForTskOffRadio"));
+        useTorForTskOnRadio.setText(Res.get("settings.net.useTorForTskOnRadio"));
         moneroNodesLabel.setText(Res.get("settings.net.moneroNodesLabel"));
         moneroPeerAddressColumn.setGraphic(new AutoTooltipLabel(Res.get("settings.net.onionAddressColumn")));
         moneroPeerAddressColumn.getStyleClass().add("first-column");
         moneroPeerVersionColumn.setGraphic(new AutoTooltipLabel(Res.get("settings.net.versionColumn")));
         moneroPeerSubVersionColumn.setGraphic(new AutoTooltipLabel(Res.get("settings.net.subVersionColumn")));
         moneroPeerHeightColumn.setGraphic(new AutoTooltipLabel(Res.get("settings.net.heightColumn")));
-        localhostXmrNodeInfoLabel.setText(Res.get("settings.net.localhostXmrNodeInfo"));
+        localhostTskNodeInfoLabel.setText(Res.get("settings.net.localhostTskNodeInfo"));
         useProvidedNodesRadio.setText(Res.get("settings.net.useProvidedNodesRadio"));
         useCustomNodesRadio.setText(Res.get("settings.net.useCustomNodesRadio"));
         usePublicNodesRadio.setText(Res.get("settings.net.usePublicNodesRadio"));
@@ -213,26 +213,26 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
         p2pPeersTableView.getSortOrder().add(creationDateColumn);
         creationDateColumn.setSortType(TableColumn.SortType.ASCENDING);
 
-        // use tor for xmr radio buttons
+        // use tor for tsk radio buttons
 
-        useTorForXmrToggleGroup = new ToggleGroup();
-        useTorForXmrAfterSyncRadio.setToggleGroup(useTorForXmrToggleGroup);
-        useTorForXmrOffRadio.setToggleGroup(useTorForXmrToggleGroup);
-        useTorForXmrOnRadio.setToggleGroup(useTorForXmrToggleGroup);
+        useTorForTskToggleGroup = new ToggleGroup();
+        useTorForTskAfterSyncRadio.setToggleGroup(useTorForTskToggleGroup);
+        useTorForTskOffRadio.setToggleGroup(useTorForTskToggleGroup);
+        useTorForTskOnRadio.setToggleGroup(useTorForTskToggleGroup);
 
-        useTorForXmrAfterSyncRadio.setUserData(Preferences.UseTorForXmr.AFTER_SYNC);
-        useTorForXmrOffRadio.setUserData(Preferences.UseTorForXmr.OFF);
-        useTorForXmrOnRadio.setUserData(Preferences.UseTorForXmr.ON);
+        useTorForTskAfterSyncRadio.setUserData(Preferences.UseTorForTsk.AFTER_SYNC);
+        useTorForTskOffRadio.setUserData(Preferences.UseTorForTsk.OFF);
+        useTorForTskOnRadio.setUserData(Preferences.UseTorForTsk.ON);
 
-        selectedUseTorForXmr = Preferences.UseTorForXmr.values()[preferences.getUseTorForXmrOrdinal()];
+        selectedUseTorForTsk = Preferences.UseTorForTsk.values()[preferences.getUseTorForTskOrdinal()];
 
-        selectUseTorForXmrToggle();
-        onUseTorForXmrToggleSelected(false);
+        selectUseTorForTskToggle();
+        onUseTorForTskToggleSelected(false);
 
-        useTorForXmrToggleGroupListener = (observable, oldValue, newValue) -> {
+        useTorForTskToggleGroupListener = (observable, oldValue, newValue) -> {
             if (newValue != null) {
-                selectedUseTorForXmr = (Preferences.UseTorForXmr) newValue.getUserData();
-                onUseTorForXmrToggleSelected(true);
+                selectedUseTorForTsk = (Preferences.UseTorForTsk) newValue.getUserData();
+                onUseTorForTskToggleSelected(true);
             }
         };
 
@@ -243,17 +243,17 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
         useCustomNodesRadio.setToggleGroup(moneroPeersToggleGroup);
         usePublicNodesRadio.setToggleGroup(moneroPeersToggleGroup);
 
-        useProvidedNodesRadio.setUserData(XmrNodes.MoneroNodesOption.PROVIDED);
-        useCustomNodesRadio.setUserData(XmrNodes.MoneroNodesOption.CUSTOM);
-        usePublicNodesRadio.setUserData(XmrNodes.MoneroNodesOption.PUBLIC);
+        useProvidedNodesRadio.setUserData(TskNodes.MoneroNodesOption.PROVIDED);
+        useCustomNodesRadio.setUserData(TskNodes.MoneroNodesOption.CUSTOM);
+        usePublicNodesRadio.setUserData(TskNodes.MoneroNodesOption.PUBLIC);
 
-        selectedMoneroNodesOption = XmrNodes.MoneroNodesOption.values()[preferences.getMoneroNodesOptionOrdinal()];
+        selectedMoneroNodesOption = TskNodes.MoneroNodesOption.values()[preferences.getMoneroNodesOptionOrdinal()];
         // In case CUSTOM is selected but no custom nodes are set or
         // in case PUBLIC is selected but we blocked it (B2X risk) we revert to provided nodes
-        if ((selectedMoneroNodesOption == XmrNodes.MoneroNodesOption.CUSTOM &&
+        if ((selectedMoneroNodesOption == TskNodes.MoneroNodesOption.CUSTOM &&
                 (preferences.getMoneroNodes() == null || preferences.getMoneroNodes().isEmpty())) ||
-                (selectedMoneroNodesOption == XmrNodes.MoneroNodesOption.PUBLIC && isPreventPublicXmrNetwork())) {
-            selectedMoneroNodesOption = XmrNodes.MoneroNodesOption.PROVIDED;
+                (selectedMoneroNodesOption == TskNodes.MoneroNodesOption.PUBLIC && isPreventPublicTskNetwork())) {
+            selectedMoneroNodesOption = TskNodes.MoneroNodesOption.PROVIDED;
             preferences.setMoneroNodesOptionOrdinal(selectedMoneroNodesOption.ordinal());
         }
 
@@ -262,25 +262,25 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
 
         moneroPeersToggleGroupListener = (observable, oldValue, newValue) -> {
             if (newValue != null) {
-                selectedMoneroNodesOption = (XmrNodes.MoneroNodesOption) newValue.getUserData();
+                selectedMoneroNodesOption = (TskNodes.MoneroNodesOption) newValue.getUserData();
                 onMoneroPeersToggleSelected(true);
             }
         };
 
-        xmrNodesInputTextField.setPromptText(Res.get("settings.net.ips", "" + HavenoUtils.getDefaultMoneroPort()));
+        tskNodesInputTextField.setPromptText(Res.get("settings.net.ips", "" + TuskexUtils.getDefaultMoneroPort()));
         RegexValidator regexValidator = RegexValidatorFactory.addressRegexValidator();
-        xmrNodesInputTextField.setValidator(regexValidator);
-        xmrNodesInputTextField.setErrorMessage(Res.get("validation.invalidAddressList"));
-        xmrNodesInputTextFieldFocusListener = (observable, oldValue, newValue) -> {
+        tskNodesInputTextField.setValidator(regexValidator);
+        tskNodesInputTextField.setErrorMessage(Res.get("validation.invalidAddressList"));
+        tskNodesInputTextFieldFocusListener = (observable, oldValue, newValue) -> {
             if (oldValue && !newValue
-                    && !xmrNodesInputTextField.getText().equals(preferences.getMoneroNodes())
-                    && xmrNodesInputTextField.validate()) {
-                preferences.setMoneroNodes(xmrNodesInputTextField.getText());
+                    && !tskNodesInputTextField.getText().equals(preferences.getMoneroNodes())
+                    && tskNodesInputTextField.validate()) {
+                preferences.setMoneroNodes(tskNodesInputTextField.getText());
                 preferences.setMoneroNodesOptionOrdinal(selectedMoneroNodesOption.ordinal());
                 showShutDownPopup();
             }
         };
-        filterPropertyListener = (observable, oldValue, newValue) -> applyPreventPublicXmrNetwork();
+        filterPropertyListener = (observable, oldValue, newValue) -> applyPreventPublicTskNetwork();
 
         //TODO sorting needs other NetworkStatisticListItem as columns type
        /* creationDateColumn.setComparator((o1, o2) ->
@@ -293,11 +293,11 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
 
     @Override
     public void activate() {
-        useTorForXmrToggleGroup.selectedToggleProperty().addListener(useTorForXmrToggleGroupListener);
+        useTorForTskToggleGroup.selectedToggleProperty().addListener(useTorForTskToggleGroupListener);
         moneroPeersToggleGroup.selectedToggleProperty().addListener(moneroPeersToggleGroupListener);
 
         if (filterManager.getFilter() != null)
-            applyPreventPublicXmrNetwork();
+            applyPreventPublicTskNetwork();
 
         filterManager.filterProperty().addListener(filterPropertyListener);
 
@@ -333,16 +333,16 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
         p2pSortedList.comparatorProperty().bind(p2pPeersTableView.comparatorProperty());
         p2pPeersTableView.setItems(p2pSortedList);
 
-        xmrNodesInputTextField.setText(preferences.getMoneroNodes());
+        tskNodesInputTextField.setText(preferences.getMoneroNodes());
 
-        xmrNodesInputTextField.focusedProperty().addListener(xmrNodesInputTextFieldFocusListener);
+        tskNodesInputTextField.focusedProperty().addListener(tskNodesInputTextFieldFocusListener);
 
         openTorSettingsButton.setOnAction(e -> torNetworkSettingsWindow.show());
     }
 
     @Override
     public void deactivate() {
-        useTorForXmrToggleGroup.selectedToggleProperty().removeListener(useTorForXmrToggleGroupListener);
+        useTorForTskToggleGroup.selectedToggleProperty().removeListener(useTorForTskToggleGroupListener);
         moneroPeersToggleGroup.selectedToggleProperty().removeListener(moneroPeersToggleGroupListener);
         filterManager.filterProperty().removeListener(filterPropertyListener);
 
@@ -364,27 +364,27 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
         moneroSortedList.comparatorProperty().unbind();
         p2pSortedList.comparatorProperty().unbind();
         p2pPeersTableView.getItems().forEach(P2pNetworkListItem::cleanup);
-        xmrNodesInputTextField.focusedProperty().removeListener(xmrNodesInputTextFieldFocusListener);
+        tskNodesInputTextField.focusedProperty().removeListener(tskNodesInputTextFieldFocusListener);
 
         openTorSettingsButton.setOnAction(null);
     }
 
-    private boolean isPreventPublicXmrNetwork() {
+    private boolean isPreventPublicTskNetwork() {
        return filterManager.getFilter() != null &&
-               filterManager.getFilter().isPreventPublicXmrNetwork();
+               filterManager.getFilter().isPreventPublicTskNetwork();
     }
 
-    private void selectUseTorForXmrToggle() {
-        switch (selectedUseTorForXmr) {
+    private void selectUseTorForTskToggle() {
+        switch (selectedUseTorForTsk) {
             case OFF:
-                useTorForXmrToggleGroup.selectToggle(useTorForXmrOffRadio);
+                useTorForTskToggleGroup.selectToggle(useTorForTskOffRadio);
                 break;
             case ON:
-                useTorForXmrToggleGroup.selectToggle(useTorForXmrOnRadio);
+                useTorForTskToggleGroup.selectToggle(useTorForTskOnRadio);
                 break;
             default:
             case AFTER_SYNC:
-                useTorForXmrToggleGroup.selectToggle(useTorForXmrAfterSyncRadio);
+                useTorForTskToggleGroup.selectToggle(useTorForTskAfterSyncRadio);
                 break;
         }
     }
@@ -412,20 +412,20 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
                 .show();
     }
 
-    private void onUseTorForXmrToggleSelected(boolean calledFromUser) {
-        Preferences.UseTorForXmr currentUseTorForXmr = Preferences.UseTorForXmr.values()[preferences.getUseTorForXmrOrdinal()];
-        if (currentUseTorForXmr != selectedUseTorForXmr) {
+    private void onUseTorForTskToggleSelected(boolean calledFromUser) {
+        Preferences.UseTorForTsk currentUseTorForTsk = Preferences.UseTorForTsk.values()[preferences.getUseTorForTskOrdinal()];
+        if (currentUseTorForTsk != selectedUseTorForTsk) {
             if (calledFromUser) {
                 new Popup().information(Res.get("settings.net.needRestart"))
                     .actionButtonText(Res.get("shared.applyAndShutDown"))
                     .onAction(() -> {
-                        preferences.setUseTorForXmrOrdinal(selectedUseTorForXmr.ordinal());
-                        UserThread.runAfter(HavenoApp.getShutDownHandler(), 500, TimeUnit.MILLISECONDS);
+                        preferences.setUseTorForTskOrdinal(selectedUseTorForTsk.ordinal());
+                        UserThread.runAfter(TuskexApp.getShutDownHandler(), 500, TimeUnit.MILLISECONDS);
                     })
                     .closeButtonText(Res.get("shared.cancel"))
                     .onClose(() -> {
-                        selectedUseTorForXmr = currentUseTorForXmr;
-                        selectUseTorForXmrToggle();
+                        selectedUseTorForTsk = currentUseTorForTsk;
+                        selectUseTorForTskToggle();
                     })
                     .show();
             }
@@ -433,20 +433,20 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
     }
 
     private void onMoneroPeersToggleSelected(boolean calledFromUser) {
-        usePublicNodesRadio.setDisable(isPreventPublicXmrNetwork());
+        usePublicNodesRadio.setDisable(isPreventPublicTskNetwork());
 
-        XmrNodes.MoneroNodesOption currentMoneroNodesOption = XmrNodes.MoneroNodesOption.values()[preferences.getMoneroNodesOptionOrdinal()];
+        TskNodes.MoneroNodesOption currentMoneroNodesOption = TskNodes.MoneroNodesOption.values()[preferences.getMoneroNodesOptionOrdinal()];
 
         switch (selectedMoneroNodesOption) {
             case CUSTOM:
-                xmrNodesInputTextField.setDisable(false);
-                xmrNodesLabel.setDisable(false);
-                if (!xmrNodesInputTextField.getText().isEmpty()
-                        && xmrNodesInputTextField.validate()
-                        && currentMoneroNodesOption != XmrNodes.MoneroNodesOption.CUSTOM) {
+                tskNodesInputTextField.setDisable(false);
+                tskNodesLabel.setDisable(false);
+                if (!tskNodesInputTextField.getText().isEmpty()
+                        && tskNodesInputTextField.validate()
+                        && currentMoneroNodesOption != TskNodes.MoneroNodesOption.CUSTOM) {
                     preferences.setMoneroNodesOptionOrdinal(selectedMoneroNodesOption.ordinal());
                     if (calledFromUser) {
-                        if (isPreventPublicXmrNetwork()) {
+                        if (isPreventPublicTskNetwork()) {
                             new Popup().warning(Res.get("settings.net.warn.useCustomNodes.B2XWarning"))
                                     .onAction(() -> UserThread.runAfter(this::showShutDownPopup, 300, TimeUnit.MILLISECONDS)).show();
                         } else {
@@ -456,16 +456,16 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
                 }
                 break;
             case PUBLIC:
-                xmrNodesInputTextField.setDisable(true);
-                xmrNodesLabel.setDisable(true);
-                if (currentMoneroNodesOption != XmrNodes.MoneroNodesOption.PUBLIC) {
+                tskNodesInputTextField.setDisable(true);
+                tskNodesLabel.setDisable(true);
+                if (currentMoneroNodesOption != TskNodes.MoneroNodesOption.PUBLIC) {
                     preferences.setMoneroNodesOptionOrdinal(selectedMoneroNodesOption.ordinal());
                     if (calledFromUser) {
                         new Popup()
                                 .warning(Res.get("settings.net.warn.usePublicNodes"))
                                 .actionButtonText(Res.get("settings.net.warn.usePublicNodes.useProvided"))
                                 .onAction(() -> UserThread.runAfter(() -> {
-                                    selectedMoneroNodesOption = XmrNodes.MoneroNodesOption.PROVIDED;
+                                    selectedMoneroNodesOption = TskNodes.MoneroNodesOption.PROVIDED;
                                     preferences.setMoneroNodesOptionOrdinal(selectedMoneroNodesOption.ordinal());
                                     selectMoneroPeersToggle();
                                     onMoneroPeersToggleSelected(false);
@@ -478,9 +478,9 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
                 break;
             default:
             case PROVIDED:
-                xmrNodesInputTextField.setDisable(true);
-                xmrNodesLabel.setDisable(true);
-                if (currentMoneroNodesOption != XmrNodes.MoneroNodesOption.PROVIDED) {
+                tskNodesInputTextField.setDisable(true);
+                tskNodesLabel.setDisable(true);
+                if (currentMoneroNodesOption != TskNodes.MoneroNodesOption.PROVIDED) {
                     preferences.setMoneroNodesOptionOrdinal(selectedMoneroNodesOption.ordinal());
                     if (calledFromUser) {
                         showShutDownPopup();
@@ -491,11 +491,11 @@ public class NetworkSettingsView extends ActivatableView<GridPane, Void> {
     }
 
 
-    private void applyPreventPublicXmrNetwork() {
-        final boolean preventPublicXmrNetwork = isPreventPublicXmrNetwork();
-        usePublicNodesRadio.setDisable(xmrLocalNode.shouldBeUsed() || preventPublicXmrNetwork);
-        if (preventPublicXmrNetwork && selectedMoneroNodesOption == XmrNodes.MoneroNodesOption.PUBLIC) {
-            selectedMoneroNodesOption = XmrNodes.MoneroNodesOption.PROVIDED;
+    private void applyPreventPublicTskNetwork() {
+        final boolean preventPublicTskNetwork = isPreventPublicTskNetwork();
+        usePublicNodesRadio.setDisable(tskLocalNode.shouldBeUsed() || preventPublicTskNetwork);
+        if (preventPublicTskNetwork && selectedMoneroNodesOption == TskNodes.MoneroNodesOption.PUBLIC) {
+            selectedMoneroNodesOption = TskNodes.MoneroNodesOption.PROVIDED;
             preferences.setMoneroNodesOptionOrdinal(selectedMoneroNodesOption.ordinal());
             selectMoneroPeersToggle();
             onMoneroPeersToggleSelected(false);

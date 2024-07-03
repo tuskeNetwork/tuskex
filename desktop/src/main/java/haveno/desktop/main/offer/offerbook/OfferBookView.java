@@ -15,60 +15,60 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.offerbook;
+package tuskex.desktop.main.offer.offerbook;
 
 import de.jensd.fx.fontawesome.AwesomeIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.common.util.Tuple3;
-import haveno.core.account.sign.SignedWitnessService;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.monetary.Price;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferFilterService;
-import haveno.core.offer.OfferRestrictions;
-import haveno.core.offer.OpenOffer;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.components.AccountStatusTooltipLabel;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.AutoTooltipSlideToggleButton;
-import haveno.desktop.components.AutoTooltipTableColumn;
-import haveno.desktop.components.AutocompleteComboBox;
-import haveno.desktop.components.ColoredDecimalPlacesWithZerosText;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.components.InfoAutoTooltipLabel;
-import haveno.desktop.components.PeerInfoIconTrading;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.account.AccountView;
-import haveno.desktop.main.account.content.cryptoaccounts.CryptoAccountsView;
-import haveno.desktop.main.account.content.traditionalaccounts.TraditionalAccountsView;
-import haveno.desktop.main.funds.FundsView;
-import haveno.desktop.main.funds.withdrawal.WithdrawalView;
-import haveno.desktop.main.offer.OfferView;
-import haveno.desktop.main.offer.OfferViewUtil;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.OfferDetailsWindow;
-import haveno.desktop.main.portfolio.PortfolioView;
-import haveno.desktop.main.portfolio.editoffer.EditOfferView;
-import haveno.desktop.util.CssTheme;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.Layout;
-import haveno.network.p2p.NodeAddress;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.common.util.Tuple3;
+import tuskex.core.account.sign.SignedWitnessService;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.monetary.Price;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferFilterService;
+import tuskex.core.offer.OfferRestrictions;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.components.AccountStatusTooltipLabel;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.AutoTooltipSlideToggleButton;
+import tuskex.desktop.components.AutoTooltipTableColumn;
+import tuskex.desktop.components.AutocompleteComboBox;
+import tuskex.desktop.components.ColoredDecimalPlacesWithZerosText;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.components.InfoAutoTooltipLabel;
+import tuskex.desktop.components.PeerInfoIconTrading;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.account.AccountView;
+import tuskex.desktop.main.account.content.cryptoaccounts.CryptoAccountsView;
+import tuskex.desktop.main.account.content.traditionalaccounts.TraditionalAccountsView;
+import tuskex.desktop.main.funds.FundsView;
+import tuskex.desktop.main.funds.withdrawal.WithdrawalView;
+import tuskex.desktop.main.offer.OfferView;
+import tuskex.desktop.main.offer.OfferViewUtil;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.OfferDetailsWindow;
+import tuskex.desktop.main.portfolio.PortfolioView;
+import tuskex.desktop.main.portfolio.editoffer.EditOfferView;
+import tuskex.desktop.util.CssTheme;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.Layout;
+import tuskex.network.p2p.NodeAddress;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -106,7 +106,7 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
 
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
 
 abstract public class OfferBookView<R extends GridPane, M extends OfferBookViewModel> extends ActivatableViewAndModel<R, M> {
 
@@ -297,7 +297,7 @@ abstract public class OfferBookView<R extends GridPane, M extends OfferBookViewM
             if ((deposit == null || amountValue == 0)) {
                 return 0d;
             } else {
-                return HavenoUtils.divide(deposit, BigInteger.valueOf(amountValue));
+                return TuskexUtils.divide(deposit, BigInteger.valueOf(amountValue));
             }
 
         }, Comparator.nullsFirst(Comparator.naturalOrder())));
@@ -327,8 +327,8 @@ abstract public class OfferBookView<R extends GridPane, M extends OfferBookViewM
     protected void activate() {
         titledGroupBg.setText(getMarketTitle());
         titledGroupBg.setHelpUrl(model.getDirection() == OfferDirection.SELL
-                ? "https://haveno.exchange/wiki/Introduction#In_a_nutshell"
-                : "https://haveno.exchange/wiki/Taking_an_offer");
+                ? "https://tuskex.exchange/wiki/Introduction#In_a_nutshell"
+                : "https://tuskex.exchange/wiki/Taking_an_offer");
 
         Map<String, Integer> offerCounts = OfferViewUtil.isShownAsBuyOffer(model.getDirection(), model.getSelectedTradeCurrency()) ? model.getSellOfferCounts() : model.getBuyOfferCounts();
         currencyComboBox.setCellFactory(GUIUtil.getTradeCurrencyCellFactory(Res.get("shared.oneOffer"),
@@ -667,7 +667,7 @@ abstract public class OfferBookView<R extends GridPane, M extends OfferBookViewM
                             offer.getCurrencyCode(), offer.getMirroredDirection());
                     new Popup()
                             .warning(Res.get("popup.warning.tradeLimitDueAccountAgeRestriction.buyer",
-                                    HavenoUtils.formatXmr(tradeLimit, true),
+                                    TuskexUtils.formatTsk(tradeLimit, true),
                                     Res.get("offerbook.warning.newVersionAnnouncement")))
                             .show();
                 } else {
@@ -762,7 +762,7 @@ abstract public class OfferBookView<R extends GridPane, M extends OfferBookViewM
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     private AutoTooltipTableColumn<OfferBookListItem, OfferBookListItem> getAmountColumn() {
-        AutoTooltipTableColumn<OfferBookListItem, OfferBookListItem> column = new AutoTooltipTableColumn<>(Res.get("shared.XMRMinMax"), Res.get("shared.amountHelp"));
+        AutoTooltipTableColumn<OfferBookListItem, OfferBookListItem> column = new AutoTooltipTableColumn<>(Res.get("shared.TSKMinMax"), Res.get("shared.amountHelp"));
         column.setMinWidth(100);
         column.getStyleClass().add("number-column");
         column.setCellValueFactory((offer) -> new ReadOnlyObjectWrapper<>(offer.getValue()));
@@ -967,7 +967,7 @@ abstract public class OfferBookView<R extends GridPane, M extends OfferBookViewM
                                     if (model.isOfferBanned(offer)) {
                                         setGraphic(new AutoTooltipLabel(model.getPaymentMethod(item)));
                                     } else {
-                                        if (offer.isXmrAutoConf()) {
+                                        if (offer.isTskAutoConf()) {
                                             field = new HyperlinkWithIcon(model.getPaymentMethod(item), AwesomeIcon.ROCKET);
                                         } else {
                                             field = new HyperlinkWithIcon(model.getPaymentMethod(item));
@@ -1175,7 +1175,7 @@ abstract public class OfferBookView<R extends GridPane, M extends OfferBookViewM
                 Res.get("offerbook.timeSinceSigning"),
                 Res.get("offerbook.timeSinceSigning.help",
                         SignedWitnessService.SIGNER_AGE_DAYS,
-                        HavenoUtils.formatXmr(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true))) {
+                        TuskexUtils.formatTsk(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true))) {
             {
                 setMinWidth(60);
                 setSortable(true);

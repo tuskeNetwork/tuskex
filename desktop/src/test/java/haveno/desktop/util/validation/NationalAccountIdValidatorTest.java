@@ -1,7 +1,7 @@
-package haveno.desktop.util.validation;
+package tuskex.desktop.util.validation;
 
-import haveno.core.locale.Res;
-import haveno.core.payment.validation.NationalAccountIdValidator;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.validation.NationalAccountIdValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ public class NationalAccountIdValidatorTest {
     @BeforeEach
     public void setup() {
         Locale.setDefault(new Locale("en", "US"));
-        Res.setBaseCurrencyCode("XMR");
+        Res.setBaseCurrencyCode("TSK");
         Res.setBaseCurrencyName("Monero");
     }
 

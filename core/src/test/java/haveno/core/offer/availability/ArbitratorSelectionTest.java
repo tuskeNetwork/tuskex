@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.offer.availability;
+package tuskex.core.offer.availability;
 
 import org.junit.jupiter.api.Test;
 

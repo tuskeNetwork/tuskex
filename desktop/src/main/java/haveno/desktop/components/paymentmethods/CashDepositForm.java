@@ -15,27 +15,27 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple4;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.BankUtil;
-import haveno.core.locale.Country;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.TraditionalCurrency;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.payment.CountryBasedPaymentAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.CashDepositAccountPayload;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.validation.EmailValidator;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple4;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.BankUtil;
+import tuskex.core.locale.Country;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.TraditionalCurrency;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.payment.CountryBasedPaymentAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.CashDepositAccountPayload;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.validation.EmailValidator;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.util.GUIUtil;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -43,14 +43,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-import static haveno.desktop.util.FormBuilder.addComboBox;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextArea;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextFieldTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addInputTextFieldInputTextField;
-import static haveno.desktop.util.FormBuilder.addTextArea;
+import static tuskex.desktop.util.FormBuilder.addComboBox;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextArea;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextFieldTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addInputTextFieldInputTextField;
+import static tuskex.desktop.util.FormBuilder.addTextArea;
 
 public class CashDepositForm extends GeneralBankForm {
 

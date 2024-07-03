@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.list;
+package tuskex.desktop.components.list;
 
-import haveno.core.locale.Res;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.util.filtering.FilterableListItem;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.util.filtering.FilterableListItem;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.transformation.FilteredList;
 import javafx.geometry.Insets;

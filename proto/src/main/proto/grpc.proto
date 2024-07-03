@@ -16,28 +16,28 @@
  */
 
 /*
- * This file is part of Haveno.
+ * This file is part of Tuskex.
  *
- * Haveno is free software: you can redistribute it and/or modify it
+ * Tuskex is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or (at
  * your option) any later version.
  *
- * Haveno is distributed in the hope that it will be useful, but WITHOUT
+ * Tuskex is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
  * License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Haveno. If not, see <http://www.gnu.org/licenses/>.
+ * along with Tuskex. If not, see <http://www.gnu.org/licenses/>.
  */
 
 syntax = "proto3";
-package io.haveno.protobuffer;
+package io.tuskex.protobuffer;
 
 import "pb.proto";
 
-option java_package = "haveno.proto.grpc";
+option java_package = "tuskex.proto.grpc";
 option java_multiple_files = true;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -297,10 +297,10 @@ message SendNotificationReply {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-// XmrConnections
+// TskConnections
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-service XmrConnections {
+service TskConnections {
     rpc AddConnection (AddConnectionRequest) returns (AddConnectionReply) {
     }
     rpc RemoveConnection(RemoveConnectionRequest) returns (RemoveConnectionReply) {
@@ -411,45 +411,45 @@ message SetAutoSwitchRequest {
 message SetAutoSwitchReply {}
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-// XmrNode
+// TskNode
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-service XmrNode {
-    rpc IsXmrNodeOnline (IsXmrNodeOnlineRequest) returns (IsXmrNodeOnlineReply) {
+service TskNode {
+    rpc IsTskNodeOnline (IsTskNodeOnlineRequest) returns (IsTskNodeOnlineReply) {
     }
-    rpc GetXmrNodeSettings (GetXmrNodeSettingsRequest) returns (GetXmrNodeSettingsReply) {
+    rpc GetTskNodeSettings (GetTskNodeSettingsRequest) returns (GetTskNodeSettingsReply) {
     }
-    rpc StartXmrNode (StartXmrNodeRequest) returns (StartXmrNodeReply) {
+    rpc StartTskNode (StartTskNodeRequest) returns (StartTskNodeReply) {
     }
-    rpc StopXmrNode (StopXmrNodeRequest) returns (StopXmrNodeReply) {
+    rpc StopTskNode (StopTskNodeRequest) returns (StopTskNodeReply) {
     }
 }
 
-message IsXmrNodeOnlineRequest {
+message IsTskNodeOnlineRequest {
 }
 
-message IsXmrNodeOnlineReply {
+message IsTskNodeOnlineReply {
     bool is_running = 1;
 }
 
-message GetXmrNodeSettingsRequest {
+message GetTskNodeSettingsRequest {
 }
 
-message GetXmrNodeSettingsReply {
-    XmrNodeSettings settings = 1; // pb.proto
+message GetTskNodeSettingsReply {
+    TskNodeSettings settings = 1; // pb.proto
 }
 
-message StartXmrNodeRequest {
-    XmrNodeSettings settings = 1;
+message StartTskNodeRequest {
+    TskNodeSettings settings = 1;
 }
 
-message StartXmrNodeReply {
+message StartTskNodeReply {
 }
 
-message StopXmrNodeRequest {
+message StopTskNodeRequest {
 }
 
-message StopXmrNodeReply {
+message StopTskNodeReply {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -909,17 +909,17 @@ message ContractInfo {
 service Wallets {
     rpc GetBalances (GetBalancesRequest) returns (GetBalancesReply) {
     }
-    rpc GetXmrSeed (GetXmrSeedRequest) returns (GetXmrSeedReply) {
+    rpc GetTskSeed (GetTskSeedRequest) returns (GetTskSeedReply) {
     }
-    rpc GetXmrPrimaryAddress (GetXmrPrimaryAddressRequest) returns (GetXmrPrimaryAddressReply) {
+    rpc GetTskPrimaryAddress (GetTskPrimaryAddressRequest) returns (GetTskPrimaryAddressReply) {
     }
-    rpc GetXmrNewSubaddress (GetXmrNewSubaddressRequest) returns (GetXmrNewSubaddressReply) {
+    rpc GetTskNewSubaddress (GetTskNewSubaddressRequest) returns (GetTskNewSubaddressReply) {
     }
-    rpc GetXmrTxs (GetXmrTxsRequest) returns (GetXmrTxsReply) {
+    rpc GetTskTxs (GetTskTxsRequest) returns (GetTskTxsReply) {
     }
-    rpc CreateXmrTx (CreateXmrTxRequest) returns (CreateXmrTxReply) {
+    rpc CreateTskTx (CreateTskTxRequest) returns (CreateTskTxReply) {
     }
-    rpc relayXmrTx (RelayXmrTxRequest) returns (RelayXmrTxReply) {
+    rpc relayTskTx (RelayTskTxRequest) returns (RelayTskTxReply) {
     }
     rpc GetAddressBalance (GetAddressBalanceRequest) returns (GetAddressBalanceReply) {
     }
@@ -943,52 +943,52 @@ message GetBalancesReply {
     BalancesInfo balances = 1;
 }
 
-message GetXmrSeedRequest {
+message GetTskSeedRequest {
 }
 
-message GetXmrSeedReply {
+message GetTskSeedReply {
     string seed = 1;
 }
 
-message GetXmrPrimaryAddressRequest {
+message GetTskPrimaryAddressRequest {
 }
 
-message GetXmrPrimaryAddressReply {
+message GetTskPrimaryAddressReply {
     string primary_address = 1;
 }
 
-message GetXmrNewSubaddressRequest {
+message GetTskNewSubaddressRequest {
 }
 
-message GetXmrNewSubaddressReply {
+message GetTskNewSubaddressReply {
     string subaddress = 1;
 }
 
-message GetXmrTxsRequest {
+message GetTskTxsRequest {
 }
 
-message GetXmrTxsReply {
-    repeated XmrTx txs = 1;
+message GetTskTxsReply {
+    repeated TskTx txs = 1;
 }
 
-message XmrTx {
+message TskTx {
     string hash = 1;
     string fee = 2;
     bool is_confirmed = 3;
     bool is_locked = 4;
     uint64 height = 5;
     uint64 timestamp = 6;
-    repeated XmrIncomingTransfer incoming_transfers = 7;
-    XmrOutgoingTransfer outgoing_transfer = 8;
+    repeated TskIncomingTransfer incoming_transfers = 7;
+    TskOutgoingTransfer outgoing_transfer = 8;
     string metadata = 9;
 }
 
-message XmrDestination {
+message TskDestination {
     string address = 1;
     string amount = 2;
 }
 
-message XmrIncomingTransfer {
+message TskIncomingTransfer {
     string amount = 1;
     int32 account_index = 2;
     int32 subaddress_index = 3;
@@ -996,26 +996,26 @@ message XmrIncomingTransfer {
     uint64 num_suggested_confirmations = 5;
 }
 
-message XmrOutgoingTransfer {
+message TskOutgoingTransfer {
     string amount = 1;
     int32 account_index = 2;
     repeated int32 subaddress_indices = 3;
-    repeated XmrDestination destinations = 4;
+    repeated TskDestination destinations = 4;
 }
 
-message CreateXmrTxRequest {
-    repeated XmrDestination destinations = 1;
+message CreateTskTxRequest {
+    repeated TskDestination destinations = 1;
 }
 
-message CreateXmrTxReply {
-    XmrTx tx = 1;
+message CreateTskTxReply {
+    TskTx tx = 1;
 }
 
-message RelayXmrTxRequest {
+message RelayTskTxRequest {
     string metadata = 1;
 }
 
-message RelayXmrTxReply {
+message RelayTskTxReply {
     string hash = 1;
 }
 
@@ -1075,7 +1075,7 @@ message BalancesInfo {
     // balancesInfo.getBtc().getAvailableBalance() is cleaner than
     // balancesInfo.getBtcBalanceInfo().getAvailableBalance().
     BtcBalanceInfo btc = 1;
-    XmrBalanceInfo xmr = 2;
+    TskBalanceInfo tsk = 2;
 }
 
 message BtcBalanceInfo {
@@ -1085,7 +1085,7 @@ message BtcBalanceInfo {
     uint64 locked_balance = 4;
 }
 
-message XmrBalanceInfo {
+message TskBalanceInfo {
     uint64 balance = 1 [jstype = JS_STRING];
     uint64 available_balance = 2 [jstype = JS_STRING];
     uint64 pending_balance = 3 [jstype = JS_STRING];

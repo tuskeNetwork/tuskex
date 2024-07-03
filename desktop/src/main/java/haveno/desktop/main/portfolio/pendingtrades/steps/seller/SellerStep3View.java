@@ -15,41 +15,41 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades.steps.seller;
+package tuskex.desktop.main.portfolio.pendingtrades.steps.seller;
 
-import haveno.common.Timer;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple4;
-import haveno.core.locale.Res;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.PaymentAccountUtil;
-import haveno.core.payment.payload.AmazonGiftCardAccountPayload;
-import haveno.core.payment.payload.AssetAccountPayload;
-import haveno.core.payment.payload.BankAccountPayload;
-import haveno.core.payment.payload.PayByMailAccountPayload;
-import haveno.core.payment.payload.CashDepositAccountPayload;
-import haveno.core.payment.payload.F2FAccountPayload;
-import haveno.core.payment.payload.HalCashAccountPayload;
-import haveno.core.payment.payload.MoneyGramAccountPayload;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.payload.SepaAccountPayload;
-import haveno.core.payment.payload.SepaInstantAccountPayload;
-import haveno.core.payment.payload.USPostalMoneyOrderAccountPayload;
-import haveno.core.payment.payload.WesternUnionAccountPayload;
-import haveno.core.trade.Contract;
-import haveno.core.trade.Trade;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.util.VolumeUtil;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.components.InfoTextField;
-import haveno.desktop.components.TextFieldWithCopyIcon;
-import haveno.desktop.components.indicator.TxConfidenceIndicator;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
-import haveno.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
-import haveno.desktop.util.Layout;
+import tuskex.common.Timer;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple4;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.PaymentAccountUtil;
+import tuskex.core.payment.payload.AmazonGiftCardAccountPayload;
+import tuskex.core.payment.payload.AssetAccountPayload;
+import tuskex.core.payment.payload.BankAccountPayload;
+import tuskex.core.payment.payload.PayByMailAccountPayload;
+import tuskex.core.payment.payload.CashDepositAccountPayload;
+import tuskex.core.payment.payload.F2FAccountPayload;
+import tuskex.core.payment.payload.HalCashAccountPayload;
+import tuskex.core.payment.payload.MoneyGramAccountPayload;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.payload.SepaAccountPayload;
+import tuskex.core.payment.payload.SepaInstantAccountPayload;
+import tuskex.core.payment.payload.USPostalMoneyOrderAccountPayload;
+import tuskex.core.payment.payload.WesternUnionAccountPayload;
+import tuskex.core.trade.Contract;
+import tuskex.core.trade.Trade;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.util.VolumeUtil;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.components.InfoTextField;
+import tuskex.desktop.components.TextFieldWithCopyIcon;
+import tuskex.desktop.components.indicator.TxConfidenceIndicator;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
+import tuskex.desktop.util.Layout;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -65,14 +65,14 @@ import org.fxmisc.easybind.Subscription;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-import static haveno.desktop.util.FormBuilder.addButtonBusyAnimationLabelAfterGroup;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.getTopLabelWithVBox;
-import static haveno.desktop.util.Layout.COMPACT_FIRST_ROW_AND_GROUP_DISTANCE;
-import static haveno.desktop.util.Layout.COMPACT_GROUP_DISTANCE;
-import static haveno.desktop.util.Layout.FLOATING_LABEL_DISTANCE;
+import static tuskex.desktop.util.FormBuilder.addButtonBusyAnimationLabelAfterGroup;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.getTopLabelWithVBox;
+import static tuskex.desktop.util.Layout.COMPACT_FIRST_ROW_AND_GROUP_DISTANCE;
+import static tuskex.desktop.util.Layout.COMPACT_GROUP_DISTANCE;
+import static tuskex.desktop.util.Layout.FLOATING_LABEL_DISTANCE;
 
 public class SellerStep3View extends TradeStepView {
 
@@ -224,14 +224,14 @@ public class SellerStep3View extends TradeStepView {
             }
         }
 
-        if (isXmrTrade()) {
+        if (isTskTrade()) {
             assetTxProofResultField = new InfoTextField();
 
             Tuple2<Label, VBox> topLabelWithVBox = getTopLabelWithVBox(Res.get("portfolio.pending.step3_seller.autoConf.status.label"), assetTxProofResultField);
             VBox vBox = topLabelWithVBox.second;
 
             assetTxConfidenceIndicator = new TxConfidenceIndicator();
-            assetTxConfidenceIndicator.setId("xmr-confidence");
+            assetTxConfidenceIndicator.setId("tsk-confidence");
             assetTxConfidenceIndicator.setProgress(0);
             assetTxConfidenceIndicator.setTooltip(new Tooltip());
             assetTxProofResultField.setContentForInfoPopOver(createPopoverLabel(Res.get("setting.info.msg")));
@@ -267,12 +267,12 @@ public class SellerStep3View extends TradeStepView {
         if (counterCurrencyTxId != null && !counterCurrencyTxId.isEmpty() &&
                 counterCurrencyExtraData != null && !counterCurrencyExtraData.isEmpty()) {
             TextFieldWithCopyIcon txHashTextField = addCompactTopLabelTextFieldWithCopyIcon(gridPane, ++gridRow,
-                    0, Res.get("portfolio.pending.step3_seller.xmrTxHash"), counterCurrencyTxId).second;
+                    0, Res.get("portfolio.pending.step3_seller.tskTxHash"), counterCurrencyTxId).second;
             txHashTextField.setMouseTransparent(false);
             txHashTextField.setTooltip(new Tooltip(myPaymentDetails));
 
             TextFieldWithCopyIcon txKeyDetailsTextField = addCompactTopLabelTextFieldWithCopyIcon(gridPane, gridRow,
-                    1, Res.get("portfolio.pending.step3_seller.xmrTxKey"), counterCurrencyExtraData).second;
+                    1, Res.get("portfolio.pending.step3_seller.tskTxKey"), counterCurrencyExtraData).second;
             txKeyDetailsTextField.setMouseTransparent(false);
             txKeyDetailsTextField.setTooltip(new Tooltip(peersPaymentDetails));
         }
@@ -389,7 +389,7 @@ public class SellerStep3View extends TradeStepView {
         String part1 = Res.get("portfolio.pending.step3_seller.part", currencyName);
         if (paymentAccountPayload instanceof AssetAccountPayload) {
             String address = ((AssetAccountPayload) paymentAccountPayload).getAddress();
-            String explorerOrWalletString = isXmrTrade() ?
+            String explorerOrWalletString = isTskTrade() ?
                     Res.get("portfolio.pending.step3_seller.crypto.wallet", currencyName) :
                     Res.get("portfolio.pending.step3_seller.crypto.explorer", currencyName);
             message = Res.get("portfolio.pending.step3_seller.crypto",

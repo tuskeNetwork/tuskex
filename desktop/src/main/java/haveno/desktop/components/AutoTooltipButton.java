@@ -15,14 +15,14 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.skins.JFXButtonSkin;
 import javafx.scene.Node;
 import javafx.scene.control.Skin;
 
-import static haveno.desktop.components.TooltipUtil.showTooltipIfTruncated;
+import static tuskex.desktop.components.TooltipUtil.showTooltipIfTruncated;
 
 public class AutoTooltipButton extends JFXButton {
 

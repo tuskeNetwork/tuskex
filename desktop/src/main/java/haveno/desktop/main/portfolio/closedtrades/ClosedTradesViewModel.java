@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.closedtrades;
+package tuskex.desktop.main.portfolio.closedtrades;
 
 import com.google.inject.Inject;
-import haveno.core.trade.ClosedTradableFormatter;
-import haveno.desktop.common.model.ActivatableWithDataModel;
-import haveno.desktop.common.model.ViewModel;
+import tuskex.core.trade.ClosedTradableFormatter;
+import tuskex.desktop.common.model.ActivatableWithDataModel;
+import tuskex.desktop.common.model.ViewModel;
 
 import java.math.BigInteger;
 import java.util.Map;

@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.common.util.Utilities;
-import haveno.core.locale.Res;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.Res;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -29,7 +29,7 @@ import javafx.scene.layout.AnchorPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static haveno.desktop.util.FormBuilder.getIcon;
+import static tuskex.desktop.util.FormBuilder.getIcon;
 
 public class FundsTextField extends InfoTextField {
     public static final Logger log = LoggerFactory.getLogger(FundsTextField.class);
@@ -44,7 +44,7 @@ public class FundsTextField extends InfoTextField {
     public FundsTextField() {
         super();
         textField.textProperty().unbind();
-        textField.textProperty().bind(Bindings.concat(textProperty())); // TODO: removed `, " ", fundsStructure` for haveno to fix "Funds needed: .123 XMR (null)" bug
+        textField.textProperty().bind(Bindings.concat(textProperty())); // TODO: removed `, " ", fundsStructure` for tuskex to fix "Funds needed: .123 TSK (null)" bug
 
         Label copyIcon = getIcon(AwesomeIcon.COPY);
         copyIcon.setLayoutY(5);

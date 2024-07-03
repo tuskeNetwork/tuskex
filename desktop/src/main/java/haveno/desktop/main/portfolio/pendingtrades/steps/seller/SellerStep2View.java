@@ -15,17 +15,17 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades.steps.seller;
+package tuskex.desktop.main.portfolio.pendingtrades.steps.seller;
 
-import haveno.core.locale.Res;
-import haveno.core.payment.payload.F2FAccountPayload;
-import haveno.desktop.components.paymentmethods.F2FForm;
-import haveno.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
-import haveno.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
-import haveno.desktop.util.Layout;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.payload.F2FAccountPayload;
+import tuskex.desktop.components.paymentmethods.F2FForm;
+import tuskex.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
+import tuskex.desktop.util.Layout;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
 
 public class SellerStep2View extends TradeStepView {
 

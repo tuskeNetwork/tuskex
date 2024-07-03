@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.failedtrades;
+package tuskex.desktop.main.portfolio.failedtrades;
 
-import haveno.core.trade.Trade;
+import tuskex.core.trade.Trade;
 import lombok.Getter;
 
 class FailedTradesListItem {

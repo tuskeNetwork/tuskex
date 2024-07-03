@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.notifications;
+package tuskex.desktop.main.overlays.notifications;
 
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.common.Timer;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.core.locale.Res;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.util.FormBuilder;
+import tuskex.common.Timer;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.core.locale.Res;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.util.FormBuilder;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

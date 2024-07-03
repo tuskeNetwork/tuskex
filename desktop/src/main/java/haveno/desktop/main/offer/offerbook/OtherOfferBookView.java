@@ -15,21 +15,21 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.offerbook;
+package tuskex.desktop.main.offer.offerbook;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.config.Config;
-import haveno.core.account.sign.SignedWitnessService;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.locale.Res;
-import haveno.core.offer.OfferDirection;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.main.overlays.windows.OfferDetailsWindow;
+import tuskex.common.config.Config;
+import tuskex.core.account.sign.SignedWitnessService;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.main.overlays.windows.OfferDetailsWindow;
 import javafx.scene.layout.GridPane;
 
 @FxmlView

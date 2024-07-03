@@ -15,23 +15,23 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer;
+package tuskex.desktop.main.offer;
 
-import haveno.common.UserThread;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.main.offer.offerbook.XmrOfferBookView;
-import haveno.desktop.main.offer.offerbook.OfferBookView;
-import haveno.desktop.main.offer.offerbook.OtherOfferBookView;
-import haveno.desktop.main.offer.offerbook.TopCryptoOfferBookView;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.UserThread;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.main.offer.offerbook.TskOfferBookView;
+import tuskex.desktop.main.offer.offerbook.OfferBookView;
+import tuskex.desktop.main.offer.offerbook.OtherOfferBookView;
+import tuskex.desktop.main.offer.offerbook.TopCryptoOfferBookView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.GUIUtil;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -91,7 +91,7 @@ public class OfferViewUtil {
     public static Class<? extends OfferBookView<?, ?>> getOfferBookViewClass(String currencyCode) {
         Class<? extends OfferBookView<?, ?>> offerBookViewClazz;
         if (CurrencyUtil.isTraditionalCurrency(currencyCode)) {
-            offerBookViewClazz = XmrOfferBookView.class;
+            offerBookViewClazz = TskOfferBookView.class;
         } else if (currencyCode.equals(GUIUtil.TOP_CRYPTO.getCode())) {
             offerBookViewClazz = TopCryptoOfferBookView.class;
         } else {
@@ -130,10 +130,10 @@ public class OfferViewUtil {
                 !Objects.equals(cryptoCurrency.getCode(), GUIUtil.TOP_CRYPTO.getCode()));
     }
 
-    public static void submitTransactionHex(XmrWalletService xmrWalletService,
+    public static void submitTransactionHex(TskWalletService tskWalletService,
                                              TableView tableView,
                                              String reserveTxHex) {
-        MoneroSubmitTxResult result = xmrWalletService.getDaemon().submitTxHex(reserveTxHex);
+        MoneroSubmitTxResult result = tskWalletService.getDaemon().submitTxHex(reserveTxHex);
         log.info("submitTransactionHex: reserveTxHex={} result={}", result);
         tableView.refresh();
 

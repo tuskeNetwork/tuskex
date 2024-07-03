@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import com.google.inject.Inject;
-import haveno.core.locale.Res;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.portfolio.closedtrades.ClosedTradesViewModel;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelLabel;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import haveno.desktop.util.Layout;
+import tuskex.core.locale.Res;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.portfolio.closedtrades.ClosedTradesViewModel;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelLabel;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import tuskex.desktop.util.Layout;
 import java.math.BigInteger;
 import java.util.Map;
 import javafx.geometry.Insets;
@@ -74,7 +74,7 @@ public class ClosedTradesSummaryWindow extends Overlay<ClosedTradesSummaryWindow
                 Res.get("closedTradesSummaryWindow.totalMinerFee.title"),
                 model.getTotalTxFee(totalTradeAmount));
         addConfirmationLabelLabel(gridPane, ++rowIndex,
-                Res.get("closedTradesSummaryWindow.totalTradeFeeInXmr.title"),
+                Res.get("closedTradesSummaryWindow.totalTradeFeeInTsk.title"),
                 model.getTotalTradeFee(totalTradeAmount));
     }
 }

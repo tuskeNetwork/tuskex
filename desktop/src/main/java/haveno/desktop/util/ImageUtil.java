@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
-import haveno.common.util.Utilities;
-import haveno.core.locale.Country;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.Country;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Screen;

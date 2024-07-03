@@ -15,27 +15,27 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.spread;
+package tuskex.desktop.main.market.spread;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.UserThread;
-import haveno.core.locale.Res;
-import haveno.core.monetary.CryptoMoney;
-import haveno.core.monetary.Price;
-import haveno.core.monetary.TraditionalMoney;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.provider.price.MarketPrice;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.common.model.ActivatableViewModel;
-import haveno.desktop.main.offer.offerbook.OfferBook;
-import haveno.desktop.main.offer.offerbook.OfferBookListItem;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.UserThread;
+import tuskex.core.locale.Res;
+import tuskex.core.monetary.CryptoMoney;
+import tuskex.core.monetary.Price;
+import tuskex.core.monetary.TraditionalMoney;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.provider.price.MarketPrice;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.common.model.ActivatableViewModel;
+import tuskex.desktop.main.offer.offerbook.OfferBook;
+import tuskex.desktop.main.offer.offerbook.OfferBookListItem;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.GUIUtil;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -247,6 +247,6 @@ class SpreadViewModel extends ActivatableViewModel {
     }
 
     private String formatAmount(BigInteger amount, boolean decimalAligned) {
-        return formatter.formatCoin(HavenoUtils.atomicUnitsToCoin(amount), GUIUtil.AMOUNT_DECIMALS, decimalAligned, maxPlacesForAmount.get());
+        return formatter.formatCoin(TuskexUtils.atomicUnitsToCoin(amount), GUIUtil.AMOUNT_DECIMALS, decimalAligned, maxPlacesForAmount.get());
     }
 }

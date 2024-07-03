@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows.downloadupdate;
+package tuskex.desktop.main.overlays.windows.downloadupdate;
 
 import org.junit.jupiter.api.Test;
 

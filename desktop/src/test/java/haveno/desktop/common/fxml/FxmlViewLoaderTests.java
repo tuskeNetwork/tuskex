@@ -15,14 +15,14 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.common.fxml;
+package tuskex.desktop.common.fxml;
 
-import haveno.desktop.common.ViewfxException;
-import haveno.desktop.common.view.AbstractView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.common.view.View;
-import haveno.desktop.common.view.ViewFactory;
-import haveno.desktop.common.view.ViewLoader;
+import tuskex.desktop.common.ViewfxException;
+import tuskex.desktop.common.view.AbstractView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.common.view.View;
+import tuskex.desktop.common.view.ViewFactory;
+import tuskex.desktop.common.view.ViewLoader;
 import javafx.fxml.LoadException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;

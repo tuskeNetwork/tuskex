@@ -1,7 +1,7 @@
-Follow these instructions to create installers for the Haveno Java desktop application on each platform.
+Follow these instructions to create installers for the Tuskex Java desktop application on each platform.
 
 > **Note**
-> These steps will delete the previously built Haveno binaries, so they'll need rebuilt after.
+> These steps will delete the previously built Tuskex binaries, so they'll need rebuilt after.
 
 ### Linux
 
@@ -12,7 +12,7 @@ From x86_64 machine:
 3. Confirm prompts.
 4. Path to installer is printed at the end. Execute to install: `sudo dpkg -i <path>.deb` or open `<path>.deb` with Software Install.
 
-Haveno data folder on Linux: `/home/<username>/.local/share/Haveno/`
+Tuskex data folder on Linux: `/home/<username>/.local/share/Tuskex/`
 
 ### macOS
 
@@ -23,11 +23,11 @@ From x86_64 machine:
 3. Confirm prompts.
 4. Path to installer printed at end.
 5. `open <path>`
-6. Open installer and drag Haveno.app to Applications.
-7. `sudo xattr -rd com.apple.quarantine /Applications/Haveno.app`
-8. Right click /Applications/Haveno.app > Open. Repeat again if necessary, despite being "damaged".
+6. Open installer and drag Tuskex.app to Applications.
+7. `sudo xattr -rd com.apple.quarantine /Applications/Tuskex.app`
+8. Right click /Applications/Tuskex.app > Open. Repeat again if necessary, despite being "damaged".
 
-Haveno data folder on Mac: `/Users/<username>/Library/Application Support/Haveno/`
+Tuskex data folder on Mac: `/Users/<username>/Library/Application Support/Tuskex/`
 
 ### Windows
 
@@ -48,19 +48,19 @@ Haveno data folder on Mac: `/Users/<username>/Library/Application Support/Haveno
 7. Confirm prompts.
 8. Path to installer is printed at the end. Execute to install.
 
-Haveno data folder on Windows: `~\AppData\Roaming\Haveno\`
+Tuskex data folder on Windows: `~\AppData\Roaming\Tuskex\`
 
-## Copy installer and rebuild Haveno binaries
+## Copy installer and rebuild Tuskex binaries
 
 1. Copy the installer to a safe location because it will be deleted in the next step.
-2. `make clean && make` (or `make clean && make skip-tests`) to rebuild Haveno apps.
+2. `make clean && make` (or `make clean && make skip-tests`) to rebuild Tuskex apps.
 
 
 ## Additional Notes
 
 ### Icons
 
-Icons (Haveno.zip) were obtained from https://github.com/haveno-dex/haveno-meta/issues/1#issuecomment-819741689.
+Icons (Tuskex.zip) were obtained from https://github.com/tuskex-dex/tuskex-meta/issues/1#issuecomment-819741689.
 
 #### Linux
 
@@ -76,10 +76,10 @@ Error: Invalid or unsupported type: [rpm]
 On Ubuntu, resolve by running `sudo apt install rpm`. For deb, ensure dpkg is installed.
 
 ```
-Exception in thread "main" java.io.IOException: Failed to rename /tmp/Haveno-stripped15820156885694375398.tmp to /storage/src/haveno/desktop/build/libs/fatJar/desktop-1.0.0-SNAPSHOT-all.jar
-	at haveno.tools.Utils.renameFile(Utils.java:36)
+Exception in thread "main" java.io.IOException: Failed to rename /tmp/Tuskex-stripped15820156885694375398.tmp to /storage/src/tuskex/desktop/build/libs/fatJar/desktop-1.0.0-SNAPSHOT-all.jar
+	at tuskex.tools.Utils.renameFile(Utils.java:36)
 	at io.github.zlika.reproducible.StipZipFile.strip(StipZipFile.java:35)
-	at haveno.tools.DeterministicBuildTool.main(DeterministicBuildTool.java:24)
+	at tuskex.tools.DeterministicBuildTool.main(DeterministicBuildTool.java:24)
 
 ```
 
@@ -100,8 +100,8 @@ Signing is not implemented.
 
 #### Windows
 
-Pngs were resized and pasted into the WixUi images using paint. [CloudConvert](https://cloudconvert.com) was used to convert the Haveno png icon to ico.
+Pngs were resized and pasted into the WixUi images using paint. [CloudConvert](https://cloudconvert.com) was used to convert the Tuskex png icon to ico.
 
 #### Known Issues
 
-The installer's final step "Launch Haveno" has a different background color. The setup executable does not have an icon.
+The installer's final step "Launch Tuskex" has a different background color. The setup executable does not have an icon.

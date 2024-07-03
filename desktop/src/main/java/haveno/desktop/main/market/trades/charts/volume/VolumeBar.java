@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.trades.charts.volume;
+package tuskex.desktop.main.market.trades.charts.volume;
 
-import haveno.core.locale.Res;
-import haveno.core.util.VolumeUtil;
-import haveno.desktop.main.market.trades.charts.CandleData;
+import tuskex.core.locale.Res;
+import tuskex.core.util.VolumeUtil;
+import tuskex.desktop.main.market.trades.charts.CandleData;
 import javafx.scene.Group;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Region;
@@ -53,9 +53,9 @@ public class VolumeBar extends Group {
 
     public void update(double height, double candleWidth, CandleData candleData) {
         bar.resizeRelocate(-candleWidth / 2, 0, candleWidth, height);
-        String volumeInXmr = volumeStringConverter.toString(candleData.accumulatedAmount);
+        String volumeInTsk = volumeStringConverter.toString(candleData.accumulatedAmount);
         String volumeInUsd = VolumeUtil.formatLargeFiat(candleData.volumeInUsd, "USD");
-        tooltip.setText(Res.get("market.trades.tooltip.volumeBar", volumeInXmr, volumeInUsd, candleData.numTrades, candleData.date));
+        tooltip.setText(Res.get("market.trades.tooltip.volumeBar", volumeInTsk, volumeInUsd, candleData.numTrades, candleData.date));
     }
 
     private void updateStyleClasses() {

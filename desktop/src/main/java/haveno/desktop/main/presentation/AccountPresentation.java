@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.presentation;
+package tuskex.desktop.main.presentation;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import haveno.common.app.DevEnv;
-import haveno.core.locale.Res;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.user.Preferences;
-import haveno.desktop.main.overlays.popups.Popup;
+import tuskex.common.app.DevEnv;
+import tuskex.core.locale.Res;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.user.Preferences;
+import tuskex.desktop.main.overlays.popups.Popup;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.MapChangeListener;

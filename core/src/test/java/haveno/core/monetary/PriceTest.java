@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.monetary;
+package tuskex.core.monetary;
 
 import org.junit.jupiter.api.Test;
 
-import static haveno.core.monetary.Price.parse;
-import static haveno.core.monetary.Price.valueOf;
+import static tuskex.core.monetary.Price.parse;
+import static tuskex.core.monetary.Price.valueOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -29,19 +29,19 @@ public class PriceTest {
     @Test
     public void testParse() {
         assertEquals(
-                "0.10 XMR/USD",
+                "0.10 TSK/USD",
                 parse("USD", "0.1").toFriendlyString(),
                 "Fiat value should be formatted with two decimals."
         );
 
         assertEquals(
-                "0.1234 XMR/EUR",
+                "0.1234 TSK/EUR",
                 parse("EUR", "0.1234").toFriendlyString(),
                 "Fiat value should be given two decimals"
         );
 
         assertEquals(
-                "0.1235 XMR/EUR",
+                "0.1235 TSK/EUR",
                 parse("EUR", "0.12345").toFriendlyString(),
                 "Too many decimals of fiat value should get rounded up properly."
         );
@@ -53,19 +53,19 @@ public class PriceTest {
         );
 
         assertEquals(
-                "0.0001 XMR/USD",
+                "0.0001 TSK/USD",
                 parse("USD", "0,0001").toFriendlyString(),
                 "Comma (',') as decimal separator should be converted to period ('.')"
         );
 
         assertEquals(
-                "10000.2346 LTC/XMR",
+                "10000.2346 LTC/TSK",
                 parse("LTC", "10000,23456789").toFriendlyString(),
                 "Too many decimals should get rounded up properly."
         );
 
         assertEquals(
-                "10000.2345 LTC/XMR",
+                "10000.2345 LTC/TSK",
                 parse("LTC", "10000,23454999").toFriendlyString(),
                 "Too many decimals should get rounded down properly."
         );
@@ -77,7 +77,7 @@ public class PriceTest {
         );
 
         try {
-            parse("XMR", "56789.123456789");
+            parse("TSK", "56789.123456789");
             fail("Expected IllegalArgumentException to be thrown when too many decimals are used.");
         } catch (IllegalArgumentException iae) {
             assertEquals(
@@ -90,13 +90,13 @@ public class PriceTest {
     @Test
     public void testValueOf() {
         assertEquals(
-                "0.0001 XMR/USD",
+                "0.0001 TSK/USD",
                 valueOf("USD", 10000).toFriendlyString(),
                 "Fiat value should have four decimals."
         );
 
         assertEquals(
-                "0.1234 XMR/EUR",
+                "0.1234 TSK/EUR",
                 valueOf("EUR", 12340000).toFriendlyString(),
                 "Fiat value should be given two decimals"
         );
@@ -108,13 +108,13 @@ public class PriceTest {
         );
 
         assertEquals(
-                "10000.2346 LTC/XMR",
+                "10000.2346 LTC/TSK",
                 valueOf("LTC", 1000023456789L).toFriendlyString(),
                 "Too many decimals should get rounded up properly."
         );
 
         assertEquals(
-                "10000.2345 LTC/XMR",
+                "10000.2345 LTC/TSK",
                 valueOf("LTC", 1000023454999L).toFriendlyString(),
                 "Too many decimals should get rounded down properly."
         );

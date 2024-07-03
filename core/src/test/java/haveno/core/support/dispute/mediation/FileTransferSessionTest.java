@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.support.dispute.mediation;
+package tuskex.core.support.dispute.mediation;
 
-import haveno.network.p2p.FileTransferPart;
-import haveno.network.p2p.NodeAddress;
-import haveno.network.p2p.network.NetworkNode;
+import tuskex.network.p2p.FileTransferPart;
+import tuskex.network.p2p.NodeAddress;
+import tuskex.network.p2p.network.NetworkNode;
 
-import haveno.common.config.Config;
+import tuskex.common.config.Config;
 
 import java.io.File;
 import java.io.FileWriter;

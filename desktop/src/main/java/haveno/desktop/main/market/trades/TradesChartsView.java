@@ -15,42 +15,42 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.trades;
+package tuskex.desktop.main.market.trades;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.googlecode.jcsv.writer.CSVEntryConverter;
 import com.jfoenix.controls.JFXTabPane;
-import haveno.common.UserThread;
-import haveno.common.util.MathUtils;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple3;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.monetary.Price;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.statistics.TradeStatistics3;
-import haveno.core.user.CookieKey;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.AutoTooltipSlideToggleButton;
-import haveno.desktop.components.AutoTooltipTableColumn;
-import haveno.desktop.components.AutoTooltipToggleButton;
-import haveno.desktop.components.AutocompleteComboBox;
-import haveno.desktop.components.ColoredDecimalPlacesWithZerosText;
-import static haveno.desktop.main.market.trades.TradesChartsViewModel.MAX_TICKS;
-import haveno.desktop.main.market.trades.charts.price.CandleStickChart;
-import haveno.desktop.main.market.trades.charts.volume.VolumeChart;
-import haveno.desktop.util.CurrencyListItem;
-import haveno.desktop.util.DisplayUtils;
-import static haveno.desktop.util.FormBuilder.addTopLabelAutocompleteComboBox;
-import static haveno.desktop.util.FormBuilder.getTopLabelWithVBox;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.UserThread;
+import tuskex.common.util.MathUtils;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple3;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.monetary.Price;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.statistics.TradeStatistics3;
+import tuskex.core.user.CookieKey;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.AutoTooltipSlideToggleButton;
+import tuskex.desktop.components.AutoTooltipTableColumn;
+import tuskex.desktop.components.AutoTooltipToggleButton;
+import tuskex.desktop.components.AutocompleteComboBox;
+import tuskex.desktop.components.ColoredDecimalPlacesWithZerosText;
+import static tuskex.desktop.main.market.trades.TradesChartsViewModel.MAX_TICKS;
+import tuskex.desktop.main.market.trades.charts.price.CandleStickChart;
+import tuskex.desktop.main.market.trades.charts.volume.VolumeChart;
+import tuskex.desktop.util.CurrencyListItem;
+import tuskex.desktop.util.DisplayUtils;
+import static tuskex.desktop.util.FormBuilder.addTopLabelAutocompleteComboBox;
+import static tuskex.desktop.util.FormBuilder.getTopLabelWithVBox;
+import tuskex.desktop.util.GUIUtil;
 import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.Date;
@@ -514,7 +514,7 @@ public class TradesChartsView extends ActivatableViewAndModel<VBox, TradesCharts
 
         volumeAxisX = new NumberAxis(0, MAX_TICKS + 1, 1);
         volumeAxisY = new NumberAxis();
-        volumeChart = getVolumeChart(volumeAxisX, volumeAxisY, volumeSeries, "XMR");
+        volumeChart = getVolumeChart(volumeAxisX, volumeAxisY, volumeSeries, "TSK");
 
         volumeInUsdAxisX = new NumberAxis(0, MAX_TICKS + 1, 1);
         NumberAxis volumeInUsdAxisY = new NumberAxis();
@@ -554,8 +554,8 @@ public class TradesChartsView extends ActivatableViewAndModel<VBox, TradesCharts
         axisY.setTickLabelFormatter(new StringConverter<>() {
             @Override
             public String toString(Number volume) {
-                return currency.equals("XMR") ?
-                        HavenoUtils.formatXmr(MathUtils.doubleToLong((double) volume)) :
+                return currency.equals("TSK") ?
+                        TuskexUtils.formatTsk(MathUtils.doubleToLong((double) volume)) :
                         VolumeUtil.formatLargeFiatWithUnitPostFix((double) volume, "USD");
             }
 
@@ -565,10 +565,10 @@ public class TradesChartsView extends ActivatableViewAndModel<VBox, TradesCharts
             }
         });
 
-        StringConverter<Number> xmrStringConverter = new StringConverter<>() {
+        StringConverter<Number> tskStringConverter = new StringConverter<>() {
             @Override
             public String toString(Number volume) {
-                return HavenoUtils.formatXmr((long) volume, true);
+                return TuskexUtils.formatTsk((long) volume, true);
             }
 
             @Override
@@ -576,7 +576,7 @@ public class TradesChartsView extends ActivatableViewAndModel<VBox, TradesCharts
                 return null;
             }
         };
-        VolumeChart volumeChart = new VolumeChart(axisX, axisY, xmrStringConverter);
+        VolumeChart volumeChart = new VolumeChart(axisX, axisY, tskStringConverter);
         volumeChart.setId("volume-chart");
         volumeChart.setData(FXCollections.observableArrayList(List.of(series)));
         volumeChart.setMinHeight(138);

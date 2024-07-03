@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 
 import com.jfoenix.controls.JFXTextField;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.util.validation.JFXInputValidator;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.util.validation.JFXInputValidator;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Skin;
@@ -142,6 +142,6 @@ public class InputTextField extends JFXTextField {
     }
 
     protected Skin<?> createDefaultSkin() {
-        return new JFXTextFieldSkinHavenoStyle<>(this, inputLineExtension);
+        return new JFXTextFieldSkinTuskexStyle<>(this, inputLineExtension);
     }
 }

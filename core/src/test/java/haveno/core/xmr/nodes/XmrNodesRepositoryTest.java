@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.xmr.nodes;
+package tuskex.core.tsk.nodes;
 
 import com.google.common.collect.Lists;
 import com.runjva.sourceforge.jsocks.protocol.Socks5Proxy;
-import haveno.core.xmr.nodes.XmrNodes.XmrNode;
+import tuskex.core.tsk.nodes.TskNodes.TskNode;
 import org.bitcoinj.core.PeerAddress;
 import org.junit.jupiter.api.Test;
 
@@ -35,14 +35,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class XmrNodesRepositoryTest {
+public class TskNodesRepositoryTest {
     @Test
     public void testGetPeerAddressesWhenClearNodes() {
-        XmrNode node = mock(XmrNode.class);
+        TskNode node = mock(TskNode.class);
         when(node.hasClearNetAddress()).thenReturn(true);
 
-        XmrNodeConverter converter = mock(XmrNodeConverter.class, RETURNS_DEEP_STUBS);
-        XmrNodesRepository repository = new XmrNodesRepository(converter,
+        TskNodeConverter converter = mock(TskNodeConverter.class, RETURNS_DEEP_STUBS);
+        TskNodesRepository repository = new TskNodesRepository(converter,
                 Collections.singletonList(node));
 
         List<PeerAddress> peers = repository.getPeerAddresses(null, false);
@@ -52,13 +52,13 @@ public class XmrNodesRepositoryTest {
 
     @Test
     public void testGetPeerAddressesWhenConverterReturnsNull() {
-        XmrNodeConverter converter = mock(XmrNodeConverter.class);
+        TskNodeConverter converter = mock(TskNodeConverter.class);
         when(converter.convertClearNode(any())).thenReturn(null);
 
-        XmrNode node = mock(XmrNode.class);
+        TskNode node = mock(TskNode.class);
         when(node.hasClearNetAddress()).thenReturn(true);
 
-        XmrNodesRepository repository = new XmrNodesRepository(converter,
+        TskNodesRepository repository = new TskNodesRepository(converter,
                 Collections.singletonList(node));
 
         List<PeerAddress> peers = repository.getPeerAddresses(null, false);
@@ -69,14 +69,14 @@ public class XmrNodesRepositoryTest {
 
     @Test
     public void testGetPeerAddressesWhenProxyAndClearNodes() {
-        XmrNode node = mock(XmrNode.class);
+        TskNode node = mock(TskNode.class);
         when(node.hasClearNetAddress()).thenReturn(true);
 
-        XmrNode onionNode = mock(XmrNode.class);
+        TskNode onionNode = mock(TskNode.class);
         when(node.hasOnionAddress()).thenReturn(true);
 
-        XmrNodeConverter converter = mock(XmrNodeConverter.class, RETURNS_DEEP_STUBS);
-        XmrNodesRepository repository = new XmrNodesRepository(converter,
+        TskNodeConverter converter = mock(TskNodeConverter.class, RETURNS_DEEP_STUBS);
+        TskNodesRepository repository = new TskNodesRepository(converter,
                 Lists.newArrayList(node, onionNode));
 
         List<PeerAddress> peers = repository.getPeerAddresses(mock(Socks5Proxy.class), true);
@@ -86,14 +86,14 @@ public class XmrNodesRepositoryTest {
 
     @Test
     public void testGetPeerAddressesWhenOnionNodesOnly() {
-        XmrNode node = mock(XmrNode.class);
+        TskNode node = mock(TskNode.class);
         when(node.hasClearNetAddress()).thenReturn(true);
 
-        XmrNode onionNode = mock(XmrNode.class);
+        TskNode onionNode = mock(TskNode.class);
         when(node.hasOnionAddress()).thenReturn(true);
 
-        XmrNodeConverter converter = mock(XmrNodeConverter.class, RETURNS_DEEP_STUBS);
-        XmrNodesRepository repository = new XmrNodesRepository(converter,
+        TskNodeConverter converter = mock(TskNodeConverter.class, RETURNS_DEEP_STUBS);
+        TskNodesRepository repository = new TskNodesRepository(converter,
                 Lists.newArrayList(node, onionNode));
 
         List<PeerAddress> peers = repository.getPeerAddresses(mock(Socks5Proxy.class), false);

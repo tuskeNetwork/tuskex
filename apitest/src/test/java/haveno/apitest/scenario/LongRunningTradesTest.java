@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario;
+package tuskex.apitest.scenario;
 
-import haveno.apitest.method.trade.AbstractTradeTest;
-import haveno.apitest.method.trade.TakeBuyBTCOfferTest;
-import haveno.apitest.method.trade.TakeSellBTCOfferTest;
+import tuskex.apitest.method.trade.AbstractTradeTest;
+import tuskex.apitest.method.trade.TakeBuyBTCOfferTest;
+import tuskex.apitest.method.trade.TakeSellBTCOfferTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

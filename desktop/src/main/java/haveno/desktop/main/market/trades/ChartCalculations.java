@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.trades;
+package tuskex.desktop.main.market.trades;
 
 import com.google.common.annotations.VisibleForTesting;
-import haveno.common.util.MathUtils;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.monetary.CryptoMoney;
-import haveno.core.monetary.TraditionalMoney;
-import haveno.core.trade.statistics.TradeStatistics3;
-import haveno.desktop.main.market.trades.charts.CandleData;
-import haveno.desktop.util.DisplayUtils;
+import tuskex.common.util.MathUtils;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.monetary.CryptoMoney;
+import tuskex.core.monetary.TraditionalMoney;
+import tuskex.core.trade.statistics.TradeStatistics3;
+import tuskex.desktop.main.market.trades.charts.CandleData;
+import tuskex.desktop.util.DisplayUtils;
 import javafx.scene.chart.XYChart;
 import javafx.util.Pair;
 import lombok.Getter;
@@ -45,7 +45,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
-import static haveno.desktop.main.market.trades.TradesChartsViewModel.MAX_TICKS;
+import static tuskex.desktop.main.market.trades.TradesChartsViewModel.MAX_TICKS;
 
 public class ChartCalculations {
     static final ZoneId ZONE_ID = ZoneId.systemDefault();

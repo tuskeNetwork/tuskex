@@ -15,43 +15,43 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer;
+package tuskex.desktop.main.offer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.handlers.ErrorMessageHandler;
-import haveno.common.util.MathUtils;
-import haveno.common.util.Utilities;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.monetary.Price;
-import haveno.core.monetary.Volume;
-import haveno.core.offer.CreateOfferService;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferUtil;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.handlers.TransactionResultHandler;
-import haveno.core.trade.statistics.TradeStatistics3;
-import haveno.core.trade.statistics.TradeStatisticsManager;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.coin.CoinUtil;
-import haveno.core.xmr.listeners.XmrBalanceListener;
-import haveno.core.xmr.model.XmrAddressEntry;
-import haveno.core.xmr.wallet.Restrictions;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.Navigation;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.P2PService;
+import tuskex.common.handlers.ErrorMessageHandler;
+import tuskex.common.util.MathUtils;
+import tuskex.common.util.Utilities;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.monetary.Price;
+import tuskex.core.monetary.Volume;
+import tuskex.core.offer.CreateOfferService;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.handlers.TransactionResultHandler;
+import tuskex.core.trade.statistics.TradeStatistics3;
+import tuskex.core.trade.statistics.TradeStatisticsManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.coin.CoinUtil;
+import tuskex.core.tsk.listeners.TskBalanceListener;
+import tuskex.core.tsk.model.TskAddressEntry;
+import tuskex.core.tsk.wallet.Restrictions;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.P2PService;
 import java.math.BigInteger;
 import java.util.Comparator;
 import static java.util.Comparator.comparing;
@@ -83,7 +83,7 @@ import org.jetbrains.annotations.NotNull;
 public abstract class MutableOfferDataModel extends OfferDataModel {
     private final CreateOfferService createOfferService;
     protected final OpenOfferManager openOfferManager;
-    private final XmrWalletService xmrWalletService;
+    private final TskWalletService tskWalletService;
     private final Preferences preferences;
     protected final User user;
     private final P2PService p2PService;
@@ -125,7 +125,7 @@ public abstract class MutableOfferDataModel extends OfferDataModel {
     protected long triggerPrice;
     @Getter
     protected boolean reserveExactAmount;
-    private XmrBalanceListener xmrBalanceListener;
+    private TskBalanceListener tskBalanceListener;
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -136,7 +136,7 @@ public abstract class MutableOfferDataModel extends OfferDataModel {
     public MutableOfferDataModel(CreateOfferService createOfferService,
                                  OpenOfferManager openOfferManager,
                                  OfferUtil offerUtil,
-                                 XmrWalletService xmrWalletService,
+                                 TskWalletService tskWalletService,
                                  Preferences preferences,
                                  User user,
                                  P2PService p2PService,
@@ -145,9 +145,9 @@ public abstract class MutableOfferDataModel extends OfferDataModel {
                                  @Named(FormattingUtils.BTC_FORMATTER_KEY) CoinFormatter btcFormatter,
                                  TradeStatisticsManager tradeStatisticsManager,
                                  Navigation navigation) {
-        super(xmrWalletService, offerUtil);
+        super(tskWalletService, offerUtil);
 
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.createOfferService = createOfferService;
         this.openOfferManager = openOfferManager;
         this.preferences = preferences;
@@ -186,12 +186,12 @@ public abstract class MutableOfferDataModel extends OfferDataModel {
     }
 
     private void addListeners() {
-        xmrWalletService.addBalanceListener(xmrBalanceListener);
+        tskWalletService.addBalanceListener(tskBalanceListener);
         user.getPaymentAccountsAsObservable().addListener(paymentAccountsChangeListener);
     }
 
     private void removeListeners() {
-        xmrWalletService.removeBalanceListener(xmrBalanceListener);
+        tskWalletService.removeBalanceListener(tskBalanceListener);
         user.getPaymentAccountsAsObservable().removeListener(paymentAccountsChangeListener);
     }
 
@@ -202,8 +202,8 @@ public abstract class MutableOfferDataModel extends OfferDataModel {
 
     // called before activate()
     public boolean initWithData(OfferDirection direction, TradeCurrency tradeCurrency) {
-        addressEntry = xmrWalletService.getOrCreateAddressEntry(offerId, XmrAddressEntry.Context.OFFER_FUNDING);
-        xmrBalanceListener = new XmrBalanceListener(getAddressEntry().getSubaddressIndex()) {
+        addressEntry = tskWalletService.getOrCreateAddressEntry(offerId, TskAddressEntry.Context.OFFER_FUNDING);
+        tskBalanceListener = new TskBalanceListener(getAddressEntry().getSubaddressIndex()) {
             @Override
             public void onBalanceChanged(BigInteger balance) {
                 updateBalance();
@@ -394,7 +394,7 @@ public abstract class MutableOfferDataModel extends OfferDataModel {
     void fundFromSavingsWallet() {
         this.useSavingsWallet = true;
         updateBalance();
-        if (!isXmrWalletFunded.get()) {
+        if (!isTskWalletFunded.get()) {
             this.useSavingsWallet = false;
             updateBalance();
         }
@@ -427,7 +427,7 @@ public abstract class MutableOfferDataModel extends OfferDataModel {
         return direction == OfferDirection.BUY;
     }
 
-    XmrAddressEntry getAddressEntry() {
+    TskAddressEntry getAddressEntry() {
         return addressEntry;
     }
 
@@ -455,7 +455,7 @@ public abstract class MutableOfferDataModel extends OfferDataModel {
     long getMaxTradeLimit() {
 
         // disallow offers which no buyer can take due to trade limits on release
-        if (HavenoUtils.isReleasedWithinDays(HavenoUtils.RELEASE_LIMIT_DAYS)) {
+        if (TuskexUtils.isReleasedWithinDays(TuskexUtils.RELEASE_LIMIT_DAYS)) {
             return accountAgeWitnessService.getMyTradeLimit(paymentAccount, tradeCurrencyCode.get(), OfferDirection.BUY);
         }
 
@@ -559,7 +559,7 @@ public abstract class MutableOfferDataModel extends OfferDataModel {
     }
 
     void swapTradeToSavings() {
-        xmrWalletService.resetAddressEntriesForOpenOffer(offerId);
+        tskWalletService.resetAddressEntriesForOpenOffer(offerId);
     }
 
     private void fillPaymentAccounts() {
@@ -678,7 +678,7 @@ public abstract class MutableOfferDataModel extends OfferDataModel {
     }
 
     public BigInteger getMaxMakerFee() {
-        return HavenoUtils.multiply(amount.get(), HavenoUtils.MAKER_FEE_PCT);
+        return TuskexUtils.multiply(amount.get(), TuskexUtils.MAKER_FEE_PCT);
     }
 
     boolean canPlaceOffer() {

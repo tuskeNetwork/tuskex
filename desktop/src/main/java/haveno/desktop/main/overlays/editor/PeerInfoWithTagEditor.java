@@ -15,21 +15,21 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.editor;
+package tuskex.desktop.main.overlays.editor;
 
-import haveno.common.UserThread;
-import haveno.common.crypto.PubKeyRing;
-import haveno.common.util.Tuple3;
-import haveno.common.util.Utilities;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.trade.Trade;
-import haveno.core.user.Preferences;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.overlays.windows.SendPrivateNotificationWindow;
+import tuskex.common.UserThread;
+import tuskex.common.crypto.PubKeyRing;
+import tuskex.common.util.Tuple3;
+import tuskex.common.util.Utilities;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.trade.Trade;
+import tuskex.core.user.Preferences;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.overlays.windows.SendPrivateNotificationWindow;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -60,8 +60,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
 
 @Slf4j
 public class PeerInfoWithTagEditor extends Overlay<PeerInfoWithTagEditor> {

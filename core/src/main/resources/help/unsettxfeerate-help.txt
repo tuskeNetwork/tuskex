@@ -15,4 +15,4 @@ Unsets (removes) the transaction fee rate user preference.
 EXAMPLES
 --------
 Remove the user's custom transaction fee rate preference:
-$ ./haveno-cli --password=xyz --port=9998 unsettxfeerate
+$ ./tuskex-cli --password=xyz --port=9998 unsettxfeerate

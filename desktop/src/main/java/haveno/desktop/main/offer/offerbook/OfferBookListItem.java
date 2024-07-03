@@ -15,19 +15,19 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.offerbook;
+package tuskex.desktop.main.offer.offerbook;
 
 import de.jensd.fx.glyphs.GlyphIcons;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.core.account.sign.SignedWitnessService;
-import haveno.core.account.witness.AccountAgeWitness;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.storage.P2PDataStorage;
+import tuskex.core.account.sign.SignedWitnessService;
+import tuskex.core.account.witness.AccountAgeWitness;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.storage.P2PDataStorage;
 import lombok.Getter;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;

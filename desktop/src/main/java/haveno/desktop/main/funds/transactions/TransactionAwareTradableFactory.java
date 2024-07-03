@@ -15,34 +15,34 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import haveno.common.crypto.PubKeyRingProvider;
-import haveno.core.offer.OpenOffer;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.support.dispute.refund.RefundManager;
-import haveno.core.trade.Tradable;
-import haveno.core.trade.Trade;
-import haveno.core.xmr.wallet.XmrWalletService;
+import tuskex.common.crypto.PubKeyRingProvider;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.support.dispute.refund.RefundManager;
+import tuskex.core.trade.Tradable;
+import tuskex.core.trade.Trade;
+import tuskex.core.tsk.wallet.TskWalletService;
 
 
 @Singleton
 public class TransactionAwareTradableFactory {
     private final ArbitrationManager arbitrationManager;
     private final RefundManager refundManager;
-    private final XmrWalletService xmrWalletService;
+    private final TskWalletService tskWalletService;
     private final PubKeyRingProvider pubKeyRingProvider;
 
     @Inject
     TransactionAwareTradableFactory(ArbitrationManager arbitrationManager,
                                     RefundManager refundManager,
-                                    XmrWalletService xmrWalletService,
+                                    TskWalletService tskWalletService,
                                     PubKeyRingProvider pubKeyRingProvider) {
         this.arbitrationManager = arbitrationManager;
         this.refundManager = refundManager;
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.pubKeyRingProvider = pubKeyRingProvider;
     }
 
@@ -53,7 +53,7 @@ public class TransactionAwareTradableFactory {
             return new TransactionAwareTrade((Trade) delegate,
                     arbitrationManager,
                     refundManager,
-                    xmrWalletService,
+                    tskWalletService,
                     pubKeyRingProvider.get());
         } else {
             return new DummyTransactionAwareTradable(delegate);

@@ -15,41 +15,41 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades.steps;
+package tuskex.desktop.main.portfolio.pendingtrades.steps;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import de.jensd.fx.fontawesome.AwesomeDude;
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.common.ClockWatcher;
-import haveno.common.UserThread;
-import haveno.common.util.Tuple3;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.DisputeResult;
-import haveno.core.support.dispute.mediation.MediationResultState;
-import haveno.core.trade.ArbitratorTrade;
-import haveno.core.trade.Contract;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.MakerTrade;
-import haveno.core.trade.TakerTrade;
-import haveno.core.trade.Trade;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.user.Preferences;
-import haveno.desktop.components.InfoTextField;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.components.TxIdTextField;
-import static haveno.desktop.components.paymentmethods.PaymentMethodForm.addOpenTradeDuration;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
-import haveno.desktop.main.portfolio.pendingtrades.TradeStepInfo;
-import haveno.desktop.main.portfolio.pendingtrades.TradeSubView;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelTxIdTextField;
-import haveno.desktop.util.Layout;
-import haveno.network.p2p.BootstrapListener;
+import tuskex.common.ClockWatcher;
+import tuskex.common.UserThread;
+import tuskex.common.util.Tuple3;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.DisputeResult;
+import tuskex.core.support.dispute.mediation.MediationResultState;
+import tuskex.core.trade.ArbitratorTrade;
+import tuskex.core.trade.Contract;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.MakerTrade;
+import tuskex.core.trade.TakerTrade;
+import tuskex.core.trade.Trade;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.user.Preferences;
+import tuskex.desktop.components.InfoTextField;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.components.TxIdTextField;
+import static tuskex.desktop.components.paymentmethods.PaymentMethodForm.addOpenTradeDuration;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
+import tuskex.desktop.main.portfolio.pendingtrades.TradeStepInfo;
+import tuskex.desktop.main.portfolio.pendingtrades.TradeSubView;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTxIdTextField;
+import tuskex.desktop.util.Layout;
+import tuskex.network.p2p.BootstrapListener;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Optional;
@@ -242,7 +242,7 @@ public abstract class TradeStepView extends AnchorPane {
     }
 
     protected void onPendingTradesInitialized() {
-//        model.dataModel.xmrWalletService.addNewBestBlockListener(newBestBlockListener); // TODO (woodser): different listener?
+//        model.dataModel.tskWalletService.addNewBestBlockListener(newBestBlockListener); // TODO (woodser): different listener?
 //        checkIfLockTimeIsOver();
     }
 
@@ -658,8 +658,8 @@ public abstract class TradeStepView extends AnchorPane {
         DisputeResult disputeResult = optionalDispute.get().getDisputeResultProperty().get();
         Contract contract = checkNotNull(trade.getContract(), "contract must not be null");
         boolean isMyRoleBuyer = contract.isMyRoleBuyer(model.dataModel.getPubKeyRingProvider().get());
-        String buyerPayoutAmount = HavenoUtils.formatXmr(disputeResult.getBuyerPayoutAmountBeforeCost(), true);
-        String sellerPayoutAmount = HavenoUtils.formatXmr(disputeResult.getSellerPayoutAmountBeforeCost(), true);
+        String buyerPayoutAmount = TuskexUtils.formatTsk(disputeResult.getBuyerPayoutAmountBeforeCost(), true);
+        String sellerPayoutAmount = TuskexUtils.formatTsk(disputeResult.getSellerPayoutAmountBeforeCost(), true);
         String myPayoutAmount = isMyRoleBuyer ? buyerPayoutAmount : sellerPayoutAmount;
         String peersPayoutAmount = isMyRoleBuyer ? sellerPayoutAmount : buyerPayoutAmount;
 
@@ -679,14 +679,14 @@ public abstract class TradeStepView extends AnchorPane {
             case SIG_MSG_IN_MAILBOX:
             case SIG_MSG_SEND_FAILED:
                 message = Res.get("portfolio.pending.mediationResult.popup.selfAccepted.lockTimeOver",
-                        "N/A",  // TODO (woodser): no timelocked tx in xmr, so part of popup message is n/a
+                        "N/A",  // TODO (woodser): no timelocked tx in tsk, so part of popup message is n/a
                         -1);
                 break;
             default:
                 message = Res.get("portfolio.pending.mediationResult.popup.info",
                         myPayoutAmount,
                         peersPayoutAmount,
-                        "N/A",  // TODO (woodser): no timelocked tx in xmr, so part of popup message is n/a
+                        "N/A",  // TODO (woodser): no timelocked tx in tsk, so part of popup message is n/a
                         -1);
                 break;
         }
@@ -736,8 +736,8 @@ public abstract class TradeStepView extends AnchorPane {
         return checkNotNull(trade.getOffer()).getCurrencyCode();
     }
 
-    protected boolean isXmrTrade() {
-        return getCurrencyCode(trade).equals("XMR");
+    protected boolean isTskTrade() {
+        return getCurrencyCode(trade).equals("TSK");
     }
 
     private void updateTradePeriodState(Trade.TradePeriodState tradePeriodState) {

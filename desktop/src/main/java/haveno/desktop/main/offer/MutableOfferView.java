@@ -15,50 +15,50 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer;
+package tuskex.desktop.main.offer;
 
 import de.jensd.fx.fontawesome.AwesomeIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple3;
-import haveno.common.util.Utilities;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.payment.FasterPaymentsAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.user.Preferences;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.components.AddressTextField;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.BalanceTextField;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.components.FundsTextField;
-import haveno.desktop.components.InfoInputTextField;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.account.AccountView;
-import haveno.desktop.main.account.content.traditionalaccounts.TraditionalAccountsView;
-import haveno.desktop.main.overlays.notifications.Notification;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.OfferDetailsWindow;
-import haveno.desktop.main.overlays.windows.QRCodeWindow;
-import haveno.desktop.main.portfolio.PortfolioView;
-import haveno.desktop.main.portfolio.openoffer.OpenOffersView;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.Layout;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple3;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.payment.FasterPaymentsAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.components.AddressTextField;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.BalanceTextField;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.components.FundsTextField;
+import tuskex.desktop.components.InfoInputTextField;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.account.AccountView;
+import tuskex.desktop.main.account.content.traditionalaccounts.TraditionalAccountsView;
+import tuskex.desktop.main.overlays.notifications.Notification;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.OfferDetailsWindow;
+import tuskex.desktop.main.overlays.windows.QRCodeWindow;
+import tuskex.desktop.main.portfolio.PortfolioView;
+import tuskex.desktop.main.portfolio.openoffer.OpenOffersView;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.Layout;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -102,27 +102,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static haveno.desktop.main.offer.OfferViewUtil.addPayInfoEntry;
-import static haveno.desktop.util.FormBuilder.add2ButtonsAfterGroup;
-import static haveno.desktop.util.FormBuilder.addAddressTextField;
-import static haveno.desktop.util.FormBuilder.addBalanceTextField;
-import static haveno.desktop.util.FormBuilder.addFundsTextfield;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelComboBox;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.getEditableValueBox;
-import static haveno.desktop.util.FormBuilder.getEditableValueBoxWithInfo;
-import static haveno.desktop.util.FormBuilder.getIconButton;
-import static haveno.desktop.util.FormBuilder.getIconForLabel;
-import static haveno.desktop.util.FormBuilder.getSmallIconForLabel;
-import static haveno.desktop.util.FormBuilder.getTradeInputBox;
+import static tuskex.desktop.main.offer.OfferViewUtil.addPayInfoEntry;
+import static tuskex.desktop.util.FormBuilder.add2ButtonsAfterGroup;
+import static tuskex.desktop.util.FormBuilder.addAddressTextField;
+import static tuskex.desktop.util.FormBuilder.addBalanceTextField;
+import static tuskex.desktop.util.FormBuilder.addFundsTextfield;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelComboBox;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.getEditableValueBox;
+import static tuskex.desktop.util.FormBuilder.getEditableValueBoxWithInfo;
+import static tuskex.desktop.util.FormBuilder.getIconButton;
+import static tuskex.desktop.util.FormBuilder.getIconForLabel;
+import static tuskex.desktop.util.FormBuilder.getSmallIconForLabel;
+import static tuskex.desktop.util.FormBuilder.getTradeInputBox;
 import static javafx.beans.binding.Bindings.createStringBinding;
 
 public abstract class MutableOfferView<M extends MutableOfferViewModel<?>> extends ActivatableViewAndModel<AnchorPane, M> implements ClosableView, SelectableView {
     protected final Navigation navigation;
     private final Preferences preferences;
     private final OfferDetailsWindow offerDetailsWindow;
-    private final CoinFormatter xmrFormatter;
+    private final CoinFormatter tskFormatter;
 
     private ScrollPane scrollPane;
     protected GridPane gridPane;
@@ -140,7 +140,7 @@ public abstract class MutableOfferView<M extends MutableOfferViewModel<?>> exten
     private FundsTextField totalToPayTextField;
     private Label amountDescriptionLabel, priceCurrencyLabel, priceDescriptionLabel, volumeDescriptionLabel,
             waitingForFundsLabel, marketBasedPriceLabel, percentagePriceDescriptionLabel, tradeFeeDescriptionLabel,
-            resultLabel, tradeFeeInXmrLabel, xLabel, fakeXLabel, buyerSecurityDepositLabel,
+            resultLabel, tradeFeeInTskLabel, xLabel, fakeXLabel, buyerSecurityDepositLabel,
             buyerSecurityDepositPercentageLabel, triggerPriceCurrencyLabel, triggerPriceDescriptionLabel;
     protected Label amountBtcLabel, volumeCurrencyLabel, minAmountBtcLabel;
     private ComboBox<PaymentAccount> paymentAccountsComboBox;
@@ -189,7 +189,7 @@ public abstract class MutableOfferView<M extends MutableOfferViewModel<?>> exten
         this.navigation = navigation;
         this.preferences = preferences;
         this.offerDetailsWindow = offerDetailsWindow;
-        this.xmrFormatter = btcFormatter;
+        this.tskFormatter = btcFormatter;
     }
 
     @Override
@@ -558,7 +558,7 @@ public abstract class MutableOfferView<M extends MutableOfferViewModel<?>> exten
         addressTextField.amountAsProperty().bind(model.getDataModel().getMissingCoin());
         buyerSecurityDepositInputTextField.textProperty().bindBidirectional(model.buyerSecurityDeposit);
         buyerSecurityDepositLabel.textProperty().bind(model.buyerSecurityDepositLabel);
-        tradeFeeInXmrLabel.textProperty().bind(model.tradeFeeInXmrWithFiat);
+        tradeFeeInTskLabel.textProperty().bind(model.tradeFeeInTskWithFiat);
         tradeFeeDescriptionLabel.textProperty().bind(model.tradeFeeDescription);
 
         // Validation
@@ -570,11 +570,11 @@ public abstract class MutableOfferView<M extends MutableOfferViewModel<?>> exten
         buyerSecurityDepositInputTextField.validationResultProperty().bind(model.buyerSecurityDepositValidationResult);
 
         // funding
-        fundingHBox.visibleProperty().bind(model.getDataModel().getIsXmrWalletFunded().not().and(model.showPayFundsScreenDisplayed));
-        fundingHBox.managedProperty().bind(model.getDataModel().getIsXmrWalletFunded().not().and(model.showPayFundsScreenDisplayed));
+        fundingHBox.visibleProperty().bind(model.getDataModel().getIsTskWalletFunded().not().and(model.showPayFundsScreenDisplayed));
+        fundingHBox.managedProperty().bind(model.getDataModel().getIsTskWalletFunded().not().and(model.showPayFundsScreenDisplayed));
         waitingForFundsLabel.textProperty().bind(model.waitingForFundsText);
-        placeOfferBox.visibleProperty().bind(model.getDataModel().getIsXmrWalletFunded().and(model.showPayFundsScreenDisplayed));
-        placeOfferBox.managedProperty().bind(model.getDataModel().getIsXmrWalletFunded().and(model.showPayFundsScreenDisplayed));
+        placeOfferBox.visibleProperty().bind(model.getDataModel().getIsTskWalletFunded().and(model.showPayFundsScreenDisplayed));
+        placeOfferBox.managedProperty().bind(model.getDataModel().getIsTskWalletFunded().and(model.showPayFundsScreenDisplayed));
         placeOfferButton.disableProperty().bind(model.isPlaceOfferButtonDisabled);
         cancelButton2.disableProperty().bind(model.cancelButtonDisabled);
 
@@ -606,9 +606,9 @@ public abstract class MutableOfferView<M extends MutableOfferViewModel<?>> exten
         addressTextField.amountAsProperty().unbind();
         buyerSecurityDepositInputTextField.textProperty().unbindBidirectional(model.buyerSecurityDeposit);
         buyerSecurityDepositLabel.textProperty().unbind();
-        tradeFeeInXmrLabel.textProperty().unbind();
+        tradeFeeInTskLabel.textProperty().unbind();
         tradeFeeDescriptionLabel.textProperty().unbind();
-        tradeFeeInXmrLabel.visibleProperty().unbind();
+        tradeFeeInTskLabel.visibleProperty().unbind();
         tradeFeeDescriptionLabel.visibleProperty().unbind();
 
         // Validation
@@ -741,7 +741,7 @@ public abstract class MutableOfferView<M extends MutableOfferViewModel<?>> exten
             if (newValue) {
                 Notification walletFundedNotification = new Notification()
                         .headLine(Res.get("notification.walletUpdate.headline"))
-                        .notification(Res.get("notification.walletUpdate.msg", HavenoUtils.formatXmr(model.getDataModel().getTotalToPay().get(), true)))
+                        .notification(Res.get("notification.walletUpdate.msg", TuskexUtils.formatTsk(model.getDataModel().getTotalToPay().get(), true)))
                         .autoClose();
 
                 walletFundedNotification.show();
@@ -1034,9 +1034,9 @@ public abstract class MutableOfferView<M extends MutableOfferViewModel<?>> exten
                 boolean isSellOffer = model.getDataModel().isSellOffer();
                 boolean exceedsUnsignedBuyLimit = model.getDataModel().getAmount().get().compareTo(model.getDataModel().getMaxUnsignedBuyLimit()) > 0;
                 String key = "popup.warning.tradeLimitDueAccountAgeRestriction.seller.exceedsUnsignedBuyLimit";
-                if (isSellOffer && exceedsUnsignedBuyLimit && DontShowAgainLookup.showAgain(key) && HavenoUtils.isReleasedWithinDays(HavenoUtils.WARN_ON_OFFER_EXCEEDS_UNSIGNED_BUY_LIMIT_DAYS)) {
+                if (isSellOffer && exceedsUnsignedBuyLimit && DontShowAgainLookup.showAgain(key) && TuskexUtils.isReleasedWithinDays(TuskexUtils.WARN_ON_OFFER_EXCEEDS_UNSIGNED_BUY_LIMIT_DAYS)) {
                     new Popup().information(Res.get(key,
-                                    HavenoUtils.formatXmr(model.getDataModel().getMaxUnsignedBuyLimit(), true),
+                                    TuskexUtils.formatTsk(model.getDataModel().getMaxUnsignedBuyLimit(), true),
                                     Res.get("offerbook.warning.newVersionAnnouncement")))
                             .closeButtonText(Res.get("shared.cancel"))
                             .actionButtonText(Res.get("shared.ok"))
@@ -1191,7 +1191,7 @@ public abstract class MutableOfferView<M extends MutableOfferViewModel<?>> exten
 
         cancelButton2.setOnAction(e -> {
             String key = "CreateOfferCancelAndFunded";
-            if (model.getDataModel().getIsXmrWalletFunded().get() &&
+            if (model.getDataModel().getIsTskWalletFunded().get() &&
                     preferences.showAgain(key)) {
                 new Popup().backgroundInfo(Res.get("createOffer.warnCancelOffer"))
                         .closeButtonText(Res.get("shared.no"))
@@ -1391,14 +1391,14 @@ public abstract class MutableOfferView<M extends MutableOfferViewModel<?>> exten
     }
 
     private VBox getTradeFeeFieldsBox() {
-        tradeFeeInXmrLabel = new Label();
-        tradeFeeInXmrLabel.setMouseTransparent(true);
-        tradeFeeInXmrLabel.setId("trade-fee-textfield");
+        tradeFeeInTskLabel = new Label();
+        tradeFeeInTskLabel.setMouseTransparent(true);
+        tradeFeeInTskLabel.setId("trade-fee-textfield");
         VBox vBox = new VBox();
         vBox.setSpacing(6);
         vBox.setMaxWidth(300);
         vBox.setAlignment(Pos.CENTER_LEFT);
-        vBox.getChildren().addAll(tradeFeeInXmrLabel);
+        vBox.getChildren().addAll(tradeFeeInTskLabel);
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(vBox);

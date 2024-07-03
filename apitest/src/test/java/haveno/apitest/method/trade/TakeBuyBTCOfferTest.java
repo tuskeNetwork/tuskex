@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.method.trade;
+package tuskex.apitest.method.trade;
 
-import haveno.core.payment.PaymentAccount;
+import tuskex.core.payment.PaymentAccount;
 import io.grpc.StatusRuntimeException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
@@ -27,9 +27,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static haveno.apitest.config.ApiTestConfig.USD;
-import static haveno.core.trade.Trade.Phase.PAYMENT_RECEIVED;
-import static haveno.core.trade.Trade.State.SELLER_SAW_ARRIVED_PAYMENT_RECEIVED_MSG;
+import static tuskex.apitest.config.ApiTestConfig.USD;
+import static tuskex.core.trade.Trade.Phase.PAYMENT_RECEIVED;
+import static tuskex.core.trade.Trade.State.SELLER_SAW_ARRIVED_PAYMENT_RECEIVED_MSG;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static protobuf.OfferDirection.BUY;

@@ -15,31 +15,31 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import com.google.common.base.Splitter;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.config.Config;
-import haveno.common.crypto.IncorrectPasswordException;
-import haveno.common.util.Tuple2;
-import haveno.core.api.CoreAccountService;
-import haveno.core.locale.Res;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.xmr.wallet.WalletsManager;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.components.PasswordTextField;
-import haveno.desktop.main.SharedPresentation;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.overlays.popups.Popup;
-import static haveno.desktop.util.FormBuilder.addPasswordTextField;
-import static haveno.desktop.util.FormBuilder.addPrimaryActionButton;
-import static haveno.desktop.util.FormBuilder.addTextArea;
-import static haveno.desktop.util.FormBuilder.addTopLabelDatePicker;
-import haveno.desktop.util.Layout;
+import tuskex.common.config.Config;
+import tuskex.common.crypto.IncorrectPasswordException;
+import tuskex.common.util.Tuple2;
+import tuskex.core.api.CoreAccountService;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.tsk.wallet.WalletsManager;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.components.PasswordTextField;
+import tuskex.desktop.main.SharedPresentation;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.overlays.popups.Popup;
+import static tuskex.desktop.util.FormBuilder.addPasswordTextField;
+import static tuskex.desktop.util.FormBuilder.addPrimaryActionButton;
+import static tuskex.desktop.util.FormBuilder.addTextArea;
+import static tuskex.desktop.util.FormBuilder.addTopLabelDatePicker;
+import tuskex.desktop.util.Layout;
 import java.io.File;
 import java.io.IOException;
 import java.time.Instant;

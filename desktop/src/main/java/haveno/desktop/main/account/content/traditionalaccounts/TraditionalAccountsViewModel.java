@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.content.traditionalaccounts;
+package tuskex.desktop.main.account.content.traditionalaccounts;
 
 import com.google.inject.Inject;
-import haveno.core.payment.PaymentAccount;
-import haveno.desktop.common.model.ActivatableWithDataModel;
-import haveno.desktop.common.model.ViewModel;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.desktop.common.model.ActivatableWithDataModel;
+import tuskex.desktop.common.model.ViewModel;
 import javafx.collections.ObservableList;
 
 class TraditionalAccountsViewModel extends ActivatableWithDataModel<TraditionalAccountsDataModel> implements ViewModel {

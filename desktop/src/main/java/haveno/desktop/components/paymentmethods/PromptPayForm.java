@@ -15,25 +15,25 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.PromptPayAccount;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.payload.PromptPayAccountPayload;
-import haveno.core.payment.validation.PromptPayValidator;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.components.InputTextField;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.PromptPayAccount;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.payload.PromptPayAccountPayload;
+import tuskex.core.payment.validation.PromptPayValidator;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.components.InputTextField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextField;
 
 public class PromptPayForm extends PaymentMethodForm {
     private final PromptPayAccount promptPayAccount;

@@ -1,16 +1,16 @@
-package haveno.core.offer;
+package tuskex.core.offer;
 
-import haveno.common.crypto.KeyRing;
-import haveno.common.crypto.KeyStorage;
-import haveno.common.file.CorruptedStorageFileHandler;
-import haveno.common.handlers.ErrorMessageHandler;
-import haveno.common.handlers.ResultHandler;
-import haveno.common.persistence.PersistenceManager;
-import haveno.core.api.CoreContext;
-import haveno.core.api.XmrConnectionService;
-import haveno.core.trade.TradableList;
-import haveno.network.p2p.P2PService;
-import haveno.network.p2p.peers.PeerManager;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.crypto.KeyStorage;
+import tuskex.common.file.CorruptedStorageFileHandler;
+import tuskex.common.handlers.ErrorMessageHandler;
+import tuskex.common.handlers.ResultHandler;
+import tuskex.common.persistence.PersistenceManager;
+import tuskex.core.api.CoreContext;
+import tuskex.core.api.TskConnectionService;
+import tuskex.core.trade.TradableList;
+import tuskex.network.p2p.P2PService;
+import tuskex.network.p2p.peers.PeerManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import java.nio.file.Files;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.natpryce.makeiteasy.MakeItEasy.make;
-import static haveno.core.offer.OfferMaker.btcUsdOffer;
+import static tuskex.core.offer.OfferMaker.btcUsdOffer;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
@@ -53,7 +53,7 @@ public class OpenOfferManagerTest {
     public void testStartEditOfferForActiveOffer() {
         P2PService p2PService = mock(P2PService.class);
         OfferBookService offerBookService = mock(OfferBookService.class);
-        XmrConnectionService xmrConnectionService = mock(XmrConnectionService.class);
+        TskConnectionService tskConnectionService = mock(TskConnectionService.class);
 
         when(p2PService.getPeerManager()).thenReturn(mock(PeerManager.class));
 
@@ -61,7 +61,7 @@ public class OpenOfferManagerTest {
                 null,
                 null,
                 p2PService,
-                xmrConnectionService,
+                tskConnectionService,
                 null,
                 null,
                 null,
@@ -102,14 +102,14 @@ public class OpenOfferManagerTest {
     public void testStartEditOfferForDeactivatedOffer() {
         P2PService p2PService = mock(P2PService.class);
         OfferBookService offerBookService = mock(OfferBookService.class);
-        XmrConnectionService xmrConnectionService = mock(XmrConnectionService.class);
+        TskConnectionService tskConnectionService = mock(TskConnectionService.class);
         when(p2PService.getPeerManager()).thenReturn(mock(PeerManager.class));
 
         final OpenOfferManager manager = new OpenOfferManager(coreContext,
                 null,
                 null,
                 p2PService,
-                xmrConnectionService,
+                tskConnectionService,
                 null,
                 null,
                 null,
@@ -142,7 +142,7 @@ public class OpenOfferManagerTest {
     public void testStartEditOfferForOfferThatIsCurrentlyEdited() {
         P2PService p2PService = mock(P2PService.class);
         OfferBookService offerBookService = mock(OfferBookService.class);
-        XmrConnectionService xmrConnectionService = mock(XmrConnectionService.class);
+        TskConnectionService tskConnectionService = mock(TskConnectionService.class);
 
         when(p2PService.getPeerManager()).thenReturn(mock(PeerManager.class));
 
@@ -151,7 +151,7 @@ public class OpenOfferManagerTest {
                 null,
                 null,
                 p2PService,
-                xmrConnectionService,
+                tskConnectionService,
                 null,
                 null,
                 null,

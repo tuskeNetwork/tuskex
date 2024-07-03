@@ -15,33 +15,33 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.account.witness;
+package tuskex.core.account.witness;
 
-import haveno.common.crypto.CryptoException;
-import haveno.common.crypto.Hash;
-import haveno.common.crypto.KeyRing;
-import haveno.common.crypto.KeyStorage;
-import haveno.common.crypto.PubKeyRing;
-import haveno.common.crypto.Sig;
-import haveno.common.util.Utilities;
-import haveno.core.account.sign.SignedWitness;
-import haveno.core.account.sign.SignedWitnessService;
-import haveno.core.filter.FilterManager;
-import haveno.core.locale.CountryUtil;
-import haveno.core.offer.OfferPayload;
-import haveno.core.payment.ChargeBackRisk;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.payment.payload.SepaAccountPayload;
-import haveno.core.support.SupportType;
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.DisputeResult;
-import haveno.core.support.dispute.arbitration.TraderDataItem;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.core.trade.Contract;
-import haveno.core.trade.HavenoUtils;
-import haveno.network.p2p.P2PService;
-import haveno.network.p2p.storage.persistence.AppendOnlyDataStoreService;
+import tuskex.common.crypto.CryptoException;
+import tuskex.common.crypto.Hash;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.crypto.KeyStorage;
+import tuskex.common.crypto.PubKeyRing;
+import tuskex.common.crypto.Sig;
+import tuskex.common.util.Utilities;
+import tuskex.core.account.sign.SignedWitness;
+import tuskex.core.account.sign.SignedWitnessService;
+import tuskex.core.filter.FilterManager;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.offer.OfferPayload;
+import tuskex.core.payment.ChargeBackRisk;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.payment.payload.SepaAccountPayload;
+import tuskex.core.support.SupportType;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.DisputeResult;
+import tuskex.core.support.dispute.arbitration.TraderDataItem;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.core.trade.Contract;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.network.p2p.P2PService;
+import tuskex.network.p2p.storage.persistence.AppendOnlyDataStoreService;
 import org.bitcoinj.core.ECKey;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -58,7 +58,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static haveno.core.payment.payload.PaymentMethod.getPaymentMethod;
+import static tuskex.core.payment.payload.PaymentMethod.getPaymentMethod;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -214,7 +214,7 @@ public class AccountAgeWitnessServiceTest {
         when(chargeBackRisk.hasChargebackRisk(any(), any())).thenReturn(true);
 
         when(contract.getPaymentMethodId()).thenReturn(PaymentMethod.SEPA_ID);
-        when(contract.getTradeAmount()).thenReturn(HavenoUtils.xmrToAtomicUnits(0.01));
+        when(contract.getTradeAmount()).thenReturn(TuskexUtils.tskToAtomicUnits(0.01));
         when(contract.getBuyerPubKeyRing()).thenReturn(buyerPubKeyRing);
         when(contract.getSellerPubKeyRing()).thenReturn(sellerPubKeyRing);
         when(contract.getOfferPayload()).thenReturn(mock(OfferPayload.class));

@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer;
+package tuskex.desktop.main.offer;
 
 import com.google.inject.Inject;
-import haveno.core.offer.OfferDirection;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.common.view.ViewLoader;
-import haveno.network.p2p.P2PService;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.common.view.ViewLoader;
+import tuskex.network.p2p.P2PService;
 
 @FxmlView
 public class SellOfferView extends OfferView {

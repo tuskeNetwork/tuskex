@@ -1,8 +1,8 @@
-package haveno.desktop.util.validation;
+package tuskex.desktop.util.validation;
 
-import haveno.core.locale.Res;
-import haveno.core.payment.validation.PhoneNumberValidator;
-import haveno.core.util.validation.InputValidator.ValidationResult;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.validation.PhoneNumberValidator;
+import tuskex.core.util.validation.InputValidator.ValidationResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -15,21 +15,21 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop;
+package tuskex.desktop;
 
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
-import haveno.common.app.AppModule;
-import haveno.common.config.Config;
-import haveno.core.locale.Res;
-import haveno.desktop.common.fxml.FxmlViewLoader;
-import haveno.desktop.common.view.ViewFactory;
-import haveno.desktop.common.view.ViewLoader;
-import haveno.desktop.common.view.guice.InjectorViewFactory;
+import tuskex.common.app.AppModule;
+import tuskex.common.config.Config;
+import tuskex.core.locale.Res;
+import tuskex.desktop.common.fxml.FxmlViewLoader;
+import tuskex.desktop.common.view.ViewFactory;
+import tuskex.desktop.common.view.ViewLoader;
+import tuskex.desktop.common.view.guice.InjectorViewFactory;
 
 import java.util.ResourceBundle;
 
-import static haveno.common.config.Config.APP_NAME;
+import static tuskex.common.config.Config.APP_NAME;
 
 public class DesktopModule extends AppModule {
 

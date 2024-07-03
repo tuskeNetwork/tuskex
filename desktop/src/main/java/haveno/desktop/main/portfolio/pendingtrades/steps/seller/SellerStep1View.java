@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades.steps.seller;
+package tuskex.desktop.main.portfolio.pendingtrades.steps.seller;
 
-import haveno.core.locale.Res;
-import haveno.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
-import haveno.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
+import tuskex.core.locale.Res;
+import tuskex.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
 
 public class SellerStep1View extends TradeStepView {
 
@@ -48,7 +48,7 @@ public class SellerStep1View extends TradeStepView {
 
     @Override
     protected String getInfoText() {
-        return Res.get("portfolio.pending.step1.info", Res.get("shared.TheXMRBuyer"));
+        return Res.get("portfolio.pending.step1.info", Res.get("shared.TheTSKBuyer"));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////

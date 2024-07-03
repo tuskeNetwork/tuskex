@@ -15,37 +15,37 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.editoffer;
+package tuskex.desktop.main.portfolio.editoffer;
 
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.handlers.ErrorMessageHandler;
-import haveno.common.handlers.ResultHandler;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.offer.CreateOfferService;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferPayload;
-import haveno.core.offer.OfferUtil;
-import haveno.core.offer.OpenOffer;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.proto.persistable.CorePersistenceProtoResolver;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.statistics.TradeStatisticsManager;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.coin.CoinUtil;
-import haveno.core.xmr.wallet.Restrictions;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.Navigation;
-import haveno.desktop.main.offer.MutableOfferDataModel;
-import haveno.network.p2p.P2PService;
+import tuskex.common.handlers.ErrorMessageHandler;
+import tuskex.common.handlers.ResultHandler;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.offer.CreateOfferService;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferPayload;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.proto.persistable.CorePersistenceProtoResolver;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.statistics.TradeStatisticsManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.coin.CoinUtil;
+import tuskex.core.tsk.wallet.Restrictions;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.main.offer.MutableOfferDataModel;
+import tuskex.network.p2p.P2PService;
 import java.util.Optional;
 import java.util.Set;
 
@@ -59,7 +59,7 @@ class EditOfferDataModel extends MutableOfferDataModel {
     EditOfferDataModel(CreateOfferService createOfferService,
                        OpenOfferManager openOfferManager,
                        OfferUtil offerUtil,
-                       XmrWalletService xmrWalletService,
+                       TskWalletService tskWalletService,
                        Preferences preferences,
                        User user,
                        P2PService p2PService,
@@ -73,7 +73,7 @@ class EditOfferDataModel extends MutableOfferDataModel {
         super(createOfferService,
                 openOfferManager,
                 offerUtil,
-                xmrWalletService,
+                tskWalletService,
                 preferences,
                 user,
                 p2PService,
@@ -122,7 +122,7 @@ class EditOfferDataModel extends MutableOfferDataModel {
                 paymentAccount.setSelectedTradeCurrency(selectedTradeCurrency);
         }
         
-        // TODO: update for XMR to use percent as double?
+        // TODO: update for TSK to use percent as double?
 
         // If the security deposit got bounded because it was below the coin amount limit, it can be bigger
         // by percentage than the restriction. We can't determine the percentage originally entered at offer
@@ -236,6 +236,6 @@ class EditOfferDataModel extends MutableOfferDataModel {
 
     @Override
     protected Set<PaymentAccount> getUserPaymentAccounts() {
-        throw new RuntimeException("Edit offer not supported with XMR");
+        throw new RuntimeException("Edit offer not supported with TSK");
     }
 }

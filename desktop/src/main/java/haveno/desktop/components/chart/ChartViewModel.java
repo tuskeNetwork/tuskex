@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.chart;
+package tuskex.desktop.components.chart;
 
-import haveno.common.util.Tuple2;
-import haveno.desktop.common.model.ActivatableWithDataModel;
-import haveno.desktop.util.DisplayUtils;
+import tuskex.common.util.Tuple2;
+import tuskex.desktop.common.model.ActivatableWithDataModel;
+import tuskex.desktop.util.DisplayUtils;
 import javafx.scene.chart.XYChart;
 import javafx.util.StringConverter;
 import lombok.Getter;

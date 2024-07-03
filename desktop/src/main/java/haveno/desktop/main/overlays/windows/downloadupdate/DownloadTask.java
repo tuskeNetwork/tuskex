@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows.downloadupdate;
+package tuskex.desktop.main.overlays.windows.downloadupdate;
 
 import com.google.common.collect.Lists;
-import haveno.common.file.FileUtil;
+import tuskex.common.file.FileUtil;
 import javafx.concurrent.Task;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -36,25 +36,25 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Getter
-public class DownloadTask extends Task<List<HavenoInstaller.FileDescriptor>> {
+public class DownloadTask extends Task<List<TuskexInstaller.FileDescriptor>> {
     private static final int EOF = -1;
     private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
     private String fileName = null;
-    private final List<HavenoInstaller.FileDescriptor> fileDescriptors;
+    private final List<TuskexInstaller.FileDescriptor> fileDescriptors;
     private final String saveDir;
 
     /**
      * Prepares a task to download a file from {@code fileDescriptors} to the system's download dir.
      */
-    public DownloadTask(final HavenoInstaller.FileDescriptor fileDescriptor) {
+    public DownloadTask(final TuskexInstaller.FileDescriptor fileDescriptor) {
         this(Lists.newArrayList(fileDescriptor));
     }
 
-    public DownloadTask(final HavenoInstaller.FileDescriptor fileDescriptor, final String saveDir) {
+    public DownloadTask(final TuskexInstaller.FileDescriptor fileDescriptor, final String saveDir) {
         this(Lists.newArrayList(fileDescriptor), saveDir);
     }
 
-    public DownloadTask(final List<HavenoInstaller.FileDescriptor> fileDescriptors) {
+    public DownloadTask(final List<TuskexInstaller.FileDescriptor> fileDescriptors) {
         this(Lists.newArrayList(fileDescriptors), System.getProperty("java.io.tmpdir"));
     }
 
@@ -64,7 +64,7 @@ public class DownloadTask extends Task<List<HavenoInstaller.FileDescriptor>> {
      * @param fileDescriptors HTTP URL of the file to be downloaded
      * @param saveDir         path of the directory to save the file
      */
-    public DownloadTask(final List<HavenoInstaller.FileDescriptor> fileDescriptors, final String saveDir) {
+    public DownloadTask(final List<TuskexInstaller.FileDescriptor> fileDescriptors, final String saveDir) {
         super();
         this.fileDescriptors = fileDescriptors;
         this.saveDir = saveDir;
@@ -78,7 +78,7 @@ public class DownloadTask extends Task<List<HavenoInstaller.FileDescriptor>> {
      * @throws IOException Forwarded exceotions from HttpURLConnection and file handling methods
      */
     @Override
-    protected List<HavenoInstaller.FileDescriptor> call() throws IOException {
+    protected List<TuskexInstaller.FileDescriptor> call() throws IOException {
         log.debug("DownloadTask started...");
 
         String partialSaveFilePath = saveDir + (saveDir.endsWith(File.separator) ? "" : File.separator);
@@ -93,9 +93,9 @@ public class DownloadTask extends Task<List<HavenoInstaller.FileDescriptor>> {
                         updateMessage(fileDescriptor.getFileName());
                         download(new URL(fileDescriptor.getLoadUrl()), fileDescriptor.getSaveFile());
                         log.info("Download for {} done", fileDescriptor.getLoadUrl());
-                        fileDescriptor.setDownloadStatus(HavenoInstaller.DownloadStatusEnum.OK);
+                        fileDescriptor.setDownloadStatus(TuskexInstaller.DownloadStatusEnum.OK);
                     } catch (Exception e) {
-                        fileDescriptor.setDownloadStatus(HavenoInstaller.DownloadStatusEnum.FAIL);
+                        fileDescriptor.setDownloadStatus(TuskexInstaller.DownloadStatusEnum.FAIL);
                         log.error("Error downloading file:" + fileDescriptor.toString(), e);
                         e.printStackTrace();
                     }

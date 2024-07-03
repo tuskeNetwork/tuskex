@@ -15,21 +15,21 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades.steps.buyer;
+package tuskex.desktop.main.portfolio.pendingtrades.steps.buyer;
 
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.core.locale.Res;
-import haveno.core.network.MessageState;
-import haveno.desktop.components.TextFieldWithIcon;
-import haveno.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
-import haveno.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
-import haveno.desktop.util.Layout;
+import tuskex.core.locale.Res;
+import tuskex.core.network.MessageState;
+import tuskex.desktop.components.TextFieldWithIcon;
+import tuskex.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
+import tuskex.desktop.util.Layout;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Label;
 
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextFieldWithIcon;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextFieldWithIcon;
 
 public class BuyerStep3View extends TradeStepView {
     private final ChangeListener<MessageState> messageStateChangeListener;

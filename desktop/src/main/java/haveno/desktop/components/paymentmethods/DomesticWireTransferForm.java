@@ -15,18 +15,18 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Country;
-import haveno.core.payment.CountryBasedPaymentAccount;
-import haveno.core.payment.DomesticWireTransferAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.BankAccountPayload;
-import haveno.core.payment.payload.DomesticWireTransferAccountPayload;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Country;
+import tuskex.core.payment.CountryBasedPaymentAccount;
+import tuskex.core.payment.DomesticWireTransferAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.BankAccountPayload;
+import tuskex.core.payment.payload.DomesticWireTransferAccountPayload;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
 import javafx.scene.layout.GridPane;
 
 public class DomesticWireTransferForm extends GeneralUsBankForm {

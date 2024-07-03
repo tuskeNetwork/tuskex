@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario;
+package tuskex.apitest.scenario;
 
-import haveno.apitest.method.offer.AbstractOfferTest;
-import haveno.core.payment.PaymentAccount;
-import haveno.proto.grpc.OfferInfo;
+import tuskex.apitest.method.offer.AbstractOfferTest;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.proto.grpc.OfferInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

@@ -40,9 +40,9 @@
  * questions.
  */
 
-package haveno.desktop.components.indicator.skin;
+package tuskex.desktop.components.indicator.skin;
 
-import haveno.desktop.components.indicator.TxConfidenceIndicator;
+import tuskex.desktop.components.indicator.TxConfidenceIndicator;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;

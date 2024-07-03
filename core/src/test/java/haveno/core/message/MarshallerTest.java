@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.message;
+package tuskex.core.message;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

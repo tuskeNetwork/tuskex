@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.payment;
+package tuskex.core.payment;
 
-import haveno.core.account.witness.AccountAgeWitness;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.offer.Offer;
-import haveno.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.account.witness.AccountAgeWitness;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.offer.Offer;
+import tuskex.core.payment.payload.PaymentAccountPayload;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

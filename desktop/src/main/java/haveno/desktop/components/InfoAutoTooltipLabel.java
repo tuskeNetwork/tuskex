@@ -15,17 +15,17 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import de.jensd.fx.fontawesome.AwesomeIcon;
 import de.jensd.fx.glyphs.GlyphIcons;
-import haveno.desktop.components.controlsfx.control.PopOver;
+import tuskex.desktop.components.controlsfx.control.PopOver;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 
-import static haveno.desktop.util.FormBuilder.getIcon;
+import static tuskex.desktop.util.FormBuilder.getIcon;
 
 public class InfoAutoTooltipLabel extends AutoTooltipLabel {
 

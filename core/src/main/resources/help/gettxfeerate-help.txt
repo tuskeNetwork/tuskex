@@ -10,8 +10,8 @@ gettxfeerate
 
 DESCRIPTION
 -----------
-Returns the most recent monero network transaction fee the Haveno server could find.
+Returns the most recent monero network transaction fee the Tuskex server could find.
 
 EXAMPLES
 --------
-$ ./haveno-cli --password=xyz --port=9998 gettxfeerate
+$ ./tuskex-cli --password=xyz --port=9998 gettxfeerate

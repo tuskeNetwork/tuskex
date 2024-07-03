@@ -1,12 +1,12 @@
-package haveno.desktop.util.validation;
+package tuskex.desktop.util.validation;
 
-import haveno.common.config.BaseCurrencyNetwork;
-import haveno.common.config.Config;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.payment.validation.AdvancedCashValidator;
-import haveno.core.payment.validation.EmailValidator;
-import haveno.core.util.validation.RegexValidator;
+import tuskex.common.config.BaseCurrencyNetwork;
+import tuskex.common.config.Config;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.validation.AdvancedCashValidator;
+import tuskex.core.payment.validation.EmailValidator;
+import tuskex.core.util.validation.RegexValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.common.view.guice;
+package tuskex.desktop.common.view.guice;
 
 import com.google.common.base.Preconditions;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
-import haveno.desktop.common.view.ViewFactory;
+import tuskex.desktop.common.view.ViewFactory;
 
 @Singleton
 public class InjectorViewFactory implements ViewFactory {

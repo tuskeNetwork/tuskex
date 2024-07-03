@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.register.mediator;
+package tuskex.desktop.main.account.register.mediator;
 
 import com.google.inject.Inject;
-import haveno.common.crypto.KeyRing;
-import haveno.core.support.dispute.mediation.mediator.Mediator;
-import haveno.core.support.dispute.mediation.mediator.MediatorManager;
-import haveno.core.user.User;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.main.account.register.AgentRegistrationViewModel;
-import haveno.network.p2p.P2PService;
+import tuskex.common.crypto.KeyRing;
+import tuskex.core.support.dispute.mediation.mediator.Mediator;
+import tuskex.core.support.dispute.mediation.mediator.MediatorManager;
+import tuskex.core.user.User;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.main.account.register.AgentRegistrationViewModel;
+import tuskex.network.p2p.P2PService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,9 +35,9 @@ class MediatorRegistrationViewModel extends AgentRegistrationViewModel<Mediator,
     public MediatorRegistrationViewModel(MediatorManager mediatorManager,
                                          User user,
                                          P2PService p2PService,
-                                         XmrWalletService xmrWalletService,
+                                         TskWalletService tskWalletService,
                                          KeyRing keyRing) {
-        super(mediatorManager, user, p2PService, xmrWalletService, keyRing);
+        super(mediatorManager, user, p2PService, tskWalletService, keyRing);
     }
 
     @Override

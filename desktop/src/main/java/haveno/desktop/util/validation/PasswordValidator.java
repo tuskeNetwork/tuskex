@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util.validation;
+package tuskex.desktop.util.validation;
 
 import com.jfoenix.validation.base.ValidatorBase;
-import haveno.core.locale.Res;
+import tuskex.core.locale.Res;
 import javafx.scene.control.TextInputControl;
 
 public final class PasswordValidator extends ValidatorBase {

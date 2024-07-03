@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario;
+package tuskex.apitest.scenario;
 
 
-import haveno.apitest.method.offer.AbstractOfferTest;
-import haveno.apitest.method.offer.CancelOfferTest;
-import haveno.apitest.method.offer.CreateOfferUsingFixedPriceTest;
-import haveno.apitest.method.offer.CreateOfferUsingMarketPriceMarginTest;
-import haveno.apitest.method.offer.CreateXMROffersTest;
-import haveno.apitest.method.offer.ValidateCreateOfferTest;
+import tuskex.apitest.method.offer.AbstractOfferTest;
+import tuskex.apitest.method.offer.CancelOfferTest;
+import tuskex.apitest.method.offer.CreateOfferUsingFixedPriceTest;
+import tuskex.apitest.method.offer.CreateOfferUsingMarketPriceMarginTest;
+import tuskex.apitest.method.offer.CreateTSKOffersTest;
+import tuskex.apitest.method.offer.ValidateCreateOfferTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
@@ -78,14 +78,14 @@ public class OfferTest extends AbstractOfferTest {
 
     @Test
     @Order(6)
-    public void testCreateXMROffers() {
-        CreateXMROffersTest test = new CreateXMROffersTest();
-        CreateXMROffersTest.createXmrPaymentAccounts();
-        test.testCreateFixedPriceBuy1BTCFor200KXMROffer();
-        test.testCreateFixedPriceSell1BTCFor200KXMROffer();
+    public void testCreateTSKOffers() {
+        CreateTSKOffersTest test = new CreateTSKOffersTest();
+        CreateTSKOffersTest.createTskPaymentAccounts();
+        test.testCreateFixedPriceBuy1BTCFor200KTSKOffer();
+        test.testCreateFixedPriceSell1BTCFor200KTSKOffer();
         test.testCreatePriceMarginBasedBuy1BTCOfferWithTriggerPrice();
         test.testCreatePriceMarginBasedSell1BTCOffer();
-        test.testGetAllMyXMROffers();
-        test.testGetAvailableXMROffers();
+        test.testGetAllMyTSKOffers();
+        test.testGetAvailableTSKOffers();
     }
 }

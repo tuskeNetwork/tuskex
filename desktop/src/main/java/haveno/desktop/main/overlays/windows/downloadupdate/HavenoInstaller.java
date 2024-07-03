@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows.downloadupdate;
+package tuskex.desktop.main.overlays.windows.downloadupdate;
 
 import com.google.common.collect.Lists;
-import haveno.common.util.Utilities;
+import tuskex.common.util.Utilities;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -49,12 +49,12 @@ import java.util.Optional;
 import static com.google.common.base.Preconditions.checkArgument;
 
 @Slf4j
-public class HavenoInstaller {
+public class TuskexInstaller {
     private static final String FINGER_PRINT_MANFRED_KARRER = "F379A1C6";
     private static final String FINGER_PRINT_CHRIS_BEAMS = "5BC5ED73";
     private static final String FINGER_PRINT_CHRISTOPH_ATTENEDER = "29CDFD3B";
-    private static final String PUB_KEY_HOSTING_URL = "https://haveno.exchange/pubkey/";
-    private static final String DOWNLOAD_HOST_URL = "https://haveno.exchange/downloads/";
+    private static final String PUB_KEY_HOSTING_URL = "https://tuskex.exchange/pubkey/";
+    private static final String DOWNLOAD_HOST_URL = "https://tuskex.exchange/downloads/";
 
     public boolean isSupportedOS() {
         return Utilities.isOSX() || Utilities.isWindows() || Utilities.isDebianLinux() || Utilities.isRedHatLinux();
@@ -88,7 +88,7 @@ public class HavenoInstaller {
 
     public VerifyTask verify(List<FileDescriptor> fileDescriptors) {
         VerifyTask verifyTask = new VerifyTask(fileDescriptors);
-        new Thread(verifyTask, "HavenoInstaller VerifyTask").start();
+        new Thread(verifyTask, "TuskexInstaller VerifyTask").start();
         // TODO: check for problems when creating task
         return verifyTask;
     }
@@ -113,7 +113,7 @@ public class HavenoInstaller {
         if (saveDir == null)
             saveDir = Utilities.getDownloadOfHomeDir();
         DownloadTask task = new DownloadTask(fileDescriptors, saveDir);
-        new Thread(task, "HavenoInstaller DownloadTask").start();
+        new Thread(task, "TuskexInstaller DownloadTask").start();
         // TODO: check for problems when creating task
         return task;
     }
@@ -197,8 +197,8 @@ public class HavenoInstaller {
     @NotNull
     private FileDescriptor getInstallerDescriptor(String version, String partialUrl) {
         String fileName;
-        String prefix = "Haveno-";
-        // https://github.com/bisq-network/exchange/releases/download/v0.5.1/Haveno-0.5.1.dmg
+        String prefix = "Tuskex-";
+        // https://github.com/bisq-network/exchange/releases/download/v0.5.1/Tuskex-0.5.1.dmg
         if (Utilities.isOSX())
             fileName = prefix + version + ".dmg";
         else if (Utilities.isWindows())
@@ -231,7 +231,7 @@ public class HavenoInstaller {
 
     @NotNull
     private FileDescriptor getJarHashDescriptor(String version, String partialUrl) {
-        String fileName = "Haveno-" + version + ".jar.txt";
+        String fileName = "Tuskex-" + version + ".jar.txt";
         return FileDescriptor.builder()
                 .type(DownloadType.JAR_HASH)
                 .fileName(fileName)
@@ -241,8 +241,8 @@ public class HavenoInstaller {
     }
 
     /**
-     * The files containing the gpg keys of the haveno signers.
-     * Currently these are 2 hard-coded keys, one included with haveno and the same key online for maximum security.
+     * The files containing the gpg keys of the tuskex signers.
+     * Currently these are 2 hard-coded keys, one included with tuskex and the same key online for maximum security.
      *
      * @return list of keys to check agains corresponding sigs.
      */

@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.offerbook;
+package tuskex.desktop.main.market.offerbook;
 
-import haveno.core.offer.Offer;
+import tuskex.core.offer.Offer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

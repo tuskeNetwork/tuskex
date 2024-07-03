@@ -1,18 +1,18 @@
-package haveno.desktop;
+package tuskex.desktop;
 
 import com.jfoenix.controls.JFXBadge;
 import com.jfoenix.controls.JFXSnackbar;
-import haveno.common.util.Tuple3;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.FundsTextField;
-import haveno.desktop.components.InfoInputTextField;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.Layout;
+import tuskex.common.util.Tuple3;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.FundsTextField;
+import tuskex.desktop.components.InfoInputTextField;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.Layout;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,8 +31,8 @@ import javafx.stage.Stage;
 
 import java.util.Locale;
 
-import static haveno.desktop.util.FormBuilder.addFundsTextfield;
-import static haveno.desktop.util.FormBuilder.addTopLabelInputTextFieldSlideToggleButton;
+import static tuskex.desktop.util.FormBuilder.addFundsTextfield;
+import static tuskex.desktop.util.FormBuilder.addTopLabelInputTextFieldSlideToggleButton;
 
 public class ComponentsDemo extends Application {
     private JFXSnackbar bar;
@@ -43,8 +43,8 @@ public class ComponentsDemo extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        final CryptoCurrency xmr = new CryptoCurrency("XMR", "monero");
-        GlobalSettings.setDefaultTradeCurrency(xmr);
+        final CryptoCurrency tsk = new CryptoCurrency("TSK", "monero");
+        GlobalSettings.setDefaultTradeCurrency(tsk);
         GlobalSettings.setLocale(Locale.US);
         Res.setup();
 
@@ -77,9 +77,9 @@ public class ComponentsDemo extends Application {
 
         final Button buttonEnabled = FormBuilder.addButton(gridPane, rowIndex++, "Hello World");
         buttonEnabled.setOnMouseClicked((click) -> {
-            //bar.enqueue(new JFXSnackbar.SnackbarEvent(Res.get("notification.walletUpdate.msg", "0.345 XMR"), "CLOSE", 3000, true, b -> bar.close()));
+            //bar.enqueue(new JFXSnackbar.SnackbarEvent(Res.get("notification.walletUpdate.msg", "0.345 TSK"), "CLOSE", 3000, true, b -> bar.close()));
 //                new Popup<>().headLine(Res.get("popup.roundedFiatValues.headline"))
-//                    .message(Res.get("popup.roundedFiatValues.msg", "XMR"))
+//                    .message(Res.get("popup.roundedFiatValues.msg", "TSK"))
 //                    .show();
 //            new Notification().headLine(Res.get("notification.tradeCompleted.headline"))
 //                    .notification(Res.get("notification.tradeCompleted.msg"))
@@ -194,8 +194,8 @@ public class ComponentsDemo extends Application {
 
         Scene scene = new Scene(stackPane, 1000, 650);
         scene.getStylesheets().setAll(
-                "/haveno/desktop/haveno.css",
-                "/haveno/desktop/images.css");
+                "/tuskex/desktop/tuskex.css",
+                "/tuskex/desktop/images.css");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

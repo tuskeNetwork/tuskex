@@ -15,24 +15,24 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.createoffer;
+package tuskex.desktop.main.offer.createoffer;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.offer.OfferUtil;
-import haveno.core.payment.validation.FiatVolumeValidator;
-import haveno.core.payment.validation.SecurityDepositValidator;
-import haveno.core.payment.validation.XmrValidator;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.AmountValidator4Decimals;
-import haveno.core.util.validation.AmountValidator8Decimals;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.model.ViewModel;
-import haveno.desktop.main.offer.MutableOfferViewModel;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.payment.validation.FiatVolumeValidator;
+import tuskex.core.payment.validation.SecurityDepositValidator;
+import tuskex.core.payment.validation.TskValidator;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.AmountValidator4Decimals;
+import tuskex.core.util.validation.AmountValidator8Decimals;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.model.ViewModel;
+import tuskex.desktop.main.offer.MutableOfferViewModel;
 
 class CreateOfferViewModel extends MutableOfferViewModel<CreateOfferDataModel> implements ViewModel {
 
@@ -41,7 +41,7 @@ class CreateOfferViewModel extends MutableOfferViewModel<CreateOfferDataModel> i
                                 FiatVolumeValidator fiatVolumeValidator,
                                 AmountValidator4Decimals priceValidator4Decimals,
                                 AmountValidator8Decimals priceValidator8Decimals,
-                                XmrValidator btcValidator,
+                                TskValidator btcValidator,
                                 SecurityDepositValidator securityDepositValidator,
                                 PriceFeedService priceFeedService,
                                 AccountAgeWitnessService accountAgeWitnessService,

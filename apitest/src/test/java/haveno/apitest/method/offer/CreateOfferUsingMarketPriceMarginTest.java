@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.method.offer;
+package tuskex.apitest.method.offer;
 
-import haveno.core.payment.PaymentAccount;
-import haveno.proto.grpc.OfferInfo;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.proto.grpc.OfferInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
@@ -29,11 +29,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
-import static haveno.apitest.config.ApiTestConfig.BTC;
-import static haveno.apitest.config.ApiTestConfig.USD;
-import static haveno.common.util.MathUtils.roundDouble;
-import static haveno.common.util.MathUtils.scaleDownByPowerOf10;
-import static haveno.common.util.MathUtils.scaleUpByPowerOf10;
+import static tuskex.apitest.config.ApiTestConfig.BTC;
+import static tuskex.apitest.config.ApiTestConfig.USD;
+import static tuskex.common.util.MathUtils.roundDouble;
+import static tuskex.common.util.MathUtils.scaleDownByPowerOf10;
+import static tuskex.common.util.MathUtils.scaleUpByPowerOf10;
 import static java.lang.Math.abs;
 import static java.lang.String.format;
 import static java.math.RoundingMode.HALF_UP;

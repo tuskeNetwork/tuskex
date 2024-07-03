@@ -1,8 +1,8 @@
-package haveno.core.account.sign;
+package tuskex.core.account.sign;
 
 import com.google.common.base.Charsets;
-import haveno.common.crypto.Sig;
-import haveno.common.util.Utilities;
+import tuskex.common.crypto.Sig;
+import tuskex.common.util.Utilities;
 import org.bitcoinj.core.ECKey;
 import org.bitcoinj.core.Utils;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
 
-import static haveno.core.account.sign.SignedWitness.VerificationMethod.ARBITRATOR;
-import static haveno.core.account.sign.SignedWitness.VerificationMethod.TRADE;
+import static tuskex.core.account.sign.SignedWitness.VerificationMethod.ARBITRATOR;
+import static tuskex.core.account.sign.SignedWitness.VerificationMethod.TRADE;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

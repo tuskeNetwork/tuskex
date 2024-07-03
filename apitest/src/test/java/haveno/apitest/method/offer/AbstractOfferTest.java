@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.method.offer;
+package tuskex.apitest.method.offer;
 
-import haveno.apitest.method.MethodTest;
-import haveno.cli.CliMain;
-import haveno.cli.table.builder.TableBuilder;
-import haveno.proto.grpc.OfferInfo;
+import tuskex.apitest.method.MethodTest;
+import tuskex.cli.CliMain;
+import tuskex.cli.table.builder.TableBuilder;
+import tuskex.proto.grpc.OfferInfo;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
@@ -32,13 +32,13 @@ import java.math.MathContext;
 import java.util.List;
 import java.util.function.Function;
 
-import static haveno.apitest.Scaffold.BitcoinCoreApp.bitcoind;
-import static haveno.apitest.config.ApiTestConfig.XMR;
-import static haveno.apitest.config.HavenoAppConfig.alicedaemon;
-import static haveno.apitest.config.HavenoAppConfig.arbdaemon;
-import static haveno.apitest.config.HavenoAppConfig.bobdaemon;
-import static haveno.apitest.config.HavenoAppConfig.seednode;
-import static haveno.cli.table.builder.TableType.OFFER_TBL;
+import static tuskex.apitest.Scaffold.BitcoinCoreApp.bitcoind;
+import static tuskex.apitest.config.ApiTestConfig.TSK;
+import static tuskex.apitest.config.TuskexAppConfig.alicedaemon;
+import static tuskex.apitest.config.TuskexAppConfig.arbdaemon;
+import static tuskex.apitest.config.TuskexAppConfig.bobdaemon;
+import static tuskex.apitest.config.TuskexAppConfig.seednode;
+import static tuskex.cli.table.builder.TableType.OFFER_TBL;
 import static java.lang.String.format;
 import static java.lang.System.out;
 
@@ -55,8 +55,8 @@ public abstract class AbstractOfferTest extends MethodTest {
     protected static PaymentAccount alicesBtcAcct;
     protected static PaymentAccount bobsBtcAcct;
 
-    protected static PaymentAccount alicesXmrAcct;
-    protected static PaymentAccount bobsXmrAcct;
+    protected static PaymentAccount alicesTskAcct;
+    protected static PaymentAccount bobsTskAcct;
 
     @BeforeAll
     public static void setUp() {
@@ -95,17 +95,17 @@ public abstract class AbstractOfferTest extends MethodTest {
     }
 
     @SuppressWarnings("ConstantConditions")
-    public static void createXmrPaymentAccounts() {
-        alicesXmrAcct = aliceClient.createCryptoCurrencyPaymentAccount("Alice's XMR Account",
-                XMR,
+    public static void createTskPaymentAccounts() {
+        alicesTskAcct = aliceClient.createCryptoCurrencyPaymentAccount("Alice's TSK Account",
+                TSK,
                 "44G4jWmSvTEfifSUZzTDnJVLPvYATmq9XhhtDqUof1BGCLceG82EQsVYG9Q9GN4bJcjbAJEc1JD1m5G7iK4UPZqACubV4Mq",
                 false);
-        log.trace("Alices XMR Account: {}", alicesXmrAcct);
-        bobsXmrAcct = bobClient.createCryptoCurrencyPaymentAccount("Bob's XMR Account",
-                XMR,
+        log.trace("Alices TSK Account: {}", alicesTskAcct);
+        bobsTskAcct = bobClient.createCryptoCurrencyPaymentAccount("Bob's TSK Account",
+                TSK,
                 "4BDRhdSBKZqAXs3PuNTbMtaXBNqFj5idC2yMVnQj8Rm61AyKY8AxLTt9vGRJ8pwcG4EtpyD8YpGqdZWCZ2VZj6yVBN2RVKs",
                 false);
-        log.trace("Bob's XMR Account: {}", bobsXmrAcct);
+        log.trace("Bob's TSK Account: {}", bobsTskAcct);
     }
 
     @AfterAll

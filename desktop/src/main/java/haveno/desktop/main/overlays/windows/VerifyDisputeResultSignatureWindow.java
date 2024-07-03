@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
-import haveno.core.locale.Res;
-import haveno.core.support.dispute.DisputeSummaryVerification;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.desktop.main.overlays.Overlay;
+import tuskex.core.locale.Res;
+import tuskex.core.support.dispute.DisputeSummaryVerification;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.desktop.main.overlays.Overlay;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.TextArea;
@@ -30,9 +30,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import lombok.extern.slf4j.Slf4j;
 
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextArea;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextArea;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextField;
 
 @Slf4j
 public class VerifyDisputeResultSignatureWindow extends Overlay<VerifyDisputeResultSignatureWindow> {

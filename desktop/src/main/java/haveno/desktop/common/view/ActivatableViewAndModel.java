@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.common.view;
+package tuskex.desktop.common.view;
 
-import haveno.desktop.common.model.Activatable;
+import tuskex.desktop.common.model.Activatable;
 import javafx.scene.Node;
 
 import static com.google.common.base.Preconditions.checkNotNull;

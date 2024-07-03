@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.common;
+package tuskex.desktop.common;
 
 import static java.lang.String.format;
 

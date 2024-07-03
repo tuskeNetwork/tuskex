@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
-import haveno.core.offer.OpenOffer;
-import haveno.core.trade.Tradable;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.trade.Tradable;
 import monero.wallet.model.MoneroTxWallet;
 
 class TransactionAwareOpenOffer implements TransactionAwareTradable {

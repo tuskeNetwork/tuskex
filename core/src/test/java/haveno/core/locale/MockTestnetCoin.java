@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.locale;
+package tuskex.core.locale;
 
-import haveno.asset.AddressValidationResult;
-import haveno.asset.Base58AddressValidator;
-import haveno.asset.Coin;
+import tuskex.asset.AddressValidationResult;
+import tuskex.asset.Base58AddressValidator;
+import tuskex.asset.Coin;
 import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.params.MainNetParams;
 import org.bitcoinj.params.RegTestParams;

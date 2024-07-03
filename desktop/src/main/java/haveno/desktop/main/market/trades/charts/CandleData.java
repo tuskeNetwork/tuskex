@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.trades.charts;
+package tuskex.desktop.main.market.trades.charts;
 
 public class CandleData {
     public final long tick; // Is the time tick in the chosen time interval

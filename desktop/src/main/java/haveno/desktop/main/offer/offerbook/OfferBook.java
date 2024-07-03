@@ -15,17 +15,17 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.offerbook;
+package tuskex.desktop.main.offer.offerbook;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import haveno.core.filter.FilterManager;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferBookService;
-import static haveno.core.offer.OfferDirection.BUY;
-import haveno.core.offer.OfferRestrictions;
-import haveno.network.p2p.storage.P2PDataStorage;
-import haveno.network.utils.Utils;
+import tuskex.core.filter.FilterManager;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferBookService;
+import static tuskex.core.offer.OfferDirection.BUY;
+import tuskex.core.offer.OfferRestrictions;
+import tuskex.network.p2p.storage.P2PDataStorage;
+import tuskex.network.utils.Utils;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

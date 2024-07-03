@@ -11,7 +11,7 @@ getbtcprice
 
 DESCRIPTION
 -----------
-Returns the current market XMR price for the given currency-code.
+Returns the current market TSK price for the given currency-code.
 
 OPTIONS
 -------
@@ -21,10 +21,10 @@ OPTIONS
 
 EXAMPLES
 --------
-Get the current XMR market price in Euros:
-$ ./haveno-cli --password=xyz --port=9998 getbtcprice --currency-code=eur
+Get the current TSK market price in Euros:
+$ ./tuskex-cli --password=xyz --port=9998 getbtcprice --currency-code=eur
 
-Get the current XMR market price in Brazilian Reais:
-$ ./haveno-cli --password=xyz --port=9998 getbtcprice --currency-code=brl
+Get the current TSK market price in Brazilian Reais:
+$ ./tuskex-cli --password=xyz --port=9998 getbtcprice --currency-code=brl
 
 

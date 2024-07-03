@@ -15,29 +15,29 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.offerbook;
+package tuskex.desktop.main.offer.offerbook;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.api.CoreApi;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferFilterService;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.ClosedTradableManager;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.PriceUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.setup.WalletsSetup;
-import haveno.desktop.Navigation;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.P2PService;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.api.CoreApi;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferFilterService;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.ClosedTradableManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.PriceUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.setup.WalletsSetup;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.P2PService;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;

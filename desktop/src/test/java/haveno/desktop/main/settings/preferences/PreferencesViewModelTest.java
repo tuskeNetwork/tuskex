@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.settings.preferences;
+package tuskex.desktop.main.settings.preferences;
 
-import haveno.core.support.dispute.arbitration.arbitrator.Arbitrator;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.core.support.dispute.mediation.mediator.Mediator;
-import haveno.core.support.dispute.mediation.mediator.MediatorManager;
-import haveno.core.user.Preferences;
-import haveno.desktop.maker.PreferenceMakers;
-import haveno.network.p2p.NodeAddress;
+import tuskex.core.support.dispute.arbitration.arbitrator.Arbitrator;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.core.support.dispute.mediation.mediator.Mediator;
+import tuskex.core.support.dispute.mediation.mediator.MediatorManager;
+import tuskex.core.user.Preferences;
+import tuskex.desktop.maker.PreferenceMakers;
+import tuskex.network.p2p.NodeAddress;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import org.junit.jupiter.api.Test;

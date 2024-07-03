@@ -15,37 +15,37 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades;
+package tuskex.desktop.main.portfolio.pendingtrades;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.ClockWatcher;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.network.MessageState;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferUtil;
-import haveno.core.trade.ArbitratorTrade;
-import haveno.core.trade.BuyerTrade;
-import haveno.core.trade.ClosedTradableManager;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.SellerTrade;
-import haveno.core.trade.Trade;
-import haveno.core.trade.TradeUtil;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.BtcAddressValidator;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.model.ActivatableWithDataModel;
-import haveno.desktop.common.model.ViewModel;
-import static haveno.desktop.main.portfolio.pendingtrades.PendingTradesViewModel.SellerState.UNDEFINED;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.P2PService;
+import tuskex.common.ClockWatcher;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.network.MessageState;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.trade.ArbitratorTrade;
+import tuskex.core.trade.BuyerTrade;
+import tuskex.core.trade.ClosedTradableManager;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.SellerTrade;
+import tuskex.core.trade.Trade;
+import tuskex.core.trade.TradeUtil;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.BtcAddressValidator;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.model.ActivatableWithDataModel;
+import tuskex.desktop.common.model.ViewModel;
+import static tuskex.desktop.main.portfolio.pendingtrades.PendingTradesViewModel.SellerState.UNDEFINED;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.P2PService;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -231,7 +231,7 @@ public class PendingTradesViewModel extends ActivatableWithDataModel<PendingTrad
 
     public String getPayoutAmountBeforeCost() {
         return dataModel.getTrade() != null
-                ? HavenoUtils.formatXmr(dataModel.getTrade().getPayoutAmountBeforeCost(), true)
+                ? TuskexUtils.formatTsk(dataModel.getTrade().getPayoutAmountBeforeCost(), true)
                 : "";
     }
 
@@ -277,7 +277,7 @@ public class PendingTradesViewModel extends ActivatableWithDataModel<PendingTrad
     // summary
     public String getTradeVolume() {
         return dataModel.getTrade() != null
-                ? HavenoUtils.formatXmr(dataModel.getTrade().getAmount(), true)
+                ? TuskexUtils.formatTsk(dataModel.getTrade().getAmount(), true)
                 : "";
     }
 
@@ -291,10 +291,10 @@ public class PendingTradesViewModel extends ActivatableWithDataModel<PendingTrad
         if (trade != null && dataModel.getOffer() != null && trade.getAmount() != null) {
             checkNotNull(dataModel.getTrade());
 
-            BigInteger tradeFeeInXmr = dataModel.getTradeFee();
+            BigInteger tradeFeeInTsk = dataModel.getTradeFee();
 
-            String percentage = GUIUtil.getPercentageOfTradeAmount(tradeFeeInXmr, trade.getAmount());
-            return HavenoUtils.formatXmr(tradeFeeInXmr, true) + percentage;
+            String percentage = GUIUtil.getPercentageOfTradeAmount(tradeFeeInTsk, trade.getAmount());
+            return TuskexUtils.formatTsk(tradeFeeInTsk, true) + percentage;
         } else {
             return "";
         }
@@ -309,7 +309,7 @@ public class PendingTradesViewModel extends ActivatableWithDataModel<PendingTrad
                     : offer.getMaxSellerSecurityDeposit();
 
             String percentage = GUIUtil.getPercentageOfTradeAmount(securityDeposit, trade.getAmount());
-            return HavenoUtils.formatXmr(securityDeposit, true) + percentage;
+            return TuskexUtils.formatTsk(securityDeposit, true) + percentage;
         } else {
             return "";
         }

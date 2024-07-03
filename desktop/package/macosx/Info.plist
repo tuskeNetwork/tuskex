@@ -11,22 +11,22 @@
         <string>1.0.8</string>
 
         <key>CFBundleExecutable</key>
-        <string>Haveno</string>
+        <string>Tuskex</string>
 
         <key>CFBundleName</key>
-        <string>Haveno</string>
+        <string>Tuskex</string>
 
         <key>CFBundleIdentifier</key>
-        <string>io.haveno.CAT</string>
+        <string>io.tuskex.CAT</string>
 
         <key>CFBundleIconFile</key>
-        <string>Haveno.icns</string>
+        <string>Tuskex.icns</string>
 
         <key>LSApplicationCategoryType</key>
         <string>public.app-category.finance</string>
 
         <key>NSHumanReadableCopyright</key>
-        <string>Copyright © 2024 - The Haveno developers</string>
+        <string>Copyright © 2024 - The Tuskex developers</string>
 
          <!-- Only supported in older OSX versions.
               See: https://github.com/bitcoin/bitcoin/issues/11896#issuecomment-352148399-->

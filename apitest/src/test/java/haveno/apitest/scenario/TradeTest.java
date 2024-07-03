@@ -15,14 +15,14 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario;
+package tuskex.apitest.scenario;
 
-import haveno.apitest.method.trade.AbstractTradeTest;
-import haveno.apitest.method.trade.TakeBuyBTCOfferTest;
-import haveno.apitest.method.trade.TakeBuyBTCOfferWithNationalBankAcctTest;
-import haveno.apitest.method.trade.TakeBuyXMROfferTest;
-import haveno.apitest.method.trade.TakeSellBTCOfferTest;
-import haveno.apitest.method.trade.TakeSellXMROfferTest;
+import tuskex.apitest.method.trade.AbstractTradeTest;
+import tuskex.apitest.method.trade.TakeBuyBTCOfferTest;
+import tuskex.apitest.method.trade.TakeBuyBTCOfferWithNationalBankAcctTest;
+import tuskex.apitest.method.trade.TakeBuyTSKOfferTest;
+import tuskex.apitest.method.trade.TakeSellBTCOfferTest;
+import tuskex.apitest.method.trade.TakeSellTSKOfferTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -71,20 +71,20 @@ public class TradeTest extends AbstractTradeTest {
 
     @Test
     @Order(6)
-    public void testTakeBuyXMROffer(final TestInfo testInfo) {
-        TakeBuyXMROfferTest test = new TakeBuyXMROfferTest();
-        TakeBuyXMROfferTest.createXmrPaymentAccounts();
-        test.testTakeAlicesSellBTCForXMROffer(testInfo);
+    public void testTakeBuyTSKOffer(final TestInfo testInfo) {
+        TakeBuyTSKOfferTest test = new TakeBuyTSKOfferTest();
+        TakeBuyTSKOfferTest.createTskPaymentAccounts();
+        test.testTakeAlicesSellBTCForTSKOffer(testInfo);
         test.testBobsConfirmPaymentSent(testInfo);
         test.testAlicesConfirmPaymentReceived(testInfo);
     }
 
     @Test
     @Order(7)
-    public void testTakeSellXMROffer(final TestInfo testInfo) {
-        TakeSellXMROfferTest test = new TakeSellXMROfferTest();
-        TakeBuyXMROfferTest.createXmrPaymentAccounts();
-        test.testTakeAlicesBuyBTCForXMROffer(testInfo);
+    public void testTakeSellTSKOffer(final TestInfo testInfo) {
+        TakeSellTSKOfferTest test = new TakeSellTSKOfferTest();
+        TakeBuyTSKOfferTest.createTskPaymentAccounts();
+        test.testTakeAlicesBuyBTCForTSKOffer(testInfo);
         test.testAlicesConfirmPaymentSent(testInfo);
         test.testBobsConfirmPaymentReceived(testInfo);
     }

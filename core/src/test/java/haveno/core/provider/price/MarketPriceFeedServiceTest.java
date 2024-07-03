@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.provider.price;
+package tuskex.core.provider.price;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

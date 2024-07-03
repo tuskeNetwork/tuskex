@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario;
+package tuskex.apitest.scenario;
 
-import haveno.apitest.method.MethodTest;
-import haveno.apitest.method.wallet.BtcWalletTest;
-import haveno.apitest.method.wallet.WalletProtectionTest;
+import tuskex.apitest.method.MethodTest;
+import tuskex.apitest.method.wallet.BtcWalletTest;
+import tuskex.apitest.method.wallet.WalletProtectionTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -29,11 +29,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static haveno.apitest.Scaffold.BitcoinCoreApp.bitcoind;
-import static haveno.apitest.config.HavenoAppConfig.alicedaemon;
-import static haveno.apitest.config.HavenoAppConfig.arbdaemon;
-import static haveno.apitest.config.HavenoAppConfig.bobdaemon;
-import static haveno.apitest.config.HavenoAppConfig.seednode;
+import static tuskex.apitest.Scaffold.BitcoinCoreApp.bitcoind;
+import static tuskex.apitest.config.TuskexAppConfig.alicedaemon;
+import static tuskex.apitest.config.TuskexAppConfig.arbdaemon;
+import static tuskex.apitest.config.TuskexAppConfig.bobdaemon;
+import static tuskex.apitest.config.TuskexAppConfig.seednode;
 
 @Slf4j
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

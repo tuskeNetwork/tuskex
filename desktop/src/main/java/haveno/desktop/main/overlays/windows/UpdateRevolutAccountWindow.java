@@ -15,19 +15,19 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
-import haveno.core.locale.Res;
-import haveno.core.payment.RevolutAccount;
-import haveno.core.payment.validation.RevolutValidator;
-import haveno.core.user.User;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.util.Layout;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.RevolutAccount;
+import tuskex.core.payment.validation.RevolutValidator;
+import tuskex.core.user.User;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.util.Layout;
 import javafx.scene.Scene;
 
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addLabel;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addLabel;
 
 public class UpdateRevolutAccountWindow extends Overlay<UpdateRevolutAccountWindow> {
     private final RevolutValidator revolutValidator;

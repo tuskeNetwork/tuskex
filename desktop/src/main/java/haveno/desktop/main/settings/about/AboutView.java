@@ -15,19 +15,19 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.settings.about;
+package tuskex.desktop.main.settings.about;
 
 import com.google.inject.Inject;
-import haveno.common.app.Version;
-import haveno.core.locale.Res;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.HyperlinkWithIcon;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addHyperlinkWithIcon;
-import static haveno.desktop.util.FormBuilder.addLabel;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import haveno.desktop.util.Layout;
+import tuskex.common.app.Version;
+import tuskex.core.locale.Res;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addHyperlinkWithIcon;
+import static tuskex.desktop.util.FormBuilder.addLabel;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import tuskex.desktop.util.Layout;
 import javafx.geometry.HPos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -44,17 +44,17 @@ public class AboutView extends ActivatableView<GridPane, Void> {
 
     @Override
     public void initialize() {
-        addTitledGroupBg(root, gridRow, 4, Res.get("setting.about.aboutHaveno"));
+        addTitledGroupBg(root, gridRow, 4, Res.get("setting.about.aboutTuskex"));
 
         Label label = addLabel(root, gridRow, Res.get("setting.about.about"), Layout.TWICE_FIRST_ROW_DISTANCE);
         label.setWrapText(true);
         GridPane.setColumnSpan(label, 2);
         GridPane.setHalignment(label, HPos.LEFT);
-        HyperlinkWithIcon hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.web"), "https://haveno.exchange");
+        HyperlinkWithIcon hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.web"), "https://tuskex.exchange");
         GridPane.setColumnSpan(hyperlinkWithIcon, 2);
-        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.code"), "https://github.com/haveno-dex/haveno");
+        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.code"), "https://github.com/tuskex-dex/tuskex");
         GridPane.setColumnSpan(hyperlinkWithIcon, 2);
-        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.agpl"), "https://github.com/haveno-dex/haveno/blob/master/LICENSE");
+        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.agpl"), "https://github.com/tuskex-dex/tuskex/blob/master/LICENSE");
         GridPane.setColumnSpan(hyperlinkWithIcon, 2);
 
         addTitledGroupBg(root, ++gridRow, 2, Res.get("setting.about.support"), Layout.GROUP_DISTANCE);
@@ -63,18 +63,18 @@ public class AboutView extends ActivatableView<GridPane, Void> {
         label.setWrapText(true);
         GridPane.setColumnSpan(label, 2);
         GridPane.setHalignment(label, HPos.LEFT);
-        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.contribute"), "https://github.com/haveno-dex/haveno#support");
+        hyperlinkWithIcon = addHyperlinkWithIcon(root, ++gridRow, Res.get("setting.about.contribute"), "https://github.com/tuskex-dex/tuskex#support");
         GridPane.setColumnSpan(hyperlinkWithIcon, 2);
 
-        boolean isXmr = Res.getBaseCurrencyCode().equals("XMR");
-        addTitledGroupBg(root, ++gridRow, isXmr ? 3 : 2, Res.get("setting.about.providers"), Layout.GROUP_DISTANCE);
+        boolean isTsk = Res.getBaseCurrencyCode().equals("TSK");
+        addTitledGroupBg(root, ++gridRow, isTsk ? 3 : 2, Res.get("setting.about.providers"), Layout.GROUP_DISTANCE);
 
-        label = addLabel(root, gridRow, Res.get(isXmr ? "setting.about.apisWithFee" : "setting.about.apis"), Layout.TWICE_FIRST_ROW_AND_GROUP_DISTANCE);
+        label = addLabel(root, gridRow, Res.get(isTsk ? "setting.about.apisWithFee" : "setting.about.apis"), Layout.TWICE_FIRST_ROW_AND_GROUP_DISTANCE);
         label.setWrapText(true);
         GridPane.setHalignment(label, HPos.LEFT);
         addCompactTopLabelTextField(root, ++gridRow, Res.get("setting.about.pricesProvided"),
-                "Haveno's pricenode (https://price.haveno.network)");
-        if (isXmr)
+                "Tuskex's pricenode (https://price.tuskex.network)");
+        if (isTsk)
             addCompactTopLabelTextField(root, ++gridRow, Res.get("setting.about.feeEstimation.label"), "Monero node");
 
         addTitledGroupBg(root, ++gridRow, 2, Res.get("setting.about.versionDetails"), Layout.GROUP_DISTANCE);
@@ -110,7 +110,7 @@ public class AboutView extends ActivatableView<GridPane, Void> {
         addCompactTopLabelTextField(root, ++gridRow, Res.get("setting.about.shortcuts.walletDetails"),
                 Res.get("setting.about.shortcuts.ctrlOrAltOrCmd", "j"));
 
-        addCompactTopLabelTextField(root, ++gridRow, Res.get("setting.about.shortcuts.openEmergencyXmrWalletTool"),
+        addCompactTopLabelTextField(root, ++gridRow, Res.get("setting.about.shortcuts.openEmergencyTskWalletTool"),
                 Res.get("setting.about.shortcuts.ctrlOrAltOrCmd", "e"));
 
         addCompactTopLabelTextField(root, ++gridRow, Res.get("setting.about.shortcuts.showTorLogs"),

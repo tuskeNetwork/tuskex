@@ -15,31 +15,31 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.duplicateoffer;
+package tuskex.desktop.main.portfolio.duplicateoffer;
 
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.offer.CreateOfferService;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferUtil;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.statistics.TradeStatisticsManager;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.coin.CoinUtil;
-import haveno.core.xmr.wallet.Restrictions;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.Navigation;
-import haveno.desktop.main.offer.MutableOfferDataModel;
-import haveno.network.p2p.P2PService;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.offer.CreateOfferService;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.statistics.TradeStatisticsManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.coin.CoinUtil;
+import tuskex.core.tsk.wallet.Restrictions;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.main.offer.MutableOfferDataModel;
+import tuskex.network.p2p.P2PService;
 import java.math.BigInteger;
 import java.util.Objects;
 import java.util.Optional;
@@ -52,7 +52,7 @@ class DuplicateOfferDataModel extends MutableOfferDataModel {
     DuplicateOfferDataModel(CreateOfferService createOfferService,
                        OpenOfferManager openOfferManager,
                        OfferUtil offerUtil,
-                       XmrWalletService btcWalletService,
+                       TskWalletService btcWalletService,
                        Preferences preferences,
                        User user,
                        P2PService p2PService,

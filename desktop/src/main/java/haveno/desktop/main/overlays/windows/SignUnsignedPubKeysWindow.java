@@ -15,24 +15,24 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import com.google.inject.Inject;
-import haveno.common.crypto.Hash;
-import haveno.common.util.Tuple3;
-import haveno.common.util.Utilities;
-import haveno.core.account.sign.SignedWitness;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Res;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.overlays.popups.Popup;
-import static haveno.desktop.util.FormBuilder.add2ButtonsAfterGroup;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addTopLabelListView;
-import static haveno.desktop.util.FormBuilder.removeRowsFromGridPane;
+import tuskex.common.crypto.Hash;
+import tuskex.common.util.Tuple3;
+import tuskex.common.util.Utilities;
+import tuskex.core.account.sign.SignedWitness;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Res;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.overlays.popups.Popup;
+import static tuskex.desktop.util.FormBuilder.add2ButtonsAfterGroup;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addTopLabelListView;
+import static tuskex.desktop.util.FormBuilder.removeRowsFromGridPane;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;

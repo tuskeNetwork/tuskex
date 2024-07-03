@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.locale;
+package tuskex.core.locale;
 
-import haveno.asset.Asset;
-import haveno.asset.AssetRegistry;
-import haveno.asset.Coin;
-import haveno.asset.coins.Ether;
-import haveno.common.config.BaseCurrencyNetwork;
+import tuskex.asset.Asset;
+import tuskex.asset.AssetRegistry;
+import tuskex.asset.Coin;
+import tuskex.asset.coins.Ether;
+import tuskex.common.config.BaseCurrencyNetwork;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +43,7 @@ public class CurrencyUtilTest {
     public void setup() {
 
         Locale.setDefault(new Locale("en", "US"));
-        Res.setBaseCurrencyCode("XMR");
+        Res.setBaseCurrencyCode("TSK");
         Res.setBaseCurrencyName("Monero");
     }
 
@@ -67,7 +67,7 @@ public class CurrencyUtilTest {
         try {
             assetRegistry.addAsset(mockTestnetCoin);
             CurrencyUtil.findAsset(assetRegistry, "MOCK_COIN",
-                    BaseCurrencyNetwork.XMR_MAINNET);
+                    BaseCurrencyNetwork.TSK_MAINNET);
             fail("Expected an IllegalArgumentException");
         } catch (IllegalArgumentException e) {
             String wantMessage = "We are on mainnet and we could not find an asset with network type mainnet";
@@ -77,20 +77,20 @@ public class CurrencyUtilTest {
 
         // For testnet its ok
         assertEquals(CurrencyUtil.findAsset(assetRegistry, "MOCK_COIN",
-                BaseCurrencyNetwork.XMR_LOCAL).get().getTickerSymbol(), "MOCK_COIN");
+                BaseCurrencyNetwork.TSK_LOCAL).get().getTickerSymbol(), "MOCK_COIN");
         assertEquals(Coin.Network.TESTNET, mockTestnetCoin.getNetwork());
 
         // For regtest its still found
         assertEquals(CurrencyUtil.findAsset(assetRegistry, "MOCK_COIN",
-                BaseCurrencyNetwork.XMR_STAGENET).get().getTickerSymbol(), "MOCK_COIN");
+                BaseCurrencyNetwork.TSK_STAGENET).get().getTickerSymbol(), "MOCK_COIN");
 
 
         // We test if we are not on mainnet to get the mainnet coin
         Coin ether = new Ether();
         assertEquals(CurrencyUtil.findAsset(assetRegistry, "ETH",
-                BaseCurrencyNetwork.XMR_LOCAL).get().getTickerSymbol(), "ETH");
+                BaseCurrencyNetwork.TSK_LOCAL).get().getTickerSymbol(), "ETH");
         assertEquals(CurrencyUtil.findAsset(assetRegistry, "ETH",
-                BaseCurrencyNetwork.XMR_STAGENET).get().getTickerSymbol(), "ETH");
+                BaseCurrencyNetwork.TSK_STAGENET).get().getTickerSymbol(), "ETH");
         assertEquals(Coin.Network.MAINNET, ether.getNetwork());
      }
 

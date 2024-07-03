@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-echo "[*] Haveno Seednode installation script"
+echo "[*] Tuskex Seednode installation script"
 
 ##### change paths if necessary for your system
 
@@ -13,12 +13,12 @@ ROOT_HOME=/root
 SYSTEMD_SERVICE_HOME=/etc/systemd/system
 SYSTEMD_ENV_HOME=/etc/default
 
-HAVENO_REPO_URL=https://github.com/haveno-dex/haveno
-HAVENO_REPO_NAME=haveno
-HAVENO_REPO_TAG=master
-HAVENO_LATEST_RELEASE=$(curl -s https://api.github.com/repos/haveno-dex/haveno/releases/latest|grep tag_name|head -1|cut -d '"' -f4)
-HAVENO_HOME=/haveno
-HAVENO_USER=haveno
+TUSKEX_REPO_URL=https://github.com/tuskex-dex/tuskex
+TUSKEX_REPO_NAME=tuskex
+TUSKEX_REPO_TAG=master
+TUSKEX_LATEST_RELEASE=$(curl -s https://api.github.com/repos/tuskex-dex/tuskex/releases/latest|grep tag_name|head -1|cut -d '"' -f4)
+TUSKEX_HOME=/tuskex
+TUSKEX_USER=tuskex
 
 # by default, this script will not build and setup bitcoin full-node
 BITCOIN_INSTALL=false
@@ -59,9 +59,9 @@ sudo -H -i -u "${ROOT_USER}" DEBIAN_FRONTEND=noninteractive apt-get upgrade -qq 
 echo "[*] Installing base packages"
 sudo -H -i -u "${ROOT_USER}" DEBIAN_FRONTEND=noninteractive apt-get install -qq -y ${ROOT_PKG}
 
-echo "[*] Cloning Haveno repo"
+echo "[*] Cloning Tuskex repo"
 sudo -H -i -u "${ROOT_USER}" git config --global advice.detachedHead false
-sudo -H -i -u "${ROOT_USER}" git clone --branch "${HAVENO_REPO_TAG}" "${HAVENO_REPO_URL}" "${ROOT_HOME}/${HAVENO_REPO_NAME}"
+sudo -H -i -u "${ROOT_USER}" git clone --branch "${TUSKEX_REPO_TAG}" "${TUSKEX_REPO_URL}" "${ROOT_HOME}/${TUSKEX_REPO_NAME}"
 
 echo "[*] Installing Tor"
 sudo -H -i -u "${ROOT_USER}" wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | sudo gpg --dearmor | sudo tee /usr/share/keyrings/tor-archive-keyring.gpg >/dev/null
@@ -70,7 +70,7 @@ sudo -H -i -u "${ROOT_USER}" DEBIAN_FRONTEND=noninteractive apt-get update -q
 sudo -H -i -u "${ROOT_USER}" DEBIAN_FRONTEND=noninteractive apt-get install -qq -y ${TOR_PKG}
 
 echo "[*] Installing Tor configuration"
-sudo -H -i -u "${ROOT_USER}" install -c -m 644 "${ROOT_HOME}/${HAVENO_REPO_NAME}/seednode/torrc" "${TOR_HOME}/torrc"
+sudo -H -i -u "${ROOT_USER}" install -c -m 644 "${ROOT_HOME}/${TUSKEX_REPO_NAME}/seednode/torrc" "${TOR_HOME}/torrc"
 
 if [ "${BITCOIN_INSTALL}" = true ];then
 
@@ -96,8 +96,8 @@ if [ "${BITCOIN_INSTALL}" = true ];then
 	sudo -H -i -u "${ROOT_USER}" sh -c "cd ${BITCOIN_HOME}/${BITCOIN_REPO_NAME} && make install >/dev/null"
 
 	echo "[*] Installing Bitcoin configuration"
-	sudo -H -i -u "${ROOT_USER}" install -c -o "${BITCOIN_USER}" -g "${BITCOIN_GROUP}" -m 644 "${ROOT_HOME}/${HAVENO_REPO_NAME}/seednode/bitcoin.conf" "${BITCOIN_HOME}/bitcoin.conf"
-	sudo -H -i -u "${ROOT_USER}" install -c -o "${BITCOIN_USER}" -g "${BITCOIN_GROUP}" -m 755 "${ROOT_HOME}/${HAVENO_REPO_NAME}/seednode/blocknotify.sh" "${BITCOIN_HOME}/blocknotify.sh"
+	sudo -H -i -u "${ROOT_USER}" install -c -o "${BITCOIN_USER}" -g "${BITCOIN_GROUP}" -m 644 "${ROOT_HOME}/${TUSKEX_REPO_NAME}/seednode/bitcoin.conf" "${BITCOIN_HOME}/bitcoin.conf"
+	sudo -H -i -u "${ROOT_USER}" install -c -o "${BITCOIN_USER}" -g "${BITCOIN_GROUP}" -m 755 "${ROOT_HOME}/${TUSKEX_REPO_NAME}/seednode/blocknotify.sh" "${BITCOIN_HOME}/blocknotify.sh"
 
 	echo "[*] Generating Bitcoin RPC credentials"
 	BITCOIN_RPC_USER=$(head -150 /dev/urandom | md5sum | awk '{print $1}')
@@ -106,51 +106,51 @@ if [ "${BITCOIN_INSTALL}" = true ];then
 	sudo sed -i -e "s/__BITCOIN_RPC_PASS__/${BITCOIN_RPC_PASS}/" "${BITCOIN_HOME}/bitcoin.conf"
 
 	echo "[*] Installing Bitcoin init scripts"
-	sudo -H -i -u "${ROOT_USER}" install -c -o "${ROOT_USER}" -g "${ROOT_GROUP}" -m 644 "${ROOT_HOME}/${HAVENO_REPO_NAME}/seednode/bitcoin.service" "${SYSTEMD_SERVICE_HOME}"
+	sudo -H -i -u "${ROOT_USER}" install -c -o "${ROOT_USER}" -g "${ROOT_GROUP}" -m 644 "${ROOT_HOME}/${TUSKEX_REPO_NAME}/seednode/bitcoin.service" "${SYSTEMD_SERVICE_HOME}"
 
 fi
 
-echo "[*] Creating Haveno user with Tor access"
-sudo -H -i -u "${ROOT_USER}" useradd -d "${HAVENO_HOME}" -G "${TOR_GROUP}" "${HAVENO_USER}"
+echo "[*] Creating Tuskex user with Tor access"
+sudo -H -i -u "${ROOT_USER}" useradd -d "${TUSKEX_HOME}" -G "${TOR_GROUP}" "${TUSKEX_USER}"
 
-echo "[*] Creating Haveno homedir"
-sudo -H -i -u "${ROOT_USER}" mkdir -p "${HAVENO_HOME}"
-sudo -H -i -u "${ROOT_USER}" chown "${HAVENO_USER}":"${HAVENO_GROUP}" ${HAVENO_HOME}
+echo "[*] Creating Tuskex homedir"
+sudo -H -i -u "${ROOT_USER}" mkdir -p "${TUSKEX_HOME}"
+sudo -H -i -u "${ROOT_USER}" chown "${TUSKEX_USER}":"${TUSKEX_GROUP}" ${TUSKEX_HOME}
 
-echo "[*] Moving Haveno repo"
-sudo -H -i -u "${ROOT_USER}" mv "${ROOT_HOME}/${HAVENO_REPO_NAME}" "${HAVENO_HOME}/${HAVENO_REPO_NAME}"
-sudo -H -i -u "${ROOT_USER}" chown -R "${HAVENO_USER}:${HAVENO_GROUP}" "${HAVENO_HOME}/${HAVENO_REPO_NAME}"
+echo "[*] Moving Tuskex repo"
+sudo -H -i -u "${ROOT_USER}" mv "${ROOT_HOME}/${TUSKEX_REPO_NAME}" "${TUSKEX_HOME}/${TUSKEX_REPO_NAME}"
+sudo -H -i -u "${ROOT_USER}" chown -R "${TUSKEX_USER}:${TUSKEX_GROUP}" "${TUSKEX_HOME}/${TUSKEX_REPO_NAME}"
 
-echo "[*] Installing Haveno init script"
-sudo -H -i -u "${ROOT_USER}" install -c -o "${ROOT_USER}" -g "${ROOT_GROUP}" -m 644 "${HAVENO_HOME}/${HAVENO_REPO_NAME}/seednode/haveno-seednode.service" "${SYSTEMD_SERVICE_HOME}/haveno-seednode.service"
+echo "[*] Installing Tuskex init script"
+sudo -H -i -u "${ROOT_USER}" install -c -o "${ROOT_USER}" -g "${ROOT_GROUP}" -m 644 "${TUSKEX_HOME}/${TUSKEX_REPO_NAME}/seednode/tuskex-seednode.service" "${SYSTEMD_SERVICE_HOME}/tuskex-seednode.service"
 if [ "${BITCOIN_INSTALL}" = true ];then
-	sudo sed -i -e "s/#Requires=bitcoin.service/Requires=bitcoin.service/" "${SYSTEMD_SERVICE_HOME}/haveno-seednode.service"
-	sudo sed -i -e "s/#BindsTo=bitcoin.service/BindsTo=bitcoin.service/" "${SYSTEMD_SERVICE_HOME}/haveno-seednode.service"
+	sudo sed -i -e "s/#Requires=bitcoin.service/Requires=bitcoin.service/" "${SYSTEMD_SERVICE_HOME}/tuskex-seednode.service"
+	sudo sed -i -e "s/#BindsTo=bitcoin.service/BindsTo=bitcoin.service/" "${SYSTEMD_SERVICE_HOME}/tuskex-seednode.service"
 fi
-sudo sed -i -e "s/__HAVENO_REPO_NAME__/${HAVENO_REPO_NAME}/" "${SYSTEMD_SERVICE_HOME}/haveno-seednode.service"
-sudo sed -i -e "s!__HAVENO_HOME__!${HAVENO_HOME}!" "${SYSTEMD_SERVICE_HOME}/haveno-seednode.service"
+sudo sed -i -e "s/__TUSKEX_REPO_NAME__/${TUSKEX_REPO_NAME}/" "${SYSTEMD_SERVICE_HOME}/tuskex-seednode.service"
+sudo sed -i -e "s!__TUSKEX_HOME__!${TUSKEX_HOME}!" "${SYSTEMD_SERVICE_HOME}/tuskex-seednode.service"
 
-echo "[*] Installing Haveno environment file with Bitcoin RPC credentials"
-sudo -H -i -u "${ROOT_USER}" install -c -o "${ROOT_USER}" -g "${ROOT_GROUP}" -m 644 "${HAVENO_HOME}/${HAVENO_REPO_NAME}/seednode/haveno.env" "${SYSTEMD_ENV_HOME}/haveno.env"
-sudo sed -i -e "s/__BITCOIN_P2P_HOST__/${BITCOIN_P2P_HOST}/" "${SYSTEMD_ENV_HOME}/haveno.env"
-sudo sed -i -e "s/__BITCOIN_P2P_PORT__/${BITCOIN_P2P_PORT}/" "${SYSTEMD_ENV_HOME}/haveno.env"
-sudo sed -i -e "s/__BITCOIN_RPC_HOST__/${BITCOIN_RPC_HOST}/" "${SYSTEMD_ENV_HOME}/haveno.env"
-sudo sed -i -e "s/__BITCOIN_RPC_PORT__/${BITCOIN_RPC_PORT}/" "${SYSTEMD_ENV_HOME}/haveno.env"
-sudo sed -i -e "s/__BITCOIN_RPC_USER__/${BITCOIN_RPC_USER}/" "${SYSTEMD_ENV_HOME}/haveno.env"
-sudo sed -i -e "s/__BITCOIN_RPC_PASS__/${BITCOIN_RPC_PASS}/" "${SYSTEMD_ENV_HOME}/haveno.env"
-sudo sed -i -e "s!__HAVENO_APP_NAME__!${HAVENO_APP_NAME}!" "${SYSTEMD_ENV_HOME}/haveno.env"
-sudo sed -i -e "s!__HAVENO_HOME__!${HAVENO_HOME}!" "${SYSTEMD_ENV_HOME}/haveno.env"
+echo "[*] Installing Tuskex environment file with Bitcoin RPC credentials"
+sudo -H -i -u "${ROOT_USER}" install -c -o "${ROOT_USER}" -g "${ROOT_GROUP}" -m 644 "${TUSKEX_HOME}/${TUSKEX_REPO_NAME}/seednode/tuskex.env" "${SYSTEMD_ENV_HOME}/tuskex.env"
+sudo sed -i -e "s/__BITCOIN_P2P_HOST__/${BITCOIN_P2P_HOST}/" "${SYSTEMD_ENV_HOME}/tuskex.env"
+sudo sed -i -e "s/__BITCOIN_P2P_PORT__/${BITCOIN_P2P_PORT}/" "${SYSTEMD_ENV_HOME}/tuskex.env"
+sudo sed -i -e "s/__BITCOIN_RPC_HOST__/${BITCOIN_RPC_HOST}/" "${SYSTEMD_ENV_HOME}/tuskex.env"
+sudo sed -i -e "s/__BITCOIN_RPC_PORT__/${BITCOIN_RPC_PORT}/" "${SYSTEMD_ENV_HOME}/tuskex.env"
+sudo sed -i -e "s/__BITCOIN_RPC_USER__/${BITCOIN_RPC_USER}/" "${SYSTEMD_ENV_HOME}/tuskex.env"
+sudo sed -i -e "s/__BITCOIN_RPC_PASS__/${BITCOIN_RPC_PASS}/" "${SYSTEMD_ENV_HOME}/tuskex.env"
+sudo sed -i -e "s!__TUSKEX_APP_NAME__!${TUSKEX_APP_NAME}!" "${SYSTEMD_ENV_HOME}/tuskex.env"
+sudo sed -i -e "s!__TUSKEX_HOME__!${TUSKEX_HOME}!" "${SYSTEMD_ENV_HOME}/tuskex.env"
 
-echo "[*] Checking out Haveno ${HAVENO_LATEST_RELEASE}"
-sudo -H -i -u "${HAVENO_USER}" sh -c "cd ${HAVENO_HOME}/${HAVENO_REPO_NAME} && git checkout ${HAVENO_LATEST_RELEASE}"
+echo "[*] Checking out Tuskex ${TUSKEX_LATEST_RELEASE}"
+sudo -H -i -u "${TUSKEX_USER}" sh -c "cd ${TUSKEX_HOME}/${TUSKEX_REPO_NAME} && git checkout ${TUSKEX_LATEST_RELEASE}"
 
-echo "[*] Building Haveno from source"
-sudo -H -i -u "${HAVENO_USER}" sh -c "cd ${HAVENO_HOME}/${HAVENO_REPO_NAME} && ./gradlew build -x test < /dev/null" # redirect from /dev/null is necessary to workaround gradlew non-interactive shell hanging issue
+echo "[*] Building Tuskex from source"
+sudo -H -i -u "${TUSKEX_USER}" sh -c "cd ${TUSKEX_HOME}/${TUSKEX_REPO_NAME} && ./gradlew build -x test < /dev/null" # redirect from /dev/null is necessary to workaround gradlew non-interactive shell hanging issue
 
 echo "[*] Updating systemd daemon configuration"
 sudo -H -i -u "${ROOT_USER}" systemctl daemon-reload
 sudo -H -i -u "${ROOT_USER}" systemctl enable tor.service
-sudo -H -i -u "${ROOT_USER}" systemctl enable haveno-seednode.service
+sudo -H -i -u "${ROOT_USER}" systemctl enable tuskex-seednode.service
 if [ "${BITCOIN_INSTALL}" = true ];then
 	sudo -H -i -u "${ROOT_USER}" systemctl enable bitcoin.service
 fi
@@ -171,14 +171,14 @@ fi
 
 echo "[*] Adding notes to motd"
 sudo -H -i -u "${ROOT_USER}" sh -c 'echo " " >> /etc/motd'
-sudo -H -i -u "${ROOT_USER}" sh -c 'echo "Haveno Seednode instructions:" >> /etc/motd'
-sudo -H -i -u "${ROOT_USER}" sh -c 'echo "https://github.com/haveno-dex/haveno/tree/master/seednode" >> /etc/motd'
+sudo -H -i -u "${ROOT_USER}" sh -c 'echo "Tuskex Seednode instructions:" >> /etc/motd'
+sudo -H -i -u "${ROOT_USER}" sh -c 'echo "https://github.com/tuskex-dex/tuskex/tree/master/seednode" >> /etc/motd'
 sudo -H -i -u "${ROOT_USER}" sh -c 'echo " " >> /etc/motd'
-sudo -H -i -u "${ROOT_USER}" sh -c 'echo "How to check logs for Haveno-Seednode service:" >> /etc/motd'
-sudo -H -i -u "${ROOT_USER}" sh -c 'echo "sudo journalctl --no-pager --unit haveno-seednode" >> /etc/motd'
+sudo -H -i -u "${ROOT_USER}" sh -c 'echo "How to check logs for Tuskex-Seednode service:" >> /etc/motd'
+sudo -H -i -u "${ROOT_USER}" sh -c 'echo "sudo journalctl --no-pager --unit tuskex-seednode" >> /etc/motd'
 sudo -H -i -u "${ROOT_USER}" sh -c 'echo " " >> /etc/motd'
-sudo -H -i -u "${ROOT_USER}" sh -c 'echo "How to restart Haveno-Seednode service:" >> /etc/motd'
-sudo -H -i -u "${ROOT_USER}" sh -c 'echo "sudo service haveno-seednode restart" >> /etc/motd'
+sudo -H -i -u "${ROOT_USER}" sh -c 'echo "How to restart Tuskex-Seednode service:" >> /etc/motd'
+sudo -H -i -u "${ROOT_USER}" sh -c 'echo "sudo service tuskex-seednode restart" >> /etc/motd'
 
 echo '[*] Done!'
 

@@ -15,20 +15,20 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Res;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.WeChatPayAccount;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.payload.WeChatPayAccountPayload;
-import haveno.core.payment.validation.WeChatPayValidator;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.WeChatPayAccount;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.payload.WeChatPayAccountPayload;
+import tuskex.core.payment.validation.WeChatPayValidator;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
 import javafx.scene.layout.GridPane;
 
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
 
 public class WeChatPayForm extends GeneralAccountNumberForm {
 

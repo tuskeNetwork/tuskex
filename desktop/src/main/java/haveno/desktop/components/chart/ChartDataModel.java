@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.chart;
+package tuskex.desktop.components.chart;
 
-import haveno.desktop.common.model.ActivatableDataModel;
+import tuskex.desktop.common.model.ActivatableDataModel;
 
 import java.time.Instant;
 import java.time.temporal.TemporalAdjuster;

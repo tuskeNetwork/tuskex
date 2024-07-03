@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
-import haveno.core.trade.Tradable;
+import tuskex.core.trade.Tradable;
 import monero.wallet.model.MoneroTxWallet;
 
 class DummyTransactionAwareTradable implements TransactionAwareTradable {

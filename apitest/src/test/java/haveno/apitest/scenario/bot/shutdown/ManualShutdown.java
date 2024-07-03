@@ -1,13 +1,13 @@
-package haveno.apitest.scenario.bot.shutdown;
+package tuskex.apitest.scenario.bot.shutdown;
 
-import haveno.common.UserThread;
+import tuskex.common.UserThread;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static haveno.common.file.FileUtil.deleteFileIfExists;
+import static tuskex.common.file.FileUtil.deleteFileIfExists;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 @Slf4j
@@ -22,7 +22,7 @@ public class ManualShutdown {
      *
      * Running '$ touch /tmp/bottest-shutdown' could be used to trigger a scaffold teardown.
      *
-     * This is much easier than manually shutdown down haveno apps & bitcoind.
+     * This is much easier than manually shutdown down tuskex apps & bitcoind.
      */
     public static void startShutdownTimer() {
         deleteStaleShutdownFile();

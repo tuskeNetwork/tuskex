@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.register.arbitrator;
+package tuskex.desktop.main.account.register.arbitrator;
 
 import com.google.inject.Inject;
-import haveno.common.crypto.KeyRing;
-import haveno.core.support.dispute.arbitration.arbitrator.Arbitrator;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.core.user.User;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.main.account.register.AgentRegistrationViewModel;
-import haveno.network.p2p.P2PService;
+import tuskex.common.crypto.KeyRing;
+import tuskex.core.support.dispute.arbitration.arbitrator.Arbitrator;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.core.user.User;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.main.account.register.AgentRegistrationViewModel;
+import tuskex.network.p2p.P2PService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,9 +35,9 @@ public class ArbitratorRegistrationViewModel extends AgentRegistrationViewModel<
     public ArbitratorRegistrationViewModel(ArbitratorManager arbitratorManager,
                                            User user,
                                            P2PService p2PService,
-                                           XmrWalletService xmrWalletService,
+                                           TskWalletService tskWalletService,
                                            KeyRing keyRing) {
-        super(arbitratorManager, user, p2PService, xmrWalletService, keyRing);
+        super(arbitratorManager, user, p2PService, tskWalletService, keyRing);
     }
 
     @Override

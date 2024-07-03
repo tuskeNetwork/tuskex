@@ -11,13 +11,13 @@ getaddressbalance
 
 DESCRIPTION
 -----------
-Returns the balance of a XMR address in the Haveno server's wallet.
+Returns the balance of a TSK address in the Tuskex server's wallet.
 
 OPTIONS
 -------
 --address=<btc-address>
-		The XMR address.
+		The TSK address.
 
 EXAMPLES
 --------
-$ ./haveno-cli --password=xyz --port=9998 getaddressbalance --address=bcrt1qygvsqmyt8jyhtp7l3zwqm7s7v3nar6vkc2luz3
+$ ./tuskex-cli --password=xyz --port=9998 getaddressbalance --address=bcrt1qygvsqmyt8jyhtp7l3zwqm7s7v3nar6vkc2luz3

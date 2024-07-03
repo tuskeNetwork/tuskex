@@ -15,46 +15,46 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.content.notifications;
+package tuskex.desktop.main.account.content.notifications;
 
 import com.google.inject.Inject;
-import haveno.common.UserThread;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple3;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.notifications.MobileMessage;
-import haveno.core.notifications.MobileNotificationService;
-import haveno.core.notifications.alerts.DisputeMsgEvents;
-import haveno.core.notifications.alerts.MyOfferTakenEvents;
-import haveno.core.notifications.alerts.TradeEvents;
-import haveno.core.notifications.alerts.market.MarketAlertFilter;
-import haveno.core.notifications.alerts.market.MarketAlerts;
-import haveno.core.notifications.alerts.price.PriceAlert;
-import haveno.core.notifications.alerts.price.PriceAlertFilter;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.validation.PercentageNumberValidator;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.ParsingUtils;
-import haveno.core.util.PriceUtil;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.InfoInputTextField;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.FormBuilder;
-import static haveno.desktop.util.FormBuilder.addButton;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addSlideToggleButton;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelButton;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.Layout;
+import tuskex.common.UserThread;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple3;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.notifications.MobileMessage;
+import tuskex.core.notifications.MobileNotificationService;
+import tuskex.core.notifications.alerts.DisputeMsgEvents;
+import tuskex.core.notifications.alerts.MyOfferTakenEvents;
+import tuskex.core.notifications.alerts.TradeEvents;
+import tuskex.core.notifications.alerts.market.MarketAlertFilter;
+import tuskex.core.notifications.alerts.market.MarketAlerts;
+import tuskex.core.notifications.alerts.price.PriceAlert;
+import tuskex.core.notifications.alerts.price.PriceAlertFilter;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.validation.PercentageNumberValidator;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.ParsingUtils;
+import tuskex.core.util.PriceUtil;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.InfoInputTextField;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.FormBuilder;
+import static tuskex.desktop.util.FormBuilder.addButton;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addSlideToggleButton;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelButton;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.Layout;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -224,7 +224,7 @@ public class MobileNotificationsView extends ActivatableView<GridPane, Void> {
 
     // Setup
     private void onDownload() {
-        GUIUtil.openWebPage("https://haveno.exchange/downloads");
+        GUIUtil.openWebPage("https://tuskex.exchange/downloads");
     }
 
     private void onErase() {

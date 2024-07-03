@@ -15,20 +15,20 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import com.google.inject.Inject;
-import haveno.core.locale.Res;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.main.overlays.Overlay;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.main.overlays.Overlay;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import lombok.extern.slf4j.Slf4j;
 
-import static haveno.desktop.util.FormBuilder.addHyperlinkWithIcon;
+import static tuskex.desktop.util.FormBuilder.addHyperlinkWithIcon;
 
 @Slf4j
 public class TradeFeedbackWindow extends Overlay<TradeFeedbackWindow> {
@@ -61,8 +61,8 @@ public class TradeFeedbackWindow extends Overlay<TradeFeedbackWindow> {
         GridPane.setColumnSpan(messageLabel2, 2);
         gridPane.getChildren().add(messageLabel2);
 
-        HyperlinkWithIcon matrix = addHyperlinkWithIcon(gridPane, ++rowIndex, "https://matrix.to/#/#haveno:monero.social",
-                "https://matrix.to/#/%23haveno:monero.social", 40);
+        HyperlinkWithIcon matrix = addHyperlinkWithIcon(gridPane, ++rowIndex, "https://matrix.to/#/#tuskex:monero.social",
+                "https://matrix.to/#/%23tuskex:monero.social", 40);
         GridPane.setMargin(matrix, new Insets(-6, 0, 10, 0));
 
         AutoTooltipLabel messageLabel3 = new AutoTooltipLabel(Res.get("tradeFeedbackWindow.msg.part3"));

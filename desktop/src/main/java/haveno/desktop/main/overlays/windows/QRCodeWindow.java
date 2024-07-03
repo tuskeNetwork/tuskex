@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
-import haveno.core.locale.Res;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.main.overlays.Overlay;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.main.overlays.Overlay;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;

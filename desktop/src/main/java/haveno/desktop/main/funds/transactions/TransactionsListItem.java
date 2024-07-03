@@ -15,20 +15,20 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OpenOffer;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.Tradable;
-import haveno.core.trade.Trade;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.components.indicator.TxConfidenceIndicator;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.GUIUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.Tradable;
+import tuskex.core.trade.Trade;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.components.indicator.TxConfidenceIndicator;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.GUIUtil;
 import javafx.scene.control.Tooltip;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -59,7 +59,7 @@ class TransactionsListItem {
     @Getter
     private boolean initialTxConfidenceVisibility = true;
     private final Supplier<LazyFields> lazyFieldsSupplier;
-    private XmrWalletService xmrWalletService;
+    private TskWalletService tskWalletService;
 
     private static class LazyFields {
         TxConfidenceIndicator txConfidenceIndicator;
@@ -78,11 +78,11 @@ class TransactionsListItem {
     }
 
     TransactionsListItem(MoneroTxWallet tx,
-                         XmrWalletService xmrWalletService,
+                         TskWalletService tskWalletService,
                          TransactionAwareTradable transactionAwareTradable) {
         this.memo = tx.getNote();
         this.txId = tx.getHash();
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.confirmations = tx.getNumConfirmations() == null ? 0 : tx.getNumConfirmations();
 
         Optional<Tradable> optionalTradable = Optional.ofNullable(transactionAwareTradable)
@@ -143,7 +143,7 @@ class TransactionsListItem {
                         if (valueSentToMe.compareTo(BigInteger.ZERO) > 0) {
                             details = Res.get("funds.tx.refund", tradeId);
                         } else {
-                            // We have spent the deposit tx outputs to the Haveno donation address to enable
+                            // We have spent the deposit tx outputs to the Tuskex donation address to enable
                             // the refund process (refund agent -> reimbursement). As the funds have left our wallet
                             // already when funding the deposit tx we show 0 BTC as amount.
                             // Confirmation is not known from the BitcoinJ side (not 100% clear why) as no funds
@@ -194,7 +194,7 @@ class TransactionsListItem {
     }
 
     public String getAmountStr() {
-        return HavenoUtils.formatXmr(amount);
+        return TuskexUtils.formatTsk(amount);
     }
 
     public BigInteger getAmount() {

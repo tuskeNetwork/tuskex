@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows.downloadupdate;
+package tuskex.desktop.main.overlays.windows.downloadupdate;
 
 /**
- * A Task to verify the downloaded haveno installer against the available keys/signatures.
+ * A Task to verify the downloaded tuskex installer against the available keys/signatures.
  */
 
 import com.google.common.collect.Lists;
@@ -35,15 +35,15 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Getter
-public class VerifyTask extends Task<List<HavenoInstaller.VerifyDescriptor>> {
-    private final List<HavenoInstaller.FileDescriptor> fileDescriptors;
+public class VerifyTask extends Task<List<TuskexInstaller.VerifyDescriptor>> {
+    private final List<TuskexInstaller.FileDescriptor> fileDescriptors;
 
     /**
      * Prepares a task to download a file from {@code fileDescriptors} to {@code saveDir}.
      *
      * @param fileDescriptors HTTP URL of the file to be downloaded
      */
-    public VerifyTask(final List<HavenoInstaller.FileDescriptor> fileDescriptors) {
+    public VerifyTask(final List<TuskexInstaller.FileDescriptor> fileDescriptors) {
         super();
         this.fileDescriptors = fileDescriptors;
         log.info("Starting VerifyTask with files:{}", fileDescriptors);
@@ -56,23 +56,23 @@ public class VerifyTask extends Task<List<HavenoInstaller.VerifyDescriptor>> {
      * @throws IOException Forwarded exceotions from HttpURLConnection and file handling methods
      */
     @Override
-    protected List<HavenoInstaller.VerifyDescriptor> call() {
+    protected List<TuskexInstaller.VerifyDescriptor> call() {
         log.debug("VerifyTask started...");
-        Optional<HavenoInstaller.FileDescriptor> installer = fileDescriptors.stream()
-                .filter(fileDescriptor -> HavenoInstaller.DownloadType.INSTALLER.equals(fileDescriptor.getType()))
+        Optional<TuskexInstaller.FileDescriptor> installer = fileDescriptors.stream()
+                .filter(fileDescriptor -> TuskexInstaller.DownloadType.INSTALLER.equals(fileDescriptor.getType()))
                 .findFirst();
         if (!installer.isPresent()) {
             log.error("No installer file found.");
             return Lists.newArrayList();
         }
 
-        Optional<HavenoInstaller.FileDescriptor> signingKeyOptional = fileDescriptors.stream()
-                .filter(fileDescriptor -> HavenoInstaller.DownloadType.SIGNING_KEY.equals(fileDescriptor.getType()))
+        Optional<TuskexInstaller.FileDescriptor> signingKeyOptional = fileDescriptors.stream()
+                .filter(fileDescriptor -> TuskexInstaller.DownloadType.SIGNING_KEY.equals(fileDescriptor.getType()))
                 .findAny();
 
-        List<HavenoInstaller.VerifyDescriptor> verifyDescriptors = Lists.newArrayList();
+        List<TuskexInstaller.VerifyDescriptor> verifyDescriptors = Lists.newArrayList();
         if (signingKeyOptional.isPresent()) {
-            final HavenoInstaller.FileDescriptor signingKeyFD = signingKeyOptional.get();
+            final TuskexInstaller.FileDescriptor signingKeyFD = signingKeyOptional.get();
             StringBuilder sb = new StringBuilder();
             try {
                 Scanner scanner = new Scanner(new FileReader(signingKeyFD.getSaveFile()));
@@ -83,36 +83,36 @@ public class VerifyTask extends Task<List<HavenoInstaller.VerifyDescriptor>> {
             } catch (Exception e) {
                 log.error(e.toString());
                 e.printStackTrace();
-                HavenoInstaller.VerifyDescriptor.VerifyDescriptorBuilder verifyDescriptorBuilder = HavenoInstaller.VerifyDescriptor.builder();
-                verifyDescriptorBuilder.verifyStatusEnum(HavenoInstaller.VerifyStatusEnum.FAIL);
+                TuskexInstaller.VerifyDescriptor.VerifyDescriptorBuilder verifyDescriptorBuilder = TuskexInstaller.VerifyDescriptor.builder();
+                verifyDescriptorBuilder.verifyStatusEnum(TuskexInstaller.VerifyStatusEnum.FAIL);
                 verifyDescriptors.add(verifyDescriptorBuilder.build());
                 return verifyDescriptors;
             }
             String signingKey = sb.toString();
 
-            List<HavenoInstaller.FileDescriptor> sigs = fileDescriptors.stream()
-                    .filter(fileDescriptor -> HavenoInstaller.DownloadType.SIG.equals(fileDescriptor.getType()))
+            List<TuskexInstaller.FileDescriptor> sigs = fileDescriptors.stream()
+                    .filter(fileDescriptor -> TuskexInstaller.DownloadType.SIG.equals(fileDescriptor.getType()))
                     .collect(Collectors.toList());
 
             // iterate all signatures available to us
-            for (HavenoInstaller.FileDescriptor sig : sigs) {
-                HavenoInstaller.VerifyDescriptor.VerifyDescriptorBuilder verifyDescriptorBuilder = HavenoInstaller.VerifyDescriptor.builder().sigFile(sig.getSaveFile());
+            for (TuskexInstaller.FileDescriptor sig : sigs) {
+                TuskexInstaller.VerifyDescriptor.VerifyDescriptorBuilder verifyDescriptorBuilder = TuskexInstaller.VerifyDescriptor.builder().sigFile(sig.getSaveFile());
                 // Sigs are linked to keys, extract all keys which have the same id
-                List<HavenoInstaller.FileDescriptor> keys = fileDescriptors.stream()
-                        .filter(keyDescriptor -> HavenoInstaller.DownloadType.KEY.equals(keyDescriptor.getType()))
+                List<TuskexInstaller.FileDescriptor> keys = fileDescriptors.stream()
+                        .filter(keyDescriptor -> TuskexInstaller.DownloadType.KEY.equals(keyDescriptor.getType()))
                         .filter(keyDescriptor -> sig.getId().equals(keyDescriptor.getId()))
                         .collect(Collectors.toList());
                 // iterate all keys which have the same id
-                for (HavenoInstaller.FileDescriptor key : keys) {
+                for (TuskexInstaller.FileDescriptor key : keys) {
                     if (signingKey.equals(key.getId())) {
                         verifyDescriptorBuilder.keyFile(key.getSaveFile());
                         try {
-                            verifyDescriptorBuilder.verifyStatusEnum(HavenoInstaller.verifySignature(key.getSaveFile(),
+                            verifyDescriptorBuilder.verifyStatusEnum(TuskexInstaller.verifySignature(key.getSaveFile(),
                                     sig.getSaveFile(),
                                     installer.get().getSaveFile()));
                             updateMessage(key.getFileName());
                         } catch (Exception e) {
-                            verifyDescriptorBuilder.verifyStatusEnum(HavenoInstaller.VerifyStatusEnum.FAIL);
+                            verifyDescriptorBuilder.verifyStatusEnum(TuskexInstaller.VerifyStatusEnum.FAIL);
                             log.error(e.toString());
                             e.printStackTrace();
                         }
@@ -124,8 +124,8 @@ public class VerifyTask extends Task<List<HavenoInstaller.VerifyDescriptor>> {
             }
         } else {
             log.error("signingKey is not found");
-            HavenoInstaller.VerifyDescriptor.VerifyDescriptorBuilder verifyDescriptorBuilder = HavenoInstaller.VerifyDescriptor.builder();
-            verifyDescriptorBuilder.verifyStatusEnum(HavenoInstaller.VerifyStatusEnum.FAIL);
+            TuskexInstaller.VerifyDescriptor.VerifyDescriptorBuilder verifyDescriptorBuilder = TuskexInstaller.VerifyDescriptor.builder();
+            verifyDescriptorBuilder.verifyStatusEnum(TuskexInstaller.VerifyStatusEnum.FAIL);
             verifyDescriptors.add(verifyDescriptorBuilder.build());
         }
 

@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.app;
+package tuskex.core.app;
 
-import haveno.common.config.HavenoHelpFormatter;
+import tuskex.common.config.TuskexHelpFormatter;
 import joptsimple.OptionParser;
 import org.junit.jupiter.api.Test;
 
@@ -32,20 +32,20 @@ import java.nio.file.Paths;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class HavenoHelpFormatterTest {
+public class TuskexHelpFormatterTest {
 
     @Test
     public void testHelpFormatter() throws IOException, URISyntaxException {
 
         OptionParser parser = new OptionParser();
 
-        parser.formatHelpWith(new HavenoHelpFormatter("Haveno Test", "haveno-test", "0.1.0"));
+        parser.formatHelpWith(new TuskexHelpFormatter("Tuskex Test", "tuskex-test", "0.1.0"));
 
         parser.accepts("name",
-                "The name of the Haveno node")
+                "The name of the Tuskex node")
                 .withRequiredArg()
                 .ofType(String.class)
-                .defaultsTo("Haveno");
+                .defaultsTo("Tuskex");
 
         parser.accepts("another-option",
                 "This is a long description which will need to break over multiple linessssssssssss such " +
@@ -112,7 +112,7 @@ public class HavenoHelpFormatterTest {
                 "Application data directory")
                 .withRequiredArg()
                 .ofType(File.class)
-                .defaultsTo(new File("/Users/cbeams/Library/Application Support/Haveno"));
+                .defaultsTo(new File("/Users/cbeams/Library/Application Support/Tuskex"));
 
         parser.accepts("enum-opt",
                 "Some option that accepts an enum value as an argument")

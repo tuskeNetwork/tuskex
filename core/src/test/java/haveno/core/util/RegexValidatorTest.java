@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.util;
+package tuskex.core.util;
 
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
-import haveno.core.util.validation.RegexValidator;
-import haveno.core.util.validation.RegexValidatorFactory;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
+import tuskex.core.util.validation.RegexValidator;
+import tuskex.core.util.validation.RegexValidatorFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +36,7 @@ public class RegexValidatorTest {
     public void setup() {
         Locale.setDefault(new Locale("en", "US"));
         GlobalSettings.setLocale(new Locale("en", "US"));
-        Res.setBaseCurrencyCode("XMR");
+        Res.setBaseCurrencyCode("TSK");
         Res.setBaseCurrencyName("Monero");
     }
 

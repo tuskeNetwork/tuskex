@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
 import com.google.common.collect.Lists;
-import haveno.core.xmr.wallet.XmrWalletService;
+import tuskex.core.tsk.wallet.TskWalletService;
 import javafx.collections.FXCollections;
 import monero.wallet.model.MoneroTxWallet;
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ public class DisplayedTransactionsTest {
     public void testUpdate() {
         List<MoneroTxWallet> transactions = Lists.newArrayList(mock(MoneroTxWallet.class), mock(MoneroTxWallet.class));
 
-        XmrWalletService walletService = mock(XmrWalletService.class);
+        TskWalletService walletService = mock(TskWalletService.class);
         when(walletService.getTxs(false)).thenReturn(transactions);
 
         TransactionListItemFactory transactionListItemFactory = mock(TransactionListItemFactory.class,
@@ -59,7 +59,7 @@ public class DisplayedTransactionsTest {
 
     @Test
     public void testUpdateWhenRepositoryIsEmpty() {
-        XmrWalletService walletService = mock(XmrWalletService.class);
+        TskWalletService walletService = mock(TskWalletService.class);
         when(walletService.getTxs(false))
                 .thenReturn(Collections.singletonList(mock(MoneroTxWallet.class)));
 

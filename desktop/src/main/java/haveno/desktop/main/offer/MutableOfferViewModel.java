@@ -15,59 +15,59 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer;
+package tuskex.desktop.main.offer;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.common.handlers.ErrorMessageHandler;
-import haveno.common.handlers.ResultHandler;
-import haveno.common.util.MathUtils;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.monetary.CryptoMoney;
-import haveno.core.monetary.Price;
-import haveno.core.monetary.TraditionalMoney;
-import haveno.core.monetary.Volume;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferRestrictions;
-import haveno.core.offer.OfferUtil;
-import haveno.core.offer.OpenOffer;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.payment.validation.FiatVolumeValidator;
-import haveno.core.payment.validation.SecurityDepositValidator;
-import haveno.core.payment.validation.XmrValidator;
-import haveno.core.provider.price.MarketPrice;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.ParsingUtils;
-import haveno.core.util.PriceUtil;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.coin.CoinUtil;
-import haveno.core.util.validation.AmountValidator4Decimals;
-import haveno.core.util.validation.AmountValidator8Decimals;
-import haveno.core.util.validation.InputValidator;
-import haveno.core.util.validation.MonetaryValidator;
-import haveno.core.xmr.wallet.Restrictions;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.model.ActivatableWithDataModel;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.funds.FundsView;
-import haveno.desktop.main.funds.deposit.DepositView;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.settings.SettingsView;
-import haveno.desktop.main.settings.preferences.PreferencesView;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.common.handlers.ErrorMessageHandler;
+import tuskex.common.handlers.ResultHandler;
+import tuskex.common.util.MathUtils;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.monetary.CryptoMoney;
+import tuskex.core.monetary.Price;
+import tuskex.core.monetary.TraditionalMoney;
+import tuskex.core.monetary.Volume;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferRestrictions;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.payment.validation.FiatVolumeValidator;
+import tuskex.core.payment.validation.SecurityDepositValidator;
+import tuskex.core.payment.validation.TskValidator;
+import tuskex.core.provider.price.MarketPrice;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.ParsingUtils;
+import tuskex.core.util.PriceUtil;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.coin.CoinUtil;
+import tuskex.core.util.validation.AmountValidator4Decimals;
+import tuskex.core.util.validation.AmountValidator8Decimals;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.core.util.validation.MonetaryValidator;
+import tuskex.core.tsk.wallet.Restrictions;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.model.ActivatableWithDataModel;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.funds.FundsView;
+import tuskex.desktop.main.funds.deposit.DepositView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.settings.SettingsView;
+import tuskex.desktop.main.settings.preferences.PreferencesView;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.GUIUtil;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -93,7 +93,7 @@ import org.bitcoinj.core.Coin;
 
 @Slf4j
 public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> extends ActivatableWithDataModel<M> {
-    private final XmrValidator xmrValidator;
+    private final TskValidator tskValidator;
     protected final SecurityDepositValidator securityDepositValidator;
     protected final PriceFeedService priceFeedService;
     private final AccountAgeWitnessService accountAgeWitnessService;
@@ -123,7 +123,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
     public final StringProperty triggerPrice = new SimpleStringProperty("");
     public final BooleanProperty reserveExactAmount = new SimpleBooleanProperty(true);
     final StringProperty tradeFee = new SimpleStringProperty();
-    final StringProperty tradeFeeInXmrWithFiat = new SimpleStringProperty();
+    final StringProperty tradeFeeInTskWithFiat = new SimpleStringProperty();
     final StringProperty tradeFeeCurrencyCode = new SimpleStringProperty();
     final StringProperty tradeFeeDescription = new SimpleStringProperty();
     final BooleanProperty isTradeFeeVisible = new SimpleBooleanProperty(false);
@@ -192,7 +192,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
                                  FiatVolumeValidator fiatVolumeValidator,
                                  AmountValidator4Decimals amountValidator4Decimals,
                                  AmountValidator8Decimals amountValidator8Decimals,
-                                 XmrValidator btcValidator,
+                                 TskValidator btcValidator,
                                  SecurityDepositValidator securityDepositValidator,
                                  PriceFeedService priceFeedService,
                                  AccountAgeWitnessService accountAgeWitnessService,
@@ -205,7 +205,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
         this.fiatVolumeValidator = fiatVolumeValidator;
         this.amountValidator4Decimals = amountValidator4Decimals;
         this.amountValidator8Decimals = amountValidator8Decimals;
-        this.xmrValidator = btcValidator;
+        this.tskValidator = btcValidator;
         this.securityDepositValidator = securityDepositValidator;
         this.priceFeedService = priceFeedService;
         this.accountAgeWitnessService = accountAgeWitnessService;
@@ -270,10 +270,10 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
                 () -> Res.get("createOffer.volume.prompt", dataModel.getTradeCurrencyCode().get()),
                 dataModel.getTradeCurrencyCode()));
 
-        totalToPay.bind(createStringBinding(() -> HavenoUtils.formatXmr(dataModel.totalToPayAsProperty().get(), true),
+        totalToPay.bind(createStringBinding(() -> TuskexUtils.formatTsk(dataModel.totalToPayAsProperty().get(), true),
                 dataModel.totalToPayAsProperty()));
 
-        tradeAmount.bind(createStringBinding(() -> HavenoUtils.formatXmr(dataModel.getAmount().get(), true),
+        tradeAmount.bind(createStringBinding(() -> TuskexUtils.formatTsk(dataModel.getAmount().get(), true),
                 dataModel.getAmount()));
 
         tradeCurrencyCode.bind(dataModel.getTradeCurrencyCode());
@@ -297,7 +297,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
     private void createListeners() {
         amountStringListener = (ov, oldValue, newValue) -> {
             if (!ignoreAmountStringListener) {
-                if (isXmrInputValid(newValue).isValid) {
+                if (isTskInputValid(newValue).isValid) {
                     setAmountToModel();
                     dataModel.calculateVolume();
                     dataModel.calculateTotalToPay();
@@ -307,7 +307,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
             }
         };
         minAmountStringListener = (ov, oldValue, newValue) -> {
-            if (isXmrInputValid(newValue).isValid)
+            if (isTskInputValid(newValue).isValid)
                 setMinAmountToModel();
             updateButtonDisableState();
         };
@@ -431,8 +431,8 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
 
         amountListener = (ov, oldValue, newValue) -> {
             if (newValue != null) {
-                amount.set(HavenoUtils.formatXmr(newValue));
-                buyerSecurityDepositInBTC.set(HavenoUtils.formatXmr(dataModel.getBuyerSecurityDeposit(), true));
+                amount.set(TuskexUtils.formatTsk(newValue));
+                buyerSecurityDepositInBTC.set(TuskexUtils.formatTsk(dataModel.getBuyerSecurityDeposit(), true));
             } else {
                 amount.set("");
                 buyerSecurityDepositInBTC.set("");
@@ -442,7 +442,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
         };
         minAmountListener = (ov, oldValue, newValue) -> {
             if (newValue != null)
-                minAmount.set(HavenoUtils.formatXmr(newValue));
+                minAmount.set(TuskexUtils.formatTsk(newValue));
             else
                 minAmount.set("");
         };
@@ -471,7 +471,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
             if (newValue != null) {
                 buyerSecurityDeposit.set(FormattingUtils.formatToPercent((double) newValue));
                 if (dataModel.getAmount().get() != null) {
-                    buyerSecurityDepositInBTC.set(HavenoUtils.formatXmr(dataModel.getBuyerSecurityDeposit(), true));
+                    buyerSecurityDepositInBTC.set(TuskexUtils.formatTsk(dataModel.getBuyerSecurityDeposit(), true));
                 }
                 updateBuyerSecurityDeposit();
             } else {
@@ -494,7 +494,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
 
     private void applyMakerFee() {
         tradeFeeCurrencyCode.set(Res.getBaseCurrencyCode());
-        tradeFeeDescription.set(Res.get("createOffer.tradeFee.descriptionXMROnly"));
+        tradeFeeDescription.set(Res.get("createOffer.tradeFee.descriptionTSKOnly"));
 
         BigInteger makerFee = dataModel.getMaxMakerFee();
         if (makerFee == null) {
@@ -502,8 +502,8 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
         }
 
         isTradeFeeVisible.setValue(true);
-        tradeFee.set(HavenoUtils.formatXmr(makerFee));
-        tradeFeeInXmrWithFiat.set(OfferViewModelUtil.getTradeFeeWithFiatEquivalent(offerUtil,
+        tradeFee.set(TuskexUtils.formatTsk(makerFee));
+        tradeFeeInTskWithFiat.set(OfferViewModelUtil.getTradeFeeWithFiatEquivalent(offerUtil,
                 dataModel.getMaxMakerFee(),
                 btcFormatter));
     }
@@ -534,7 +534,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
         dataModel.getBuyerSecurityDepositPct().addListener(securityDepositAsDoubleListener);
 
         // dataModel.feeFromFundingTxProperty.addListener(feeFromFundingTxListener);
-        dataModel.getIsXmrWalletFunded().addListener(isWalletFundedListener);
+        dataModel.getIsTskWalletFunded().addListener(isWalletFundedListener);
 
         priceFeedService.updateCounterProperty().addListener(currenciesUpdateListener);
     }
@@ -556,7 +556,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
         dataModel.getBuyerSecurityDepositPct().removeListener(securityDepositAsDoubleListener);
 
         //dataModel.feeFromFundingTxProperty.removeListener(feeFromFundingTxListener);
-        dataModel.getIsXmrWalletFunded().removeListener(isWalletFundedListener);
+        dataModel.getIsTskWalletFunded().removeListener(isWalletFundedListener);
 
         if (offer != null && errorMessageListener != null)
             offer.getErrorMessageProperty().removeListener(errorMessageListener);
@@ -575,9 +575,9 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
             addressAsString = dataModel.getAddressEntry().getAddressString();
         }
         if (dataModel.paymentAccount != null)
-            xmrValidator.setMaxValue(dataModel.paymentAccount.getPaymentMethod().getMaxTradeLimit(dataModel.getTradeCurrencyCode().get()));
-        xmrValidator.setMaxTradeLimit(BigInteger.valueOf(dataModel.getMaxTradeLimit()));
-        xmrValidator.setMinValue(Restrictions.getMinTradeAmount());
+            tskValidator.setMaxValue(dataModel.paymentAccount.getPaymentMethod().getMaxTradeLimit(dataModel.getTradeCurrencyCode().get()));
+        tskValidator.setMaxTradeLimit(BigInteger.valueOf(dataModel.getMaxTradeLimit()));
+        tskValidator.setMinValue(Restrictions.getMinTradeAmount());
 
         final boolean isBuy = dataModel.getDirection() == OfferDirection.BUY;
 
@@ -631,7 +631,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
 
     public void onCancelOffer(ResultHandler resultHandler, ErrorMessageHandler errorMessageHandler) {
         createOfferRequested = false;
-        OpenOfferManager openOfferManager = HavenoUtils.openOfferManager;
+        OpenOfferManager openOfferManager = TuskexUtils.openOfferManager;
         Optional<OpenOffer> openOffer = openOfferManager.getOpenOfferById(offer.getId());
         if (openOffer.isPresent()) {
             openOfferManager.cancelOpenOffer(openOffer.get(), () -> {
@@ -656,10 +656,10 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
     public void onPaymentAccountSelected(PaymentAccount paymentAccount) {
         dataModel.onPaymentAccountSelected(paymentAccount);
         if (amount.get() != null)
-            amountValidationResult.set(isXmrInputValid(amount.get()));
+            amountValidationResult.set(isTskInputValid(amount.get()));
 
-        xmrValidator.setMaxValue(dataModel.paymentAccount.getPaymentMethod().getMaxTradeLimit(dataModel.getTradeCurrencyCode().get()));
-        xmrValidator.setMaxTradeLimit(BigInteger.valueOf(dataModel.getMaxTradeLimit()));
+        tskValidator.setMaxValue(dataModel.paymentAccount.getPaymentMethod().getMaxTradeLimit(dataModel.getTradeCurrencyCode().get()));
+        tskValidator.setMaxTradeLimit(BigInteger.valueOf(dataModel.getMaxTradeLimit()));
         maybeShowMakeOfferToUnsignedAccountWarning();
 
         securityDepositValidator.setPaymentAccount(paymentAccount);
@@ -681,12 +681,12 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
 
     void fundFromSavingsWallet() {
         dataModel.fundFromSavingsWallet();
-        if (dataModel.getIsXmrWalletFunded().get()) {
+        if (dataModel.getIsTskWalletFunded().get()) {
             updateButtonDisableState();
         } else {
             new Popup().warning(Res.get("shared.notEnoughFunds",
-                            HavenoUtils.formatXmr(dataModel.totalToPayAsProperty().get(), true),
-                            HavenoUtils.formatXmr(dataModel.getTotalBalance(), true)))
+                            TuskexUtils.formatTsk(dataModel.totalToPayAsProperty().get(), true),
+                            TuskexUtils.formatTsk(dataModel.getTotalBalance(), true)))
                     .actionButtonTextWithGoTo("navigation.funds.depositFunds")
                     .onAction(() -> navigation.navigateTo(MainView.class, FundsView.class, DepositView.class))
                     .show();
@@ -701,12 +701,12 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
     // On focus out we do validation and apply the data to the model
     void onFocusOutAmountTextField(boolean oldValue, boolean newValue) {
         if (oldValue && !newValue) {
-            InputValidator.ValidationResult result = isXmrInputValid(amount.get());
+            InputValidator.ValidationResult result = isTskInputValid(amount.get());
             amountValidationResult.set(result);
             if (result.isValid) {
                 setAmountToModel();
                 ignoreAmountStringListener = true;
-                amount.set(HavenoUtils.formatXmr(dataModel.getAmount().get()));
+                amount.set(TuskexUtils.formatTsk(dataModel.getAmount().get()));
                 ignoreAmountStringListener = false;
                 dataModel.calculateVolume();
 
@@ -716,35 +716,35 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
                     amountValidationResult.set(result);
 
                 if (minAmount.get() != null)
-                    minAmountValidationResult.set(isXmrInputValid(minAmount.get()));
-            } else if (amount.get() != null && xmrValidator.getMaxTradeLimit() != null && xmrValidator.getMaxTradeLimit().longValueExact() == OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT.longValueExact()) {
-                if (ParsingUtils.parseNumberStringToDouble(amount.get()) < HavenoUtils.atomicUnitsToXmr(Restrictions.getMinTradeAmount())) {
+                    minAmountValidationResult.set(isTskInputValid(minAmount.get()));
+            } else if (amount.get() != null && tskValidator.getMaxTradeLimit() != null && tskValidator.getMaxTradeLimit().longValueExact() == OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT.longValueExact()) {
+                if (ParsingUtils.parseNumberStringToDouble(amount.get()) < TuskexUtils.atomicUnitsToTsk(Restrictions.getMinTradeAmount())) {
                     amountValidationResult.set(result);
                 } else {
-                    amount.set(HavenoUtils.formatXmr(xmrValidator.getMaxTradeLimit()));
+                    amount.set(TuskexUtils.formatTsk(tskValidator.getMaxTradeLimit()));
                     boolean isBuy = dataModel.getDirection() == OfferDirection.BUY;
-                    boolean isSellerWithinReleaseWindow = !isBuy && HavenoUtils.isReleasedWithinDays(HavenoUtils.RELEASE_LIMIT_DAYS);
+                    boolean isSellerWithinReleaseWindow = !isBuy && TuskexUtils.isReleasedWithinDays(TuskexUtils.RELEASE_LIMIT_DAYS);
                     if (isSellerWithinReleaseWindow) {
 
                         // format release date plus days
-                        Date releaseDate = HavenoUtils.getReleaseDate();
+                        Date releaseDate = TuskexUtils.getReleaseDate();
                         Calendar c = Calendar.getInstance();
                         c.setTime(releaseDate);
-                        c.add(Calendar.DATE, HavenoUtils.RELEASE_LIMIT_DAYS);
+                        c.add(Calendar.DATE, TuskexUtils.RELEASE_LIMIT_DAYS);
                         Date releaseDatePlusDays = c.getTime();
                         SimpleDateFormat formatter = new SimpleDateFormat("MMMM d, yyyy");
                         String releaseDatePlusDaysAsString = formatter.format(releaseDatePlusDays);
 
                         // popup temporary restriction
                         new Popup().information(Res.get("popup.warning.tradeLimitDueAccountAgeRestriction.seller.releaseLimit",
-                                HavenoUtils.formatXmr(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true),
+                                TuskexUtils.formatTsk(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true),
                                 releaseDatePlusDaysAsString,
                                 Res.get("offerbook.warning.newVersionAnnouncement")))
                         .width(900)
                         .show();
                     } else {
                         new Popup().information(Res.get(isBuy ? "popup.warning.tradeLimitDueAccountAgeRestriction.buyer" : "popup.warning.tradeLimitDueAccountAgeRestriction.seller",
-                                HavenoUtils.formatXmr(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true),
+                                TuskexUtils.formatTsk(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true),
                                 Res.get("offerbook.warning.newVersionAnnouncement")))
                         .width(900)
                         .show();
@@ -765,7 +765,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
 
     public void onFocusOutMinAmountTextField(boolean oldValue, boolean newValue) {
         if (oldValue && !newValue) {
-            InputValidator.ValidationResult result = isXmrInputValid(minAmount.get());
+            InputValidator.ValidationResult result = isTskInputValid(minAmount.get());
             minAmountValidationResult.set(result);
             if (result.isValid) {
                 BigInteger minAmount = dataModel.getMinAmount().get();
@@ -783,14 +783,14 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
                     updateButtonDisableState();
                 }
 
-                this.minAmount.set(HavenoUtils.formatXmr(minAmount));
+                this.minAmount.set(TuskexUtils.formatTsk(minAmount));
 
                 if (!dataModel.isMinAmountLessOrEqualAmount()) {
                     this.amount.set(this.minAmount.get());
                 } else {
                     minAmountValidationResult.set(result);
                     if (this.amount.get() != null)
-                        amountValidationResult.set(isXmrInputValid(this.amount.get()));
+                        amountValidationResult.set(isTskInputValid(this.amount.get()));
                 }
             } else {
                 syncMinAmountWithAmount = true;
@@ -914,12 +914,12 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
                     minAmount.set(amount.getValue());
                 } else {
                     if (amount.get() != null)
-                        amountValidationResult.set(isXmrInputValid(amount.get()));
+                        amountValidationResult.set(isTskInputValid(amount.get()));
 
                     // We only check minAmountValidationResult if amountValidationResult is valid, otherwise we would get
                     // triggered a close of the popup when the minAmountValidationResult is applied
                     if (amountValidationResult.getValue() != null && amountValidationResult.getValue().isValid && minAmount.get() != null)
-                        minAmountValidationResult.set(isXmrInputValid(minAmount.get()));
+                        minAmountValidationResult.set(isTskInputValid(minAmount.get()));
                 }
             }
 
@@ -1039,7 +1039,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
     }
 
     public String getSecurityDepositWithCode() {
-        return HavenoUtils.formatXmr(dataModel.getSecurityDeposit(), true);
+        return TuskexUtils.formatTsk(dataModel.getSecurityDeposit(), true);
     }
 
 
@@ -1131,7 +1131,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
 
     private void setAmountToModel() {
         if (amount.get() != null && !amount.get().isEmpty()) {
-            BigInteger amount = HavenoUtils.coinToAtomicUnits(DisplayUtils.parseToCoinWith4Decimals(this.amount.get(), btcFormatter));
+            BigInteger amount = TuskexUtils.coinToAtomicUnits(DisplayUtils.parseToCoinWith4Decimals(this.amount.get(), btcFormatter));
 
             long maxTradeLimit = dataModel.getMaxTradeLimit();
             Price price = dataModel.getPrice().get();
@@ -1152,7 +1152,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
 
     private void setMinAmountToModel() {
         if (minAmount.get() != null && !minAmount.get().isEmpty()) {
-            BigInteger minAmount = HavenoUtils.coinToAtomicUnits(DisplayUtils.parseToCoinWith4Decimals(this.minAmount.get(), btcFormatter));
+            BigInteger minAmount = TuskexUtils.coinToAtomicUnits(DisplayUtils.parseToCoinWith4Decimals(this.minAmount.get(), btcFormatter));
 
             Price price = dataModel.getPrice().get();
             long maxTradeLimit = dataModel.getMaxTradeLimit();
@@ -1217,8 +1217,8 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
         }
     }
 
-    private InputValidator.ValidationResult isXmrInputValid(String input) {
-        return xmrValidator.validate("" + HavenoUtils.atomicUnitsToXmr(HavenoUtils.parseXmr(input)));
+    private InputValidator.ValidationResult isTskInputValid(String input) {
+        return tskValidator.validate("" + TuskexUtils.atomicUnitsToTsk(TuskexUtils.parseTsk(input)));
     }
 
     private InputValidator.ValidationResult isPriceInputValid(String input) {
@@ -1251,7 +1251,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
                 errorMessage.get() != null ||
                 showTransactionPublishedScreen.get()) {
             waitingForFundsText.set("");
-        } else if (dataModel.getIsXmrWalletFunded().get()) {
+        } else if (dataModel.getIsTskWalletFunded().get()) {
             waitingForFundsText.set("");
         } else {
             waitingForFundsText.set(Res.get("shared.waitingForFunds"));
@@ -1265,7 +1265,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
 
         if (dataModel.isMinBuyerSecurityDeposit()) {
             buyerSecurityDepositLabel.set(Res.get("createOffer.minSecurityDepositUsed"));
-            buyerSecurityDeposit.set(HavenoUtils.formatXmr(Restrictions.getMinBuyerSecurityDeposit()));
+            buyerSecurityDeposit.set(TuskexUtils.formatTsk(Restrictions.getMinBuyerSecurityDeposit()));
         } else {
             buyerSecurityDepositLabel.set(getSecurityDepositLabel());
             buyerSecurityDeposit.set(FormattingUtils.formatToPercent(dataModel.getBuyerSecurityDepositPct().get()));
@@ -1276,8 +1276,8 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
         dataModel.calculateVolume();
         dataModel.calculateTotalToPay();
 
-        boolean inputDataValid = isXmrInputValid(amount.get()).isValid &&
-                isXmrInputValid(minAmount.get()).isValid &&
+        boolean inputDataValid = isTskInputValid(amount.get()).isValid &&
+                isTskInputValid(minAmount.get()).isValid &&
                 isPriceInputValid(price.get()).isValid &&
                 dataModel.getPrice().get() != null &&
                 dataModel.getPrice().get().getValue() != 0 &&
@@ -1295,7 +1295,7 @@ public abstract class MutableOfferViewModel<M extends MutableOfferDataModel> ext
         }
 
         isNextButtonDisabled.set(!inputDataValid);
-        isPlaceOfferButtonDisabled.set(createOfferRequested || !inputDataValid || !dataModel.getIsXmrWalletFunded().get());
+        isPlaceOfferButtonDisabled.set(createOfferRequested || !inputDataValid || !dataModel.getIsTskWalletFunded().get());
     }
 
     private void updateMarketPriceToManual() {

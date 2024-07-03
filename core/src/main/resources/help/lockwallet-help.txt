@@ -2,7 +2,7 @@ lockwallet
 
 NAME
 ----
-lockwallet - lock Haveno wallet
+lockwallet - lock Tuskex wallet
 
 SYNOPSIS
 --------
@@ -15,4 +15,4 @@ Locks an unlocked wallet before an unlockwallet timeout expires.
 EXAMPLES
 --------
 Immediately lock an encrypted wallet set to automatically lock in the future:
-$ ./haveno-cli --password=xyz --port=9998 lockwallet
+$ ./tuskex-cli --password=xyz --port=9998 lockwallet

@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades.steps.buyer;
+package tuskex.desktop.main.portfolio.pendingtrades.steps.buyer;
 
-import haveno.core.locale.Res;
-import haveno.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
-import haveno.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
+import tuskex.core.locale.Res;
+import tuskex.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
 
 public class BuyerStep1View extends TradeStepView {
 
@@ -34,7 +34,7 @@ public class BuyerStep1View extends TradeStepView {
     @Override
     protected void onPendingTradesInitialized() {
         super.onPendingTradesInitialized();
-        //validatePayoutTx(); // TODO (woodser): no payout tx in xmr integration, do something else?
+        //validatePayoutTx(); // TODO (woodser): no payout tx in tsk integration, do something else?
         //validateDepositInputs();
         checkForUnconfirmedTimeout();
     }

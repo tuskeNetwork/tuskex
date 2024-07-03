@@ -15,19 +15,19 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.openoffer;
+package tuskex.desktop.main.portfolio.openoffer;
 
 import com.google.inject.Inject;
-import haveno.common.UserThread;
-import haveno.common.handlers.ErrorMessageHandler;
-import haveno.common.handlers.ResultHandler;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OpenOffer;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.offer.TriggerPriceService;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.desktop.common.model.ActivatableDataModel;
+import tuskex.common.UserThread;
+import tuskex.common.handlers.ErrorMessageHandler;
+import tuskex.common.handlers.ResultHandler;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.offer.TriggerPriceService;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.desktop.common.model.ActivatableDataModel;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;

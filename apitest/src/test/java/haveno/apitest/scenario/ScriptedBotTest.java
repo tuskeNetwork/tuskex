@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario;
+package tuskex.apitest.scenario;
 
-import haveno.apitest.config.ApiTestConfig;
-import haveno.apitest.method.BitcoinCliHelper;
-import haveno.apitest.scenario.bot.AbstractBotTest;
-import haveno.apitest.scenario.bot.BotClient;
-import haveno.apitest.scenario.bot.RobotBob;
-import haveno.apitest.scenario.bot.script.BashScriptGenerator;
-import haveno.apitest.scenario.bot.shutdown.ManualBotShutdownException;
+import tuskex.apitest.config.ApiTestConfig;
+import tuskex.apitest.method.BitcoinCliHelper;
+import tuskex.apitest.scenario.bot.AbstractBotTest;
+import tuskex.apitest.scenario.bot.BotClient;
+import tuskex.apitest.scenario.bot.RobotBob;
+import tuskex.apitest.scenario.bot.script.BashScriptGenerator;
+import tuskex.apitest.scenario.bot.shutdown.ManualBotShutdownException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -34,12 +34,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.condition.EnabledIf;
 
-import static haveno.apitest.Scaffold.BitcoinCoreApp.bitcoind;
-import static haveno.apitest.config.HavenoAppConfig.alicedaemon;
-import static haveno.apitest.config.HavenoAppConfig.arbdaemon;
-import static haveno.apitest.config.HavenoAppConfig.bobdaemon;
-import static haveno.apitest.config.HavenoAppConfig.seednode;
-import static haveno.apitest.scenario.bot.shutdown.ManualShutdown.startShutdownTimer;
+import static tuskex.apitest.Scaffold.BitcoinCoreApp.bitcoind;
+import static tuskex.apitest.config.TuskexAppConfig.alicedaemon;
+import static tuskex.apitest.config.TuskexAppConfig.arbdaemon;
+import static tuskex.apitest.config.TuskexAppConfig.bobdaemon;
+import static tuskex.apitest.config.TuskexAppConfig.seednode;
+import static tuskex.apitest.scenario.bot.shutdown.ManualShutdown.startShutdownTimer;
 import static org.junit.jupiter.api.Assertions.fail;
 
 // The test case is enabled if AbstractBotTest#botScriptExists() returns true.

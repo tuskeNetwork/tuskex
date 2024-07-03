@@ -15,18 +15,18 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.method;
+package tuskex.apitest.method;
 
-import haveno.apitest.ApiTestCase;
-import haveno.apitest.linux.BashCommand;
-import haveno.cli.GrpcClient;
-import haveno.cli.table.builder.TableBuilder;
-import haveno.common.util.Utilities;
-import haveno.core.api.model.PaymentAccountForm;
-import haveno.core.payment.F2FAccount;
-import haveno.core.payment.NationalBankAccount;
-import haveno.core.proto.CoreProtoResolver;
-import haveno.proto.grpc.BalancesInfo;
+import tuskex.apitest.ApiTestCase;
+import tuskex.apitest.linux.BashCommand;
+import tuskex.cli.GrpcClient;
+import tuskex.cli.table.builder.TableBuilder;
+import tuskex.common.util.Utilities;
+import tuskex.core.api.model.PaymentAccountForm;
+import tuskex.core.payment.F2FAccount;
+import tuskex.core.payment.NationalBankAccount;
+import tuskex.core.proto.CoreProtoResolver;
+import tuskex.proto.grpc.BalancesInfo;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import org.slf4j.Logger;
@@ -40,10 +40,10 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static haveno.apitest.config.ApiTestConfig.BTC;
-import static haveno.apitest.config.ApiTestRateMeterInterceptorConfig.getTestRateMeterInterceptorConfig;
-import static haveno.cli.table.builder.TableType.BTC_BALANCE_TBL;
-import static haveno.core.xmr.wallet.Restrictions.getDefaultBuyerSecurityDepositAsPercent;
+import static tuskex.apitest.config.ApiTestConfig.BTC;
+import static tuskex.apitest.config.ApiTestRateMeterInterceptorConfig.getTestRateMeterInterceptorConfig;
+import static tuskex.cli.table.builder.TableType.BTC_BALANCE_TBL;
+import static tuskex.core.tsk.wallet.Restrictions.getDefaultBuyerSecurityDepositAsPercent;
 import static java.lang.String.format;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.stream;
@@ -64,7 +64,7 @@ public class MethodTest extends ApiTestCase {
             setUpScaffold(new String[]{
                     "--supportingApps", toNameList.apply(supportingApps),
                     "--callRateMeteringConfigPath", callRateMeteringConfigFile.getAbsolutePath(),
-                    "--enableHavenoDebugging", startSupportingAppsInDebugMode ? "true" : "false"
+                    "--enableTuskexDebugging", startSupportingAppsInDebugMode ? "true" : "false"
             });
             doPostStartup(generateBtcBlock);
         } catch (Exception ex) {
@@ -81,7 +81,7 @@ public class MethodTest extends ApiTestCase {
             setUpScaffold(new String[]{
                     "--supportingApps", toNameList.apply(supportingApps),
                     "--callRateMeteringConfigPath", callRateMeteringConfigFile.getAbsolutePath(),
-                    "--enableHavenoDebugging", startSupportingAppsInDebugMode ? "true" : "false"
+                    "--enableTuskexDebugging", startSupportingAppsInDebugMode ? "true" : "false"
             });
             doPostStartup(generateBtcBlock);
         } catch (Exception ex) {
@@ -98,7 +98,7 @@ public class MethodTest extends ApiTestCase {
 
     protected final File getPaymentAccountForm(GrpcClient grpcClient, String paymentMethodId) {
         // We take seemingly unnecessary steps to get a File object, but the point is to
-        // test the API, and we do not directly ask haveno.core.api.model.PaymentAccountForm
+        // test the API, and we do not directly ask tuskex.core.api.model.PaymentAccountForm
         // for an empty json form (file).
         String jsonString = grpcClient.getPaymentAcctFormAsJson(paymentMethodId);
         // Write the json string to a file here in the test case.
@@ -112,7 +112,7 @@ public class MethodTest extends ApiTestCase {
     }
 
 
-    protected haveno.core.payment.PaymentAccount createDummyF2FAccount(GrpcClient grpcClient,
+    protected tuskex.core.payment.PaymentAccount createDummyF2FAccount(GrpcClient grpcClient,
                                                                      String countryCode) {
         String f2fAccountJsonString = "{\n" +
                 "  \"_COMMENTS_\": \"This is a dummy account.\",\n" +
@@ -128,7 +128,7 @@ public class MethodTest extends ApiTestCase {
     }
 
 
-    protected haveno.core.payment.PaymentAccount createDummyBRLAccount(GrpcClient grpcClient,
+    protected tuskex.core.payment.PaymentAccount createDummyBRLAccount(GrpcClient grpcClient,
                                                                      String holderName,
                                                                      String nationalAccountId,
                                                                      String holderTaxId) {
@@ -149,12 +149,12 @@ public class MethodTest extends ApiTestCase {
         return nationalBankAccount;
     }
 
-    protected final haveno.core.payment.PaymentAccount createPaymentAccount(GrpcClient grpcClient, String jsonString) {
+    protected final tuskex.core.payment.PaymentAccount createPaymentAccount(GrpcClient grpcClient, String jsonString) {
         // Normally, we do asserts on the protos from the gRPC service, but in this
-        // case we need a haveno.core.payment.PaymentAccount so it can be cast to its
+        // case we need a tuskex.core.payment.PaymentAccount so it can be cast to its
         // sub-type.
         var paymentAccount = grpcClient.createPaymentAccount(jsonString);
-        return haveno.core.payment.PaymentAccount.fromProto(paymentAccount, CORE_PROTO_RESOLVER);
+        return tuskex.core.payment.PaymentAccount.fromProto(paymentAccount, CORE_PROTO_RESOLVER);
     }
 
     public static final Supplier<Double> defaultBuyerSecurityDepositPct = () -> {
@@ -204,7 +204,7 @@ public class MethodTest extends ApiTestCase {
 
     @Nullable
     protected static String getNodeExceptionMessages() {
-        var nodeLogsSpec = config.rootAppDataDir.getAbsolutePath() + "/haveno-BTC_REGTEST_*_dao/haveno.log";
+        var nodeLogsSpec = config.rootAppDataDir.getAbsolutePath() + "/tuskex-BTC_REGTEST_*_dao/tuskex.log";
         var grep = "grep Exception " + nodeLogsSpec;
         var bashCommand = new BashCommand(grep);
         try {

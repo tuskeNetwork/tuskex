@@ -47,9 +47,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package haveno.desktop.main.market.trades.charts.price;
+package tuskex.desktop.main.market.trades.charts.price;
 
-import haveno.desktop.main.market.trades.charts.CandleData;
+import tuskex.desktop.main.market.trades.charts.CandleData;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;

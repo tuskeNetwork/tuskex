@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.settings.network;
+package tuskex.desktop.main.settings.network;
 
 import monero.daemon.model.MoneroPeer;
 

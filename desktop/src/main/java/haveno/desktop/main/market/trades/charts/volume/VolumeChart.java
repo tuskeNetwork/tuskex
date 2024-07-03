@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.trades.charts.volume;
+package tuskex.desktop.main.market.trades.charts.volume;
 
-import haveno.desktop.main.market.trades.charts.CandleData;
+import tuskex.desktop.main.market.trades.charts.CandleData;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.register.signing;
+package tuskex.desktop.main.account.register.signing;
 
 
 import com.google.inject.Inject;
-import haveno.common.util.Utilities;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.main.overlays.windows.SignPaymentAccountsWindow;
-import haveno.desktop.main.overlays.windows.SignSpecificWitnessWindow;
-import haveno.desktop.main.overlays.windows.SignUnsignedPubKeysWindow;
+import tuskex.common.util.Utilities;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.main.overlays.windows.SignPaymentAccountsWindow;
+import tuskex.desktop.main.overlays.windows.SignSpecificWitnessWindow;
+import tuskex.desktop.main.overlays.windows.SignUnsignedPubKeysWindow;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;

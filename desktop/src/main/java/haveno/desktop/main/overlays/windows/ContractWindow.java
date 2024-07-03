@@ -15,40 +15,40 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import com.google.common.base.Joiner;
 import com.google.inject.Inject;
-import haveno.common.UserThread;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.DisputeList;
-import haveno.core.support.dispute.DisputeManager;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.support.dispute.mediation.MediationManager;
-import haveno.core.support.dispute.refund.RefundManager;
-import haveno.core.trade.Contract;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.desktop.components.HavenoTextArea;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.util.DisplayUtils;
-import static haveno.desktop.util.DisplayUtils.getAccountWitnessDescription;
-import static haveno.desktop.util.FormBuilder.addButtonAfterGroup;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelButton;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelTextField;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.addLabelExplorerAddressTextField;
-import static haveno.desktop.util.FormBuilder.addLabelTxIdTextField;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import haveno.desktop.util.Layout;
-import haveno.network.p2p.NodeAddress;
+import tuskex.common.UserThread;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.DisputeList;
+import tuskex.core.support.dispute.DisputeManager;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.support.dispute.mediation.MediationManager;
+import tuskex.core.support.dispute.refund.RefundManager;
+import tuskex.core.trade.Contract;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.desktop.components.TuskexTextArea;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.util.DisplayUtils;
+import static tuskex.desktop.util.DisplayUtils.getAccountWitnessDescription;
+import static tuskex.desktop.util.FormBuilder.addButtonAfterGroup;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelButton;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addLabelExplorerAddressTextField;
+import static tuskex.desktop.util.FormBuilder.addLabelTxIdTextField;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import tuskex.desktop.util.Layout;
+import tuskex.network.p2p.NodeAddress;
 import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -145,22 +145,22 @@ public class ContractWindow extends Overlay<ContractWindow> {
         addConfirmationLabelTextField(gridPane, ++rowIndex, Res.get("shared.tradePrice"),
                 FormattingUtils.formatPrice(contract.getPrice()));
         addConfirmationLabelTextField(gridPane, ++rowIndex, Res.get("shared.tradeAmount"),
-                HavenoUtils.formatXmr(contract.getTradeAmount(), true));
+                TuskexUtils.formatTsk(contract.getTradeAmount(), true));
         addConfirmationLabelTextField(gridPane,
                 ++rowIndex,
                 VolumeUtil.formatVolumeLabel(currencyCode, ":"),
                 VolumeUtil.formatVolumeWithCode(contract.getTradeVolume()));
         String securityDeposit = Res.getWithColAndCap("shared.buyer") +
                 " " +
-                HavenoUtils.formatXmr(offer.getOfferPayload().getBuyerSecurityDepositForTradeAmount(contract.getTradeAmount()), true) +
+                TuskexUtils.formatTsk(offer.getOfferPayload().getBuyerSecurityDepositForTradeAmount(contract.getTradeAmount()), true) +
                 " / " +
                 Res.getWithColAndCap("shared.seller") +
                 " " +
-                HavenoUtils.formatXmr(offer.getOfferPayload().getSellerSecurityDepositForTradeAmount(contract.getTradeAmount()), true);
+                TuskexUtils.formatTsk(offer.getOfferPayload().getSellerSecurityDepositForTradeAmount(contract.getTradeAmount()), true);
         addConfirmationLabelTextField(gridPane, ++rowIndex, Res.get("shared.securityDeposit"), securityDeposit);
         addConfirmationLabelTextField(gridPane,
                 ++rowIndex,
-                Res.get("contractWindow.xmrAddresses"),
+                Res.get("contractWindow.tskAddresses"),
                 contract.getBuyerPayoutAddressString() + " / " + contract.getSellerPayoutAddressString());
         addConfirmationLabelTextField(gridPane,
                 ++rowIndex,
@@ -201,14 +201,14 @@ public class ContractWindow extends Overlay<ContractWindow> {
                     title = Res.get("shared.selectedArbitrator");
                     break;
                 case MEDIATION:
-                    throw new RuntimeException("Mediation type not adapted to XMR");
+                    throw new RuntimeException("Mediation type not adapted to TSK");
 //                    agentMatrixUserName = DisputeAgentLookupMap.getMatrixUserName(contract.getMediatorNodeAddress().getFullAddress());
 //                    title = Res.get("shared.selectedMediator");
 //                    break;
                 case TRADE:
                     break;
                 case REFUND:
-                    throw new RuntimeException("Refund type not adapted to XMR");
+                    throw new RuntimeException("Refund type not adapted to TSK");
 //                    agentMatrixUserName = DisputeAgentLookupMap.getMatrixUserName(contract.getRefundAgentNodeAddress().getFullAddress());
 //                    title = Res.get("shared.selectedRefundAgent");
 //                    break;
@@ -269,7 +269,7 @@ public class ContractWindow extends Overlay<ContractWindow> {
                 Res.get("shared.viewContractAsJson"), 0).second;
         viewContractButton.setDefaultButton(false);
         viewContractButton.setOnAction(e -> {
-            TextArea textArea = new HavenoTextArea();
+            TextArea textArea = new TuskexTextArea();
             String contractAsJson = dispute.getContractAsJson();
             textArea.setText(contractAsJson);
             textArea.setPrefHeight(50);

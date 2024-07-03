@@ -15,33 +15,33 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.common.util.Tuple3;
-import haveno.common.util.Utilities;
-import haveno.core.account.witness.AccountAgeWitness;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.TraditionalCurrency;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.payment.AssetAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.components.AutoTooltipCheckBox;
-import haveno.desktop.components.InfoTextField;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.Layout;
+import tuskex.common.util.Tuple3;
+import tuskex.common.util.Utilities;
+import tuskex.core.account.witness.AccountAgeWitness;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.TraditionalCurrency;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.payment.AssetAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.components.AutoTooltipCheckBox;
+import tuskex.desktop.components.InfoTextField;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.Layout;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -61,14 +61,14 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import static haveno.desktop.util.DisplayUtils.createAccountName;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelInfoTextField;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addTopLabelInfoTextField;
-import static haveno.desktop.util.FormBuilder.addTopLabelInputTextFieldSlideToggleButton;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextField;
+import static tuskex.desktop.util.DisplayUtils.createAccountName;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelInfoTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addTopLabelInfoTextField;
+import static tuskex.desktop.util.FormBuilder.addTopLabelInputTextFieldSlideToggleButton;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextField;
 
 @Slf4j
 public abstract class PaymentMethodForm {
@@ -183,14 +183,14 @@ public abstract class PaymentMethodForm {
         final String limitationsText = paymentAccount instanceof AssetAccount ?
                 Res.get("payment.maxPeriodAndLimitCrypto",
                         getTimeText(hours),
-                        HavenoUtils.formatXmr(accountAgeWitnessService.getMyTradeLimit(
+                        TuskexUtils.formatTsk(accountAgeWitnessService.getMyTradeLimit(
                             paymentAccount, tradeCurrency.getCode(), OfferDirection.BUY), true))
                 :
                 Res.get("payment.maxPeriodAndLimit",
                         getTimeText(hours),
-                        HavenoUtils.formatXmr(accountAgeWitnessService.getMyTradeLimit(
+                        TuskexUtils.formatTsk(accountAgeWitnessService.getMyTradeLimit(
                                 paymentAccount, tradeCurrency.getCode(), OfferDirection.BUY), true),
-                        HavenoUtils.formatXmr(accountAgeWitnessService.getMyTradeLimit(
+                        TuskexUtils.formatTsk(accountAgeWitnessService.getMyTradeLimit(
                                 paymentAccount, tradeCurrency.getCode(), OfferDirection.SELL), true),
                         DisplayUtils.formatAccountAge(accountAge));
         return limitationsText;

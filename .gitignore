@@ -3,7 +3,7 @@ bin/
 */log
 */out
 .idea
-!.idea/copyright/haveno_Affero_GPLv3.xml
+!.idea/copyright/tuskex_Affero_GPLv3.xml
 !.idea/copyright/profiles_settings.xml
 !.idea/codeStyleSettings.xml
 *.iml
@@ -22,7 +22,7 @@ build
 *.java.hsw
 *.~ava
 /bundles
-/haveno-*
+/tuskex-*
 /lib
 /xchange
 desktop.ini
@@ -37,3 +37,4 @@ deploy
 .vscode
 .vim/*
 */.factorypath
+.vs

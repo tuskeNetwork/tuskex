@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 
-import haveno.common.UserThread;
-import haveno.core.locale.Res;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.util.FormBuilder;
+import tuskex.common.UserThread;
+import tuskex.core.locale.Res;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.util.FormBuilder;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;

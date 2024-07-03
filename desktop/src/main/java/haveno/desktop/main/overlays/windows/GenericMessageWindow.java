@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.util.Layout;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.util.Layout;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
-import static haveno.desktop.util.FormBuilder.addTextArea;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
+import static tuskex.desktop.util.FormBuilder.addTextArea;
 
 public class GenericMessageWindow extends Overlay<GenericMessageWindow> {
     private String preamble;

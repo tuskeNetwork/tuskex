@@ -1,11 +1,11 @@
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXTextArea;
 import javafx.scene.control.Skin;
 
-public class HavenoTextArea extends JFXTextArea {
+public class TuskexTextArea extends JFXTextArea {
     @Override
     protected Skin<?> createDefaultSkin() {
-        return new JFXTextAreaSkinHavenoStyle(this);
+        return new JFXTextAreaSkinTuskexStyle(this);
     }
 }

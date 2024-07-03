@@ -1,4 +1,4 @@
-package haveno.desktop.main.overlays;
+package tuskex.desktop.main.overlays;
 
 import com.jfoenix.controls.JFXTabPane;
 import javafx.scene.layout.Region;

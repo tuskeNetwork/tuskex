@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario.bot;
+package tuskex.apitest.scenario.bot;
 
-import haveno.cli.GrpcClient;
-import haveno.proto.grpc.BalancesInfo;
-import haveno.proto.grpc.GetPaymentAccountsRequest;
-import haveno.proto.grpc.OfferInfo;
-import haveno.proto.grpc.TradeInfo;
+import tuskex.cli.GrpcClient;
+import tuskex.proto.grpc.BalancesInfo;
+import tuskex.proto.grpc.GetPaymentAccountsRequest;
+import tuskex.proto.grpc.OfferInfo;
+import tuskex.proto.grpc.TradeInfo;
 import lombok.extern.slf4j.Slf4j;
 import protobuf.PaymentAccount;
 

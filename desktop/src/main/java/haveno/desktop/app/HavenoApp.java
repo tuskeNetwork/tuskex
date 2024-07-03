@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.app;
+package tuskex.desktop.app;
 
-import static haveno.desktop.util.Layout.INITIAL_WINDOW_HEIGHT;
-import static haveno.desktop.util.Layout.INITIAL_WINDOW_WIDTH;
-import static haveno.desktop.util.Layout.MIN_WINDOW_HEIGHT;
-import static haveno.desktop.util.Layout.MIN_WINDOW_WIDTH;
+import static tuskex.desktop.util.Layout.INITIAL_WINDOW_HEIGHT;
+import static tuskex.desktop.util.Layout.INITIAL_WINDOW_WIDTH;
+import static tuskex.desktop.util.Layout.MIN_WINDOW_HEIGHT;
+import static tuskex.desktop.util.Layout.MIN_WINDOW_WIDTH;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
@@ -28,37 +28,37 @@ import com.google.common.base.Joiner;
 import com.google.inject.Injector;
 import com.google.inject.Key;
 import com.google.inject.name.Names;
-import haveno.common.app.DevEnv;
-import haveno.common.app.Log;
-import haveno.common.config.Config;
-import haveno.common.crypto.Hash;
-import haveno.common.setup.GracefulShutDownHandler;
-import haveno.common.setup.UncaughtExceptionHandler;
-import haveno.common.util.Utilities;
-import haveno.core.locale.Res;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.support.dispute.mediation.MediationManager;
-import haveno.core.support.dispute.refund.RefundManager;
-import haveno.core.trade.Trade;
-import haveno.core.trade.TradeManager;
-import haveno.core.user.Cookie;
-import haveno.core.user.CookieKey;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.xmr.wallet.WalletsManager;
-import haveno.desktop.common.view.CachingViewLoader;
-import haveno.desktop.common.view.View;
-import haveno.desktop.common.view.ViewLoader;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.debug.DebugView;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.FilterWindow;
-import haveno.desktop.main.overlays.windows.SendAlertMessageWindow;
-import haveno.desktop.main.overlays.windows.ShowWalletDataWindow;
-import haveno.desktop.util.CssTheme;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.ImageUtil;
+import tuskex.common.app.DevEnv;
+import tuskex.common.app.Log;
+import tuskex.common.config.Config;
+import tuskex.common.crypto.Hash;
+import tuskex.common.setup.GracefulShutDownHandler;
+import tuskex.common.setup.UncaughtExceptionHandler;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.support.dispute.mediation.MediationManager;
+import tuskex.core.support.dispute.refund.RefundManager;
+import tuskex.core.trade.Trade;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.user.Cookie;
+import tuskex.core.user.CookieKey;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.tsk.wallet.WalletsManager;
+import tuskex.desktop.common.view.CachingViewLoader;
+import tuskex.desktop.common.view.View;
+import tuskex.desktop.common.view.ViewLoader;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.debug.DebugView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.FilterWindow;
+import tuskex.desktop.main.overlays.windows.SendAlertMessageWindow;
+import tuskex.desktop.main.overlays.windows.ShowWalletDataWindow;
+import tuskex.desktop.util.CssTheme;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.ImageUtil;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +84,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 
 @Slf4j
-public class HavenoApp extends Application implements UncaughtExceptionHandler {
+public class TuskexApp extends Application implements UncaughtExceptionHandler {
     @Setter
     private static Consumer<Application> appLaunchedHandler;
     @Getter
@@ -102,7 +102,7 @@ public class HavenoApp extends Application implements UncaughtExceptionHandler {
     private boolean shutDownRequested;
     private MainView mainView;
 
-    public HavenoApp() {
+    public TuskexApp() {
         shutDownHandler = this::stop;
     }
 

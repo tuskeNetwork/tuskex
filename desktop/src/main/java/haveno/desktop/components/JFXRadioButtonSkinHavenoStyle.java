@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXRippler;
@@ -41,7 +41,7 @@ import javafx.util.Duration;
  * Code copied and adapted from com.jfoenix.skins.JFXRadioButtonSkin
  */
 
-public class JFXRadioButtonSkinHavenoStyle extends RadioButtonSkin {
+public class JFXRadioButtonSkinTuskexStyle extends RadioButtonSkin {
     private final JFXRippler rippler;
     private double padding = 12;
 
@@ -50,7 +50,7 @@ public class JFXRadioButtonSkinHavenoStyle extends RadioButtonSkin {
 
     private JFXAnimationTimer timer;
 
-    public JFXRadioButtonSkinHavenoStyle(JFXRadioButton control) {
+    public JFXRadioButtonSkinTuskexStyle(JFXRadioButton control) {
         super(control);
         control.setSelectedColor(Color.web("#0b65da"));
 

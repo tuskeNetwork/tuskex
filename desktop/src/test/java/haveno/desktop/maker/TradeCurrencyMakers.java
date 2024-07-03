@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.maker;
+package tuskex.desktop.maker;
 
 import com.natpryce.makeiteasy.Instantiator;
 import com.natpryce.makeiteasy.Property;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.TraditionalCurrency;
-import haveno.core.locale.TradeCurrency;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.TraditionalCurrency;
+import tuskex.core.locale.TradeCurrency;
 
 import static com.natpryce.makeiteasy.MakeItEasy.a;
 import static com.natpryce.makeiteasy.MakeItEasy.make;
@@ -32,10 +32,10 @@ public class TradeCurrencyMakers {
     public static final Property<TradeCurrency, String> currencyCode = new Property<>();
     public static final Property<TradeCurrency, String> currencyName = new Property<>();
 
-    public static final Instantiator<haveno.core.locale.CryptoCurrency> CryptoCurrency = lookup ->
-            new CryptoCurrency(lookup.valueOf(currencyCode, "XMR"), lookup.valueOf(currencyName, "Monero"));
+    public static final Instantiator<tuskex.core.locale.CryptoCurrency> CryptoCurrency = lookup ->
+            new CryptoCurrency(lookup.valueOf(currencyCode, "TSK"), lookup.valueOf(currencyName, "Monero"));
 
-    public static final Instantiator<haveno.core.locale.TraditionalCurrency> TraditionalCurrency = lookup ->
+    public static final Instantiator<tuskex.core.locale.TraditionalCurrency> TraditionalCurrency = lookup ->
             new TraditionalCurrency(lookup.valueOf(currencyCode, "EUR"));
 
     public static final CryptoCurrency monero = make(a(CryptoCurrency));

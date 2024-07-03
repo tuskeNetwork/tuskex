@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.method;
+package tuskex.apitest.method;
 
 import io.grpc.StatusRuntimeException;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +28,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static haveno.apitest.Scaffold.BitcoinCoreApp.bitcoind;
-import static haveno.apitest.config.HavenoAppConfig.alicedaemon;
+import static tuskex.apitest.Scaffold.BitcoinCoreApp.bitcoind;
+import static tuskex.apitest.config.TuskexAppConfig.alicedaemon;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

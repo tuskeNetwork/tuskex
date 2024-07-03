@@ -13,4 +13,4 @@ include 'statsnode'
 include 'inventory'
 include 'apitest'
 
-rootProject.name = 'haveno'
+rootProject.name = 'tuskex'

@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.failedtrades;
+package tuskex.desktop.main.portfolio.failedtrades;
 
 import com.google.inject.Inject;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.trade.Trade;
-import haveno.core.trade.TradeManager;
-import haveno.core.trade.failed.FailedTradesManager;
-import haveno.desktop.common.model.ActivatableDataModel;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.trade.Trade;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.trade.failed.FailedTradesManager;
+import tuskex.desktop.common.model.ActivatableDataModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;

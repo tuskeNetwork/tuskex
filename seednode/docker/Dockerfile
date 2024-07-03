@@ -1,4 +1,4 @@
-# docker run -it -p 9050 -p 2002 --restart-policy unless-stopped --name haveno-seednode haveno-seednode
+# docker run -it -p 9050 -p 2002 --restart-policy unless-stopped --name tuskex-seednode tuskex-seednode
 # TODO: image very heavy, but it's hard to significantly reduce the size without bins
 
 FROM openjdk:21-jdk-bullseye
@@ -10,20 +10,20 @@ RUN set -ex && \
         git \
         tor
 
-RUN set -ex && adduser --system --group --disabled-password haveno && \
-    mkdir -p /home/haveno && \
-    chown -R haveno:haveno /home/haveno
+RUN set -ex && adduser --system --group --disabled-password tuskex && \
+    mkdir -p /home/tuskex && \
+    chown -R tuskex:tuskex /home/tuskex
 
-USER haveno
+USER tuskex
 
-WORKDIR /home/haveno
+WORKDIR /home/tuskex
 
-RUN set -ex && git clone https://github.com/haveno-dex/haveno.git && \
-    cd haveno && \
+RUN set -ex && git clone https://github.com/tuskex-dex/tuskex.git && \
+    cd tuskex && \
     make skip-tests
 
-WORKDIR /home/haveno/haveno
+WORKDIR /home/tuskex/tuskex
 
-ENTRYPOINT [ "./haveno-seednode" ]
+ENTRYPOINT [ "./tuskex-seednode" ]
 
-CMD ["--baseCurrencyNetwork=XMR_STAGENET", "--useLocalhostForP2P=false", "--useDevPrivilegeKeys=false", "--nodePort=2002", "--appName=haveno-XMR_STAGENET_Seed_2002" ]
+CMD ["--baseCurrencyNetwork=TSK_STAGENET", "--useLocalhostForP2P=false", "--useDevPrivilegeKeys=false", "--nodePort=2002", "--appName=tuskex-TSK_STAGENET_Seed_2002" ]

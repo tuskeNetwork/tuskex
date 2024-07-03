@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.method;
+package tuskex.apitest.method;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
@@ -25,8 +25,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static haveno.apitest.config.HavenoAppConfig.alicedaemon;
-import static haveno.cli.Method.createoffer;
+import static tuskex.apitest.config.TuskexAppConfig.alicedaemon;
+import static tuskex.cli.Method.createoffer;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.MethodOrderer.OrderAnnotation;

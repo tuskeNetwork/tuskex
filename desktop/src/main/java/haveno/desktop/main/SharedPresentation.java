@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main;
+package tuskex.desktop.main;
 
-import haveno.common.UserThread;
-import haveno.common.file.FileUtil;
-import haveno.core.locale.Res;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.xmr.wallet.WalletsManager;
-import haveno.desktop.app.HavenoApp;
-import haveno.desktop.main.overlays.popups.Popup;
+import tuskex.common.UserThread;
+import tuskex.common.file.FileUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.tsk.wallet.WalletsManager;
+import tuskex.desktop.app.TuskexApp;
+import tuskex.desktop.main.overlays.popups.Popup;
 import lombok.extern.slf4j.Slf4j;
 import org.bitcoinj.wallet.DeterministicSeed;
 
@@ -71,7 +71,7 @@ public class SharedPresentation {
                 () -> UserThread.execute(() -> {
                     log.info("Wallets restored with seed words");
                     new Popup().feedback(Res.get("seed.restore.success")).hideCloseButton().show();
-                    HavenoApp.getShutDownHandler().run();
+                    TuskexApp.getShutDownHandler().run();
                 }),
                 throwable -> UserThread.execute(() -> {
                     log.error(throwable.toString());

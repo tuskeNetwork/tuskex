@@ -15,26 +15,26 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio;
+package tuskex.desktop.main.portfolio;
 
 import com.google.inject.Inject;
-import haveno.core.locale.Res;
-import haveno.core.offer.OfferPayload;
-import haveno.core.offer.OpenOffer;
-import haveno.core.trade.Trade;
-import haveno.core.trade.failed.FailedTradesManager;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.CachingViewLoader;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.common.view.View;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.portfolio.closedtrades.ClosedTradesView;
-import haveno.desktop.main.portfolio.duplicateoffer.DuplicateOfferView;
-import haveno.desktop.main.portfolio.editoffer.EditOfferView;
-import haveno.desktop.main.portfolio.failedtrades.FailedTradesView;
-import haveno.desktop.main.portfolio.openoffer.OpenOffersView;
-import haveno.desktop.main.portfolio.pendingtrades.PendingTradesView;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OfferPayload;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.trade.Trade;
+import tuskex.core.trade.failed.FailedTradesManager;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.CachingViewLoader;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.common.view.View;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.portfolio.closedtrades.ClosedTradesView;
+import tuskex.desktop.main.portfolio.duplicateoffer.DuplicateOfferView;
+import tuskex.desktop.main.portfolio.editoffer.EditOfferView;
+import tuskex.desktop.main.portfolio.failedtrades.FailedTradesView;
+import tuskex.desktop.main.portfolio.openoffer.OpenOffersView;
+import tuskex.desktop.main.portfolio.pendingtrades.PendingTradesView;
 import java.util.List;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;

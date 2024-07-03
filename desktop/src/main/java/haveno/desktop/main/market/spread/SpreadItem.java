@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.spread;
+package tuskex.desktop.main.market.spread;
 
-import haveno.core.monetary.Price;
+import tuskex.core.monetary.Price;
 
 import javax.annotation.Nullable;
 import java.math.BigInteger;

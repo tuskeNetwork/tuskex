@@ -15,24 +15,24 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades.steps.buyer;
+package tuskex.desktop.main.portfolio.pendingtrades.steps.buyer;
 
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.core.locale.Res;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.xmr.model.XmrAddressEntry;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.overlays.notifications.Notification;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.TradeFeedbackWindow;
-import haveno.desktop.main.portfolio.PortfolioView;
-import haveno.desktop.main.portfolio.closedtrades.ClosedTradesView;
-import haveno.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
-import haveno.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
-import haveno.desktop.util.Layout;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.core.locale.Res;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.tsk.model.TskAddressEntry;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.overlays.notifications.Notification;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.TradeFeedbackWindow;
+import tuskex.desktop.main.portfolio.PortfolioView;
+import tuskex.desktop.main.portfolio.closedtrades.ClosedTradesView;
+import tuskex.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.TradeStepView;
+import tuskex.desktop.util.Layout;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -41,7 +41,7 @@ import javafx.scene.layout.Priority;
 
 import java.util.concurrent.TimeUnit;
 
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
 
 public class BuyerStep4View extends TradeStepView {
 
@@ -121,7 +121,7 @@ public class BuyerStep4View extends TradeStepView {
 
     private void handleTradeCompleted() {
         closeButton.setDisable(true);
-        model.dataModel.xmrWalletService.swapAddressEntryToAvailable(trade.getId(), XmrAddressEntry.Context.TRADE_PAYOUT);
+        model.dataModel.tskWalletService.swapAddressEntryToAvailable(trade.getId(), TskAddressEntry.Context.TRADE_PAYOUT);
 
         openTradeFeedbackWindow();
     }

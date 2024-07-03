@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.signedoffer;
+package tuskex.desktop.main.offer.signedoffer;
 
 import com.google.inject.Inject;
 
@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 
 
 
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.offer.SignedOffer;
-import haveno.desktop.common.model.ActivatableDataModel;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.offer.SignedOffer;
+import tuskex.desktop.common.model.ActivatableDataModel;
 import java.sql.Date;
 
 class SignedOffersDataModel extends ActivatableDataModel {

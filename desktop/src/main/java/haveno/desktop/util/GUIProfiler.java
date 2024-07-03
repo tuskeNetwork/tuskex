@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
 import com.google.common.base.Stopwatch;
 import javafx.animation.AnimationTimer;

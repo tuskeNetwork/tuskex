@@ -11,17 +11,17 @@ gettransaction
 
 DESCRIPTION
 -----------
-Returns a very brief summary of a XMR transaction created by the Haveno server.
+Returns a very brief summary of a TSK transaction created by the Tuskex server.
 
 To see full transaction details, use a monero-core client or an online block explorer.
 
 OPTIONS
 -------
 --transaction-id
-		The ID of the XMR transaction.
+		The ID of the TSK transaction.
 
 EXAMPLES
 --------
 To see the summary of a transaction with ID 282dc2a5755219a49ee9f6d46a31a2cbaec6624beba96548180eccb1f004cdd8:
-$ ./haveno-cli --password=xyz --port=9998 gettransaction \
+$ ./tuskex-cli --password=xyz --port=9998 gettransaction \
     --transaction-id=282dc2a5755219a49ee9f6d46a31a2cbaec6624beba96548180eccb1f004cdd8

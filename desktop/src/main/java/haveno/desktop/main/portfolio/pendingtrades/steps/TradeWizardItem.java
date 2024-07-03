@@ -15,17 +15,17 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades.steps;
+package tuskex.desktop.main.portfolio.pendingtrades.steps;
 
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.common.UserThread;
+import tuskex.common.UserThread;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import org.jetbrains.annotations.NotNull;
 
-import static haveno.desktop.util.FormBuilder.getBigIcon;
+import static tuskex.desktop.util.FormBuilder.getBigIcon;
 
 public class TradeWizardItem extends Label {
     private final String iconLabel;

@@ -1,15 +1,15 @@
-package haveno.apitest.scenario.bot;
+package tuskex.apitest.scenario.bot;
 
-import haveno.apitest.method.BitcoinCliHelper;
-import haveno.apitest.scenario.bot.script.BashScriptGenerator;
-import haveno.apitest.scenario.bot.script.BotScript;
-import haveno.core.locale.Country;
+import tuskex.apitest.method.BitcoinCliHelper;
+import tuskex.apitest.scenario.bot.script.BashScriptGenerator;
+import tuskex.apitest.scenario.bot.script.BotScript;
+import tuskex.core.locale.Country;
 import lombok.extern.slf4j.Slf4j;
 import protobuf.PaymentAccount;
 
-import static haveno.core.locale.CountryUtil.findCountryByCode;
-import static haveno.core.payment.payload.PaymentMethod.ZELLE_ID;
-import static haveno.core.payment.payload.PaymentMethod.getPaymentMethod;
+import static tuskex.core.locale.CountryUtil.findCountryByCode;
+import static tuskex.core.payment.payload.PaymentMethod.ZELLE_ID;
+import static tuskex.core.payment.payload.PaymentMethod.getPaymentMethod;
 import static java.lang.String.format;
 import static java.util.concurrent.TimeUnit.MINUTES;
 

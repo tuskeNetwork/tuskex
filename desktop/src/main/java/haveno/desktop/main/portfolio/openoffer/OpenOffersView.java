@@ -15,34 +15,34 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.openoffer;
+package tuskex.desktop.main.portfolio.openoffer;
 
 import com.google.inject.Inject;
 import com.googlecode.jcsv.writer.CSVEntryConverter;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferPayload;
-import haveno.core.offer.OpenOffer;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.AutoTooltipSlideToggleButton;
-import haveno.desktop.components.AutoTooltipTableColumn;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.funds.FundsView;
-import haveno.desktop.main.funds.withdrawal.WithdrawalView;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.OfferDetailsWindow;
-import haveno.desktop.main.portfolio.PortfolioView;
-import haveno.desktop.main.portfolio.duplicateoffer.DuplicateOfferView;
-import static haveno.desktop.util.FormBuilder.getRegularIconButton;
-import haveno.desktop.util.GUIUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferPayload;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.AutoTooltipSlideToggleButton;
+import tuskex.desktop.components.AutoTooltipTableColumn;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.funds.FundsView;
+import tuskex.desktop.main.funds.withdrawal.WithdrawalView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.OfferDetailsWindow;
+import tuskex.desktop.main.portfolio.PortfolioView;
+import tuskex.desktop.main.portfolio.duplicateoffer.DuplicateOfferView;
+import static tuskex.desktop.util.FormBuilder.getRegularIconButton;
+import tuskex.desktop.util.GUIUtil;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -127,7 +127,7 @@ public class OpenOffersView extends ActivatableViewAndModel<VBox, OpenOffersView
         priceColumn.setGraphic(new AutoTooltipLabel(Res.get("shared.price")));
         deviationColumn.setGraphic(new AutoTooltipTableColumn<>(Res.get("shared.deviation"),
                 Res.get("portfolio.closedTrades.deviation.help")).getGraphic());
-        amountColumn.setGraphic(new AutoTooltipLabel(Res.get("shared.XMRMinMax")));
+        amountColumn.setGraphic(new AutoTooltipLabel(Res.get("shared.TSKMinMax")));
         volumeColumn.setGraphic(new AutoTooltipLabel(Res.get("shared.amountMinMax")));
         marketColumn.setGraphic(new AutoTooltipLabel(Res.get("shared.market")));
         directionColumn.setGraphic(new AutoTooltipLabel(Res.get("shared.offerType")));

@@ -1,11 +1,11 @@
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.offer.Offer;
-import haveno.core.trade.Trade;
-import haveno.core.user.Preferences;
-import haveno.network.p2p.NodeAddress;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.offer.Offer;
+import tuskex.core.trade.Trade;
+import tuskex.core.user.Preferences;
+import tuskex.network.p2p.NodeAddress;
 
 import javax.annotation.Nullable;
 

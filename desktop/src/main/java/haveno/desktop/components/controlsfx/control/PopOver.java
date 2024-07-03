@@ -25,9 +25,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package haveno.desktop.components.controlsfx.control;
+package tuskex.desktop.components.controlsfx.control;
 
-import haveno.desktop.components.controlsfx.skin.PopOverSkin;
+import tuskex.desktop.components.controlsfx.skin.PopOverSkin;
 import javafx.animation.FadeTransition;
 import javafx.beans.InvalidationListener;
 import javafx.beans.WeakInvalidationListener;

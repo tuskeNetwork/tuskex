@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.common;
+package tuskex.desktop.common;
 
-import haveno.common.Timer;
-import haveno.common.UserThread;
-import haveno.common.reactfx.FxTimer;
+import tuskex.common.Timer;
+import tuskex.common.UserThread;
+import tuskex.common.reactfx.FxTimer;
 import javafx.application.Platform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,7 @@ import java.time.Duration;
 
 public class UITimer implements Timer {
     private final Logger log = LoggerFactory.getLogger(UITimer.class);
-    private haveno.common.reactfx.Timer timer;
+    private tuskex.common.reactfx.Timer timer;
 
     public UITimer() {
     }

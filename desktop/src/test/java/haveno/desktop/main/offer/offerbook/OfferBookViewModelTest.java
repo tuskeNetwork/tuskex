@@ -15,39 +15,39 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.offerbook;
+package tuskex.desktop.main.offer.offerbook;
 
 import com.natpryce.makeiteasy.Maker;
-import haveno.common.config.Config;
-import haveno.core.locale.Country;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.TraditionalCurrency;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferPayload;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.payment.AliPayAccount;
-import haveno.core.payment.CountryBasedPaymentAccount;
-import haveno.core.payment.CryptoCurrencyAccount;
-import haveno.core.payment.NationalBankAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.PaymentAccountUtil;
-import haveno.core.payment.SameBankAccount;
-import haveno.core.payment.SepaAccount;
-import haveno.core.payment.SpecificBanksAccount;
-import haveno.core.payment.payload.NationalBankAccountPayload;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.payment.payload.SameBankAccountPayload;
-import haveno.core.payment.payload.SepaAccountPayload;
-import haveno.core.payment.payload.SpecificBanksAccountPayload;
-import haveno.core.provider.price.MarketPrice;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.statistics.TradeStatisticsManager;
-import haveno.core.user.User;
-import haveno.core.util.PriceUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.coin.ImmutableCoinFormatter;
+import tuskex.common.config.Config;
+import tuskex.core.locale.Country;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.TraditionalCurrency;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferPayload;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.payment.AliPayAccount;
+import tuskex.core.payment.CountryBasedPaymentAccount;
+import tuskex.core.payment.CryptoCurrencyAccount;
+import tuskex.core.payment.NationalBankAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.PaymentAccountUtil;
+import tuskex.core.payment.SameBankAccount;
+import tuskex.core.payment.SepaAccount;
+import tuskex.core.payment.SpecificBanksAccount;
+import tuskex.core.payment.payload.NationalBankAccountPayload;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.payment.payload.SameBankAccountPayload;
+import tuskex.core.payment.payload.SepaAccountPayload;
+import tuskex.core.payment.payload.SpecificBanksAccountPayload;
+import tuskex.core.provider.price.MarketPrice;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.statistics.TradeStatisticsManager;
+import tuskex.core.user.User;
+import tuskex.core.util.PriceUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.coin.ImmutableCoinFormatter;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,15 +64,15 @@ import java.util.Collection;
 
 import static com.natpryce.makeiteasy.MakeItEasy.make;
 import static com.natpryce.makeiteasy.MakeItEasy.with;
-import static haveno.desktop.main.offer.offerbook.OfferBookListItemMaker.amount;
-import static haveno.desktop.main.offer.offerbook.OfferBookListItemMaker.marketPriceMargin;
-import static haveno.desktop.main.offer.offerbook.OfferBookListItemMaker.minAmount;
-import static haveno.desktop.main.offer.offerbook.OfferBookListItemMaker.price;
-import static haveno.desktop.main.offer.offerbook.OfferBookListItemMaker.useMarketBasedPrice;
-import static haveno.desktop.main.offer.offerbook.OfferBookListItemMaker.xmrBuyItem;
-import static haveno.desktop.main.offer.offerbook.OfferBookListItemMaker.xmrItemWithRange;
-import static haveno.desktop.maker.PreferenceMakers.empty;
-import static haveno.desktop.maker.TradeCurrencyMakers.usd;
+import static tuskex.desktop.main.offer.offerbook.OfferBookListItemMaker.amount;
+import static tuskex.desktop.main.offer.offerbook.OfferBookListItemMaker.marketPriceMargin;
+import static tuskex.desktop.main.offer.offerbook.OfferBookListItemMaker.minAmount;
+import static tuskex.desktop.main.offer.offerbook.OfferBookListItemMaker.price;
+import static tuskex.desktop.main.offer.offerbook.OfferBookListItemMaker.useMarketBasedPrice;
+import static tuskex.desktop.main.offer.offerbook.OfferBookListItemMaker.tskBuyItem;
+import static tuskex.desktop.main.offer.offerbook.OfferBookListItemMaker.tskItemWithRange;
+import static tuskex.desktop.maker.PreferenceMakers.empty;
+import static tuskex.desktop.maker.TradeCurrencyMakers.usd;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -241,7 +241,7 @@ public class OfferBookViewModelTest {
 
         when(offerBook.getOfferBookListItems()).thenReturn(offerBookListItems);
 
-        final OfferBookViewModel model = new XmrOfferBookViewModel(null, null, offerBook, empty, null, null, null,
+        final OfferBookViewModel model = new TskOfferBookViewModel(null, null, offerBook, empty, null, null, null,
                 null, null, null, getPriceUtil(), null, coinFormatter, null);
         assertEquals(0, model.maxPlacesForAmount.intValue());
     }
@@ -251,16 +251,16 @@ public class OfferBookViewModelTest {
         OfferBook offerBook = mock(OfferBook.class);
         OpenOfferManager openOfferManager = mock(OpenOfferManager.class);
         final ObservableList<OfferBookListItem> offerBookListItems = FXCollections.observableArrayList();
-        offerBookListItems.addAll(make(OfferBookListItemMaker.xmrBuyItem));
+        offerBookListItems.addAll(make(OfferBookListItemMaker.tskBuyItem));
 
         when(offerBook.getOfferBookListItems()).thenReturn(offerBookListItems);
 
-        final OfferBookViewModel model = new XmrOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
+        final OfferBookViewModel model = new TskOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
                 null, null, null, getPriceUtil(), null, coinFormatter, null);
         model.activate();
 
         assertEquals(6, model.maxPlacesForAmount.intValue());
-        offerBookListItems.addAll(make(xmrBuyItem.but(with(amount, 20000000000000L))));
+        offerBookListItems.addAll(make(tskBuyItem.but(with(amount, 20000000000000L))));
         assertEquals(7, model.maxPlacesForAmount.intValue());
     }
 
@@ -269,18 +269,18 @@ public class OfferBookViewModelTest {
         OfferBook offerBook = mock(OfferBook.class);
         OpenOfferManager openOfferManager = mock(OpenOfferManager.class);
         final ObservableList<OfferBookListItem> offerBookListItems = FXCollections.observableArrayList();
-        offerBookListItems.addAll(make(OfferBookListItemMaker.xmrItemWithRange));
+        offerBookListItems.addAll(make(OfferBookListItemMaker.tskItemWithRange));
 
         when(offerBook.getOfferBookListItems()).thenReturn(offerBookListItems);
 
-        final OfferBookViewModel model = new XmrOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
+        final OfferBookViewModel model = new TskOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
                 null, null, null, getPriceUtil(), null, coinFormatter, null);
         model.activate();
 
         assertEquals(15, model.maxPlacesForAmount.intValue());
-        offerBookListItems.addAll(make(xmrItemWithRange.but(with(amount, 20000000000000L))));
+        offerBookListItems.addAll(make(tskItemWithRange.but(with(amount, 20000000000000L))));
         assertEquals(16, model.maxPlacesForAmount.intValue());
-        offerBookListItems.addAll(make(xmrItemWithRange.but(with(minAmount, 300000000000000L),
+        offerBookListItems.addAll(make(tskItemWithRange.but(with(minAmount, 300000000000000L),
                 with(amount, 300000000000000L))));
         assertEquals(19, model.maxPlacesForAmount.intValue());
     }
@@ -292,7 +292,7 @@ public class OfferBookViewModelTest {
 
         when(offerBook.getOfferBookListItems()).thenReturn(offerBookListItems);
 
-        final OfferBookViewModel model = new XmrOfferBookViewModel(null, null, offerBook, empty, null, null, null,
+        final OfferBookViewModel model = new TskOfferBookViewModel(null, null, offerBook, empty, null, null, null,
                 null, null, null, getPriceUtil(), null, coinFormatter, null);
         assertEquals(0, model.maxPlacesForVolume.intValue());
     }
@@ -302,16 +302,16 @@ public class OfferBookViewModelTest {
         OfferBook offerBook = mock(OfferBook.class);
         OpenOfferManager openOfferManager = mock(OpenOfferManager.class);
         final ObservableList<OfferBookListItem> offerBookListItems = FXCollections.observableArrayList();
-        offerBookListItems.addAll(make(OfferBookListItemMaker.xmrBuyItem));
+        offerBookListItems.addAll(make(OfferBookListItemMaker.tskBuyItem));
 
         when(offerBook.getOfferBookListItems()).thenReturn(offerBookListItems);
 
-        final OfferBookViewModel model = new XmrOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
+        final OfferBookViewModel model = new TskOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
                 null, null, null, getPriceUtil(), null, coinFormatter, null);
         model.activate();
 
         assertEquals(5, model.maxPlacesForVolume.intValue());
-        offerBookListItems.addAll(make(xmrBuyItem.but(with(amount, 20000000000000L))));
+        offerBookListItems.addAll(make(tskBuyItem.but(with(amount, 20000000000000L))));
         assertEquals(7, model.maxPlacesForVolume.intValue());
     }
 
@@ -320,18 +320,18 @@ public class OfferBookViewModelTest {
         OfferBook offerBook = mock(OfferBook.class);
         OpenOfferManager openOfferManager = mock(OpenOfferManager.class);
         final ObservableList<OfferBookListItem> offerBookListItems = FXCollections.observableArrayList();
-        offerBookListItems.addAll(make(OfferBookListItemMaker.xmrItemWithRange));
+        offerBookListItems.addAll(make(OfferBookListItemMaker.tskItemWithRange));
 
         when(offerBook.getOfferBookListItems()).thenReturn(offerBookListItems);
 
-        final OfferBookViewModel model = new XmrOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
+        final OfferBookViewModel model = new TskOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
                 null, null, null, getPriceUtil(), null, coinFormatter, null);
         model.activate();
 
         assertEquals(9, model.maxPlacesForVolume.intValue());
-        offerBookListItems.addAll(make(xmrItemWithRange.but(with(amount, 200000000000000000L))));
+        offerBookListItems.addAll(make(tskItemWithRange.but(with(amount, 200000000000000000L))));
         assertEquals(11, model.maxPlacesForVolume.intValue());
-        offerBookListItems.addAll(make(xmrItemWithRange.but(with(minAmount, 3000000000000000000L), with(amount, 3000000000000000000L))));
+        offerBookListItems.addAll(make(tskItemWithRange.but(with(minAmount, 3000000000000000000L), with(amount, 3000000000000000000L))));
         assertEquals(19, model.maxPlacesForVolume.intValue());
     }
 
@@ -342,7 +342,7 @@ public class OfferBookViewModelTest {
 
         when(offerBook.getOfferBookListItems()).thenReturn(offerBookListItems);
 
-        final OfferBookViewModel model = new XmrOfferBookViewModel(null, null, offerBook, empty, null, null, null,
+        final OfferBookViewModel model = new TskOfferBookViewModel(null, null, offerBook, empty, null, null, null,
                 null, null, null, getPriceUtil(), null, coinFormatter, null);
         assertEquals(0, model.maxPlacesForPrice.intValue());
     }
@@ -352,18 +352,18 @@ public class OfferBookViewModelTest {
         OfferBook offerBook = mock(OfferBook.class);
         OpenOfferManager openOfferManager = mock(OpenOfferManager.class);
         final ObservableList<OfferBookListItem> offerBookListItems = FXCollections.observableArrayList();
-        offerBookListItems.addAll(make(OfferBookListItemMaker.xmrBuyItem));
+        offerBookListItems.addAll(make(OfferBookListItemMaker.tskBuyItem));
 
         when(offerBook.getOfferBookListItems()).thenReturn(offerBookListItems);
 
-        final OfferBookViewModel model = new XmrOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
+        final OfferBookViewModel model = new TskOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
                 null, null, null, getPriceUtil(), null, coinFormatter, null);
         model.activate();
 
         assertEquals(7, model.maxPlacesForPrice.intValue());
-        offerBookListItems.addAll(make(xmrBuyItem.but(with(price, 1495582400000L)))); //149558240
+        offerBookListItems.addAll(make(tskBuyItem.but(with(price, 1495582400000L)))); //149558240
         assertEquals(10, model.maxPlacesForPrice.intValue());
-        offerBookListItems.addAll(make(xmrBuyItem.but(with(price, 149558240000L)))); //149558240
+        offerBookListItems.addAll(make(tskBuyItem.but(with(price, 149558240000L)))); //149558240
         assertEquals(10, model.maxPlacesForPrice.intValue());
     }
 
@@ -374,7 +374,7 @@ public class OfferBookViewModelTest {
 
         when(offerBook.getOfferBookListItems()).thenReturn(offerBookListItems);
 
-        final OfferBookViewModel model = new XmrOfferBookViewModel(null, null, offerBook, empty, null, null, null,
+        final OfferBookViewModel model = new TskOfferBookViewModel(null, null, offerBook, empty, null, null, null,
                 null, null, null, getPriceUtil(), null, coinFormatter, null);
         assertEquals(0, model.maxPlacesForMarketPriceMargin.intValue());
     }
@@ -386,7 +386,7 @@ public class OfferBookViewModelTest {
         PriceFeedService priceFeedService = mock(PriceFeedService.class);
 
         final ObservableList<OfferBookListItem> offerBookListItems = FXCollections.observableArrayList();
-        final Maker<OfferBookListItem> item = xmrBuyItem.but(with(useMarketBasedPrice, true));
+        final Maker<OfferBookListItem> item = tskBuyItem.but(with(useMarketBasedPrice, true));
 
         when(offerBook.getOfferBookListItems()).thenReturn(offerBookListItems);
         when(priceFeedService.getMarketPrice(anyString())).thenReturn(null);
@@ -409,7 +409,7 @@ public class OfferBookViewModelTest {
         item4.getOffer().setPriceFeedService(priceFeedService);
         offerBookListItems.addAll(item1, item2);
 
-        final OfferBookViewModel model = new XmrOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, priceFeedService,
+        final OfferBookViewModel model = new TskOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, priceFeedService,
                 null, null, null, getPriceUtil(), null, coinFormatter, null);
         model.activate();
 
@@ -430,20 +430,20 @@ public class OfferBookViewModelTest {
         when(offerBook.getOfferBookListItems()).thenReturn(offerBookListItems);
         when(priceFeedService.getMarketPrice(anyString())).thenReturn(new MarketPrice("USD", 12684.0450, Instant.now().getEpochSecond(), true));
 
-        final OfferBookViewModel model = new XmrOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
+        final OfferBookViewModel model = new TskOfferBookViewModel(user, openOfferManager, offerBook, empty, null, null, null,
                 null, null, null, getPriceUtil(), null, coinFormatter, null);
 
-        final OfferBookListItem item = make(xmrBuyItem.but(
+        final OfferBookListItem item = make(tskBuyItem.but(
                 with(useMarketBasedPrice, true),
                 with(marketPriceMargin, -0.12)));
         assertNotNull(item.getHashOfPayload());
 
-        final OfferBookListItem lowItem = make(xmrBuyItem.but(
+        final OfferBookListItem lowItem = make(tskBuyItem.but(
                 with(useMarketBasedPrice, true),
                 with(marketPriceMargin, 0.01)));
         assertNotNull(lowItem.getHashOfPayload());
 
-        final OfferBookListItem fixedItem = make(xmrBuyItem);
+        final OfferBookListItem fixedItem = make(tskBuyItem);
         assertNotNull(fixedItem.getHashOfPayload());
 
         item.getOffer().setPriceFeedService(priceFeedService);

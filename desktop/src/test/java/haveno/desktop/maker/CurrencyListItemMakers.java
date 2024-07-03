@@ -15,22 +15,22 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.maker;
+package tuskex.desktop.maker;
 
 import com.natpryce.makeiteasy.Instantiator;
 import com.natpryce.makeiteasy.Maker;
 import com.natpryce.makeiteasy.Property;
-import haveno.core.locale.TradeCurrency;
-import haveno.desktop.util.CurrencyListItem;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.desktop.util.CurrencyListItem;
 
 import static com.natpryce.makeiteasy.MakeItEasy.a;
 import static com.natpryce.makeiteasy.MakeItEasy.with;
-import static haveno.desktop.maker.TradeCurrencyMakers.euro;
-import static haveno.desktop.maker.TradeCurrencyMakers.monero;
+import static tuskex.desktop.maker.TradeCurrencyMakers.euro;
+import static tuskex.desktop.maker.TradeCurrencyMakers.monero;
 
 public class CurrencyListItemMakers {
 
-    public static final Property<haveno.desktop.util.CurrencyListItem, TradeCurrency> tradeCurrency = new Property<>();
+    public static final Property<tuskex.desktop.util.CurrencyListItem, TradeCurrency> tradeCurrency = new Property<>();
     public static final Property<CurrencyListItem, Integer> numberOfTrades = new Property<>();
 
     public static final Instantiator<CurrencyListItem> CurrencyListItem = lookup ->

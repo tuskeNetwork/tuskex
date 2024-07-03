@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import com.google.inject.Inject;
-import haveno.core.locale.Res;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.util.FormBuilder;
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
+import tuskex.core.locale.Res;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.util.FormBuilder;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;

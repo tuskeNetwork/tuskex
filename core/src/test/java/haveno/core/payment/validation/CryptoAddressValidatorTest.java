@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.payment.validation;
+package tuskex.core.payment.validation;
 
-import haveno.asset.AssetRegistry;
-import haveno.common.config.BaseCurrencyNetwork;
-import haveno.common.config.Config;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
+import tuskex.asset.AssetRegistry;
+import tuskex.common.config.BaseCurrencyNetwork;
+import tuskex.common.config.Config;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -42,7 +42,7 @@ public class CryptoAddressValidatorTest {
         validator.setCurrencyCode("BTC");
         assertTrue(validator.validate("17VZNX1SN5NtKa8UQFxwQbFeFc3iqRYhem").isValid);
 
-        validator.setCurrencyCode("XMR");
+        validator.setCurrencyCode("TSK");
         assertTrue(validator.validate("4AuUM6PedofLWKfRCX1fP3SoNZUzq6FSAbpevHRR6tVuMpZc3HznVeudmNGkEB75apjE7WKVgZZh1YvPVxZoHFN88NCdmWw").isValid);
 
         validator.setCurrencyCode("LTC");

@@ -1,7 +1,7 @@
-package haveno.desktop.util.validation;
+package tuskex.desktop.util.validation;
 
 import com.jfoenix.validation.base.ValidatorBase;
-import haveno.core.util.validation.InputValidator;
+import tuskex.core.util.validation.InputValidator;
 
 public class JFXInputValidator extends ValidatorBase {
 

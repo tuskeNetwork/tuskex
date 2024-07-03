@@ -1,0 +1,32 @@
+[Unit]
+Description=Tuskex seednode
+After=network.target
+
+[Service]
+User=tuskex
+Group=tuskex
+SyslogIdentifier=Tuskex-Seednode
+
+# $PATH is a placeholder
+ExecStart=/bin/sh $PATH/tuskex-seednode --baseCurrencyNetwork=TSK_STAGENET\
+  --useLocalhostForP2P=false\
+  --useDevPrivilegeKeys=false\
+  --nodePort=2002\
+  --appName=tuskex-TSK_STAGENET_Seed_2002
+
+ExecStop=/bin/kill ${MAINPID}
+Restart=always
+
+# Hardening
+PrivateTmp=true
+ProtectSystem=full
+NoNewPrivileges=true
+PrivateDevices=true
+MemoryDenyWriteExecute=false
+ProtectControlGroups=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+
+
+[Install]
+WantedBy=multi-user.target

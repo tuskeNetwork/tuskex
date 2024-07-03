@@ -15,27 +15,27 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.trades;
+package tuskex.desktop.main.market.trades;
 
 import com.google.inject.Inject;
-import haveno.common.UserThread;
-import haveno.common.util.CompletableFutureUtils;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.statistics.TradeStatistics3;
-import haveno.core.trade.statistics.TradeStatisticsManager;
-import haveno.core.user.Preferences;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.model.ActivatableViewModel;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.settings.SettingsView;
-import haveno.desktop.main.settings.preferences.PreferencesView;
-import haveno.desktop.util.CurrencyList;
-import haveno.desktop.util.CurrencyListItem;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.UserThread;
+import tuskex.common.util.CompletableFutureUtils;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.statistics.TradeStatistics3;
+import tuskex.core.trade.statistics.TradeStatisticsManager;
+import tuskex.core.user.Preferences;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.model.ActivatableViewModel;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.settings.SettingsView;
+import tuskex.desktop.main.settings.preferences.PreferencesView;
+import tuskex.desktop.util.CurrencyList;
+import tuskex.desktop.util.CurrencyListItem;
+import tuskex.desktop.util.GUIUtil;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;

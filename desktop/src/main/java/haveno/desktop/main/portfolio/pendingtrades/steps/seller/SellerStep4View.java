@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades.steps.seller;
+package tuskex.desktop.main.portfolio.pendingtrades.steps.seller;
 
-import haveno.core.locale.Res;
-import haveno.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
-import haveno.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep4View;
+import tuskex.core.locale.Res;
+import tuskex.desktop.main.portfolio.pendingtrades.PendingTradesViewModel;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep4View;
 
 public class SellerStep4View extends BuyerStep4View {
 

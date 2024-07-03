@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.Skin;
 import javafx.scene.control.skin.LabelSkin;
 
-import static haveno.desktop.components.TooltipUtil.showTooltipIfTruncated;
+import static tuskex.desktop.components.TooltipUtil.showTooltipIfTruncated;
 
 public class AutoTooltipLabel extends Label {
 

@@ -1,0 +1,36 @@
+[Unit]
+Description=Tuskex seednode
+After=network.target
+
+[Service]
+User=tuskex
+Group=tuskex
+SyslogIdentifier=Tuskex-Seednode
+
+ExecStart=/bin/sh /home/tuskex/tuskex/tuskex-seednode --baseCurrencyNetwork=TSK_STAGENET\
+  --useLocalhostForP2P=false\
+  --useDevPrivilegeKeys=false\
+  --nodePort=2002\
+  --appName=tuskex-TSK_STAGENET_Seed_2002\
+#  --logLevel=trace\
+  --tskNode=http://127.0.0.1:38088\
+  --tskNodeUsername=admin\
+  --tskNodePassword=password
+
+ExecStop=/bin/kill ${MAINPID}
+Restart=always
+
+# Hardening
+PrivateTmp=true
+ProtectSystem=full
+NoNewPrivileges=true
+PrivateDevices=true
+MemoryDenyWriteExecute=false
+ProtectControlGroups=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+# limit memory usage to 2gb
+LimitRSS=2000000000
+
+[Install]
+WantedBy=multi-user.target

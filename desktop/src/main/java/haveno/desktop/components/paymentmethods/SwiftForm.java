@@ -15,27 +15,27 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
 import com.jfoenix.controls.JFXTextArea;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Country;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.Res;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.SwiftAccount;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.payload.SwiftAccountPayload;
-import haveno.core.payment.validation.LengthValidator;
-import haveno.core.trade.Trade;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipCheckBox;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.overlays.windows.SwiftPaymentDetails;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.Layout;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Country;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.SwiftAccount;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.payload.SwiftAccountPayload;
+import tuskex.core.payment.validation.LengthValidator;
+import tuskex.core.trade.Trade;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipCheckBox;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.overlays.windows.SwiftPaymentDetails;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.Layout;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -46,20 +46,20 @@ import javafx.scene.layout.GridPane;
 
 import java.util.function.Consumer;
 
-import static haveno.common.util.Utilities.cleanString;
-import static haveno.core.payment.payload.SwiftAccountPayload.ADDRESS;
-import static haveno.core.payment.payload.SwiftAccountPayload.BANKPOSTFIX;
-import static haveno.core.payment.payload.SwiftAccountPayload.BENEFICIARYPOSTFIX;
-import static haveno.core.payment.payload.SwiftAccountPayload.BRANCH;
-import static haveno.core.payment.payload.SwiftAccountPayload.COUNTRY;
-import static haveno.core.payment.payload.SwiftAccountPayload.INTERMEDIARYPOSTFIX;
-import static haveno.core.payment.payload.SwiftAccountPayload.PHONE;
-import static haveno.core.payment.payload.SwiftAccountPayload.SNAME;
-import static haveno.core.payment.payload.SwiftAccountPayload.SWIFT_ACCOUNT;
-import static haveno.core.payment.payload.SwiftAccountPayload.SWIFT_CODE;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextArea;
+import static tuskex.common.util.Utilities.cleanString;
+import static tuskex.core.payment.payload.SwiftAccountPayload.ADDRESS;
+import static tuskex.core.payment.payload.SwiftAccountPayload.BANKPOSTFIX;
+import static tuskex.core.payment.payload.SwiftAccountPayload.BENEFICIARYPOSTFIX;
+import static tuskex.core.payment.payload.SwiftAccountPayload.BRANCH;
+import static tuskex.core.payment.payload.SwiftAccountPayload.COUNTRY;
+import static tuskex.core.payment.payload.SwiftAccountPayload.INTERMEDIARYPOSTFIX;
+import static tuskex.core.payment.payload.SwiftAccountPayload.PHONE;
+import static tuskex.core.payment.payload.SwiftAccountPayload.SNAME;
+import static tuskex.core.payment.payload.SwiftAccountPayload.SWIFT_ACCOUNT;
+import static tuskex.core.payment.payload.SwiftAccountPayload.SWIFT_CODE;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextArea;
 
 public class SwiftForm extends PaymentMethodForm {
     private final SwiftAccountPayload formData;

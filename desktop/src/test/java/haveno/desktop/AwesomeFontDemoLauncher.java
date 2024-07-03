@@ -1,4 +1,4 @@
-package haveno.desktop;
+package tuskex.desktop;
 
 import javafx.application.Application;
 

@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.content.notifications;
+package tuskex.desktop.main.account.content.notifications;
 
 public class NoWebCamFoundException extends Throwable {
     public NoWebCamFoundException(String msg) {

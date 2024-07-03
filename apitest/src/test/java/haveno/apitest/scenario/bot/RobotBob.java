@@ -15,22 +15,22 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario.bot;
+package tuskex.apitest.scenario.bot;
 
-import haveno.apitest.method.BitcoinCliHelper;
-import haveno.apitest.scenario.bot.protocol.BotProtocol;
-import haveno.apitest.scenario.bot.protocol.MakerBotProtocol;
-import haveno.apitest.scenario.bot.protocol.TakerBotProtocol;
-import haveno.apitest.scenario.bot.script.BashScriptGenerator;
-import haveno.apitest.scenario.bot.script.BotScript;
-import haveno.apitest.scenario.bot.shutdown.ManualBotShutdownException;
-import haveno.cli.table.builder.TableBuilder;
+import tuskex.apitest.method.BitcoinCliHelper;
+import tuskex.apitest.scenario.bot.protocol.BotProtocol;
+import tuskex.apitest.scenario.bot.protocol.MakerBotProtocol;
+import tuskex.apitest.scenario.bot.protocol.TakerBotProtocol;
+import tuskex.apitest.scenario.bot.script.BashScriptGenerator;
+import tuskex.apitest.scenario.bot.script.BotScript;
+import tuskex.apitest.scenario.bot.shutdown.ManualBotShutdownException;
+import tuskex.cli.table.builder.TableBuilder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import static haveno.apitest.scenario.bot.protocol.ProtocolStep.DONE;
-import static haveno.apitest.scenario.bot.shutdown.ManualShutdown.isShutdownCalled;
-import static haveno.cli.table.builder.TableType.BTC_BALANCE_TBL;
+import static tuskex.apitest.scenario.bot.protocol.ProtocolStep.DONE;
+import static tuskex.apitest.scenario.bot.shutdown.ManualShutdown.isShutdownCalled;
+import static tuskex.cli.table.builder.TableType.BTC_BALANCE_TBL;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 @Slf4j
@@ -110,7 +110,7 @@ class RobotBob extends Bot {
         log.info("When ready to shutdown the test {}, run '$ touch /tmp/bottest-shutdown'.",
                 harnessOrCase);
         if (!isUsingTestHarness) {
-            log.warn("You will have to manually shutdown the bitcoind and Haveno nodes"
+            log.warn("You will have to manually shutdown the bitcoind and Tuskex nodes"
                     + " running outside of the test harness.");
         }
         try {

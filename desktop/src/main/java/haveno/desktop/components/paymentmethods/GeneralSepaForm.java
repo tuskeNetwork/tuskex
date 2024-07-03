@@ -1,17 +1,17 @@
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Country;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.payment.CountryBasedPaymentAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.components.AutoTooltipCheckBox;
-import haveno.desktop.util.FormBuilder;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Country;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.payment.CountryBasedPaymentAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.components.AutoTooltipCheckBox;
+import tuskex.desktop.util.FormBuilder;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -25,7 +25,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 import java.util.Objects;
 
-import static haveno.desktop.util.FormBuilder.addTopLabelWithVBox;
+import static tuskex.desktop.util.FormBuilder.addTopLabelWithVBox;
 
 public abstract class GeneralSepaForm extends PaymentMethodForm {
 

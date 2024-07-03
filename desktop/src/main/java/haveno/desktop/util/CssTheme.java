@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
 import javafx.scene.Scene;
 
@@ -27,7 +27,7 @@ public class CssTheme {
     private static boolean useDevHeader;
 
     public static void loadSceneStyles(Scene scene, int cssTheme, boolean devHeader) {
-        String cssThemeFolder = "/haveno/desktop/";
+        String cssThemeFolder = "/tuskex/desktop/";
         String cssThemeFile = "";
 
         currentCSSTheme = cssTheme;
@@ -47,7 +47,7 @@ public class CssTheme {
 
         scene.getStylesheets().setAll(
                 // load base styles first
-                cssThemeFolder + "haveno.css",
+                cssThemeFolder + "tuskex.css",
                 cssThemeFolder + "images.css",
                 cssThemeFolder + "CandleStickChart.css",
 

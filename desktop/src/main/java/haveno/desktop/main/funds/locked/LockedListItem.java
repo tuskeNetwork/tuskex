@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.locked;
+package tuskex.desktop.main.funds.locked;
 
-import haveno.core.locale.Res;
-import haveno.core.trade.Trade;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.listeners.BalanceListener;
-import haveno.core.xmr.model.AddressEntry;
-import haveno.core.xmr.wallet.BtcWalletService;
-import haveno.desktop.util.DisplayUtils;
+import tuskex.core.locale.Res;
+import tuskex.core.trade.Trade;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.listeners.BalanceListener;
+import tuskex.core.tsk.model.AddressEntry;
+import tuskex.core.tsk.wallet.BtcWalletService;
+import tuskex.desktop.util.DisplayUtils;
 import javafx.scene.control.Label;
 import lombok.Getter;
 import org.bitcoinj.core.Address;
@@ -60,7 +60,7 @@ class LockedListItem {
         this.btcWalletService = btcWalletService;
         this.formatter = formatter;
 
-        throw new RuntimeException("Cannot listen to multisig deposits in xmr without exchanging multisig info");
+        throw new RuntimeException("Cannot listen to multisig deposits in tsk without exchanging multisig info");
 
 //        if (trade.getDepositTx() != null && !trade.getDepositTx().getOutputs().isEmpty()) {
 //            address = WalletService.getAddressFromOutput(trade.getDepositTx().getOutput(0));

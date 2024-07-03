@@ -15,20 +15,20 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.register;
+package tuskex.desktop.main.account.register;
 
-import haveno.common.crypto.KeyRing;
-import haveno.common.handlers.ErrorMessageHandler;
-import haveno.common.handlers.ResultHandler;
-import haveno.core.locale.LanguageUtil;
-import haveno.core.support.dispute.agent.DisputeAgent;
-import haveno.core.support.dispute.agent.DisputeAgentManager;
-import haveno.core.user.User;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.common.model.ActivatableViewModel;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.NodeAddress;
-import haveno.network.p2p.P2PService;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.handlers.ErrorMessageHandler;
+import tuskex.common.handlers.ResultHandler;
+import tuskex.core.locale.LanguageUtil;
+import tuskex.core.support.dispute.agent.DisputeAgent;
+import tuskex.core.support.dispute.agent.DisputeAgentManager;
+import tuskex.core.user.User;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.common.model.ActivatableViewModel;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.NodeAddress;
+import tuskex.network.p2p.P2PService;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -45,7 +45,7 @@ public abstract class AgentRegistrationViewModel<R extends DisputeAgent, T exten
     private final T disputeAgentManager;
     protected final User user;
     protected final P2PService p2PService;
-    protected final XmrWalletService xmrWalletService;
+    protected final TskWalletService tskWalletService;
     protected final KeyRing keyRing;
 
     final BooleanProperty registrationEditDisabled = new SimpleBooleanProperty(true);
@@ -67,12 +67,12 @@ public abstract class AgentRegistrationViewModel<R extends DisputeAgent, T exten
     public AgentRegistrationViewModel(T disputeAgentManager,
                                       User user,
                                       P2PService p2PService,
-                                      XmrWalletService xmrWalletService,
+                                      TskWalletService tskWalletService,
                                       KeyRing keyRing) {
         this.disputeAgentManager = disputeAgentManager;
         this.user = user;
         this.p2PService = p2PService;
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.keyRing = keyRing;
 
         mapChangeListener = change -> {

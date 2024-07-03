@@ -15,19 +15,19 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades;
+package tuskex.desktop.main.portfolio.pendingtrades;
 
-import haveno.core.monetary.Price;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.Trade;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.util.filtering.FilterableListItem;
+import tuskex.core.monetary.Price;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.Trade;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.util.filtering.FilterableListItem;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static haveno.core.locale.CurrencyUtil.getCurrencyPair;
+import static tuskex.core.locale.CurrencyUtil.getCurrencyPair;
 
 /**
  * We could remove that wrapper if it is not needed for additional UI only fields.
@@ -55,7 +55,7 @@ public class PendingTradesListItem implements FilterableListItem {
     }
 
     public String getAmountAsString() {
-        return HavenoUtils.formatXmr(trade.getAmount());
+        return TuskexUtils.formatTsk(trade.getAmount());
     }
 
     public String getPaymentMethod() {

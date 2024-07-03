@@ -1,8 +1,8 @@
-package haveno.core.arbitration;
+package tuskex.core.arbitration;
 
-import haveno.core.account.witness.AccountAgeWitness;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.support.dispute.arbitration.TraderDataItem;
+import tuskex.core.account.witness.AccountAgeWitness;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.support.dispute.arbitration.TraderDataItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

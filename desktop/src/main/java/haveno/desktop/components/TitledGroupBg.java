@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.GUIUtil;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.GUIUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;

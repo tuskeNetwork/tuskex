@@ -1,0 +1,22 @@
+[Unit]
+Description=Tuskex Price Node
+After=network.target
+
+[Service]
+SyslogIdentifier=tuskex-pricenode
+EnvironmentFile=/etc/default/tuskex-pricenode.env
+ExecStart=/home/tuskex-pricenode/tuskex-pricenode/tuskex-pricenode 2
+ExecStop=/bin/kill -TERM ${MAINPID}
+Restart=on-failure
+
+User=tuskex-pricenode
+Group=tuskex-pricenode
+
+PrivateTmp=true
+ProtectSystem=full
+NoNewPrivileges=true
+PrivateDevices=true
+MemoryDenyWriteExecute=false
+
+[Install]
+WantedBy=multi-user.target

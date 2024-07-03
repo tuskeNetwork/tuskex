@@ -15,24 +15,24 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.Res;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.SatispayAccount;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.payload.SatispayAccountPayload;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.util.FormBuilder;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.SatispayAccount;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.payload.SatispayAccountPayload;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.util.FormBuilder;
 import javafx.scene.layout.GridPane;
 
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextField;
 
 public class SatispayForm extends PaymentMethodForm {
     private final SatispayAccount account;

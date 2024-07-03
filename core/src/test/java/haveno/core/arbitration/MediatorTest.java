@@ -15,21 +15,21 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.arbitration;
+package tuskex.core.arbitration;
 
 import com.google.common.collect.Lists;
-import haveno.common.crypto.PubKeyRing;
-import haveno.core.support.dispute.mediation.mediator.Mediator;
-import haveno.network.p2p.NodeAddress;
+import tuskex.common.crypto.PubKeyRing;
+import tuskex.core.support.dispute.mediation.mediator.Mediator;
+import tuskex.network.p2p.NodeAddress;
 import org.junit.jupiter.api.Disabled;
 
 import java.util.Date;
 
-import static haveno.core.arbitration.ArbitratorTest.getBytes;
+import static tuskex.core.arbitration.ArbitratorTest.getBytes;
 
 public class MediatorTest {
 
-    @Disabled("TODO InvalidKeySpecException at haveno.common.crypto.Sig.getPublicKeyFromBytes(Sig.java:135)")
+    @Disabled("TODO InvalidKeySpecException at tuskex.common.crypto.Sig.getPublicKeyFromBytes(Sig.java:135)")
     public void testRoundtrip() {
         Mediator Mediator = getMediatorMock();
 

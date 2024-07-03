@@ -1,1 +1,1 @@
-web: if [ "$HIDDEN" == true ]; then ./tor/bin/run_tor java -jar -Dserver.port=$PORT build/libs/haveno-relay.jar; else java -jar -Dserver.port=$PORT build/libs/haveno-relay.jar; fi
+web: if [ "$HIDDEN" == true ]; then ./tor/bin/run_tor java -jar -Dserver.port=$PORT build/libs/tuskex-relay.jar; else java -jar -Dserver.port=$PORT build/libs/tuskex-relay.jar; fi

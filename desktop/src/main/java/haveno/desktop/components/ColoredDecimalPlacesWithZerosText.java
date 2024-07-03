@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
-import haveno.common.util.Tuple2;
-import haveno.core.util.FormattingUtils;
+import tuskex.common.util.Tuple2;
+import tuskex.core.util.FormattingUtils;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;

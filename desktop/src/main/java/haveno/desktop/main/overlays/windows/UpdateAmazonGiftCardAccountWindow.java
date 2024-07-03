@@ -15,14 +15,14 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
-import haveno.common.UserThread;
-import haveno.core.locale.Country;
-import haveno.core.locale.Res;
-import haveno.core.payment.AmazonGiftCardAccount;
-import haveno.core.user.User;
-import haveno.desktop.main.overlays.Overlay;
+import tuskex.common.UserThread;
+import tuskex.core.locale.Country;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.AmazonGiftCardAccount;
+import tuskex.core.user.User;
+import tuskex.desktop.main.overlays.Overlay;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -36,11 +36,11 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static haveno.core.locale.CountryUtil.findCountryByCode;
-import static haveno.core.locale.CountryUtil.getAllAmazonGiftCardCountries;
-import static haveno.desktop.util.FormBuilder.addComboBox;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addLabel;
+import static tuskex.core.locale.CountryUtil.findCountryByCode;
+import static tuskex.core.locale.CountryUtil.getAllAmazonGiftCardCountries;
+import static tuskex.desktop.util.FormBuilder.addComboBox;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addLabel;
 
 public class UpdateAmazonGiftCardAccountWindow extends Overlay<UpdateAmazonGiftCardAccountWindow> {
     private final AmazonGiftCardAccount amazonGiftCardAccount;

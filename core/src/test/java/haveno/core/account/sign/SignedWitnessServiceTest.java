@@ -15,20 +15,20 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.account.sign;
+package tuskex.core.account.sign;
 
 
 import com.google.common.base.Charsets;
-import haveno.common.crypto.CryptoException;
-import haveno.common.crypto.KeyRing;
-import haveno.common.crypto.Sig;
-import haveno.common.util.Utilities;
-import haveno.core.account.witness.AccountAgeWitness;
-import haveno.core.filter.FilterManager;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.network.p2p.P2PService;
-import haveno.network.p2p.storage.payload.PersistableNetworkPayload;
-import haveno.network.p2p.storage.persistence.AppendOnlyDataStoreService;
+import tuskex.common.crypto.CryptoException;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.crypto.Sig;
+import tuskex.common.util.Utilities;
+import tuskex.core.account.witness.AccountAgeWitness;
+import tuskex.core.filter.FilterManager;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.network.p2p.P2PService;
+import tuskex.network.p2p.storage.payload.PersistableNetworkPayload;
+import tuskex.network.p2p.storage.persistence.AppendOnlyDataStoreService;
 import org.bitcoinj.core.ECKey;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,8 +39,8 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
-import static haveno.core.account.sign.SignedWitness.VerificationMethod.ARBITRATOR;
-import static haveno.core.account.sign.SignedWitness.VerificationMethod.TRADE;
+import static tuskex.core.account.sign.SignedWitness.VerificationMethod.ARBITRATOR;
+import static tuskex.core.account.sign.SignedWitness.VerificationMethod.TRADE;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.any;

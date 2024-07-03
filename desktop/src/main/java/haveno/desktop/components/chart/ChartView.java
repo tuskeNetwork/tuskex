@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.chart;
+package tuskex.desktop.components.chart;
 
-import haveno.common.UserThread;
-import haveno.core.locale.Res;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.components.AutoTooltipSlideToggleButton;
-import haveno.desktop.components.AutoTooltipToggleButton;
+import tuskex.common.UserThread;
+import tuskex.core.locale.Res;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.components.AutoTooltipSlideToggleButton;
+import tuskex.desktop.components.AutoTooltipToggleButton;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;

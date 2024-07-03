@@ -15,17 +15,17 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.user;
+package tuskex.core.user;
 
-import haveno.common.config.Config;
-import haveno.common.persistence.PersistenceManager;
-import haveno.core.api.XmrLocalNode;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.TraditionalCurrency;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
+import tuskex.common.config.Config;
+import tuskex.common.persistence.PersistenceManager;
+import tuskex.core.api.TskLocalNode;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.TraditionalCurrency;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,12 +51,12 @@ public class PreferencesTest {
         final Locale en_US = new Locale("en", "US");
         Locale.setDefault(en_US);
         GlobalSettings.setLocale(en_US);
-        Res.setBaseCurrencyCode("XMR");
+        Res.setBaseCurrencyCode("TSK");
         Res.setBaseCurrencyName("Monero");
 
         persistenceManager = mock(PersistenceManager.class);
         Config config = new Config();
-        XmrLocalNode xmrLocalNode = new XmrLocalNode(config, preferences);
+        TskLocalNode tskLocalNode = new TskLocalNode(config, preferences);
         preferences = new Preferences(
                 persistenceManager, config, null);
     }

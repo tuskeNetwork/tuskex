@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.register.arbitrator;
+package tuskex.desktop.main.account.register.arbitrator;
 
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.config.Config;
-import haveno.core.locale.Res;
-import haveno.core.support.dispute.arbitration.arbitrator.Arbitrator;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.main.account.register.AgentRegistrationView;
+import tuskex.common.config.Config;
+import tuskex.core.locale.Res;
+import tuskex.core.support.dispute.arbitration.arbitrator.Arbitrator;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.main.account.register.AgentRegistrationView;
 
 @FxmlView
 public class ArbitratorRegistrationView extends AgentRegistrationView<Arbitrator, ArbitratorRegistrationViewModel> {

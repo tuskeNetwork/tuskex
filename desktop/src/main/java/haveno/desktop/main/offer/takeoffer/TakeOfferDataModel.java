@@ -15,40 +15,40 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.takeoffer;
+package tuskex.desktop.main.offer.takeoffer;
 
 import com.google.inject.Inject;
 
-import haveno.common.ThreadUtils;
-import haveno.common.handlers.ErrorMessageHandler;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.filter.FilterManager;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.monetary.Price;
-import haveno.core.monetary.Volume;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferUtil;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.PaymentAccountUtil;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.TradeManager;
-import haveno.core.trade.handlers.TradeResultHandler;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.util.VolumeUtil;
-import haveno.core.xmr.listeners.XmrBalanceListener;
-import haveno.core.xmr.model.XmrAddressEntry;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.Navigation;
-import haveno.desktop.main.offer.OfferDataModel;
-import haveno.desktop.main.offer.offerbook.OfferBook;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.P2PService;
+import tuskex.common.ThreadUtils;
+import tuskex.common.handlers.ErrorMessageHandler;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.filter.FilterManager;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.monetary.Price;
+import tuskex.core.monetary.Volume;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.PaymentAccountUtil;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.trade.handlers.TradeResultHandler;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.tsk.listeners.TskBalanceListener;
+import tuskex.core.tsk.model.TskAddressEntry;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.main.offer.OfferDataModel;
+import tuskex.desktop.main.offer.offerbook.OfferBook;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.P2PService;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -87,7 +87,7 @@ class TakeOfferDataModel extends OfferDataModel {
     private final ObjectProperty<BigInteger> amount = new SimpleObjectProperty<>();
     final ObjectProperty<Volume> volume = new SimpleObjectProperty<>();
 
-    private XmrBalanceListener balanceListener;
+    private TskBalanceListener balanceListener;
     private PaymentAccount paymentAccount;
     private boolean isTabSelected;
     Price tradePrice;
@@ -102,7 +102,7 @@ class TakeOfferDataModel extends OfferDataModel {
     TakeOfferDataModel(TradeManager tradeManager,
                        OfferBook offerBook,
                        OfferUtil offerUtil,
-                       XmrWalletService xmrWalletService,
+                       TskWalletService tskWalletService,
                        User user,
                        FilterManager filterManager,
                        Preferences preferences,
@@ -111,7 +111,7 @@ class TakeOfferDataModel extends OfferDataModel {
                        Navigation navigation,
                        P2PService p2PService
     ) {
-        super(xmrWalletService, offerUtil);
+        super(tskWalletService, offerUtil);
 
         this.tradeManager = tradeManager;
         this.offerBook = offerBook;
@@ -175,7 +175,7 @@ class TakeOfferDataModel extends OfferDataModel {
     void initWithData(Offer offer) {
         this.offer = offer;
         tradePrice = offer.getPrice();
-        addressEntry = xmrWalletService.getOrCreateAddressEntry(offer.getId(), XmrAddressEntry.Context.OFFER_FUNDING);
+        addressEntry = tskWalletService.getOrCreateAddressEntry(offer.getId(), TskAddressEntry.Context.OFFER_FUNDING);
         checkNotNull(addressEntry, "addressEntry must not be null");
 
         ObservableList<PaymentAccount> possiblePaymentAccounts = getPossiblePaymentAccounts();
@@ -189,7 +189,7 @@ class TakeOfferDataModel extends OfferDataModel {
         calculateVolume();
         calculateTotalToPay();
 
-        balanceListener = new XmrBalanceListener(addressEntry.getSubaddressIndex()) {
+        balanceListener = new TskBalanceListener(addressEntry.getSubaddressIndex()) {
             @Override
             public void onBalanceChanged(BigInteger balance) {
                 updateAvailableBalance();
@@ -224,7 +224,7 @@ class TakeOfferDataModel extends OfferDataModel {
         }
 
         // reset address entries off thread
-        ThreadUtils.submitToPool(() -> xmrWalletService.resetAddressEntriesForOpenOffer(offer.getId()));
+        ThreadUtils.submitToPool(() -> tskWalletService.resetAddressEntriesForOpenOffer(offer.getId()));
     }
 
 
@@ -288,7 +288,7 @@ class TakeOfferDataModel extends OfferDataModel {
     void fundFromSavingsWallet() {
         useSavingsWallet = true;
         updateAvailableBalance();
-        if (!isXmrWalletFunded.get()) {
+        if (!isTskWalletFunded.get()) {
             this.useSavingsWallet = false;
             updateAvailableBalance();
         }
@@ -348,11 +348,11 @@ class TakeOfferDataModel extends OfferDataModel {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     private void addListeners() {
-        xmrWalletService.addBalanceListener(balanceListener);
+        tskWalletService.addBalanceListener(balanceListener);
     }
 
     private void removeListeners() {
-        xmrWalletService.removeBalanceListener(balanceListener);
+        tskWalletService.removeBalanceListener(balanceListener);
     }
 
 
@@ -410,12 +410,12 @@ class TakeOfferDataModel extends OfferDataModel {
 
     @Nullable
     BigInteger getTakerFee() {
-        return HavenoUtils.multiply(this.amount.get(), offer.getTakerFeePct());
+        return TuskexUtils.multiply(this.amount.get(), offer.getTakerFeePct());
     }
 
     public void swapTradeToSavings() {
         log.debug("swapTradeToSavings, offerId={}", offer.getId());
-        xmrWalletService.resetAddressEntriesForOpenOffer(offer.getId());
+        tskWalletService.resetAddressEntriesForOpenOffer(offer.getId());
     }
 
   /*  private void setFeeFromFundingTx(Coin fee) {
@@ -438,7 +438,7 @@ class TakeOfferDataModel extends OfferDataModel {
     }
 
     boolean wouldCreateDustForMaker() {
-        return false; // TODO: update for XMR?
+        return false; // TODO: update for TSK?
     }
 
     ReadOnlyObjectProperty<BigInteger> getAmount() {
@@ -462,7 +462,7 @@ class TakeOfferDataModel extends OfferDataModel {
         return getSecurityDeposit();
     }
 
-    public XmrAddressEntry getAddressEntry() {
+    public TskAddressEntry getAddressEntry() {
         return addressEntry;
     }
 

@@ -11,8 +11,8 @@ confirmpaymentreceived
 
 DESCRIPTION
 -----------
-After the seller receives payment from the XMR buyer, confirmpaymentreceived notifies
-the buyer the payment has arrived.  The seller can release locked XMR only after the
+After the seller receives payment from the TSK buyer, confirmpaymentreceived notifies
+the buyer the payment has arrived.  The seller can release locked TSK only after the
 this confirmation message has been sent.
 
 OPTIONS
@@ -22,6 +22,6 @@ OPTIONS
 
 EXAMPLES
 --------
-A XMR seller has taken an offer with ID 83e8b2e2-51b6-4f39-a748-3ebd29c22aea, and has recently
+A TSK seller has taken an offer with ID 83e8b2e2-51b6-4f39-a748-3ebd29c22aea, and has recently
 received the required fiat payment from the buyer's fiat account:
-$ ./haveno-cli --password=xyz --port=9998 confirmpaymentreceived --trade-id=83e8b2e2-51b6-4f39-a748-3ebd29c22aea
+$ ./tuskex-cli --password=xyz --port=9998 confirmpaymentreceived --trade-id=83e8b2e2-51b6-4f39-a748-3ebd29c22aea

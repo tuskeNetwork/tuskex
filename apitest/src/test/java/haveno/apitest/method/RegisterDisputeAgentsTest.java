@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.method;
+package tuskex.apitest.method;
 
 import io.grpc.StatusRuntimeException;
 import lombok.extern.slf4j.Slf4j;
@@ -26,13 +26,13 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static haveno.apitest.Scaffold.BitcoinCoreApp.bitcoind;
-import static haveno.apitest.config.ApiTestConfig.ARBITRATOR;
-import static haveno.apitest.config.ApiTestConfig.MEDIATOR;
-import static haveno.apitest.config.ApiTestConfig.REFUND_AGENT;
-import static haveno.apitest.config.HavenoAppConfig.arbdaemon;
-import static haveno.apitest.config.HavenoAppConfig.seednode;
-import static haveno.common.app.DevEnv.DEV_PRIVILEGE_PRIV_KEY;
+import static tuskex.apitest.Scaffold.BitcoinCoreApp.bitcoind;
+import static tuskex.apitest.config.ApiTestConfig.ARBITRATOR;
+import static tuskex.apitest.config.ApiTestConfig.MEDIATOR;
+import static tuskex.apitest.config.ApiTestConfig.REFUND_AGENT;
+import static tuskex.apitest.config.TuskexAppConfig.arbdaemon;
+import static tuskex.apitest.config.TuskexAppConfig.seednode;
+import static tuskex.common.app.DevEnv.DEV_PRIVILEGE_PRIV_KEY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -59,7 +59,7 @@ public class RegisterDisputeAgentsTest extends MethodTest {
     public void testRegisterArbitratorShouldThrowException() {
         Throwable exception = assertThrows(StatusRuntimeException.class, () ->
                 arbClient.registerDisputeAgent(ARBITRATOR, DEV_PRIVILEGE_PRIV_KEY));
-        assertEquals("UNIMPLEMENTED: arbitrators must be registered in a Haveno UI",
+        assertEquals("UNIMPLEMENTED: arbitrators must be registered in a Tuskex UI",
                 exception.getMessage());
     }
 

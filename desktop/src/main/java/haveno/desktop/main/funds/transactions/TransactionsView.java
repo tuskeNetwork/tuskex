@@ -15,29 +15,29 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
 import com.google.inject.Inject;
 import com.googlecode.jcsv.writer.CSVEntryConverter;
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.common.util.Utilities;
-import haveno.core.api.XmrConnectionService;
-import haveno.core.locale.Res;
-import haveno.core.offer.OpenOffer;
-import haveno.core.trade.Trade;
-import haveno.core.user.Preferences;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AddressWithIconAndDirection;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.ExternalHyperlink;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.main.overlays.windows.OfferDetailsWindow;
-import haveno.desktop.main.overlays.windows.TradeDetailsWindow;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.P2PService;
+import tuskex.common.util.Utilities;
+import tuskex.core.api.TskConnectionService;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.trade.Trade;
+import tuskex.core.user.Preferences;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AddressWithIconAndDirection;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.ExternalHyperlink;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.main.overlays.windows.OfferDetailsWindow;
+import tuskex.desktop.main.overlays.windows.TradeDetailsWindow;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.P2PService;
 import java.math.BigInteger;
 import java.util.Comparator;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -81,7 +81,7 @@ public class TransactionsView extends ActivatableView<VBox, Void> {
     private final DisplayedTransactions displayedTransactions;
     private final SortedList<TransactionsListItem> sortedDisplayedTransactions;
 
-    private final XmrWalletService xmrWalletService;
+    private final TskWalletService tskWalletService;
     private final Preferences preferences;
     private final TradeDetailsWindow tradeDetailsWindow;
     private final OfferDetailsWindow offerDetailsWindow;
@@ -107,14 +107,14 @@ public class TransactionsView extends ActivatableView<VBox, Void> {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     @Inject
-    private TransactionsView(XmrWalletService xmrWalletService,
+    private TransactionsView(TskWalletService tskWalletService,
                              P2PService p2PService,
-                             XmrConnectionService xmrConnectionService,
+                             TskConnectionService tskConnectionService,
                              Preferences preferences,
                              TradeDetailsWindow tradeDetailsWindow,
                              OfferDetailsWindow offerDetailsWindow,
                              DisplayedTransactionsFactory displayedTransactionsFactory) {
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.preferences = preferences;
         this.tradeDetailsWindow = tradeDetailsWindow;
         this.offerDetailsWindow = offerDetailsWindow;
@@ -193,7 +193,7 @@ public class TransactionsView extends ActivatableView<VBox, Void> {
             e.printStackTrace();
         }
 
-        xmrWalletService.addWalletListener(transactionsUpdater);
+        tskWalletService.addWalletListener(transactionsUpdater);
 
         scene = root.getScene();
         if (scene != null)
@@ -230,7 +230,7 @@ public class TransactionsView extends ActivatableView<VBox, Void> {
     protected void deactivate() {
         sortedDisplayedTransactions.comparatorProperty().unbind();
         displayedTransactions.forEach(TransactionsListItem::cleanup);
-        xmrWalletService.removeWalletListener(transactionsUpdater);
+        tskWalletService.removeWalletListener(transactionsUpdater);
 
         if (scene != null)
             scene.removeEventHandler(KeyEvent.KEY_RELEASED, keyEventEventHandler);

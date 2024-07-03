@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
-import haveno.core.alert.Alert;
-import haveno.core.locale.Res;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.util.FormBuilder;
+import tuskex.core.alert.Alert;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.util.FormBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,7 +78,7 @@ public class DisplayAlertMessageWindow extends Overlay<DisplayAlertMessageWindow
         message(alert.getMessage());
         addMessage();
         if (alert.isSoftwareUpdateNotification()) {
-            String url = "https://haveno.exchange/downloads";
+            String url = "https://tuskex.exchange/downloads";
             HyperlinkWithIcon hyperlinkWithIcon = FormBuilder.addLabelHyperlinkWithIcon(gridPane, ++rowIndex,
                     Res.get("displayAlertMessageWindow.update.download"), url, url).second;
             hyperlinkWithIcon.setMaxWidth(550);

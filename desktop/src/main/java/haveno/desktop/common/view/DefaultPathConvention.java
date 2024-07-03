@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.common.view;
+package tuskex.desktop.common.view;
 
 public class DefaultPathConvention implements FxmlView.PathConvention {
 

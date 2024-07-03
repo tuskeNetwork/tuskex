@@ -15,39 +15,39 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.offerbook;
+package tuskex.desktop.main.market.offerbook;
 
 import com.google.common.math.LongMath;
 import com.google.inject.Inject;
 
-import haveno.common.UserThread;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.monetary.Price;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.user.Preferences;
-import haveno.core.util.VolumeUtil;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.model.ActivatableViewModel;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.offer.BuyOfferView;
-import haveno.desktop.main.offer.OfferView;
-import haveno.desktop.main.offer.OfferViewUtil;
-import haveno.desktop.main.offer.SellOfferView;
-import haveno.desktop.main.offer.offerbook.OfferBook;
-import haveno.desktop.main.offer.offerbook.OfferBookListItem;
-import haveno.desktop.main.settings.SettingsView;
-import haveno.desktop.main.settings.preferences.PreferencesView;
-import haveno.desktop.util.CurrencyList;
-import haveno.desktop.util.CurrencyListItem;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.UserThread;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.monetary.Price;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.VolumeUtil;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.model.ActivatableViewModel;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.offer.BuyOfferView;
+import tuskex.desktop.main.offer.OfferView;
+import tuskex.desktop.main.offer.OfferViewUtil;
+import tuskex.desktop.main.offer.SellOfferView;
+import tuskex.desktop.main.offer.offerbook.OfferBook;
+import tuskex.desktop.main.offer.offerbook.OfferBookListItem;
+import tuskex.desktop.main.settings.SettingsView;
+import tuskex.desktop.main.settings.preferences.PreferencesView;
+import tuskex.desktop.util.CurrencyList;
+import tuskex.desktop.util.CurrencyListItem;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.GUIUtil;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -313,8 +313,8 @@ class OfferBookChartViewModel extends ActivatableViewModel {
         // Offer price can be null (if price feed unavailable), thus a null-tolerant comparator is used.
         Comparator<Offer> offerPriceComparator = Comparator.comparing(Offer::getPrice, Comparator.nullsLast(Comparator.naturalOrder()));
 
-        // Trading xmr-traditional is considered as buying/selling XMR, but trading xmr-crypto is
-        // considered as buying/selling Crypto. Because of this, when viewing a xmr-crypto pair,
+        // Trading tsk-traditional is considered as buying/selling TSK, but trading tsk-crypto is
+        // considered as buying/selling Crypto. Because of this, when viewing a tsk-crypto pair,
         // the buy column is actually the sell column and vice versa. To maintain the expected
         // ordering, we have to reverse the price comparator.
         boolean isCrypto = CurrencyUtil.isCryptoCurrency(getCurrencyCode());
@@ -402,7 +402,7 @@ class OfferBookChartViewModel extends ActivatableViewModel {
             for (Offer offer : sortedList) {
                 Price price = offer.getPrice();
                 if (price != null) {
-                    double amount = (double) offer.getAmount().longValueExact() / LongMath.pow(10, HavenoUtils.XMR_SMALLEST_UNIT_EXPONENT);
+                    double amount = (double) offer.getAmount().longValueExact() / LongMath.pow(10, TuskexUtils.TSK_SMALLEST_UNIT_EXPONENT);
                     accumulatedAmount += amount;
                     offerTableListTemp.add(new OfferListItem(offer, accumulatedAmount));
     

@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util.filtering;
+package tuskex.desktop.util.filtering;
 
-import haveno.core.offer.Offer;
-import haveno.core.trade.Trade;
+import tuskex.core.offer.Offer;
+import tuskex.core.trade.Trade;
 import org.apache.commons.lang3.StringUtils;
 
 public class FilteringUtils {

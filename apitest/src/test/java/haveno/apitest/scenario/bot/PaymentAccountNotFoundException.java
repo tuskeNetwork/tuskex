@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario.bot;
+package tuskex.apitest.scenario.bot;
 
-import haveno.common.HavenoException;
+import tuskex.common.TuskexException;
 
 @SuppressWarnings("unused")
-public class PaymentAccountNotFoundException extends HavenoException {
+public class PaymentAccountNotFoundException extends TuskexException {
     public PaymentAccountNotFoundException(Throwable cause) {
         super(cause);
     }

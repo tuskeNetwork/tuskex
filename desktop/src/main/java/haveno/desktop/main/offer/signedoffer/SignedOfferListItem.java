@@ -15,14 +15,14 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.signedoffer;
+package tuskex.desktop.main.offer.signedoffer;
 
 import org.apache.commons.lang3.StringUtils;
 
 import lombok.Getter;
 
-import haveno.core.offer.SignedOffer;
-import haveno.desktop.util.filtering.FilterableListItem;
+import tuskex.core.offer.SignedOffer;
+import tuskex.desktop.util.filtering.FilterableListItem;
 
 class SignedOfferListItem implements FilterableListItem {
     @Getter

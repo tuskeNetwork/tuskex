@@ -1,8 +1,8 @@
-package haveno.apitest.scenario;
+package tuskex.apitest.scenario;
 
-import haveno.apitest.method.payment.AbstractPaymentAccountTest;
-import haveno.apitest.method.payment.CreatePaymentAccountTest;
-import haveno.apitest.method.payment.GetPaymentMethodsTest;
+import tuskex.apitest.method.payment.AbstractPaymentAccountTest;
+import tuskex.apitest.method.payment.CreatePaymentAccountTest;
+import tuskex.apitest.method.payment.GetPaymentMethodsTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static haveno.apitest.Scaffold.BitcoinCoreApp.bitcoind;
-import static haveno.apitest.config.HavenoAppConfig.alicedaemon;
-import static haveno.apitest.config.HavenoAppConfig.seednode;
+import static tuskex.apitest.Scaffold.BitcoinCoreApp.bitcoind;
+import static tuskex.apitest.config.TuskexAppConfig.alicedaemon;
+import static tuskex.apitest.config.TuskexAppConfig.seednode;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @Slf4j

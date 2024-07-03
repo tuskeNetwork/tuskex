@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.spread;
+package tuskex.desktop.main.market.spread;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.core.locale.Res;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.common.view.FxmlView;
-import static haveno.desktop.util.FormBuilder.addSlideToggleButton;
+import tuskex.core.locale.Res;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.common.view.FxmlView;
+import static tuskex.desktop.util.FormBuilder.addSlideToggleButton;
 import javafx.scene.control.ToggleButton;
 
 @FxmlView

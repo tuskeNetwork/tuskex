@@ -15,14 +15,14 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
-import haveno.core.locale.Res;
-import haveno.core.user.Preferences;
-import haveno.network.p2p.NodeAddress;
+import tuskex.core.locale.Res;
+import tuskex.core.user.Preferences;
+import tuskex.network.p2p.NodeAddress;
 import lombok.extern.slf4j.Slf4j;
 
-import static haveno.desktop.util.Colors.AVATAR_GREY;
+import static tuskex.desktop.util.Colors.AVATAR_GREY;
 
 @Slf4j
 public class PeerInfoIconDispute extends PeerInfoIcon {

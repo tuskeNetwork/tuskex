@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.trade.ClosedTradableManager;
-import haveno.core.trade.Tradable;
-import haveno.core.trade.TradeManager;
-import haveno.core.trade.failed.FailedTradesManager;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.trade.ClosedTradableManager;
+import tuskex.core.trade.Tradable;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.trade.failed.FailedTradesManager;
 import java.util.Set;
 
 @Singleton

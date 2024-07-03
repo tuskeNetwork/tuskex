@@ -15,24 +15,24 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.closedtrades;
+package tuskex.desktop.main.portfolio.closedtrades;
 
 import com.google.inject.Inject;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.monetary.Price;
-import haveno.core.monetary.Volume;
-import haveno.core.provider.price.MarketPrice;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.ClosedTradableFormatter;
-import haveno.core.trade.ClosedTradableManager;
-import haveno.core.trade.ClosedTradableUtil;
-import haveno.core.trade.Tradable;
-import haveno.core.trade.Trade;
-import haveno.core.trade.TradeManager;
-import haveno.core.user.Preferences;
-import haveno.core.util.PriceUtil;
-import haveno.core.util.VolumeUtil;
-import haveno.desktop.common.model.ActivatableDataModel;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.monetary.Price;
+import tuskex.core.monetary.Volume;
+import tuskex.core.provider.price.MarketPrice;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.ClosedTradableFormatter;
+import tuskex.core.trade.ClosedTradableManager;
+import tuskex.core.trade.ClosedTradableUtil;
+import tuskex.core.trade.Tradable;
+import tuskex.core.trade.Trade;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.PriceUtil;
+import tuskex.core.util.VolumeUtil;
+import tuskex.desktop.common.model.ActivatableDataModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;

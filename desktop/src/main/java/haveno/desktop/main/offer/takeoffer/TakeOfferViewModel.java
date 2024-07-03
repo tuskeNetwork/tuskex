@@ -15,43 +15,43 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.takeoffer;
+package tuskex.desktop.main.offer.takeoffer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.UserThread;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Res;
-import haveno.core.monetary.Price;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferRestrictions;
-import haveno.core.offer.OfferUtil;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.payment.validation.XmrValidator;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.Trade;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.coin.CoinUtil;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.model.ActivatableWithDataModel;
-import haveno.desktop.common.model.ViewModel;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.funds.FundsView;
-import haveno.desktop.main.funds.deposit.DepositView;
-import haveno.desktop.main.offer.OfferViewModelUtil;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.P2PService;
-import haveno.network.p2p.network.CloseConnectionReason;
-import haveno.network.p2p.network.Connection;
-import haveno.network.p2p.network.ConnectionListener;
+import tuskex.common.UserThread;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Res;
+import tuskex.core.monetary.Price;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferRestrictions;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.payment.validation.TskValidator;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.Trade;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.coin.CoinUtil;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.model.ActivatableWithDataModel;
+import tuskex.desktop.common.model.ViewModel;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.funds.FundsView;
+import tuskex.desktop.main.funds.deposit.DepositView;
+import tuskex.desktop.main.offer.OfferViewModelUtil;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.P2PService;
+import tuskex.network.p2p.network.CloseConnectionReason;
+import tuskex.network.p2p.network.Connection;
+import tuskex.network.p2p.network.ConnectionListener;
 import java.math.BigInteger;
 import static javafx.beans.binding.Bindings.createStringBinding;
 import javafx.beans.property.BooleanProperty;
@@ -71,11 +71,11 @@ import javax.annotation.Nullable;
 class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> implements ViewModel {
     final TakeOfferDataModel dataModel;
     private final OfferUtil offerUtil;
-    private final XmrValidator xmrValidator;
+    private final TskValidator tskValidator;
     private final P2PService p2PService;
     private final AccountAgeWitnessService accountAgeWitnessService;
     private final Navigation navigation;
-    private final CoinFormatter xmrFormatter;
+    private final CoinFormatter tskFormatter;
 
     private String amountRange;
     private String paymentLabel;
@@ -93,7 +93,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
     final StringProperty offerWarning = new SimpleStringProperty();
     final StringProperty spinnerInfoText = new SimpleStringProperty("");
     final StringProperty tradeFee = new SimpleStringProperty();
-    final StringProperty tradeFeeInXmrWithFiat = new SimpleStringProperty();
+    final StringProperty tradeFeeInTskWithFiat = new SimpleStringProperty();
     final StringProperty tradeFeeDescription = new SimpleStringProperty();
     final BooleanProperty isTradeFeeVisible = new SimpleBooleanProperty(false);
 
@@ -125,7 +125,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
     @Inject
     public TakeOfferViewModel(TakeOfferDataModel dataModel,
                               OfferUtil offerUtil,
-                              XmrValidator btcValidator,
+                              TskValidator btcValidator,
                               P2PService p2PService,
                               AccountAgeWitnessService accountAgeWitnessService,
                               Navigation navigation,
@@ -133,11 +133,11 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
         super(dataModel);
         this.dataModel = dataModel;
         this.offerUtil = offerUtil;
-        this.xmrValidator = btcValidator;
+        this.tskValidator = btcValidator;
         this.p2PService = p2PService;
         this.accountAgeWitnessService = accountAgeWitnessService;
         this.navigation = navigation;
-        this.xmrFormatter = btcFormatter;
+        this.tskFormatter = btcFormatter;
         createListeners();
     }
 
@@ -157,7 +157,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
             volumeDescriptionLabel.set(Res.get(sellVolumeDescriptionKey, dataModel.getCurrencyCode()));
         }
 
-        amount.set(HavenoUtils.formatXmr(dataModel.getAmount().get()));
+        amount.set(TuskexUtils.formatTsk(dataModel.getAmount().get()));
         showTransactionPublishedScreen.set(false);
 
         // when getting back to an open screen we want to re-check again
@@ -198,7 +198,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
                 ? Res.get(buyAmountDescriptionKey)
                 : Res.get(sellAmountDescriptionKey);
 
-        amountRange = HavenoUtils.formatXmr(offer.getMinAmount()) + " - " + HavenoUtils.formatXmr(offer.getAmount());
+        amountRange = TuskexUtils.formatTsk(offer.getMinAmount()) + " - " + TuskexUtils.formatTsk(offer.getAmount());
         price = FormattingUtils.formatPrice(dataModel.tradePrice);
         marketPriceMargin = FormattingUtils.formatToPercent(offer.getMarketPriceMarginPct());
         paymentLabel = Res.get("takeOffer.fundsBox.paymentLabel", offer.getShortId());
@@ -207,9 +207,9 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
 
         errorMessage.set(offer.getErrorMessage());
 
-        xmrValidator.setMaxValue(offer.getAmount());
-        xmrValidator.setMaxTradeLimit(BigInteger.valueOf(dataModel.getMaxTradeLimit()).min(offer.getAmount()));
-        xmrValidator.setMinValue(offer.getMinAmount());
+        tskValidator.setMaxValue(offer.getAmount());
+        tskValidator.setMaxTradeLimit(BigInteger.valueOf(dataModel.getMaxTradeLimit()).min(offer.getAmount()));
+        tskValidator.setMinValue(offer.getMinAmount());
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +237,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
 
     public void onPaymentAccountSelected(PaymentAccount paymentAccount) {
         dataModel.onPaymentAccountSelected(paymentAccount);
-        xmrValidator.setMaxTradeLimit(BigInteger.valueOf(dataModel.getMaxTradeLimit()).min(offer.getAmount()));
+        tskValidator.setMaxTradeLimit(BigInteger.valueOf(dataModel.getMaxTradeLimit()).min(offer.getAmount()));
         updateButtonDisableState();
     }
 
@@ -249,13 +249,13 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
 
     boolean fundFromSavingsWallet() {
         dataModel.fundFromSavingsWallet();
-        if (dataModel.getIsXmrWalletFunded().get()) {
+        if (dataModel.getIsTskWalletFunded().get()) {
             updateButtonDisableState();
             return true;
         } else {
             new Popup().warning(Res.get("shared.notEnoughFunds",
-                    HavenoUtils.formatXmr(dataModel.getTotalToPay().get(), true),
-                    HavenoUtils.formatXmr(dataModel.getTotalAvailableBalance(), true)))
+                    TuskexUtils.formatTsk(dataModel.getTotalToPay().get(), true),
+                    TuskexUtils.formatTsk(dataModel.getTotalAvailableBalance(), true)))
                     .actionButtonTextWithGoTo("navigation.funds.depositFunds")
                     .onAction(() -> navigation.navigateTo(MainView.class, FundsView.class, DepositView.class))
                     .show();
@@ -264,17 +264,17 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
     }
 
     private void applyTakerFee() {
-        tradeFeeDescription.set(Res.get("createOffer.tradeFee.descriptionXMROnly"));
+        tradeFeeDescription.set(Res.get("createOffer.tradeFee.descriptionTSKOnly"));
         BigInteger takerFee = dataModel.getTakerFee();
         if (takerFee == null) {
             return;
         }
 
         isTradeFeeVisible.setValue(true);
-        tradeFee.set(HavenoUtils.formatXmr(takerFee));
-        tradeFeeInXmrWithFiat.set(OfferViewModelUtil.getTradeFeeWithFiatEquivalent(offerUtil,
+        tradeFee.set(TuskexUtils.formatTsk(takerFee));
+        tradeFeeInTskWithFiat.set(OfferViewModelUtil.getTradeFeeWithFiatEquivalent(offerUtil,
                 dataModel.getTakerFee(),
-                xmrFormatter));
+                tskFormatter));
     }
 
 
@@ -285,14 +285,14 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
     // On focus out we do validation and apply the data to the model
     void onFocusOutAmountTextField(boolean oldValue, boolean newValue, String userInput) {
         if (oldValue && !newValue) {
-            InputValidator.ValidationResult result = isXmrInputValid(amount.get());
+            InputValidator.ValidationResult result = isTskInputValid(amount.get());
             amountValidationResult.set(result);
             if (result.isValid) {
-                showWarningInvalidBtcDecimalPlaces.set(!DisplayUtils.hasBtcValidDecimals(userInput, xmrFormatter));
-                // only allow max 4 decimal places for xmr values
+                showWarningInvalidBtcDecimalPlaces.set(!DisplayUtils.hasBtcValidDecimals(userInput, tskFormatter));
+                // only allow max 4 decimal places for tsk values
                 setAmountToModel();
                 // reformat input
-                amount.set(HavenoUtils.formatXmr(dataModel.getAmount().get()));
+                amount.set(TuskexUtils.formatTsk(dataModel.getAmount().get()));
 
                 calculateVolume();
 
@@ -303,7 +303,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
                             tradePrice,
                             maxTradeLimit);
                     dataModel.applyAmount(adjustedAmountForAtm);
-                    amount.set(HavenoUtils.formatXmr(dataModel.getAmount().get()));
+                    amount.set(TuskexUtils.formatTsk(dataModel.getAmount().get()));
                 } else if (dataModel.getOffer().isTraditionalOffer()) {
                     if (!isAmountEqualMinAmount(dataModel.getAmount().get()) && (!isAmountEqualMaxAmount(dataModel.getAmount().get()))) {
                         // We only apply the rounding if the amount is variable (minAmount is lower as amount).
@@ -311,7 +311,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
                         BigInteger roundedAmount = CoinUtil.getRoundedAmount(dataModel.getAmount().get(), tradePrice, maxTradeLimit, dataModel.getOffer().getCurrencyCode(), dataModel.getOffer().getPaymentMethodId());
                         dataModel.applyAmount(roundedAmount);
                     }
-                    amount.set(HavenoUtils.formatXmr(dataModel.getAmount().get()));
+                    amount.set(TuskexUtils.formatTsk(dataModel.getAmount().get()));
                 }
 
                 if (!dataModel.isMinAmountLessOrEqualAmount())
@@ -325,16 +325,16 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
                 if (dataModel.wouldCreateDustForMaker())
                     amountValidationResult.set(new InputValidator.ValidationResult(false,
                             Res.get("takeOffer.validation.amountLargerThanOfferAmountMinusFee")));
-            } else if (xmrValidator.getMaxTradeLimit() != null && xmrValidator.getMaxTradeLimit().equals(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT)) {
+            } else if (tskValidator.getMaxTradeLimit() != null && tskValidator.getMaxTradeLimit().equals(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT)) {
                 if (dataModel.getDirection() == OfferDirection.BUY) {
                     new Popup().information(Res.get("popup.warning.tradeLimitDueAccountAgeRestriction.seller",
-                            HavenoUtils.formatXmr(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true),
+                            TuskexUtils.formatTsk(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true),
                             Res.get("offerbook.warning.newVersionAnnouncement")))
                             .width(900)
                             .show();
                 } else {
                     new Popup().information(Res.get("popup.warning.tradeLimitDueAccountAgeRestriction.buyer",
-                            HavenoUtils.formatXmr(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true),
+                            TuskexUtils.formatTsk(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true),
                             Res.get("offerbook.warning.newVersionAnnouncement")))
                             .width(900)
                             .show();
@@ -446,13 +446,13 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
     }
 
     private void updateButtonDisableState() {
-        boolean inputDataValid = isXmrInputValid(amount.get()).isValid
+        boolean inputDataValid = isTskInputValid(amount.get()).isValid
                 && dataModel.isMinAmountLessOrEqualAmount()
                 && !dataModel.isAmountLargerThanOfferAmount()
                 && isOfferAvailable.get()
                 && !dataModel.wouldCreateDustForMaker();
         isNextButtonDisabled.set(!inputDataValid);
-        isTakeOfferButtonDisabled.set(takeOfferRequested || !inputDataValid || !dataModel.getIsXmrWalletFunded().get());
+        isTakeOfferButtonDisabled.set(takeOfferRequested || !inputDataValid || !dataModel.getIsTskWalletFunded().get());
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -461,7 +461,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
 
     private void addBindings() {
         volume.bind(createStringBinding(() -> VolumeUtil.formatVolume(dataModel.volume.get()), dataModel.volume));
-        totalToPay.bind(createStringBinding(() -> HavenoUtils.formatXmr(dataModel.getTotalToPay().get(), true), dataModel.getTotalToPay()));
+        totalToPay.bind(createStringBinding(() -> TuskexUtils.formatTsk(dataModel.getTotalToPay().get(), true), dataModel.getTotalToPay()));
     }
 
 
@@ -473,7 +473,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
 
     private void createListeners() {
         amountStrListener = (ov, oldValue, newValue) -> {
-            if (isXmrInputValid(newValue).isValid) {
+            if (isTskInputValid(newValue).isValid) {
                 setAmountToModel();
                 calculateVolume();
                 dataModel.calculateTotalToPay();
@@ -482,7 +482,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
             updateButtonDisableState();
         };
         amountListener = (ov, oldValue, newValue) -> {
-            amount.set(HavenoUtils.formatXmr(newValue));
+            amount.set(TuskexUtils.formatTsk(newValue));
             applyTakerFee();
         };
         isWalletFundedListener = (ov, oldValue, newValue) -> updateButtonDisableState();
@@ -514,7 +514,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
                     errorMessage.get() != null ||
                     showTransactionPublishedScreen.get()) {
                 spinnerInfoText.set("");
-            } else if (dataModel.getIsXmrWalletFunded().get()) {
+            } else if (dataModel.getIsTskWalletFunded().get()) {
                 spinnerInfoText.set("");
                /* if (dataModel.isFeeFromFundingTxSufficient.get()) {
                     spinnerInfoText.set("");
@@ -537,7 +537,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
         // Binding with Bindings.createObjectBinding does not work because of bi-directional binding
         dataModel.getAmount().addListener(amountListener);
 
-        dataModel.getIsXmrWalletFunded().addListener(isWalletFundedListener);
+        dataModel.getIsTskWalletFunded().addListener(isWalletFundedListener);
         p2PService.getNetworkNode().addConnectionListener(connectionListener);
        /* isFeeSufficientSubscription = EasyBind.subscribe(dataModel.isFeeFromFundingTxSufficient, newValue -> {
             updateButtonDisableState();
@@ -551,7 +551,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
         // Binding with Bindings.createObjectBinding does not work because of bi-directional binding
         dataModel.getAmount().removeListener(amountListener);
 
-        dataModel.getIsXmrWalletFunded().removeListener(isWalletFundedListener);
+        dataModel.getIsTskWalletFunded().removeListener(isWalletFundedListener);
         if (offer != null) {
             offer.stateProperty().removeListener(offerStateListener);
         }
@@ -574,7 +574,7 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
 
     private void setAmountToModel() {
         if (amount.get() != null && !amount.get().isEmpty()) {
-            BigInteger amount = HavenoUtils.coinToAtomicUnits(DisplayUtils.parseToCoinWith4Decimals(this.amount.get(), xmrFormatter));
+            BigInteger amount = TuskexUtils.coinToAtomicUnits(DisplayUtils.parseToCoinWith4Decimals(this.amount.get(), tskFormatter));
             long maxTradeLimit = dataModel.getMaxTradeLimit();
             Price price = dataModel.tradePrice;
             if (price != null) {
@@ -603,8 +603,8 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
     // Getters
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    CoinFormatter getXmrFormatter() {
-        return xmrFormatter;
+    CoinFormatter getTskFormatter() {
+        return tskFormatter;
     }
 
     boolean isSeller() {
@@ -622,8 +622,8 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
         return false;
     }
 
-    private InputValidator.ValidationResult isXmrInputValid(String input) {
-        return xmrValidator.validate(input);
+    private InputValidator.ValidationResult isTskInputValid(String input) {
+        return tskValidator.validate(input);
     }
 
     public Offer getOffer() {
@@ -653,25 +653,25 @@ class TakeOfferViewModel extends ActivatableWithDataModel<TakeOfferDataModel> im
     String getTradeAmount() {
         return OfferViewModelUtil.getTradeFeeWithFiatEquivalent(offerUtil,
                 dataModel.getAmount().get(),
-                xmrFormatter);
+                tskFormatter);
     }
 
     public String getSecurityDepositInfo() {
         return OfferViewModelUtil.getTradeFeeWithFiatEquivalentAndPercentage(offerUtil,
                 dataModel.getSecurityDeposit(),
                 dataModel.getAmount().get(),
-                xmrFormatter);
+                tskFormatter);
     }
 
     public String getSecurityDepositWithCode() {
-        return HavenoUtils.formatXmr(dataModel.getSecurityDeposit(), true);
+        return TuskexUtils.formatTsk(dataModel.getSecurityDeposit(), true);
     }
 
     public String getTradeFee() {
             return OfferViewModelUtil.getTradeFeeWithFiatEquivalentAndPercentage(offerUtil,
                     dataModel.getTakerFee(),
                     dataModel.getAmount().get(),
-                    xmrFormatter);
+                    tskFormatter);
     }
 
     public String getTakerFeePercentage() {

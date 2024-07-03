@@ -15,18 +15,18 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
-import haveno.core.locale.Res;
-import haveno.desktop.components.TxIdTextField;
-import haveno.desktop.main.overlays.Overlay;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.TxIdTextField;
+import tuskex.desktop.main.overlays.Overlay;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelLabel;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.addLabelTxIdTextField;
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelLabel;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addLabelTxIdTextField;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
 
 public class TxDetails extends Overlay<TxDetails> {
 
@@ -59,7 +59,7 @@ public class TxDetails extends Overlay<TxDetails> {
 
     protected void addContent() {
         GridPane.setColumnSpan(
-                addMultilineLabel(gridPane, ++rowIndex, Res.get("txDetailsWindow.xmr.note"), 0), 2);
+                addMultilineLabel(gridPane, ++rowIndex, Res.get("txDetailsWindow.tsk.note"), 0), 2);
         Region spacer = new Region();
         spacer.setMinHeight(20);
         gridPane.add(spacer, 0, ++rowIndex);

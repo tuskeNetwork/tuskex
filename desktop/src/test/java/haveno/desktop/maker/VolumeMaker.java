@@ -15,14 +15,14 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.maker;
+package tuskex.desktop.maker;
 
 import com.natpryce.makeiteasy.Instantiator;
 import com.natpryce.makeiteasy.Maker;
 import com.natpryce.makeiteasy.Property;
-import haveno.core.monetary.CryptoMoney;
-import haveno.core.monetary.TraditionalMoney;
-import haveno.core.monetary.Volume;
+import tuskex.core.monetary.CryptoMoney;
+import tuskex.core.monetary.TraditionalMoney;
+import tuskex.core.monetary.Volume;
 
 import static com.natpryce.makeiteasy.MakeItEasy.a;
 

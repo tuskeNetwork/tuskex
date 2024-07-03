@@ -16,71 +16,71 @@
  */
 
 /*
- * This file is part of Haveno.
+ * This file is part of Tuskex.
  *
- * Haveno is free software: you can redistribute it and/or modify it
+ * Tuskex is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or (at
  * your option) any later version.
  *
- * Haveno is distributed in the hope that it will be useful, but WITHOUT
+ * Tuskex is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
  * License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Haveno. If not, see <http://www.gnu.org/licenses/>.
+ * along with Tuskex. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.support.dispute;
+package tuskex.desktop.main.support.dispute;
 
 import com.jfoenix.controls.JFXBadge;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.common.UserThread;
-import haveno.common.crypto.KeyRing;
-import haveno.common.crypto.PubKeyRing;
-import haveno.common.util.Utilities;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.support.SupportType;
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.DisputeList;
-import haveno.core.support.dispute.DisputeManager;
-import haveno.core.support.dispute.DisputeResult;
-import haveno.core.support.dispute.DisputeSession;
-import haveno.core.support.dispute.agent.DisputeAgentLookupMap;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.core.support.dispute.mediation.MediationManager;
-import haveno.core.support.messages.ChatMessage;
-import haveno.core.trade.Contract;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.Trade;
-import haveno.core.trade.TradeManager;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.AutoTooltipTableColumn;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.components.PeerInfoIconDispute;
-import haveno.desktop.components.PeerInfoIconMap;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.ContractWindow;
-import haveno.desktop.main.overlays.windows.DisputeSummaryWindow;
-import haveno.desktop.main.overlays.windows.SendLogFilesWindow;
-import haveno.desktop.main.overlays.windows.SendPrivateNotificationWindow;
-import haveno.desktop.main.overlays.windows.TradeDetailsWindow;
-import haveno.desktop.main.overlays.windows.VerifyDisputeResultSignatureWindow;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.NodeAddress;
+import tuskex.common.UserThread;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.crypto.PubKeyRing;
+import tuskex.common.util.Utilities;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.support.SupportType;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.DisputeList;
+import tuskex.core.support.dispute.DisputeManager;
+import tuskex.core.support.dispute.DisputeResult;
+import tuskex.core.support.dispute.DisputeSession;
+import tuskex.core.support.dispute.agent.DisputeAgentLookupMap;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.core.support.dispute.mediation.MediationManager;
+import tuskex.core.support.messages.ChatMessage;
+import tuskex.core.trade.Contract;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.Trade;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.AutoTooltipTableColumn;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.components.PeerInfoIconDispute;
+import tuskex.desktop.components.PeerInfoIconMap;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.ContractWindow;
+import tuskex.desktop.main.overlays.windows.DisputeSummaryWindow;
+import tuskex.desktop.main.overlays.windows.SendLogFilesWindow;
+import tuskex.desktop.main.overlays.windows.SendPrivateNotificationWindow;
+import tuskex.desktop.main.overlays.windows.TradeDetailsWindow;
+import tuskex.desktop.main.overlays.windows.VerifyDisputeResultSignatureWindow;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.NodeAddress;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
@@ -120,8 +120,8 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static haveno.desktop.util.FormBuilder.getIconForLabel;
-import static haveno.desktop.util.FormBuilder.getRegularIconButton;
+import static tuskex.desktop.util.FormBuilder.getIconForLabel;
+import static tuskex.desktop.util.FormBuilder.getRegularIconButton;
 
 public abstract class DisputeView extends ActivatableView<VBox, Void> implements DisputeChatPopup.ChatCallback {
     public enum FilterResult {
@@ -665,8 +665,8 @@ public abstract class DisputeView extends ActivatableView<VBox, Void> implements
                 String opener = firstDispute.isDisputeOpenerIsBuyer() ? buyersRole : sellersRole;
                 DisputeResult disputeResult = firstDispute.getDisputeResultProperty().get();
                 String winner = disputeResult != null && disputeResult.getWinner() == DisputeResult.Winner.BUYER ? "Buyer" : "Seller";
-                String buyerPayoutAmount = disputeResult != null ? HavenoUtils.formatXmr(disputeResult.getBuyerPayoutAmountBeforeCost(), true) : "";
-                String sellerPayoutAmount = disputeResult != null ? HavenoUtils.formatXmr(disputeResult.getSellerPayoutAmountBeforeCost(), true) : "";
+                String buyerPayoutAmount = disputeResult != null ? TuskexUtils.formatTsk(disputeResult.getBuyerPayoutAmountBeforeCost(), true) : "";
+                String sellerPayoutAmount = disputeResult != null ? TuskexUtils.formatTsk(disputeResult.getSellerPayoutAmountBeforeCost(), true) : "";
 
                 int index = disputeIndex.incrementAndGet();
                 String tradeDateString = dateFormatter.format(firstDispute.getTradeDate());
@@ -713,9 +713,9 @@ public abstract class DisputeView extends ActivatableView<VBox, Void> implements
 
                 String paymentMethod = Res.get(contract.getPaymentMethodId());
                 String currency = CurrencyUtil.getNameAndCode(contract.getOfferPayload().getCurrencyCode());
-                String tradeAmount = HavenoUtils.formatXmr(contract.getTradeAmount(), true);
-                String buyerDeposit = HavenoUtils.formatXmr(contract.getOfferPayload().getBuyerSecurityDepositForTradeAmount(contract.getTradeAmount()), true);
-                String sellerDeposit = HavenoUtils.formatXmr(contract.getOfferPayload().getSellerSecurityDepositForTradeAmount(contract.getTradeAmount()), true);
+                String tradeAmount = TuskexUtils.formatTsk(contract.getTradeAmount(), true);
+                String buyerDeposit = TuskexUtils.formatTsk(contract.getOfferPayload().getBuyerSecurityDepositForTradeAmount(contract.getTradeAmount()), true);
+                String sellerDeposit = TuskexUtils.formatTsk(contract.getOfferPayload().getSellerSecurityDepositForTradeAmount(contract.getTradeAmount()), true);
                 stringBuilder.append("Payment method: ")
                         .append(paymentMethod)
                         .append("\n")

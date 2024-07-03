@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.xmr.nodes;
+package tuskex.core.tsk.nodes;
 
 import com.runjva.sourceforge.jsocks.protocol.Socks5Proxy;
-import haveno.core.xmr.nodes.XmrNodeConverter.Facade;
-import haveno.core.xmr.nodes.XmrNodes.XmrNode;
-import haveno.network.DnsLookupException;
+import tuskex.core.tsk.nodes.TskNodeConverter.Facade;
+import tuskex.core.tsk.nodes.TskNodes.TskNode;
+import tuskex.network.DnsLookupException;
 import org.bitcoinj.core.PeerAddress;
 import org.junit.jupiter.api.Test;
 
@@ -32,10 +32,10 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class XmrNodeConverterTest {
+public class TskNodeConverterTest {
     @Test
     public void testConvertOnionHost() {
-        XmrNode node = mock(XmrNode.class);
+        TskNode node = mock(TskNode.class);
         when(node.getOnionAddress()).thenReturn("aaa.onion");
 
         //InetAddress inetAddress = mock(InetAddress.class);
@@ -43,7 +43,7 @@ public class XmrNodeConverterTest {
         Facade facade = mock(Facade.class);
         //when(facade.onionHostToInetAddress(any())).thenReturn(inetAddress);
 
-        PeerAddress peerAddress = new XmrNodeConverter(facade).convertOnionHost(node);
+        PeerAddress peerAddress = new TskNodeConverter(facade).convertOnionHost(node);
         // noinspection ConstantConditions
         assertEquals(node.getOnionAddress(), peerAddress.getHostname());
     }
@@ -52,10 +52,10 @@ public class XmrNodeConverterTest {
     public void testConvertClearNode() {
         final String ip = "192.168.0.1";
 
-        XmrNode node = mock(XmrNode.class);
+        TskNode node = mock(TskNode.class);
         when(node.getHostNameOrAddress()).thenReturn(ip);
 
-        PeerAddress peerAddress = new XmrNodeConverter().convertClearNode(node);
+        PeerAddress peerAddress = new TskNodeConverter().convertClearNode(node);
         // noinspection ConstantConditions
         InetAddress inetAddress = peerAddress.getAddr();
         assertEquals(ip, inetAddress.getHostAddress());
@@ -68,10 +68,10 @@ public class XmrNodeConverterTest {
         Facade facade = mock(Facade.class);
         when(facade.torLookup(any(), anyString())).thenReturn(expected);
 
-        XmrNode node = mock(XmrNode.class);
+        TskNode node = mock(TskNode.class);
         when(node.getHostNameOrAddress()).thenReturn("aaa.onion");
 
-        PeerAddress peerAddress = new XmrNodeConverter(facade).convertWithTor(node, mock(Socks5Proxy.class));
+        PeerAddress peerAddress = new TskNodeConverter(facade).convertWithTor(node, mock(Socks5Proxy.class));
 
         // noinspection ConstantConditions
         assertEquals(expected, peerAddress.getAddr());

@@ -15,27 +15,27 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
-import haveno.common.util.Tuple2;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Res;
-import haveno.core.payment.CapitualAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.CapitualAccountPayload;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.validation.CapitualValidator;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.util.FormBuilder;
+import tuskex.common.util.Tuple2;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.CapitualAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.CapitualAccountPayload;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.validation.CapitualValidator;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.util.FormBuilder;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.addTopLabelFlowPane;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addTopLabelFlowPane;
 
 public class CapitualForm extends PaymentMethodForm {
     private final CapitualAccount capitualAccount;

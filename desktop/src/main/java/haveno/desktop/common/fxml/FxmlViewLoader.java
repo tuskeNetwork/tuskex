@@ -15,18 +15,18 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.common.fxml;
+package tuskex.desktop.common.fxml;
 
 import com.google.common.base.Joiner;
 import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import haveno.common.util.Utilities;
-import haveno.desktop.common.ViewfxException;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.common.view.View;
-import haveno.desktop.common.view.ViewFactory;
-import haveno.desktop.common.view.ViewLoader;
+import tuskex.common.util.Utilities;
+import tuskex.desktop.common.ViewfxException;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.common.view.View;
+import tuskex.desktop.common.view.ViewFactory;
+import tuskex.desktop.common.view.ViewLoader;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.net.URL;
@@ -120,7 +120,7 @@ public class FxmlViewLoader implements ViewLoader {
 
     /**
      * Copied and adapted from Spring Framework v4.3.6's AnnotationUtils#defaultValue
-     * method in order to make it possible to drop Haveno's dependency on Spring altogether.
+     * method in order to make it possible to drop Tuskex's dependency on Spring altogether.
      */
     @SuppressWarnings("SameParameterValue")
     private static Object getDefaultValue(Class<? extends Annotation> annotationType, String attributeName) {

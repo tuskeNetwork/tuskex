@@ -16,55 +16,55 @@
  */
 
 /*
- * This file is part of Haveno.
+ * This file is part of Tuskex.
  *
- * Haveno is free software: you can redistribute it and/or modify it
+ * Tuskex is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or (at
  * your option) any later version.
  *
- * Haveno is distributed in the hope that it will be useful, but WITHOUT
+ * Tuskex is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
  * License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Haveno. If not, see <http://www.gnu.org/licenses/>.
+ * along with Tuskex. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.deposit;
+package tuskex.desktop.main.funds.deposit;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
-import haveno.common.ThreadUtils;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.common.util.Tuple3;
-import haveno.core.locale.Res;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.ParsingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.listeners.XmrBalanceListener;
-import haveno.core.xmr.model.XmrAddressEntry;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AddressTextField;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.QRCodeWindow;
-import static haveno.desktop.util.FormBuilder.addAddressTextField;
-import static haveno.desktop.util.FormBuilder.addButtonCheckBoxWithBox;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.Layout;
+import tuskex.common.ThreadUtils;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.common.util.Tuple3;
+import tuskex.core.locale.Res;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.ParsingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.listeners.TskBalanceListener;
+import tuskex.core.tsk.model.TskAddressEntry;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AddressTextField;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.QRCodeWindow;
+import static tuskex.desktop.util.FormBuilder.addAddressTextField;
+import static tuskex.desktop.util.FormBuilder.addButtonCheckBoxWithBox;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.Layout;
 import java.io.ByteArrayInputStream;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -117,13 +117,13 @@ public class DepositView extends ActivatableView<VBox, Void> {
     private InputTextField amountTextField;
     private static final String THREAD_ID = DepositView.class.getName();
 
-    private final XmrWalletService xmrWalletService;
+    private final TskWalletService tskWalletService;
     private final Preferences preferences;
     private final CoinFormatter formatter;
     private String paymentLabelString;
     private final ObservableList<DepositListItem> observableList = FXCollections.observableArrayList();
     private final SortedList<DepositListItem> sortedList = new SortedList<>(observableList);
-    private XmrBalanceListener balanceListener;
+    private TskBalanceListener balanceListener;
     private MoneroWalletListener walletListener;
     private Subscription amountTextFieldSubscription;
     private ChangeListener<DepositListItem> tableViewSelectionListener;
@@ -134,10 +134,10 @@ public class DepositView extends ActivatableView<VBox, Void> {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     @Inject
-    private DepositView(XmrWalletService xmrWalletService,
+    private DepositView(TskWalletService tskWalletService,
                         Preferences preferences,
                         @Named(FormattingUtils.BTC_FORMATTER_KEY) CoinFormatter formatter) {
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.preferences = preferences;
         this.formatter = formatter;
     }
@@ -145,7 +145,7 @@ public class DepositView extends ActivatableView<VBox, Void> {
     @Override
     public void initialize() {
 
-        paymentLabelString = Res.get("funds.deposit.fundHavenoWallet");
+        paymentLabelString = Res.get("funds.deposit.fundTuskexWallet");
         addressColumn.setGraphic(new AutoTooltipLabel(Res.get("shared.address")));
         balanceColumn.setGraphic(new AutoTooltipLabel(Res.get("shared.balanceWithCur", Res.getBaseCurrencyCode())));
         confirmationsColumn.setGraphic(new AutoTooltipLabel(Res.get("shared.confirmations")));
@@ -159,7 +159,7 @@ public class DepositView extends ActivatableView<VBox, Void> {
 
             // trigger creation of at least 1 address
             try {
-                xmrWalletService.getFreshAddressEntry();
+                tskWalletService.getFreshAddressEntry();
             } catch (Exception e) {
                 log.warn("Failed to create fresh address entry to initialize DepositView");
                 e.printStackTrace();
@@ -227,11 +227,11 @@ public class DepositView extends ActivatableView<VBox, Void> {
                 generateNewAddressButton = buttonCheckBoxHBox.first;
         
                 generateNewAddressButton.setOnAction(event -> {
-                    boolean hasUnusedAddress = !xmrWalletService.getUnusedAddressEntries().isEmpty();
+                    boolean hasUnusedAddress = !tskWalletService.getUnusedAddressEntries().isEmpty();
                     if (hasUnusedAddress) {
                         new Popup().warning(Res.get("funds.deposit.selectUnused")).show();
                     } else {
-                        XmrAddressEntry newSavingsAddressEntry = xmrWalletService.getNewAddressEntry();
+                        TskAddressEntry newSavingsAddressEntry = tskWalletService.getNewAddressEntry();
                         updateList();
                         UserThread.execute(() -> {
                             observableList.stream()
@@ -242,7 +242,7 @@ public class DepositView extends ActivatableView<VBox, Void> {
                     }
                 });
         
-                balanceListener = new XmrBalanceListener() {
+                balanceListener = new TskBalanceListener() {
                     @Override
                     public void onBalanceChanged(BigInteger balance) {
                         updateList();
@@ -276,11 +276,11 @@ public class DepositView extends ActivatableView<VBox, Void> {
                     e.printStackTrace();
                 }
         
-                xmrWalletService.addBalanceListener(balanceListener);
-                xmrWalletService.addWalletListener(walletListener);
+                tskWalletService.addBalanceListener(balanceListener);
+                tskWalletService.addWalletListener(walletListener);
         
                 amountTextFieldSubscription = EasyBind.subscribe(amountTextField.textProperty(), t -> {
-                    addressTextField.setAmount(HavenoUtils.parseXmr(t));
+                    addressTextField.setAmount(TuskexUtils.parseTsk(t));
                     updateQRCode();
                 });
         
@@ -296,8 +296,8 @@ public class DepositView extends ActivatableView<VBox, Void> {
             tableView.getSelectionModel().selectedItemProperty().removeListener(tableViewSelectionListener);
             sortedList.comparatorProperty().unbind();
             observableList.forEach(DepositListItem::cleanup);
-            xmrWalletService.removeBalanceListener(balanceListener);
-            xmrWalletService.removeWalletListener(walletListener);
+            tskWalletService.removeBalanceListener(balanceListener);
+            tskWalletService.removeWalletListener(walletListener);
             amountTextFieldSubscription.unsubscribe();
         }, THREAD_ID);
     }
@@ -343,11 +343,11 @@ public class DepositView extends ActivatableView<VBox, Void> {
     private void updateList() {
 
         // create deposit list items
-        List<XmrAddressEntry> addressEntries = xmrWalletService.getAddressEntries();
+        List<TskAddressEntry> addressEntries = tskWalletService.getAddressEntries();
         List<DepositListItem> items = new ArrayList<>();
-        for (XmrAddressEntry addressEntry : addressEntries) {
+        for (TskAddressEntry addressEntry : addressEntries) {
             if (addressEntry.isTrade()) continue; // skip reserved for trade
-            items.add(new DepositListItem(addressEntry, xmrWalletService, formatter));
+            items.add(new DepositListItem(addressEntry, tskWalletService, formatter));
         }
 
         // update list
@@ -368,7 +368,7 @@ public class DepositView extends ActivatableView<VBox, Void> {
     private String getPaymentUri() {
         return MoneroUtils.getPaymentUri(new MoneroTxConfig()
                 .setAddress(addressTextField.getAddress())
-                .setAmount(HavenoUtils.coinToAtomicUnits(getAmount()))
+                .setAmount(TuskexUtils.coinToAtomicUnits(getAmount()))
                 .setNote(paymentLabelString));
     }
 

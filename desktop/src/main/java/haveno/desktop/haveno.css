@@ -444,7 +444,7 @@ tree-table-view:focused {
 }
 
 .jfx-badge.auto-conf .badge-pane {
-    -fx-background-color: -xmr-orange;
+    -fx-background-color: -tsk-orange;
     -fx-pref-width: -1;
     -fx-padding: -1 10 0 10;
 }
@@ -893,8 +893,8 @@ textfield */
     -fx-max-height: 20;
 }
 
-#xmr-confidence {
-    -fx-progress-color: -xmr-orange;
+#tsk-confidence {
+    -fx-progress-color: -tsk-orange;
     -fx-max-width: 20;
     -fx-max-height: 20;
 }

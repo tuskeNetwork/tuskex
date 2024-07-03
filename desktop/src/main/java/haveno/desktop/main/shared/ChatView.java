@@ -15,29 +15,29 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.shared;
+package tuskex.desktop.main.shared;
 
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.HavenoTextArea;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.components.TableGroupHeadline;
-import haveno.desktop.main.overlays.notifications.Notification;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.GUIUtil;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.TuskexTextArea;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.components.TableGroupHeadline;
+import tuskex.desktop.main.overlays.notifications.Notification;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.GUIUtil;
 
-import haveno.core.locale.Res;
-import haveno.core.support.SupportManager;
-import haveno.core.support.SupportSession;
-import haveno.core.support.dispute.Attachment;
-import haveno.core.support.messages.ChatMessage;
+import tuskex.core.locale.Res;
+import tuskex.core.support.SupportManager;
+import tuskex.core.support.SupportSession;
+import tuskex.core.support.dispute.Attachment;
+import tuskex.core.support.messages.ChatMessage;
 
-import haveno.network.p2p.network.Connection;
+import tuskex.network.p2p.network.Connection;
 
-import haveno.common.Timer;
-import haveno.common.UserThread;
-import haveno.common.util.Utilities;
+import tuskex.common.Timer;
+import tuskex.common.UserThread;
+import tuskex.common.util.Utilities;
 
 import com.google.common.io.ByteStreams;
 
@@ -200,7 +200,7 @@ public class ChatView extends AnchorPane {
 
         VBox.setVgrow(this, Priority.ALWAYS);
 
-        inputTextArea = new HavenoTextArea();
+        inputTextArea = new TuskexTextArea();
         inputTextArea.setPrefHeight(70);
         inputTextArea.setWrapText(true);
 

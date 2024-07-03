@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.xmr.wallet;
+package tuskex.core.tsk.wallet;
 
 import org.bitcoinj.core.Coin;
 import org.junit.jupiter.api.Test;

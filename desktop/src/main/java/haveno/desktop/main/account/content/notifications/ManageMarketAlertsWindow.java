@@ -15,18 +15,18 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.content.notifications;
+package tuskex.desktop.main.account.content.notifications;
 
-import haveno.common.UserThread;
-import haveno.core.locale.Res;
-import haveno.core.notifications.alerts.market.MarketAlertFilter;
-import haveno.core.notifications.alerts.market.MarketAlerts;
-import haveno.core.util.FormattingUtils;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.AutoTooltipTableColumn;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.util.ImageUtil;
+import tuskex.common.UserThread;
+import tuskex.core.locale.Res;
+import tuskex.core.notifications.alerts.market.MarketAlertFilter;
+import tuskex.core.notifications.alerts.market.MarketAlerts;
+import tuskex.core.util.FormattingUtils;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.AutoTooltipTableColumn;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.util.ImageUtil;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;

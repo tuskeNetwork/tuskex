@@ -15,29 +15,29 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays;
+package tuskex.desktop.main.overlays;
 
 import com.google.common.reflect.TypeToken;
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.common.Timer;
-import haveno.common.UserThread;
-import haveno.common.config.Config;
-import haveno.common.util.Utilities;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.LanguageUtil;
-import haveno.core.locale.Res;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.desktop.app.HavenoApp;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipCheckBox;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.main.MainView;
-import haveno.desktop.util.CssTheme;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.Layout;
-import haveno.desktop.util.Transitions;
+import tuskex.common.Timer;
+import tuskex.common.UserThread;
+import tuskex.common.config.Config;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.LanguageUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.desktop.app.TuskexApp;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipCheckBox;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.util.CssTheme;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.Layout;
+import tuskex.desktop.util.Transitions;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -394,7 +394,7 @@ public abstract class Overlay<T extends Overlay<T>> {
 
     public T useReportBugButton() {
         this.closeButtonText = Res.get("shared.reportBug");
-        this.closeHandlerOptional = Optional.of(() -> GUIUtil.openWebPage("https://haveno.exchange/source/haveno/issues"));
+        this.closeHandlerOptional = Optional.of(() -> GUIUtil.openWebPage("https://tuskex.exchange/source/tuskex/issues"));
         return cast();
     }
 
@@ -430,7 +430,7 @@ public abstract class Overlay<T extends Overlay<T>> {
 
     public T useShutDownButton() {
         this.actionButtonText = Res.get("shared.shutDown");
-        this.actionHandlerOptional = Optional.ofNullable(HavenoApp.getShutDownHandler());
+        this.actionHandlerOptional = Optional.ofNullable(TuskexApp.getShutDownHandler());
         return cast();
     }
 
@@ -924,7 +924,7 @@ public abstract class Overlay<T extends Overlay<T>> {
         logButton.setOnAction(event -> {
             try {
                 File dataDir = Config.appDataDir();
-                File logFile = new File(dataDir, "haveno.log");
+                File logFile = new File(dataDir, "tuskex.log");
                 Utilities.openFile(logFile);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -939,7 +939,7 @@ public abstract class Overlay<T extends Overlay<T>> {
         gitHubButton.setOnAction(event -> {
             if (message != null)
                 Utilities.copyToClipboard(message);
-            GUIUtil.openWebPage("https://haveno.exchange/source/haveno/issues");
+            GUIUtil.openWebPage("https://tuskex.exchange/source/tuskex/issues");
             hide();
         });
     }
@@ -1058,7 +1058,7 @@ public abstract class Overlay<T extends Overlay<T>> {
     // separate a popup message from optional hyperlinks.  [bisq-network/bisq/pull/4637]
     // hyperlinks are distinguished by [HYPERLINK:] tag
     // referenced in order from within the message via [1], [2] etc.
-    // e.g. [HYPERLINK:https://haveno.exchange/wiki]
+    // e.g. [HYPERLINK:https://tuskex.exchange/wiki]
     private void preProcessMessage(String message) {
         Pattern pattern = Pattern.compile("\\[HYPERLINK:(.*?)\\]");
         Matcher matcher = pattern.matcher(message);

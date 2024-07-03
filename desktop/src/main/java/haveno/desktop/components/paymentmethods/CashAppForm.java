@@ -1,41 +1,41 @@
 /*
- * This file is part of Haveno.
+ * This file is part of Tuskex.
  *
- * Haveno is free software: you can redistribute it and/or modify it
+ * Tuskex is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or (at
  * your option) any later version.
  *
- * Haveno is distributed in the hope that it will be useful, but WITHOUT
+ * Tuskex is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
  * License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Haveno. If not, see <http://www.gnu.org/licenses/>.
+ * along with Tuskex. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Res;
-import haveno.core.payment.CashAppAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.CashAppAccountPayload;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.validation.EmailOrMobileNrOrCashtagValidator;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.Layout;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.CashAppAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.CashAppAccountPayload;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.validation.EmailOrMobileNrOrCashtagValidator;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.Layout;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.addTopLabelFlowPane;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addTopLabelFlowPane;
 
 public class CashAppForm extends PaymentMethodForm {
     private final CashAppAccount cashAppAccount;

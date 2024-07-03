@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ This file is part of Haveno.
+  ~ This file is part of Tuskex.
   ~
-  ~ Haveno is free software: you can redistribute it and/or modify it
+  ~ Tuskex is free software: you can redistribute it and/or modify it
   ~ under the terms of the GNU Affero General Public License as published by
   ~ the Free Software Foundation, either version 3 of the License, or (at
   ~ your option) any later version.
   ~
-  ~ Haveno is distributed in the hope that it will be useful, but WITHOUT
+  ~ Tuskex is distributed in the hope that it will be useful, but WITHOUT
   ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
   ~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
   ~ License for more details.
   ~
   ~ You should have received a copy of the GNU Affero General Public License
-  ~ along with Haveno. If not, see <http://www.gnu.org/licenses/>.
+  ~ along with Tuskex. If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<?import haveno.desktop.components.AutoTooltipButton?>
-<?import haveno.desktop.components.AutoTooltipCheckBox?>
-<?import haveno.desktop.components.AutoTooltipLabel?>
-<?import haveno.desktop.components.AutoTooltipRadioButton?>
-<?import haveno.desktop.components.HavenoTextField?>
-<?import haveno.desktop.components.InputTextField?>
-<?import haveno.desktop.components.TitledGroupBg?>
+<?import tuskex.desktop.components.AutoTooltipButton?>
+<?import tuskex.desktop.components.AutoTooltipCheckBox?>
+<?import tuskex.desktop.components.AutoTooltipLabel?>
+<?import tuskex.desktop.components.AutoTooltipRadioButton?>
+<?import tuskex.desktop.components.TuskexTextField?>
+<?import tuskex.desktop.components.InputTextField?>
+<?import tuskex.desktop.components.TitledGroupBg?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.TableColumn?>
@@ -33,7 +33,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<GridPane fx:id="root" fx:controller="haveno.desktop.main.settings.network.NetworkSettingsView"
+<GridPane fx:id="root" fx:controller="tuskex.desktop.main.settings.network.NetworkSettingsView"
           hgap="5.0" vgap="20.0"
           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
@@ -70,15 +70,15 @@
                 </TableColumn>
             </columns>
         </TableView>
-        <AutoTooltipLabel fx:id="localhostXmrNodeInfoLabel" styleClass="small-text"/>
+        <AutoTooltipLabel fx:id="localhostTskNodeInfoLabel" styleClass="small-text"/>
     </VBox>
 
     <VBox GridPane.rowIndex="1">
-        <AutoTooltipLabel fx:id="useTorForXmrLabel" styleClass="small-text"/>
+        <AutoTooltipLabel fx:id="useTorForTskLabel" styleClass="small-text"/>
         <HBox spacing="10">
-            <AutoTooltipRadioButton fx:id="useTorForXmrAfterSyncRadio"/>
-            <AutoTooltipRadioButton fx:id="useTorForXmrOnRadio"/>
-            <AutoTooltipRadioButton fx:id="useTorForXmrOffRadio"/>
+            <AutoTooltipRadioButton fx:id="useTorForTskAfterSyncRadio"/>
+            <AutoTooltipRadioButton fx:id="useTorForTskOnRadio"/>
+            <AutoTooltipRadioButton fx:id="useTorForTskOffRadio"/>
         </HBox>
     </VBox>
 
@@ -92,8 +92,8 @@
     </VBox>
 
     <VBox GridPane.rowIndex="3">
-        <AutoTooltipLabel fx:id="xmrNodesLabel" styleClass="small-text"/>
-        <InputTextField fx:id="xmrNodesInputTextField"/>
+        <AutoTooltipLabel fx:id="tskNodesLabel" styleClass="small-text"/>
+        <InputTextField fx:id="tskNodesInputTextField"/>
     </VBox>
 
     <VBox GridPane.rowIndex="4">
@@ -110,12 +110,12 @@
         </GridPane.margin>
     </TitledGroupBg>
 
-    <HavenoTextField fx:id="onionAddress" GridPane.rowIndex="5"
+    <TuskexTextField fx:id="onionAddress" GridPane.rowIndex="5"
                    editable="false" focusTraversable="false" labelFloat="true">
         <GridPane.margin>
             <Insets top="60.0"/>
         </GridPane.margin>
-    </HavenoTextField>
+    </TuskexTextField>
 
     <VBox GridPane.rowIndex="6" GridPane.hgrow="ALWAYS" GridPane.vgrow="SOMETIMES">
         <AutoTooltipLabel fx:id="p2PPeersLabel" styleClass="small-text"/>
@@ -160,13 +160,13 @@
         </TableView>
     </VBox>
 
-    <HavenoTextField fx:id="sentDataTextField" GridPane.rowIndex="7" editable="false"
+    <TuskexTextField fx:id="sentDataTextField" GridPane.rowIndex="7" editable="false"
                    focusTraversable="false" labelFloat="true"/>
 
-    <HavenoTextField fx:id="receivedDataTextField" GridPane.rowIndex="8" editable="false"
+    <TuskexTextField fx:id="receivedDataTextField" GridPane.rowIndex="8" editable="false"
                    focusTraversable="false" labelFloat="true"/>
 
-    <HavenoTextField fx:id="chainHeightTextField" GridPane.rowIndex="9" editable="false"
+    <TuskexTextField fx:id="chainHeightTextField" GridPane.rowIndex="9" editable="false"
                    focusTraversable="false" labelFloat="true"/>
 
     <AutoTooltipButton fx:id="openTorSettingsButton" GridPane.rowIndex="10" GridPane.columnIndex="0"/>

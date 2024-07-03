@@ -1,0 +1,16 @@
+[Unit]
+Description=Tuskex network monitor
+After=network.target
+
+[Service]
+WorkingDirectory=~
+Environment="JAVA_OPTS='-Xmx500M'"
+ExecStart=/home/tuskex/tuskex/tuskex-monitor /home/tuskex/monitor.properties
+ExecReload=/bin/kill -USR1 $MAINPID
+Restart=on-failure
+
+User=tuskex
+Group=tuskex
+
+[Install]
+WantedBy=multi-user.target

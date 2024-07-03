@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.support.dispute.refund.RefundManager;
-import haveno.core.trade.Trade;
-import haveno.core.xmr.wallet.XmrWalletService;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.support.dispute.refund.RefundManager;
+import tuskex.core.trade.Trade;
+import tuskex.core.tsk.wallet.TskWalletService;
 import javafx.collections.FXCollections;
 import monero.wallet.model.MoneroTxWallet;
 import org.bitcoinj.core.Sha256Hash;
@@ -43,7 +43,7 @@ public class TransactionAwareTradeTest {
     private Trade delegate;
     private TransactionAwareTradable trade;
     private RefundManager refundManager;
-    private XmrWalletService xmrWalletService;
+    private TskWalletService tskWalletService;
 
     @BeforeEach
     public void setUp() {
@@ -53,8 +53,8 @@ public class TransactionAwareTradeTest {
         delegate = mock(Trade.class, RETURNS_DEEP_STUBS);
         arbitrationManager = mock(ArbitrationManager.class, RETURNS_DEEP_STUBS);
         refundManager = mock(RefundManager.class, RETURNS_DEEP_STUBS);
-        xmrWalletService = mock(XmrWalletService.class, RETURNS_DEEP_STUBS);
-        trade = new TransactionAwareTrade(delegate, arbitrationManager, refundManager, xmrWalletService, null);
+        tskWalletService = mock(TskWalletService.class, RETURNS_DEEP_STUBS);
+        trade = new TransactionAwareTrade(delegate, arbitrationManager, refundManager, tskWalletService, null);
     }
 
     @Test

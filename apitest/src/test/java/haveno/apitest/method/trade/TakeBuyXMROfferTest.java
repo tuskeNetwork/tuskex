@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.method.trade;
+package tuskex.apitest.method.trade;
 
-import haveno.apitest.method.offer.AbstractOfferTest;
-import haveno.cli.table.builder.TableBuilder;
+import tuskex.apitest.method.offer.AbstractOfferTest;
+import tuskex.cli.table.builder.TableBuilder;
 import io.grpc.StatusRuntimeException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static haveno.apitest.config.ApiTestConfig.XMR;
-import static haveno.cli.table.builder.TableType.OFFER_TBL;
-import static haveno.core.trade.Trade.Phase.PAYMENT_RECEIVED;
-import static haveno.core.trade.Trade.State.SELLER_SAW_ARRIVED_PAYMENT_RECEIVED_MSG;
+import static tuskex.apitest.config.ApiTestConfig.TSK;
+import static tuskex.cli.table.builder.TableType.OFFER_TBL;
+import static tuskex.core.trade.Trade.Phase.PAYMENT_RECEIVED;
+import static tuskex.core.trade.Trade.State.SELLER_SAW_ARRIVED_PAYMENT_RECEIVED_MSG;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static protobuf.Offer.State.OFFER_FEE_RESERVED;
@@ -41,41 +41,41 @@ import static protobuf.OfferDirection.SELL;
 @Disabled
 @Slf4j
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class TakeBuyXMROfferTest extends AbstractTradeTest {
+public class TakeBuyTSKOfferTest extends AbstractTradeTest {
 
-    // Alice is maker / xmr buyer (btc seller), Bob is taker / xmr seller (btc buyer).
+    // Alice is maker / tsk buyer (btc seller), Bob is taker / tsk seller (btc buyer).
 
     @BeforeAll
     public static void setUp() {
         AbstractOfferTest.setUp();
-        createXmrPaymentAccounts();
+        createTskPaymentAccounts();
         EXPECTED_PROTOCOL_STATUS.init();
     }
 
     @Test
     @Order(1)
-    public void testTakeAlicesSellBTCForXMROffer(final TestInfo testInfo) {
+    public void testTakeAlicesSellBTCForTSKOffer(final TestInfo testInfo) {
         try {
-            // Alice is going to BUY XMR, but the Offer direction = SELL because it is a
-            // BTC trade;  Alice will SELL BTC for XMR.  Bob will send Alice XMR.
+            // Alice is going to BUY TSK, but the Offer direction = SELL because it is a
+            // BTC trade;  Alice will SELL BTC for TSK.  Bob will send Alice TSK.
             // Confused me, but just need to remember there are only BTC offers.
             var btcTradeDirection = SELL.name();
             var alicesOffer = aliceClient.createFixedPricedOffer(btcTradeDirection,
-                    XMR,
+                    TSK,
                     15_000_000L,
                     7_500_000L,
-                    "0.00455500",   // FIXED PRICE IN BTC (satoshis) FOR 1 XMR
+                    "0.00455500",   // FIXED PRICE IN BTC (satoshis) FOR 1 TSK
                     defaultBuyerSecurityDepositPct.get(),
-                    alicesXmrAcct.getId());
-            log.debug("Alice's BUY XMR (SELL BTC) Offer:\n{}", new TableBuilder(OFFER_TBL, alicesOffer).build());
+                    alicesTskAcct.getId());
+            log.debug("Alice's BUY TSK (SELL BTC) Offer:\n{}", new TableBuilder(OFFER_TBL, alicesOffer).build());
             genBtcBlocksThenWait(1, 5000);
             var offerId = alicesOffer.getId();
 
-            var alicesXmrOffers = aliceClient.getMyOffers(btcTradeDirection, XMR);
-            assertEquals(1, alicesXmrOffers.size());
-            var trade = takeAlicesOffer(offerId, bobsXmrAcct.getId());
-            alicesXmrOffers = aliceClient.getMyOffersSortedByDate(XMR);
-            assertEquals(0, alicesXmrOffers.size());
+            var alicesTskOffers = aliceClient.getMyOffers(btcTradeDirection, TSK);
+            assertEquals(1, alicesTskOffers.size());
+            var trade = takeAlicesOffer(offerId, bobsTskAcct.getId());
+            alicesTskOffers = aliceClient.getMyOffersSortedByDate(TSK);
+            assertEquals(0, alicesTskOffers.size());
             genBtcBlocksThenWait(1, 2_500);
             waitForDepositUnlocked(log, testInfo, bobClient, trade.getTradeId());
 
@@ -95,7 +95,7 @@ public class TakeBuyXMROfferTest extends AbstractTradeTest {
             var trade = bobClient.getTrade(tradeId);
 
             verifyTakerDepositConfirmed(trade);
-            log.debug("Bob sends XMR payment to Alice for trade {}", trade.getTradeId());
+            log.debug("Bob sends TSK payment to Alice for trade {}", trade.getTradeId());
             bobClient.confirmPaymentSent(trade.getTradeId());
             sleep(3500);
             waitForBuyerSeesPaymentInitiatedMessage(log, testInfo, bobClient, tradeId);
@@ -116,9 +116,9 @@ public class TakeBuyXMROfferTest extends AbstractTradeTest {
             sleep(2_000);
             var trade = aliceClient.getTrade(tradeId);
             // If we were trading BSQ, Alice would verify payment has been sent to her
-            // Haveno wallet, but we can do no such checks for XMR payments.
-            // All XMR transfers are done outside Haveno.
-            log.debug("Alice verifies XMR payment was received from Bob, for trade {}", trade.getTradeId());
+            // Tuskex wallet, but we can do no such checks for TSK payments.
+            // All TSK transfers are done outside Tuskex.
+            log.debug("Alice verifies TSK payment was received from Bob, for trade {}", trade.getTradeId());
             aliceClient.confirmPaymentReceived(trade.getTradeId());
             sleep(3_000);
 

@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.chart;
+package tuskex.desktop.components.chart;
 
-import haveno.common.util.MathUtils;
+import tuskex.common.util.MathUtils;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 

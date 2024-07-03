@@ -14,12 +14,12 @@ Adjust the following command with tha arguments above and execute it twice:
 
 The first execution should automatically update:
 
- - `haveno/gradle/wrapper/gradle-wrapper.properties`
+ - `tuskex/gradle/wrapper/gradle-wrapper.properties`
 
 The second execution should then update:
 
- - `haveno/gradle/wrapper/gradle-wrapper.jar`
- - `haveno/gradlew`
- - `haveno/gradlew.bat`
+ - `tuskex/gradle/wrapper/gradle-wrapper.jar`
+ - `tuskex/gradlew`
+ - `tuskex/gradlew.bat`
 
 The four updated files are ready to be committed.

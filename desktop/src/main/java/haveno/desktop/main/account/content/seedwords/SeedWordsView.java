@@ -16,43 +16,43 @@
  */
 
 /*
- * This file is part of Haveno.
+ * This file is part of Tuskex.
  *
- * Haveno is free software: you can redistribute it and/or modify it
+ * Tuskex is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or (at
  * your option) any later version.
  *
- * Haveno is distributed in the hope that it will be useful, but WITHOUT
+ * Tuskex is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
  * License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with Haveno. If not, see <http://www.gnu.org/licenses/>.
+ * along with Tuskex. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.content.seedwords;
+package tuskex.desktop.main.account.content.seedwords;
 
 import com.google.common.base.Splitter;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.config.Config;
-import haveno.core.locale.Res;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.xmr.wallet.WalletsManager;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.main.SharedPresentation;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.WalletPasswordWindow;
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelDatePicker;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextArea;
-import haveno.desktop.util.Layout;
+import tuskex.common.config.Config;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.tsk.wallet.WalletsManager;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.main.SharedPresentation;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.WalletPasswordWindow;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelDatePicker;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextArea;
+import tuskex.desktop.util.Layout;
 import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
@@ -77,7 +77,7 @@ import org.bitcoinj.wallet.DeterministicSeed;
 public class SeedWordsView extends ActivatableView<GridPane, Void> {
     private final WalletsManager walletsManager;
     private final OpenOfferManager openOfferManager;
-    private final XmrWalletService xmrWalletService;
+    private final TskWalletService tskWalletService;
     private final WalletPasswordWindow walletPasswordWindow;
     private final File storageDir;
 
@@ -101,12 +101,12 @@ public class SeedWordsView extends ActivatableView<GridPane, Void> {
     @Inject
     private SeedWordsView(WalletsManager walletsManager,
                           OpenOfferManager openOfferManager,
-                          XmrWalletService xmrWalletService,
+                          TskWalletService tskWalletService,
                           WalletPasswordWindow walletPasswordWindow,
                           @Named(Config.STORAGE_DIR) File storageDir) {
         this.walletsManager = walletsManager;
         this.openOfferManager = openOfferManager;
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.walletPasswordWindow = walletPasswordWindow;
         this.storageDir = storageDir;
     }
@@ -127,7 +127,7 @@ public class SeedWordsView extends ActivatableView<GridPane, Void> {
         // - uncomment code throughout this file
         // - support getting wallet's restore height
         // - support translating between date and restore height
-        // - clear XmrAddressEntries which are incompatible with new wallet and other tests
+        // - clear TskAddressEntries which are incompatible with new wallet and other tests
         // - update mnemonic validation and restore calls
 
         // addTitledGroupBg(root, ++gridRow, 3, Res.get("seed.restore.title"), Layout.GROUP_DISTANCE);
@@ -196,7 +196,7 @@ public class SeedWordsView extends ActivatableView<GridPane, Void> {
     }
 
     private void showSeedPhrase() {
-        if (xmrWalletService.isWalletEncrypted()) {
+        if (tskWalletService.isWalletEncrypted()) {
             askForPassword();
         } else {
             String key = "showSeedWordsWarning";
@@ -205,13 +205,13 @@ public class SeedWordsView extends ActivatableView<GridPane, Void> {
                         .actionButtonText(Res.get("account.seed.warn.noPw.yes"))
                         .onAction(() -> {
                             DontShowAgainLookup.dontShowAgain(key, true);
-                            initSeedWords(xmrWalletService.getWallet().getSeed());
+                            initSeedWords(tskWalletService.getWallet().getSeed());
                             showSeedScreen();
                         })
                         .closeButtonText(Res.get("shared.no"))
                         .show();
             } else {
-                initSeedWords(xmrWalletService.getWallet().getSeed());
+                initSeedWords(tskWalletService.getWallet().getSeed());
                 showSeedScreen();
             }
         }
@@ -237,7 +237,7 @@ public class SeedWordsView extends ActivatableView<GridPane, Void> {
 
     private void askForPassword() {
         walletPasswordWindow.headLine(Res.get("account.seed.enterPw")).onSuccess(() -> {
-            initSeedWords(xmrWalletService.getWallet().getSeed());
+            initSeedWords(tskWalletService.getWallet().getSeed());
             showSeedScreen();
         }).hideForgotPasswordButton().show();
     }
@@ -248,7 +248,7 @@ public class SeedWordsView extends ActivatableView<GridPane, Void> {
 
     private void showSeedScreen() {
         displaySeedWordsTextArea.setText(seedWordText);
-        walletCreationDate = Instant.ofEpochSecond(xmrWalletService.getWalletCreationDate()).atZone(ZoneId.systemDefault()).toLocalDate();
+        walletCreationDate = Instant.ofEpochSecond(tskWalletService.getWalletCreationDate()).atZone(ZoneId.systemDefault()).toLocalDate();
         datePicker.setValue(walletCreationDate);
     }
 
@@ -291,7 +291,7 @@ public class SeedWordsView extends ActivatableView<GridPane, Void> {
 
     private LocalDate getWalletDate() {
         LocalDate walletDate = restoreDatePicker.getValue();
-        // Even though no current Haveno wallet could have been created before the v0.5 release date (2017.06.28),
+        // Even though no current Tuskex wallet could have been created before the v0.5 release date (2017.06.28),
         // the user may want to import from a seed generated by another wallet.
         // So use when the BIP39 standard was finalised (2013.10.09) as the oldest possible wallet date.
         LocalDate oldestWalletDate = LocalDate.ofInstant(

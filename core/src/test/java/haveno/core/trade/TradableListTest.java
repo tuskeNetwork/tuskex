@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.trade;
+package tuskex.core.trade;
 
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferPayload;
-import haveno.core.offer.OpenOffer;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferPayload;
+import tuskex.core.offer.OpenOffer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

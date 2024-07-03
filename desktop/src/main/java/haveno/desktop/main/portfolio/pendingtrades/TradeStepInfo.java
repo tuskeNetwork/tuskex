@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades;
+package tuskex.desktop.main.portfolio.pendingtrades;
 
-import haveno.core.locale.Res;
-import haveno.core.trade.Trade;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.SimpleMarkdownLabel;
-import haveno.desktop.components.TitledGroupBg;
+import tuskex.core.locale.Res;
+import tuskex.core.trade.Trade;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.SimpleMarkdownLabel;
+import tuskex.desktop.components.TitledGroupBg;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.GridPane;

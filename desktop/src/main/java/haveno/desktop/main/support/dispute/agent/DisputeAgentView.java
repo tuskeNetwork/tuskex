@@ -15,30 +15,30 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.support.dispute.agent;
+package tuskex.desktop.main.support.dispute.agent;
 
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.common.crypto.KeyRing;
-import haveno.common.util.Utilities;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.locale.Res;
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.DisputeList;
-import haveno.core.support.dispute.DisputeManager;
-import haveno.core.support.dispute.DisputeValidation;
-import haveno.core.support.dispute.agent.MultipleHolderNameDetection;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.core.trade.TradeManager;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.user.Preferences;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.components.AutoTooltipTableColumn;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.ContractWindow;
-import haveno.desktop.main.overlays.windows.DisputeSummaryWindow;
-import haveno.desktop.main.overlays.windows.TradeDetailsWindow;
-import haveno.desktop.main.support.dispute.DisputeView;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.util.Utilities;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.locale.Res;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.DisputeList;
+import tuskex.core.support.dispute.DisputeManager;
+import tuskex.core.support.dispute.DisputeValidation;
+import tuskex.core.support.dispute.agent.MultipleHolderNameDetection;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.components.AutoTooltipTableColumn;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.ContractWindow;
+import tuskex.desktop.main.overlays.windows.DisputeSummaryWindow;
+import tuskex.desktop.main.overlays.windows.TradeDetailsWindow;
+import tuskex.desktop.main.support.dispute.DisputeView;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
@@ -52,7 +52,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static haveno.desktop.util.FormBuilder.getIconForLabel;
+import static tuskex.desktop.util.FormBuilder.getIconForLabel;
 
 public abstract class DisputeAgentView extends DisputeView implements MultipleHolderNameDetection.Listener {
 

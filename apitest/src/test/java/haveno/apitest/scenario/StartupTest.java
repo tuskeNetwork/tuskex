@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario;
+package tuskex.apitest.scenario;
 
-import haveno.apitest.method.CallRateMeteringInterceptorTest;
-import haveno.apitest.method.GetMethodHelpTest;
-import haveno.apitest.method.GetVersionTest;
-import haveno.apitest.method.MethodTest;
-import haveno.apitest.method.RegisterDisputeAgentsTest;
+import tuskex.apitest.method.CallRateMeteringInterceptorTest;
+import tuskex.apitest.method.GetMethodHelpTest;
+import tuskex.apitest.method.GetVersionTest;
+import tuskex.apitest.method.MethodTest;
+import tuskex.apitest.method.RegisterDisputeAgentsTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -33,12 +33,12 @@ import org.junit.jupiter.api.TestMethodOrder;
 import java.io.File;
 import java.io.IOException;
 
-import static haveno.apitest.Scaffold.BitcoinCoreApp.bitcoind;
-import static haveno.apitest.config.ApiTestRateMeterInterceptorConfig.getTestRateMeterInterceptorConfig;
-import static haveno.apitest.config.HavenoAppConfig.alicedaemon;
-import static haveno.apitest.config.HavenoAppConfig.arbdaemon;
-import static haveno.apitest.config.HavenoAppConfig.seednode;
-import static haveno.common.file.FileUtil.deleteFileIfExists;
+import static tuskex.apitest.Scaffold.BitcoinCoreApp.bitcoind;
+import static tuskex.apitest.config.ApiTestRateMeterInterceptorConfig.getTestRateMeterInterceptorConfig;
+import static tuskex.apitest.config.TuskexAppConfig.alicedaemon;
+import static tuskex.apitest.config.TuskexAppConfig.arbdaemon;
+import static tuskex.apitest.config.TuskexAppConfig.seednode;
+import static tuskex.common.file.FileUtil.deleteFileIfExists;
 import static org.junit.jupiter.api.Assertions.fail;
 
 

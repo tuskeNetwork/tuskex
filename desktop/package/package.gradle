@@ -28,7 +28,7 @@ task jpackageSanityChecks {
 
             // TODO Evtl check programmatically in gradle (i.e. fail if below v11)
             executeCmd("java --version")
-            ant.input(message: "Above you see the installed java version, which will be used to compile and build Haveno.\n" +
+            ant.input(message: "Above you see the installed java version, which will be used to compile and build Tuskex.\n" +
                     "Is this java version ok for that? (y=continue, n=abort)",
                     addproperty: "sanity-check-3",
                     validargs: "y,n")
@@ -192,7 +192,7 @@ task packageInstallers {
     dependsOn 'retrieveAndExtractJavaBinaries'
     // Clean all previous artifacts and create a fresh shadowJar for the installers
     dependsOn rootProject.clean
-    dependsOn ':core:havenoDeps'
+    dependsOn ':core:tuskexDeps'
     dependsOn ':desktop:shadowJar'
 
     doLast {
@@ -238,7 +238,7 @@ task packageInstallers {
         // Remove the -SNAPSHOT suffix from the version string (originally defined in build.gradle)
         // Having it in would have resulted in an invalid version property for several platforms (mac, linux/rpm)
         String appVersion = version.replaceAll("-SNAPSHOT", "")
-        println "Packaging Haveno version ${appVersion}"
+        println "Packaging Tuskex version ${appVersion}"
 
         // zip jar lib for Raspberry Pi only on macOS as there are path issues on Windows and it is only needed once
         // for the release
@@ -249,8 +249,8 @@ task packageInstallers {
         }
 
         //String appDescription = 'A decentralized monero exchange network.'
-        String appCopyright = '© 2024 Haveno'
-        String appNameAndVendor = 'Haveno'
+        String appCopyright = '© 2024 Tuskex'
+        String appNameAndVendor = 'Tuskex'
 
         String commonOpts = new String(
                 // Generic options
@@ -267,7 +267,7 @@ task packageInstallers {
 
                         // Options for creating the application launcher
                         " --main-jar ${mainJarName}" +
-                        " --main-class haveno.desktop.app.HavenoAppMain" +
+                        " --main-class tuskex.desktop.app.TuskexAppMain" +
                         " --java-options -Xss1280k" +
                         " --java-options -XX:MaxRAM=4g" +
                         " --java-options --add-opens=javafx.controls/com.sun.javafx.scene.control.behavior=ALL-UNNAMED" +
@@ -275,7 +275,7 @@ task packageInstallers {
                         " --java-options --add-opens=java.base/java.lang.reflect=ALL-UNNAMED" +
                         " --java-options --add-opens=javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED" +
                         " --java-options -Djava.net.preferIPv4Stack=true" +
-                        " --arguments --baseCurrencyNetwork=XMR_STAGENET"
+                        " --arguments --baseCurrencyNetwork=TSK_STAGENET"
                 // Warning: this will cause guice reflection exceptions and lead to issues with the guice internal cache
                 // resulting in the UI not loading
 //              " --java-options -Djdk.module.illegalAccess=deny" +
@@ -283,7 +283,7 @@ task packageInstallers {
 
         if (Os.isFamily(Os.FAMILY_WINDOWS)) {
             String windowsOpts = new String(
-                    " --icon \"${project(':desktop').projectDir}/package/windows/Haveno.ico\"" +
+                    " --icon \"${project(':desktop').projectDir}/package/windows/Tuskex.ico\"" +
                             " --resource-dir \"${project(':desktop').projectDir}/package/windows\"" +
                             " --win-dir-chooser" +
                             " --win-per-user-install" +
@@ -306,7 +306,7 @@ task packageInstallers {
                     " --icon ${project(':desktop').projectDir}/package/linux/icon.png" +
                             // This defines the first part of the resulting packages (the application name)
                             // deb requires lowercase letters, therefore the application name is written in lowercase
-                            " --linux-package-name haveno" +
+                            " --linux-package-name tuskex" +
 
                             // This represents the linux package version (revision)
                             // By convention, this is part of the deb/rpm package names, in addition to the software version
@@ -318,7 +318,7 @@ task packageInstallers {
 
             // Package deb
             executeCmd(jPackageFilePath + commonOpts + linuxOpts +
-                    " --linux-deb-maintainer noreply@haveno.exchange" +
+                    " --linux-deb-maintainer noreply@tuskex.exchange" +
                     " --type deb")
 
             // Clean jpackage temp folder, needs to be empty for the next packaging step (rpm)
@@ -331,10 +331,10 @@ task packageInstallers {
                     " --type rpm")
         }
 
-        // Env variable can be set by calling "export HAVENO_SHARED_FOLDER='Some value'"
+        // Env variable can be set by calling "export TUSKEX_SHARED_FOLDER='Some value'"
         // This is to copy the final binary/ies to a shared folder for further processing if a VM is used.
-        String envVariableSharedFolder = "$System.env.HAVENO_SHARED_FOLDER"
-        println "Environment variable HAVENO_SHARED_FOLDER is: ${envVariableSharedFolder}"
+        String envVariableSharedFolder = "$System.env.TUSKEX_SHARED_FOLDER"
+        println "Environment variable TUSKEX_SHARED_FOLDER is: ${envVariableSharedFolder}"
 
         if (envVariableSharedFolder != "null") {
             ant.input(message: "Copy the created binary to a shared folder? (y=yes, n=no)",

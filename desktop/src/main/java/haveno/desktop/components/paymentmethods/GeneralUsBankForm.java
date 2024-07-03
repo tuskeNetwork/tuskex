@@ -15,36 +15,36 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.BankUtil;
-import haveno.core.locale.Country;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.payment.CountryBasedPaymentAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.BankAccountPayload;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.util.Layout;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.BankUtil;
+import tuskex.core.locale.Country;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.payment.CountryBasedPaymentAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.BankAccountPayload;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.util.Layout;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 
 import javax.annotation.Nullable;
 
-import static haveno.common.util.Utilities.cleanString;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextArea;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextArea;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextFieldWithCopyIcon;
+import static tuskex.common.util.Utilities.cleanString;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextArea;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextArea;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextFieldWithCopyIcon;
 
 public abstract class GeneralUsBankForm extends GeneralBankForm {
 

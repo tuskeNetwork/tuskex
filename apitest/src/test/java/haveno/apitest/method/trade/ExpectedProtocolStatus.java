@@ -1,6 +1,6 @@
-package haveno.apitest.method.trade;
+package tuskex.apitest.method.trade;
 
-import haveno.core.trade.Trade;
+import tuskex.core.trade.Trade;
 
 /**
  * A test fixture encapsulating expected trade protocol status.

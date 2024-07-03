@@ -15,47 +15,47 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades;
+package tuskex.desktop.main.portfolio.pendingtrades;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.jfoenix.controls.JFXBadge;
 import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.common.UserThread;
-import haveno.common.config.Config;
-import haveno.common.crypto.KeyRing;
-import haveno.common.util.Utilities;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.locale.Res;
-import haveno.core.offer.OfferPayload;
-import haveno.core.support.dispute.mediation.MediationResultState;
-import haveno.core.support.messages.ChatMessage;
-import haveno.core.support.traderchat.TradeChatSession;
-import haveno.core.support.traderchat.TraderChatManager;
-import haveno.core.trade.Contract;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.Trade;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.components.PeerInfoIconTrading;
-import haveno.desktop.components.list.FilterBox;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.TradeDetailsWindow;
-import haveno.desktop.main.portfolio.presentation.PortfolioUtil;
-import haveno.desktop.main.shared.ChatView;
-import haveno.desktop.util.CssTheme;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.FormBuilder;
-import haveno.network.p2p.NodeAddress;
+import tuskex.common.UserThread;
+import tuskex.common.config.Config;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.util.Utilities;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OfferPayload;
+import tuskex.core.support.dispute.mediation.MediationResultState;
+import tuskex.core.support.messages.ChatMessage;
+import tuskex.core.support.traderchat.TradeChatSession;
+import tuskex.core.support.traderchat.TraderChatManager;
+import tuskex.core.trade.Contract;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.Trade;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.components.PeerInfoIconTrading;
+import tuskex.desktop.components.list.FilterBox;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.TradeDetailsWindow;
+import tuskex.desktop.main.portfolio.presentation.PortfolioUtil;
+import tuskex.desktop.main.shared.ChatView;
+import tuskex.desktop.util.CssTheme;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.network.p2p.NodeAddress;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -692,7 +692,7 @@ public class PendingTradesView extends ActivatableViewAndModel<VBox, PendingTrad
                             public void updateItem(final PendingTradesListItem item, boolean empty) {
                                 super.updateItem(item, empty);
                                 if (item != null && !empty)
-                                    setGraphic(new AutoTooltipLabel(HavenoUtils.formatXmr(item.getTrade().getAmount())));
+                                    setGraphic(new AutoTooltipLabel(TuskexUtils.formatTsk(item.getTrade().getAmount())));
                                 else
                                     setGraphic(null);
                             }

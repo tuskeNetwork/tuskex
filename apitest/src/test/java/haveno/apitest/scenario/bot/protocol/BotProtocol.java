@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario.bot.protocol;
+package tuskex.apitest.scenario.bot.protocol;
 
 
-import haveno.apitest.method.BitcoinCliHelper;
-import haveno.apitest.scenario.bot.BotClient;
-import haveno.apitest.scenario.bot.script.BashScriptGenerator;
-import haveno.apitest.scenario.bot.shutdown.ManualBotShutdownException;
-import haveno.cli.table.builder.TableBuilder;
-import haveno.proto.grpc.TradeInfo;
+import tuskex.apitest.method.BitcoinCliHelper;
+import tuskex.apitest.scenario.bot.BotClient;
+import tuskex.apitest.scenario.bot.script.BashScriptGenerator;
+import tuskex.apitest.scenario.bot.shutdown.ManualBotShutdownException;
+import tuskex.cli.table.builder.TableBuilder;
+import tuskex.proto.grpc.TradeInfo;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import protobuf.PaymentAccount;
@@ -38,16 +38,16 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static haveno.apitest.scenario.bot.protocol.ProtocolStep.SEND_PAYMENT_RECEIVED_CONFIRMATION_MESSAGE;
-import static haveno.apitest.scenario.bot.protocol.ProtocolStep.SEND_PAYMENT_SENT_MESSAGE;
-import static haveno.apitest.scenario.bot.protocol.ProtocolStep.START;
-import static haveno.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_PAYMENT_RECEIVED_CONFIRMATION_MESSAGE;
-import static haveno.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_PAYMENT_SENT_MESSAGE;
-import static haveno.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_PAYOUT_TX;
-import static haveno.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_TAKER_DEPOSIT_TX_CONFIRMED;
-import static haveno.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_TAKER_DEPOSIT_TX_PUBLISHED;
-import static haveno.apitest.scenario.bot.shutdown.ManualShutdown.checkIfShutdownCalled;
-import static haveno.cli.table.builder.TableType.TRADE_DETAIL_TBL;
+import static tuskex.apitest.scenario.bot.protocol.ProtocolStep.SEND_PAYMENT_RECEIVED_CONFIRMATION_MESSAGE;
+import static tuskex.apitest.scenario.bot.protocol.ProtocolStep.SEND_PAYMENT_SENT_MESSAGE;
+import static tuskex.apitest.scenario.bot.protocol.ProtocolStep.START;
+import static tuskex.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_PAYMENT_RECEIVED_CONFIRMATION_MESSAGE;
+import static tuskex.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_PAYMENT_SENT_MESSAGE;
+import static tuskex.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_PAYOUT_TX;
+import static tuskex.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_TAKER_DEPOSIT_TX_CONFIRMED;
+import static tuskex.apitest.scenario.bot.protocol.ProtocolStep.WAIT_FOR_TAKER_DEPOSIT_TX_PUBLISHED;
+import static tuskex.apitest.scenario.bot.shutdown.ManualShutdown.checkIfShutdownCalled;
+import static tuskex.cli.table.builder.TableType.TRADE_DETAIL_TBL;
 import static java.lang.String.format;
 import static java.lang.System.currentTimeMillis;
 import static java.util.Arrays.stream;

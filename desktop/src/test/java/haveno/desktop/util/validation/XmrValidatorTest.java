@@ -15,21 +15,21 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util.validation;
+package tuskex.desktop.util.validation;
 
-import haveno.common.config.BaseCurrencyNetwork;
-import haveno.common.config.Config;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.payment.validation.XmrValidator;
-import haveno.core.trade.HavenoUtils;
+import tuskex.common.config.BaseCurrencyNetwork;
+import tuskex.common.config.Config;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.validation.TskValidator;
+import tuskex.core.trade.TuskexUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class XmrValidatorTest {
+public class TskValidatorTest {
 
     @BeforeEach
     public void setup() {
@@ -42,7 +42,7 @@ public class XmrValidatorTest {
 
     @Test
     public void testIsValid() {
-        XmrValidator validator = new XmrValidator();
+        TskValidator validator = new TskValidator();
 
         assertTrue(validator.validate("1").isValid);
         assertTrue(validator.validate("0,1").isValid);
@@ -51,7 +51,7 @@ public class XmrValidatorTest {
         assertTrue(validator.validate(".1").isValid);
         assertTrue(validator.validate("0.12345678").isValid);
         assertTrue(validator.validate("0.0000001").isValid);
-        validator.setMinValue(HavenoUtils.xmrToAtomicUnits(0.0001));
+        validator.setMinValue(TuskexUtils.tskToAtomicUnits(0.0001));
         assertFalse(validator.validate("0.0000001").isValid); // below minimum
 
         assertFalse(validator.validate(null).isValid);

@@ -15,14 +15,14 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades;
+package tuskex.desktop.main.portfolio.pendingtrades;
 
-import haveno.core.locale.Res;
-import haveno.desktop.main.portfolio.pendingtrades.steps.TradeWizardItem;
-import haveno.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep1View;
-import haveno.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep2View;
-import haveno.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep3View;
-import haveno.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep4View;
+import tuskex.core.locale.Res;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.TradeWizardItem;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep1View;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep2View;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep3View;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep4View;
 import lombok.extern.slf4j.Slf4j;
 import org.fxmisc.easybind.EasyBind;
 

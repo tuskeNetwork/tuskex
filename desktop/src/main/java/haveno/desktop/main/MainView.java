@@ -15,46 +15,46 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main;
+package tuskex.desktop.main;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXBadge;
 import com.jfoenix.controls.JFXComboBox;
-import haveno.common.HavenoException;
-import haveno.common.Timer;
-import haveno.common.UserThread;
-import haveno.common.config.BaseCurrencyNetwork;
-import haveno.common.config.Config;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Utilities;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.LanguageUtil;
-import haveno.core.locale.Res;
-import haveno.core.provider.price.MarketPrice;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.CachingViewLoader;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.common.view.InitializableView;
-import haveno.desktop.common.view.View;
-import haveno.desktop.common.view.ViewLoader;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.AutoTooltipToggleButton;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.main.account.AccountView;
-import haveno.desktop.main.funds.FundsView;
-import haveno.desktop.main.market.MarketView;
-import haveno.desktop.main.market.offerbook.OfferBookChartView;
-import haveno.desktop.main.offer.BuyOfferView;
-import haveno.desktop.main.offer.SellOfferView;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.TorNetworkSettingsWindow;
-import haveno.desktop.main.portfolio.PortfolioView;
-import haveno.desktop.main.settings.SettingsView;
-import haveno.desktop.main.shared.PriceFeedComboBoxItem;
-import haveno.desktop.main.support.SupportView;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.Transitions;
+import tuskex.common.TuskexException;
+import tuskex.common.Timer;
+import tuskex.common.UserThread;
+import tuskex.common.config.BaseCurrencyNetwork;
+import tuskex.common.config.Config;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.LanguageUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.provider.price.MarketPrice;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.CachingViewLoader;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.common.view.InitializableView;
+import tuskex.desktop.common.view.View;
+import tuskex.desktop.common.view.ViewLoader;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.AutoTooltipToggleButton;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.main.account.AccountView;
+import tuskex.desktop.main.funds.FundsView;
+import tuskex.desktop.main.market.MarketView;
+import tuskex.desktop.main.market.offerbook.OfferBookChartView;
+import tuskex.desktop.main.offer.BuyOfferView;
+import tuskex.desktop.main.offer.SellOfferView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.TorNetworkSettingsWindow;
+import tuskex.desktop.main.portfolio.PortfolioView;
+import tuskex.desktop.main.settings.SettingsView;
+import tuskex.desktop.main.shared.PriceFeedComboBoxItem;
+import tuskex.desktop.main.support.SupportView;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.Transitions;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Date;
@@ -114,15 +114,15 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
     private final Navigation navigation;
     private final ToggleGroup navButtons = new ToggleGroup();
     private ChangeListener<String> walletServiceErrorMsgListener;
-    private ChangeListener<String> xmrSyncIconIdListener;
+    private ChangeListener<String> tskSyncIconIdListener;
     private ChangeListener<String> splashP2PNetworkErrorMsgListener;
     private ChangeListener<String> splashP2PNetworkIconIdListener;
     private ChangeListener<Boolean> splashP2PNetworkVisibleListener;
     private BusyAnimation splashP2PNetworkBusyAnimation;
     private Label splashP2PNetworkLabel;
-    private ProgressBar xmrSyncIndicator, p2pNetworkProgressBar;
-    private Label xmrSplashInfo;
-    private Popup p2PNetworkWarnMsgPopup, xmrNetworkWarnMsgPopup;
+    private ProgressBar tskSyncIndicator, p2pNetworkProgressBar;
+    private Label tskSplashInfo;
+    private Popup p2PNetworkWarnMsgPopup, tskNetworkWarnMsgPopup;
     private final TorNetworkSettingsWindow torNetworkSettingsWindow;
 
     public static StackPane getRootContainer() {
@@ -236,7 +236,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
                 try {
                     String preferredTradeCurrency = model.getPreferences().getPreferredTradeCurrency().getCode();
                     double availableBalance = Double.parseDouble(
-                            model.getAvailableBalance().getValue().replace("XMR", ""));
+                            model.getAvailableBalance().getValue().replace("TSK", ""));
                     double marketPrice = Double.parseDouble(model.getMarketPrice(preferredTradeCurrency).getValue());
                     tooltipText += "\n" + currencyFormat.format(availableBalance * marketPrice) +
                             " " + preferredTradeCurrency;
@@ -261,7 +261,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
                 try {
                     String preferredTradeCurrency = model.getPreferences().getPreferredTradeCurrency().getCode();
                     double reservedBalance = Double.parseDouble(
-                            model.getReservedBalance().getValue().replace("XMR", ""));
+                            model.getReservedBalance().getValue().replace("TSK", ""));
                     double marketPrice = Double.parseDouble(model.getMarketPrice(preferredTradeCurrency).getValue());
                     tooltipText += "\n" + currencyFormat.format(reservedBalance * marketPrice) +
                             " " + preferredTradeCurrency;
@@ -286,7 +286,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
                 try {
                     String preferredTradeCurrency = model.getPreferences().getPreferredTradeCurrency().getCode();
                     double lockedBalance = Double.parseDouble(
-                            model.getPendingBalance().getValue().replace("XMR", ""));
+                            model.getPendingBalance().getValue().replace("TSK", ""));
                     double marketPrice = Double.parseDouble(model.getMarketPrice(preferredTradeCurrency).getValue());
                     tooltipText += "\n" + currencyFormat.format(lockedBalance * marketPrice) +
                             " " + preferredTradeCurrency;
@@ -364,9 +364,9 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
                             .filter(toggle -> toggle instanceof NavButton)
                             .filter(button -> viewClass == ((NavButton) button).viewClass)
                             .findFirst()
-                            .orElseThrow(() -> new HavenoException("No button matching %s found", viewClass))
+                            .orElseThrow(() -> new TuskexException("No button matching %s found", viewClass))
                             .setSelected(true);
-                } catch (HavenoException e) {
+                } catch (TuskexException e) {
                     navigation.navigateTo(MainView.class, MarketView.class, OfferBookChartView.class);
                 }
             });
@@ -475,11 +475,11 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
     private void updateMarketPriceLabel(Label label) {
         if (model.getIsPriceAvailable().get()) {
             if (model.getIsExternallyProvidedPrice().get()) {
-                label.setText(Res.get("mainView.marketPriceWithProvider.label", "Haveno Price Index"));
+                label.setText(Res.get("mainView.marketPriceWithProvider.label", "Tuskex Price Index"));
                 label.setTooltip(new Tooltip(getPriceProviderTooltipString()));
             } else {
-                label.setText(Res.get("mainView.marketPrice.havenoInternalPrice"));
-                final Tooltip tooltip = new Tooltip(Res.get("mainView.marketPrice.tooltip.havenoInternalPrice"));
+                label.setText(Res.get("mainView.marketPrice.tuskexInternalPrice"));
+                final Tooltip tooltip = new Tooltip(Res.get("mainView.marketPrice.tooltip.tuskexInternalPrice"));
                 label.setTooltip(tooltip);
             }
         } else {
@@ -495,7 +495,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         MarketPrice selectedMarketPrice = model.getPriceFeedService().getMarketPrice(selectedCurrencyCode);
 
         return Res.get("mainView.marketPrice.tooltip",
-                "Haveno Price Index for " + selectedCurrencyCode,
+                "Tuskex Price Index for " + selectedCurrencyCode,
                 "",
                 selectedMarketPrice != null ? DisplayUtils.formatTime(new Date(selectedMarketPrice.getTimestampSec())) : Res.get("shared.na"),
                 model.getPriceFeedService().getProviderNodeAddress());
@@ -508,36 +508,36 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         vBox.setId("splash");
 
         ImageView logo = new ImageView();
-        logo.setId(Config.baseCurrencyNetwork() == BaseCurrencyNetwork.XMR_MAINNET ? "image-splash-logo" : "image-splash-testnet-logo");
+        logo.setId(Config.baseCurrencyNetwork() == BaseCurrencyNetwork.TSK_MAINNET ? "image-splash-logo" : "image-splash-testnet-logo");
 
         // createBitcoinInfoBox
-        xmrSplashInfo = new AutoTooltipLabel();
-        xmrSplashInfo.textProperty().bind(model.getXmrInfo());
+        tskSplashInfo = new AutoTooltipLabel();
+        tskSplashInfo.textProperty().bind(model.getTskInfo());
         walletServiceErrorMsgListener = (ov, oldValue, newValue) -> {
-            xmrSplashInfo.setId("splash-error-state-msg");
-            xmrSplashInfo.getStyleClass().add("error-text");
+            tskSplashInfo.setId("splash-error-state-msg");
+            tskSplashInfo.getStyleClass().add("error-text");
         };
         model.getConnectionServiceErrorMsg().addListener(walletServiceErrorMsgListener);
 
-        xmrSyncIndicator = new ProgressBar();
-        xmrSyncIndicator.setPrefWidth(305);
-        xmrSyncIndicator.progressProperty().bind(model.getCombinedSyncProgress());
+        tskSyncIndicator = new ProgressBar();
+        tskSyncIndicator.setPrefWidth(305);
+        tskSyncIndicator.progressProperty().bind(model.getCombinedSyncProgress());
 
-        ImageView xmrSyncIcon = new ImageView();
-        xmrSyncIcon.setVisible(false);
-        xmrSyncIcon.setManaged(false);
+        ImageView tskSyncIcon = new ImageView();
+        tskSyncIcon.setVisible(false);
+        tskSyncIcon.setManaged(false);
 
-        xmrSyncIconIdListener = (ov, oldValue, newValue) -> {
-            xmrSyncIcon.setId(newValue);
-            xmrSyncIcon.setVisible(true);
-            xmrSyncIcon.setManaged(true);
+        tskSyncIconIdListener = (ov, oldValue, newValue) -> {
+            tskSyncIcon.setId(newValue);
+            tskSyncIcon.setVisible(true);
+            tskSyncIcon.setManaged(true);
 
             // show progress bar until we have checkmark id
             boolean inProgress = "".equals(newValue);
-            xmrSyncIndicator.setVisible(inProgress);
-            xmrSyncIndicator.setManaged(inProgress);
+            tskSyncIndicator.setVisible(inProgress);
+            tskSyncIndicator.setManaged(inProgress);
         };
-        model.getXmrSplashSyncIconId().addListener(xmrSyncIconIdListener);
+        model.getTskSplashSyncIconId().addListener(tskSyncIconIdListener);
 
 
         HBox blockchainSyncBox = new HBox();
@@ -545,7 +545,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         blockchainSyncBox.setAlignment(Pos.CENTER);
         blockchainSyncBox.setPadding(new Insets(40, 0, 0, 0));
         blockchainSyncBox.setPrefHeight(50);
-        blockchainSyncBox.getChildren().addAll(xmrSplashInfo, xmrSyncIcon);
+        blockchainSyncBox.getChildren().addAll(tskSplashInfo, tskSyncIcon);
 
 
         // create P2PNetworkBox
@@ -572,10 +572,10 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
                 splashP2PNetworkBusyAnimation.stop();
                 showTorNetworkSettingsButton.setVisible(true);
                 showTorNetworkSettingsButton.setManaged(true);
-                if (model.getUseTorForXmr().get().isUseTorForXmr()) {
-                    // If using tor for XMR, hide the XMR status since tor is not working
-                    xmrSyncIndicator.setVisible(false);
-                    xmrSplashInfo.setVisible(false);
+                if (model.getUseTorForTsk().get().isUseTorForTsk()) {
+                    // If using tor for TSK, hide the TSK status since tor is not working
+                    tskSyncIndicator.setVisible(false);
+                    tskSplashInfo.setVisible(false);
                 }
             } else if (model.getSplashP2PNetworkAnimationVisible().get()) {
                 splashP2PNetworkBusyAnimation.setDisable(false);
@@ -621,20 +621,20 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         splashP2PNetworkBox.setPrefHeight(40);
         splashP2PNetworkBox.getChildren().addAll(splashP2PNetworkLabel, splashP2PNetworkBusyAnimation, splashP2PNetworkIcon, showTorNetworkSettingsButton);
 
-        vBox.getChildren().addAll(logo, blockchainSyncBox, xmrSyncIndicator, splashP2PNetworkBox);
+        vBox.getChildren().addAll(logo, blockchainSyncBox, tskSyncIndicator, splashP2PNetworkBox);
         return vBox;
     }
 
     private void disposeSplashScreen() {
         model.getConnectionServiceErrorMsg().removeListener(walletServiceErrorMsgListener);
-        model.getXmrSplashSyncIconId().removeListener(xmrSyncIconIdListener);
+        model.getTskSplashSyncIconId().removeListener(tskSyncIconIdListener);
 
         model.getP2pNetworkWarnMsg().removeListener(splashP2PNetworkErrorMsgListener);
         model.getP2PNetworkIconId().removeListener(splashP2PNetworkIconIdListener);
         model.getSplashP2PNetworkAnimationVisible().removeListener(splashP2PNetworkVisibleListener);
 
-        xmrSplashInfo.textProperty().unbind();
-        xmrSyncIndicator.progressProperty().unbind();
+        tskSplashInfo.textProperty().unbind();
+        tskSyncIndicator.progressProperty().unbind();
 
         splashP2PNetworkLabel.textProperty().unbind();
 
@@ -651,12 +651,12 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         setRightAnchor(separator, 0d);
         setTopAnchor(separator, 0d);
 
-        // XMR
-        Label xmrInfoLabel = new AutoTooltipLabel();
-        xmrInfoLabel.setId("footer-pane");
-        xmrInfoLabel.textProperty().bind(model.getXmrInfo());
-        setLeftAnchor(xmrInfoLabel, 10d);
-        setBottomAnchor(xmrInfoLabel, 7d);
+        // TSK
+        Label tskInfoLabel = new AutoTooltipLabel();
+        tskInfoLabel.setId("footer-pane");
+        tskInfoLabel.textProperty().bind(model.getTskInfo());
+        setLeftAnchor(tskInfoLabel, 10d);
+        setBottomAnchor(tskInfoLabel, 7d);
 
         // temporarily disabled due to high CPU usage (per issue #4649)
         //ProgressBar blockchainSyncIndicator = new JFXProgressBar(-1);
@@ -666,16 +666,16 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
 
         model.getConnectionServiceErrorMsg().addListener((ov, oldValue, newValue) -> {
             if (newValue != null) {
-                xmrInfoLabel.setId("splash-error-state-msg");
-                xmrInfoLabel.getStyleClass().add("error-text");
-                if (xmrNetworkWarnMsgPopup == null) {
-                    xmrNetworkWarnMsgPopup = new Popup().warning(newValue);
-                    xmrNetworkWarnMsgPopup.show();
+                tskInfoLabel.setId("splash-error-state-msg");
+                tskInfoLabel.getStyleClass().add("error-text");
+                if (tskNetworkWarnMsgPopup == null) {
+                    tskNetworkWarnMsgPopup = new Popup().warning(newValue);
+                    tskNetworkWarnMsgPopup.show();
                 }
             } else {
-                xmrInfoLabel.setId("footer-pane");
-                if (xmrNetworkWarnMsgPopup != null)
-                    xmrNetworkWarnMsgPopup.hide();
+                tskInfoLabel.setId("footer-pane");
+                if (tskNetworkWarnMsgPopup != null)
+                    tskNetworkWarnMsgPopup.hide();
             }
         });
 
@@ -790,7 +790,7 @@ public class MainView extends InitializableView<StackPane, MainViewModel>  {
         setRightAnchor(vBox, 53d);
         setBottomAnchor(vBox, 5d);
 
-        return new AnchorPane(separator, xmrInfoLabel, versionBox, vBox, p2PNetworkStatusIcon, p2PNetworkIcon) {{
+        return new AnchorPane(separator, tskInfoLabel, versionBox, vBox, p2PNetworkStatusIcon, p2PNetworkIcon) {{
             setId("footer-pane");
             setMinHeight(30);
             setMaxHeight(30);

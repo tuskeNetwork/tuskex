@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "[*] Stopping Haveno Server monitoring utensils"
+echo "[*] Stopping Tuskex Server monitoring utensils"
 echo '  '
 echo 'This script will not remove any configuration or binaries from the system. It just stops the services.'
 

@@ -1,15 +1,15 @@
-package haveno.apitest.method.payment;
+package tuskex.apitest.method.payment;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonWriter;
-import haveno.apitest.method.MethodTest;
-import haveno.cli.GrpcClient;
-import haveno.core.api.model.PaymentAccountForm;
-import haveno.core.locale.TraditionalCurrency;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.payment.PaymentAccount;
+import tuskex.apitest.method.MethodTest;
+import tuskex.cli.GrpcClient;
+import tuskex.core.api.model.PaymentAccountForm;
+import tuskex.core.locale.TraditionalCurrency;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.payment.PaymentAccount;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;

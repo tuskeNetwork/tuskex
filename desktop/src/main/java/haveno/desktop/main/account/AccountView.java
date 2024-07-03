@@ -15,30 +15,30 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account;
+package tuskex.desktop.main.account;
 
 import com.google.inject.Inject;
-import haveno.common.util.Utilities;
-import haveno.core.locale.Res;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.CachingViewLoader;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.common.view.View;
-import haveno.desktop.common.view.ViewLoader;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.account.content.backup.BackupView;
-import haveno.desktop.main.account.content.cryptoaccounts.CryptoAccountsView;
-import haveno.desktop.main.account.content.password.PasswordView;
-import haveno.desktop.main.account.content.seedwords.SeedWordsView;
-import haveno.desktop.main.account.content.traditionalaccounts.TraditionalAccountsView;
-import haveno.desktop.main.account.content.walletinfo.WalletInfoView;
-import haveno.desktop.main.account.register.arbitrator.ArbitratorRegistrationView;
-import haveno.desktop.main.account.register.mediator.MediatorRegistrationView;
-import haveno.desktop.main.account.register.refundagent.RefundAgentRegistrationView;
-import haveno.desktop.main.account.register.signing.SigningView;
-import haveno.desktop.main.presentation.AccountPresentation;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.Res;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.CachingViewLoader;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.common.view.View;
+import tuskex.desktop.common.view.ViewLoader;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.account.content.backup.BackupView;
+import tuskex.desktop.main.account.content.cryptoaccounts.CryptoAccountsView;
+import tuskex.desktop.main.account.content.password.PasswordView;
+import tuskex.desktop.main.account.content.seedwords.SeedWordsView;
+import tuskex.desktop.main.account.content.traditionalaccounts.TraditionalAccountsView;
+import tuskex.desktop.main.account.content.walletinfo.WalletInfoView;
+import tuskex.desktop.main.account.register.arbitrator.ArbitratorRegistrationView;
+import tuskex.desktop.main.account.register.mediator.MediatorRegistrationView;
+import tuskex.desktop.main.account.register.refundagent.RefundAgentRegistrationView;
+import tuskex.desktop.main.account.register.signing.SigningView;
+import tuskex.desktop.main.presentation.AccountPresentation;
 import java.util.List;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;

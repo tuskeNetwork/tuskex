@@ -15,18 +15,18 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.deposit;
+package tuskex.desktop.main.funds.deposit;
 
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 
-import haveno.core.locale.Res;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.model.XmrAddressEntry;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.components.indicator.TxConfidenceIndicator;
-import haveno.desktop.util.GUIUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.model.TskAddressEntry;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.components.indicator.TxConfidenceIndicator;
+import tuskex.desktop.util.GUIUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Tooltip;
@@ -40,8 +40,8 @@ import java.util.List;
 @Slf4j
 class DepositListItem {
     private final StringProperty balance = new SimpleStringProperty();
-    private final XmrAddressEntry addressEntry;
-    private final XmrWalletService xmrWalletService;
+    private final TskAddressEntry addressEntry;
+    private final TskWalletService tskWalletService;
     private BigInteger balanceAsBI;
     private String usage = "-";
     private int numTxsWithOutputs = 0;
@@ -56,12 +56,12 @@ class DepositListItem {
         return lazyFieldsSupplier.get();
     }
 
-    DepositListItem(XmrAddressEntry addressEntry, XmrWalletService xmrWalletService, CoinFormatter formatter) {
-        this.xmrWalletService = xmrWalletService;
+    DepositListItem(TskAddressEntry addressEntry, TskWalletService tskWalletService, CoinFormatter formatter) {
+        this.tskWalletService = tskWalletService;
         this.addressEntry = addressEntry;
 
-        balanceAsBI = xmrWalletService.getBalanceForSubaddress(addressEntry.getSubaddressIndex());
-        balance.set(HavenoUtils.formatXmr(balanceAsBI));
+        balanceAsBI = tskWalletService.getBalanceForSubaddress(addressEntry.getSubaddressIndex());
+        balance.set(TuskexUtils.formatTsk(balanceAsBI));
 
         updateUsage(addressEntry.getSubaddressIndex());
 
@@ -83,7 +83,7 @@ class DepositListItem {
     }
 
     private void updateUsage(int subaddressIndex) {
-        numTxsWithOutputs = xmrWalletService.getNumTxsWithIncomingOutputs(addressEntry.getSubaddressIndex());
+        numTxsWithOutputs = tskWalletService.getNumTxsWithIncomingOutputs(addressEntry.getSubaddressIndex());
         switch (addressEntry.getContext()) {
             case BASE_ADDRESS:
                 usage = Res.get("funds.deposit.baseAddress");
@@ -145,7 +145,7 @@ class DepositListItem {
     private MoneroTxWallet getTxWithFewestConfirmations() {
 
         // get txs with incoming outputs to subaddress index
-        List<MoneroTxWallet> txs = xmrWalletService.getTxsWithIncomingOutputs(addressEntry.getSubaddressIndex());
+        List<MoneroTxWallet> txs = tskWalletService.getTxsWithIncomingOutputs(addressEntry.getSubaddressIndex());
         
         // get tx with fewest confirmations
         MoneroTxWallet highestTx = null;

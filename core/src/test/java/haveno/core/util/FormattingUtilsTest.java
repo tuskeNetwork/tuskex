@@ -1,11 +1,11 @@
-package haveno.core.util;
+package tuskex.core.util;
 
 import com.natpryce.makeiteasy.Maker;
 import com.natpryce.makeiteasy.Property;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
-import haveno.core.monetary.Price;
-import haveno.core.monetary.TraditionalMoney;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
+import tuskex.core.monetary.Price;
+import tuskex.core.monetary.TraditionalMoney;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ public class FormattingUtilsTest {
     public void setUp() {
         Locale.setDefault(new Locale("en", "US"));
         GlobalSettings.setLocale(new Locale("en", "US"));
-        Res.setBaseCurrencyCode("XMR");
+        Res.setBaseCurrencyCode("TSK");
         Res.setBaseCurrencyName("Monero");
     }
 

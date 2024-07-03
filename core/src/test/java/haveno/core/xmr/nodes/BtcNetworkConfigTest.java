@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.xmr.nodes;
+package tuskex.core.tsk.nodes;
 
 import com.runjva.sourceforge.jsocks.protocol.Socks5Proxy;
-import haveno.core.xmr.setup.WalletConfig;
-import haveno.network.Socks5MultiDiscovery;
+import tuskex.core.tsk.setup.WalletConfig;
+import tuskex.network.Socks5MultiDiscovery;
 import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.core.PeerAddress;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +44,7 @@ public class BtcNetworkConfigTest {
 
     @Test
     public void testProposePeersWhenProxyPresentAndNoPeers() {
-        XmrNetworkConfig config = new XmrNetworkConfig(delegate, mock(NetworkParameters.class), MODE,
+        TskNetworkConfig config = new TskNetworkConfig(delegate, mock(NetworkParameters.class), MODE,
                 mock(Socks5Proxy.class));
         config.proposePeers(Collections.emptyList());
 
@@ -54,7 +54,7 @@ public class BtcNetworkConfigTest {
 
     @Test
     public void testProposePeersWhenProxyNotPresentAndNoPeers() {
-        XmrNetworkConfig config = new XmrNetworkConfig(delegate, mock(NetworkParameters.class), MODE,
+        TskNetworkConfig config = new TskNetworkConfig(delegate, mock(NetworkParameters.class), MODE,
                 null);
         config.proposePeers(Collections.emptyList());
 
@@ -64,7 +64,7 @@ public class BtcNetworkConfigTest {
 
     @Test
     public void testProposePeersWhenPeersPresent() {
-        XmrNetworkConfig config = new XmrNetworkConfig(delegate, mock(NetworkParameters.class), MODE,
+        TskNetworkConfig config = new TskNetworkConfig(delegate, mock(NetworkParameters.class), MODE,
                 null);
         config.proposePeers(Collections.singletonList(mock(PeerAddress.class)));
 

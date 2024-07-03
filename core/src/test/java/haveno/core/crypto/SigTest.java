@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.crypto;
+package tuskex.core.crypto;
 
-import haveno.common.crypto.CryptoException;
-import haveno.common.crypto.KeyRing;
-import haveno.common.crypto.KeyStorage;
-import haveno.common.crypto.Sig;
-import haveno.common.file.FileUtil;
+import tuskex.common.crypto.CryptoException;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.crypto.KeyStorage;
+import tuskex.common.crypto.Sig;
+import tuskex.common.file.FileUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

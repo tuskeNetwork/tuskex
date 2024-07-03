@@ -15,36 +15,36 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market;
+package tuskex.desktop.main.market;
 
 import com.google.common.base.Joiner;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.util.Utilities;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.offer.OfferPayload;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.statistics.TradeStatistics3;
-import haveno.core.trade.statistics.TradeStatistics3StorageService;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.CachingViewLoader;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.common.view.View;
-import haveno.desktop.common.view.ViewLoader;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.market.offerbook.OfferBookChartView;
-import haveno.desktop.main.market.spread.SpreadView;
-import haveno.desktop.main.market.spread.SpreadViewPaymentMethod;
-import haveno.desktop.main.market.trades.TradesChartsView;
-import haveno.desktop.main.offer.offerbook.OfferBook;
-import haveno.desktop.main.offer.offerbook.OfferBookListItem;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.DisplayUtils;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OfferPayload;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.statistics.TradeStatistics3;
+import tuskex.core.trade.statistics.TradeStatistics3StorageService;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.CachingViewLoader;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.common.view.View;
+import tuskex.desktop.common.view.ViewLoader;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.market.offerbook.OfferBookChartView;
+import tuskex.desktop.main.market.spread.SpreadView;
+import tuskex.desktop.main.market.spread.SpreadViewPaymentMethod;
+import tuskex.desktop.main.market.trades.TradesChartsView;
+import tuskex.desktop.main.offer.offerbook.OfferBook;
+import tuskex.desktop.main.offer.offerbook.OfferBookListItem;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.DisplayUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.beans.value.ChangeListener;
@@ -189,7 +189,7 @@ public class MarketView extends ActivatableView<TabPane, Void> {
                     sb.append("Date: ").append(DisplayUtils.formatDateTime(tradeStatistics3.getDate())).append("\n")
                             .append("Market: ").append(CurrencyUtil.getCurrencyPair(tradeStatistics3.getCurrency())).append("\n")
                             .append("Price: ").append(FormattingUtils.formatPrice(tradeStatistics3.getTradePrice())).append("\n")
-                            .append("Amount: ").append(HavenoUtils.formatXmr(tradeStatistics3.getTradeAmount())).append("\n")
+                            .append("Amount: ").append(TuskexUtils.formatTsk(tradeStatistics3.getTradeAmount())).append("\n")
                             .append("Volume: ").append(VolumeUtil.formatVolume(tradeStatistics3.getTradeVolume())).append("\n")
                             .append("Payment method: ").append(Res.get(tradeStatistics3.getPaymentMethodId())).append("\n")
                             .append("ReferralID: ").append(tradeStatistics3.getExtraDataMap().get(OfferPayload.REFERRAL_ID));

@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.payment;
+package tuskex.core.payment;
 
 import com.google.common.collect.Lists;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.offer.Offer;
-import haveno.core.payment.payload.PaymentMethod;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.offer.Offer;
+import tuskex.core.payment.payload.PaymentMethod;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

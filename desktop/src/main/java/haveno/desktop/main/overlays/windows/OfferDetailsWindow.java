@@ -15,43 +15,43 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import com.google.common.base.Joiner;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.UserThread;
-import haveno.common.crypto.KeyRing;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple4;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.Res;
-import haveno.core.monetary.Price;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.Trade;
-import haveno.core.trade.TradeManager;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.Navigation;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.util.CssTheme;
-import haveno.desktop.util.DisplayUtils;
-import static haveno.desktop.util.FormBuilder.addButtonAfterGroup;
-import static haveno.desktop.util.FormBuilder.addButtonBusyAnimationLabelAfterGroup;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelLabel;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelTextArea;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.Layout;
+import tuskex.common.UserThread;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple4;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.monetary.Price;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.Trade;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.util.CssTheme;
+import tuskex.desktop.util.DisplayUtils;
+import static tuskex.desktop.util.FormBuilder.addButtonAfterGroup;
+import static tuskex.desktop.util.FormBuilder.addButtonBusyAnimationLabelAfterGroup;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelLabel;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelTextArea;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.Layout;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
@@ -186,15 +186,15 @@ public class OfferDetailsWindow extends Overlay<OfferDetailsWindow> {
         if (isF2F)
             rows++;
 
-        boolean showXmrAutoConf = offer.isXmr() && offer.getDirection() == OfferDirection.SELL;
-        if (showXmrAutoConf) {
+        boolean showTskAutoConf = offer.isTsk() && offer.getDirection() == OfferDirection.SELL;
+        if (showTskAutoConf) {
             rows++;
         }
 
         addTitledGroupBg(gridPane, ++rowIndex, rows, Res.get("shared.Offer"));
 
         String counterCurrencyDirectionInfo = "";
-        String xmrDirectionInfo = "";
+        String tskDirectionInfo = "";
         OfferDirection direction = offer.getDirection();
         String currencyCode = offer.getCurrencyCode();
         String offerTypeLabel = Res.get("shared.offerType");
@@ -205,27 +205,27 @@ public class OfferDetailsWindow extends Overlay<OfferDetailsWindow> {
             addConfirmationLabelLabel(gridPane, rowIndex, offerTypeLabel,
                     DisplayUtils.getDirectionForTakeOffer(direction, currencyCode), firstRowDistance);
             counterCurrencyDirectionInfo = direction == OfferDirection.BUY ? toReceive : toSpend;
-            xmrDirectionInfo = direction == OfferDirection.SELL ? toReceive : toSpend;
+            tskDirectionInfo = direction == OfferDirection.SELL ? toReceive : toSpend;
         } else if (placeOfferHandlerOptional.isPresent()) {
             addConfirmationLabelLabel(gridPane, rowIndex, offerTypeLabel,
                     DisplayUtils.getOfferDirectionForCreateOffer(direction, currencyCode), firstRowDistance);
             counterCurrencyDirectionInfo = direction == OfferDirection.SELL ? toReceive : toSpend;
-            xmrDirectionInfo = direction == OfferDirection.BUY ? toReceive : toSpend;
+            tskDirectionInfo = direction == OfferDirection.BUY ? toReceive : toSpend;
         } else {
             addConfirmationLabelLabel(gridPane, rowIndex, offerTypeLabel,
                     DisplayUtils.getDirectionBothSides(direction), firstRowDistance);
         }
-        String amount = Res.get("shared.xmrAmount");
+        String amount = Res.get("shared.tskAmount");
         if (takeOfferHandlerOptional.isPresent()) {
-            addConfirmationLabelLabel(gridPane, ++rowIndex, amount + xmrDirectionInfo,
-                    HavenoUtils.formatXmr(tradeAmount, true));
+            addConfirmationLabelLabel(gridPane, ++rowIndex, amount + tskDirectionInfo,
+                    TuskexUtils.formatTsk(tradeAmount, true));
             addConfirmationLabelLabel(gridPane, ++rowIndex, VolumeUtil.formatVolumeLabel(currencyCode) + counterCurrencyDirectionInfo,
                     VolumeUtil.formatVolumeWithCode(offer.getVolumeByAmount(tradeAmount)));
         } else {
-            addConfirmationLabelLabel(gridPane, ++rowIndex, amount + xmrDirectionInfo,
-                    HavenoUtils.formatXmr(offer.getAmount(), true));
-            addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("offerDetailsWindow.minXmrAmount"),
-                    HavenoUtils.formatXmr(offer.getMinAmount(), true));
+            addConfirmationLabelLabel(gridPane, ++rowIndex, amount + tskDirectionInfo,
+                    TuskexUtils.formatTsk(offer.getAmount(), true));
+            addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("offerDetailsWindow.minTskAmount"),
+                    TuskexUtils.formatTsk(offer.getMinAmount(), true));
             String volume = VolumeUtil.formatVolumeWithCode(offer.getVolume());
             String minVolume = "";
             if (offer.getVolume() != null && offer.getMinVolume() != null &&
@@ -268,11 +268,11 @@ public class OfferDetailsWindow extends Overlay<OfferDetailsWindow> {
             addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("shared.paymentMethod"), method);
         }
 
-        if (showXmrAutoConf) {
-            String isAutoConf = offer.isXmrAutoConf() ?
+        if (showTskAutoConf) {
+            String isAutoConf = offer.isTskAutoConf() ?
                     Res.get("shared.yes") :
                     Res.get("shared.no");
-            addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("offerbook.xmrAutoConf"), isAutoConf);
+            addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("offerbook.tskAutoConf"), isAutoConf);
         }
 
         if (showAcceptedBanks) {
@@ -355,14 +355,14 @@ public class OfferDetailsWindow extends Overlay<OfferDetailsWindow> {
                 DisplayUtils.formatDateTime(offer.getDate()));
         String value = Res.getWithColAndCap("shared.buyer") +
                 " " +
-                HavenoUtils.formatXmr(offer.getOfferPayload().getMaxBuyerSecurityDeposit(), true) +
+                TuskexUtils.formatTsk(offer.getOfferPayload().getMaxBuyerSecurityDeposit(), true) +
                 " / " +
                 Res.getWithColAndCap("shared.seller") +
                 " " +
-                HavenoUtils.formatXmr(offer.getOfferPayload().getMaxSellerSecurityDeposit(), true);
+                TuskexUtils.formatTsk(offer.getOfferPayload().getMaxSellerSecurityDeposit(), true);
         addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("shared.securityDeposit"), value);
         if (reservedAmount != null) {
-            addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("shared.reservedAmount"),  HavenoUtils.formatXmr(reservedAmount, true));
+            addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("shared.reservedAmount"),  TuskexUtils.formatTsk(reservedAmount, true));
         }
 
         if (countryCode != null && !isF2F)

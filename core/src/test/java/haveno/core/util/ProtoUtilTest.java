@@ -15,21 +15,21 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.util;
+package tuskex.core.util;
 
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OpenOffer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OpenOffer;
 import org.junit.jupiter.api.Test;
 import protobuf.OpenOffer.State;
 
-import static haveno.common.proto.ProtoUtil.enumFromProto;
+import static tuskex.common.proto.ProtoUtil.enumFromProto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @SuppressWarnings("UnusedAssignment")
 public class ProtoUtilTest {
 
-    //TODO Use NetworkProtoResolver, PersistenceProtoResolver or ProtoResolver which are all in haveno.common.
+    //TODO Use NetworkProtoResolver, PersistenceProtoResolver or ProtoResolver which are all in tuskex.common.
     @Test
     public void testEnum() {
         OfferDirection direction = OfferDirection.SELL;

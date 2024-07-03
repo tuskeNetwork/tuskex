@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.app;
+package tuskex.desktop.app;
 
-import haveno.common.app.AppModule;
-import haveno.common.config.Config;
-import haveno.core.app.CoreModule;
-import haveno.desktop.DesktopModule;
+import tuskex.common.app.AppModule;
+import tuskex.common.config.Config;
+import tuskex.core.app.CoreModule;
+import tuskex.desktop.DesktopModule;
 
-public class HavenoAppModule extends AppModule {
+public class TuskexAppModule extends AppModule {
 
-    public HavenoAppModule(Config config) {
+    public TuskexAppModule(Config config) {
         super(config);
     }
 

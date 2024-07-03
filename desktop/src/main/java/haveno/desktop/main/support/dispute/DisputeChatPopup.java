@@ -1,5 +1,5 @@
 /*
- * This file is part of haveno.
+ * This file is part of tuskex.
  *
  * Bisq is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Affero General Public License as published by
@@ -12,27 +12,27 @@
  * License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with haveno. If not, see <http://www.gnu.org/licenses/>.
+ * along with tuskex. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.support.dispute;
+package tuskex.desktop.main.support.dispute;
 
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.shared.ChatView;
-import haveno.desktop.util.CssTheme;
-import haveno.desktop.util.DisplayUtils;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.shared.ChatView;
+import tuskex.desktop.util.CssTheme;
+import tuskex.desktop.util.DisplayUtils;
 
-import haveno.core.locale.Res;
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.DisputeList;
-import haveno.core.support.dispute.DisputeManager;
-import haveno.core.support.dispute.DisputeSession;
-import haveno.core.support.messages.ChatMessage;
-import haveno.core.user.Preferences;
-import haveno.core.util.coin.CoinFormatter;
+import tuskex.core.locale.Res;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.DisputeList;
+import tuskex.core.support.dispute.DisputeManager;
+import tuskex.core.support.dispute.DisputeSession;
+import tuskex.core.support.messages.ChatMessage;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.coin.CoinFormatter;
 
-import haveno.common.UserThread;
+import tuskex.common.UserThread;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;

@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.arbitration;
+package tuskex.core.arbitration;
 
-import haveno.core.support.dispute.arbitration.arbitrator.Arbitrator;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorService;
-import haveno.core.user.User;
-import haveno.network.p2p.NodeAddress;
+import tuskex.core.support.dispute.arbitration.arbitrator.Arbitrator;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorService;
+import tuskex.core.user.User;
+import tuskex.network.p2p.NodeAddress;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

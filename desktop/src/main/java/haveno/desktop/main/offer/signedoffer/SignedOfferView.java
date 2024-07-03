@@ -15,25 +15,25 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.signedoffer;
+package tuskex.desktop.main.offer.signedoffer;
 
 import com.google.inject.Inject;
-import haveno.common.util.Utilities;
-import haveno.core.locale.Res;
-import haveno.core.offer.SignedOffer;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.AutoTooltipTableColumn;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.components.list.FilterBox;
-import haveno.desktop.main.offer.OfferViewUtil;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.SignedOffer;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.AutoTooltipTableColumn;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.components.list.FilterBox;
+import tuskex.desktop.main.offer.OfferViewUtil;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.GUIUtil;
 import java.util.Comparator;
 import java.util.Date;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -82,14 +82,14 @@ public class SignedOfferView extends ActivatableViewAndModel<VBox, SignedOffersV
 
     private SignedOfferListItem selectedSignedOffer;
 
-    private final XmrWalletService xmrWalletService;
+    private final TskWalletService tskWalletService;
 
     private ContextMenu contextMenu;
 
     @Inject
-    public SignedOfferView(SignedOffersViewModel model, XmrWalletService xmrWalletService) {
+    public SignedOfferView(SignedOffersViewModel model, TskWalletService tskWalletService) {
         super(model);
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -146,11 +146,11 @@ public class SignedOfferView extends ActivatableViewAndModel<VBox, SignedOffersV
                 SignedOffer signedOffer = selectedSignedOffer.getSignedOffer();
                 new Popup().warning(Res.get("support.prompt.signedOffer.penalty.msg",
                         signedOffer.getOfferId(),
-                        HavenoUtils.formatXmr(signedOffer.getPenaltyAmount(), true),
-                        HavenoUtils.formatXmr(signedOffer.getReserveTxMinerFee(), true),
+                        TuskexUtils.formatTsk(signedOffer.getPenaltyAmount(), true),
+                        TuskexUtils.formatTsk(signedOffer.getReserveTxMinerFee(), true),
                         signedOffer.getReserveTxHash(),
                         signedOffer.getReserveTxKeyImages())
-                ).onAction(() -> OfferViewUtil.submitTransactionHex(xmrWalletService, tableView,
+                ).onAction(() -> OfferViewUtil.submitTransactionHex(tskWalletService, tableView,
                         signedOffer.getReserveTxHex())).show();
             } else {
                 new Popup().error(Res.get("support.prompt.signedOffer.error.msg")).show();
@@ -310,7 +310,7 @@ public class SignedOfferView extends ActivatableViewAndModel<VBox, SignedOffersV
                             public void updateItem(final SignedOfferListItem item, boolean empty) {
                                 super.updateItem(item, empty);
                                 if (item != null && !empty)
-                                    setText(HavenoUtils.formatXmr(item.getSignedOffer().getPenaltyAmount(), true));
+                                    setText(TuskexUtils.formatTsk(item.getSignedOffer().getPenaltyAmount(), true));
                                 else
                                     setText("");
                             }

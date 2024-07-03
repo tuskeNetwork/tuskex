@@ -15,20 +15,20 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.fontawesome.AwesomeDude;
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.common.UserThread;
-import haveno.common.util.Utilities;
-import haveno.core.locale.Res;
-import haveno.core.trade.Trade;
-import haveno.core.user.BlockChainExplorer;
-import haveno.core.user.Preferences;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.components.indicator.TxConfidenceIndicator;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.UserThread;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.Res;
+import tuskex.core.trade.Trade;
+import tuskex.core.user.BlockChainExplorer;
+import tuskex.core.user.Preferences;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.components.indicator.TxConfidenceIndicator;
+import tuskex.desktop.util.GUIUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -45,7 +45,7 @@ public class TxIdTextField extends AnchorPane {
     @Setter
     private static Preferences preferences;
     @Setter
-    private static XmrWalletService xmrWalletService;
+    private static TskWalletService tskWalletService;
 
     @Getter
     private final TextField textField;
@@ -118,7 +118,7 @@ public class TxIdTextField extends AnchorPane {
     public void setup(@Nullable String txId, Trade trade) {
         this.trade = trade;
         if (walletListener != null) {
-            xmrWalletService.removeWalletListener(walletListener);
+            tskWalletService.removeWalletListener(walletListener);
             walletListener = null;
         }
         if (tradeListener != null) {
@@ -147,7 +147,7 @@ public class TxIdTextField extends AnchorPane {
                     updateConfidence(txId, trade, false, height);
                 }
             };
-            xmrWalletService.addWalletListener(walletListener); // TODO: this only listens for new blocks, listen for double spend
+            tskWalletService.addWalletListener(walletListener); // TODO: this only listens for new blocks, listen for double spend
         } else {
             tradeListener = (observable, oldValue, newValue) -> {
                 updateConfidence(txId, trade, null, null);
@@ -166,8 +166,8 @@ public class TxIdTextField extends AnchorPane {
     }
 
     public void cleanup() {
-        if (xmrWalletService != null && walletListener != null) {
-            xmrWalletService.removeWalletListener(walletListener);
+        if (tskWalletService != null && walletListener != null) {
+            tskWalletService.removeWalletListener(walletListener);
             walletListener = null;
         }
         if (tradeListener != null) {
@@ -196,8 +196,8 @@ public class TxIdTextField extends AnchorPane {
         MoneroTx tx = null;
         try {
             if (trade == null) {
-                tx = useCache ? xmrWalletService.getDaemonTxWithCache(txId) : xmrWalletService.getDaemonTx(txId);
-                tx.setNumConfirmations(tx.isConfirmed() ? (height == null ? xmrWalletService.getConnectionService().getLastInfo().getHeight() : height) - tx.getHeight(): 0l); // TODO: don't set if tx.getNumConfirmations() works reliably on non-local testnet
+                tx = useCache ? tskWalletService.getDaemonTxWithCache(txId) : tskWalletService.getDaemonTx(txId);
+                tx.setNumConfirmations(tx.isConfirmed() ? (height == null ? tskWalletService.getConnectionService().getLastInfo().getHeight() : height) - tx.getHeight(): 0l); // TODO: don't set if tx.getNumConfirmations() works reliably on non-local testnet
             } else {
                 if (txId.equals(trade.getMaker().getDepositTxHash())) tx = trade.getMakerDepositTx();
                 else if (txId.equals(trade.getTaker().getDepositTxHash())) tx = trade.getTakerDepositTx();
@@ -215,7 +215,7 @@ public class TxIdTextField extends AnchorPane {
                 AnchorPane.setRightAnchor(txConfidenceIndicator, 0.0);
             }
             if (txConfidenceIndicator.getProgress() >= 1.0 && walletListener != null) {
-                xmrWalletService.removeWalletListener(walletListener); // unregister listener
+                tskWalletService.removeWalletListener(walletListener); // unregister listener
                 walletListener = null;
             }
         });

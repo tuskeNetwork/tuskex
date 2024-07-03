@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.common.UserThread;
-import haveno.core.locale.Res;
-import haveno.desktop.util.FormBuilder;
+import tuskex.common.UserThread;
+import tuskex.core.locale.Res;
+import tuskex.desktop.util.FormBuilder;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;

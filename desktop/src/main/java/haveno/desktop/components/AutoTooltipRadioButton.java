@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.scene.control.Skin;
 
-import static haveno.desktop.components.TooltipUtil.showTooltipIfTruncated;
+import static tuskex.desktop.components.TooltipUtil.showTooltipIfTruncated;
 
 public class AutoTooltipRadioButton extends JFXRadioButton {
 
@@ -37,7 +37,7 @@ public class AutoTooltipRadioButton extends JFXRadioButton {
         return new AutoTooltipRadioButtonSkin(this);
     }
 
-    private class AutoTooltipRadioButtonSkin extends JFXRadioButtonSkinHavenoStyle {
+    private class AutoTooltipRadioButtonSkin extends JFXRadioButtonSkinTuskexStyle {
         public AutoTooltipRadioButtonSkin(JFXRadioButton radioButton) {
             super(radioButton);
         }

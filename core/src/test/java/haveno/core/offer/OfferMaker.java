@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.offer;
+package tuskex.core.offer;
 
 import com.natpryce.makeiteasy.Instantiator;
 import com.natpryce.makeiteasy.Maker;
@@ -51,7 +51,7 @@ public class OfferMaker {
                     0L,
                     0L,
                     0L,
-                    lookup.valueOf(baseCurrencyCode, "XMR"),
+                    lookup.valueOf(baseCurrencyCode, "TSK"),
                     lookup.valueOf(counterCurrencyCode, "USD"),
                     "SEPA",
                     "",

@@ -1,23 +1,23 @@
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
-import haveno.common.crypto.PubKeyRing;
-import haveno.core.account.witness.AccountAgeWitness;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
-import haveno.core.monetary.Price;
-import haveno.core.monetary.Volume;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.ParsingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
+import tuskex.common.crypto.PubKeyRing;
+import tuskex.core.account.witness.AccountAgeWitness;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
+import tuskex.core.monetary.Price;
+import tuskex.core.monetary.Volume;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.ParsingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DurationFormatUtils;
@@ -189,8 +189,8 @@ public class DisplayUtils {
 
     public static String formatAmount(Offer offer, CoinFormatter coinFormatter) {
         return offer.isRange()
-                ? HavenoUtils.formatXmr(offer.getMinAmount()) + FormattingUtils.RANGE_SEPARATOR + HavenoUtils.formatXmr(offer.getAmount())
-                : HavenoUtils.formatXmr(offer.getAmount());
+                ? TuskexUtils.formatTsk(offer.getMinAmount()) + FormattingUtils.RANGE_SEPARATOR + TuskexUtils.formatTsk(offer.getAmount())
+                : TuskexUtils.formatTsk(offer.getAmount());
     }
 
     public static String formatAmount(Offer offer,
@@ -199,8 +199,8 @@ public class DisplayUtils {
                                       int maxPlaces,
                                       CoinFormatter coinFormatter) {
         String formattedAmount = offer.isRange()
-                ? HavenoUtils.formatXmr(offer.getMinAmount(), decimalPlaces) + FormattingUtils.RANGE_SEPARATOR + HavenoUtils.formatXmr(offer.getAmount(), decimalPlaces)
-                : HavenoUtils.formatXmr(offer.getAmount(), decimalPlaces);
+                ? TuskexUtils.formatTsk(offer.getMinAmount(), decimalPlaces) + FormattingUtils.RANGE_SEPARATOR + TuskexUtils.formatTsk(offer.getAmount(), decimalPlaces)
+                : TuskexUtils.formatTsk(offer.getAmount(), decimalPlaces);
 
         if (decimalAligned) {
             formattedAmount = FormattingUtils.fillUpPlacesWithEmptyStrings(formattedAmount, maxPlaces);
@@ -224,12 +224,12 @@ public class DisplayUtils {
     public static String getFeeWithFiatAmount(BigInteger makerFee,
                                               Optional<Volume> optionalFeeInFiat,
                                               CoinFormatter formatter) {
-        String feeInXmr = makerFee != null ? HavenoUtils.formatXmr(makerFee, true) : Res.get("shared.na");
+        String feeInTsk = makerFee != null ? TuskexUtils.formatTsk(makerFee, true) : Res.get("shared.na");
         if (optionalFeeInFiat != null && optionalFeeInFiat.isPresent()) {
             String feeInFiat = VolumeUtil.formatAverageVolumeWithCode(optionalFeeInFiat.get());
-            return Res.get("feeOptionWindow.fee", feeInXmr, feeInFiat);
+            return Res.get("feeOptionWindow.fee", feeInTsk, feeInFiat);
         } else {
-            return feeInXmr;
+            return feeInTsk;
         }
     }
 

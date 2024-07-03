@@ -15,66 +15,66 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main;
+package tuskex.desktop.main;
 
 import com.google.inject.Inject;
-import haveno.common.Timer;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.common.app.Version;
-import haveno.common.config.BaseCurrencyNetwork;
-import haveno.common.config.Config;
-import haveno.common.file.CorruptedStorageFileHandler;
-import haveno.common.util.Tuple2;
-import haveno.core.account.sign.SignedWitnessService;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.api.XmrConnectionService;
-import haveno.core.app.HavenoSetup;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.offer.OpenOffer;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.payment.AliPayAccount;
-import haveno.core.payment.AmazonGiftCardAccount;
-import haveno.core.payment.CryptoCurrencyAccount;
-import haveno.core.payment.RevolutAccount;
-import haveno.core.presentation.BalancePresentation;
-import haveno.core.presentation.SupportTicketsPresentation;
-import haveno.core.presentation.TradePresentation;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.ArbitratorTrade;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.TradeManager;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.user.Preferences;
-import haveno.core.user.Preferences.UseTorForXmr;
-import haveno.core.user.User;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.model.ViewModel;
-import haveno.desktop.components.TxIdTextField;
-import haveno.desktop.main.account.AccountView;
-import haveno.desktop.main.account.content.backup.BackupView;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.overlays.notifications.NotificationCenter;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.DisplayAlertMessageWindow;
-import haveno.desktop.main.overlays.windows.TacWindow;
-import haveno.desktop.main.overlays.windows.TorNetworkSettingsWindow;
-import haveno.desktop.main.overlays.windows.UpdateAmazonGiftCardAccountWindow;
-import haveno.desktop.main.overlays.windows.UpdateRevolutAccountWindow;
-import haveno.desktop.main.overlays.windows.WalletPasswordWindow;
-import haveno.desktop.main.overlays.windows.downloadupdate.DisplayUpdateDownloadWindow;
-import haveno.desktop.main.presentation.AccountPresentation;
-import haveno.desktop.main.presentation.MarketPricePresentation;
-import haveno.desktop.main.presentation.SettingsPresentation;
-import haveno.desktop.main.shared.PriceFeedComboBoxItem;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.BootstrapListener;
-import haveno.network.p2p.P2PService;
+import tuskex.common.Timer;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.common.app.Version;
+import tuskex.common.config.BaseCurrencyNetwork;
+import tuskex.common.config.Config;
+import tuskex.common.file.CorruptedStorageFileHandler;
+import tuskex.common.util.Tuple2;
+import tuskex.core.account.sign.SignedWitnessService;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.api.TskConnectionService;
+import tuskex.core.app.TuskexSetup;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.payment.AliPayAccount;
+import tuskex.core.payment.AmazonGiftCardAccount;
+import tuskex.core.payment.CryptoCurrencyAccount;
+import tuskex.core.payment.RevolutAccount;
+import tuskex.core.presentation.BalancePresentation;
+import tuskex.core.presentation.SupportTicketsPresentation;
+import tuskex.core.presentation.TradePresentation;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.ArbitratorTrade;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.Preferences.UseTorForTsk;
+import tuskex.core.user.User;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.model.ViewModel;
+import tuskex.desktop.components.TxIdTextField;
+import tuskex.desktop.main.account.AccountView;
+import tuskex.desktop.main.account.content.backup.BackupView;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.overlays.notifications.NotificationCenter;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.DisplayAlertMessageWindow;
+import tuskex.desktop.main.overlays.windows.TacWindow;
+import tuskex.desktop.main.overlays.windows.TorNetworkSettingsWindow;
+import tuskex.desktop.main.overlays.windows.UpdateAmazonGiftCardAccountWindow;
+import tuskex.desktop.main.overlays.windows.UpdateRevolutAccountWindow;
+import tuskex.desktop.main.overlays.windows.WalletPasswordWindow;
+import tuskex.desktop.main.overlays.windows.downloadupdate.DisplayUpdateDownloadWindow;
+import tuskex.desktop.main.presentation.AccountPresentation;
+import tuskex.desktop.main.presentation.MarketPricePresentation;
+import tuskex.desktop.main.presentation.SettingsPresentation;
+import tuskex.desktop.main.shared.PriceFeedComboBoxItem;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.BootstrapListener;
+import tuskex.network.p2p.P2PService;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -102,9 +102,9 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener {
-    private final HavenoSetup havenoSetup;
-    private final XmrConnectionService xmrConnectionService;
+public class MainViewModel implements ViewModel, TuskexSetup.TuskexSetupListener {
+    private final TuskexSetup tuskexSetup;
+    private final TskConnectionService tskConnectionService;
     private final User user;
     private final BalancePresentation balancePresentation;
     private final TradePresentation tradePresentation;
@@ -135,7 +135,7 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
     private final DoubleProperty combinedSyncProgress = new SimpleDoubleProperty(-1);
     private final BooleanProperty isSplashScreenRemoved = new SimpleBooleanProperty();
     private final StringProperty footerVersionInfo = new SimpleStringProperty();
-    private Timer checkNumberOfXmrPeersTimer;
+    private Timer checkNumberOfTskPeersTimer;
     private Timer checkNumberOfP2pNetworkPeersTimer;
     @SuppressWarnings("FieldCanBeLocal")
     private MonadicBinding<Boolean> tradesAndUIReady;
@@ -147,9 +147,9 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     @Inject
-    public MainViewModel(HavenoSetup havenoSetup,
-                         XmrConnectionService xmrConnectionService,
-                         XmrWalletService xmrWalletService,
+    public MainViewModel(TuskexSetup tuskexSetup,
+                         TskConnectionService tskConnectionService,
+                         TskWalletService tskWalletService,
                          User user,
                          BalancePresentation balancePresentation,
                          TradePresentation tradePresentation,
@@ -171,8 +171,8 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
                          TorNetworkSettingsWindow torNetworkSettingsWindow,
                          CorruptedStorageFileHandler corruptedStorageFileHandler,
                          Navigation navigation) {
-        this.havenoSetup = havenoSetup;
-        this.xmrConnectionService = xmrConnectionService;
+        this.tuskexSetup = tuskexSetup;
+        this.tskConnectionService = tskConnectionService;
         this.user = user;
         this.balancePresentation = balancePresentation;
         this.tradePresentation = tradePresentation;
@@ -197,17 +197,17 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
 
         TxIdTextField.setPreferences(preferences);
 
-        TxIdTextField.setXmrWalletService(xmrWalletService);
+        TxIdTextField.setTskWalletService(tskWalletService);
 
         GUIUtil.setPreferences(preferences);
 
         setupHandlers();
-        havenoSetup.addHavenoSetupListener(this);
+        tuskexSetup.addTuskexSetupListener(this);
     }
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////
-    // HavenoSetupListener
+    // TuskexSetupListener
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
@@ -275,7 +275,7 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
         UserThread.execute(() -> getShowAppScreen().set(true));
 
         // show welcome message 
-        if (Config.baseCurrencyNetwork() == BaseCurrencyNetwork.XMR_STAGENET) {
+        if (Config.baseCurrencyNetwork() == BaseCurrencyNetwork.TSK_STAGENET) {
             String key = "welcome.stagenet";
             if (DontShowAgainLookup.showAgain(key)) {
                 UserThread.runAfter(() -> {
@@ -285,9 +285,9 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
                             .show();
                 }, 1);
             }
-        } else if (Config.baseCurrencyNetwork() == BaseCurrencyNetwork.XMR_MAINNET) {
+        } else if (Config.baseCurrencyNetwork() == BaseCurrencyNetwork.TSK_MAINNET) {
             String key = "welcome.mainnet";
-            boolean isReleaseLimited = HavenoUtils.isReleasedWithinDays(HavenoUtils.RELEASE_LIMIT_DAYS);
+            boolean isReleaseLimited = TuskexUtils.isReleasedWithinDays(TuskexUtils.RELEASE_LIMIT_DAYS);
             if (DontShowAgainLookup.showAgain(key)) {
                 UserThread.runAfter(() -> {
                     new Popup().attention(Res.get(isReleaseLimited ? "popup.attention.welcome.mainnet.test" : "popup.attention.welcome.mainnet")).
@@ -316,7 +316,7 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
     }
 
     void onOpenDownloadWindow() {
-        havenoSetup.displayAlertIfPresent(user.getDisplayedAlert(), true);
+        tuskexSetup.displayAlertIfPresent(user.getDisplayedAlert(), true);
     }
 
     void setPriceFeedComboBoxItem(PriceFeedComboBoxItem item) {
@@ -329,12 +329,12 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     private void setupHandlers() {
-        havenoSetup.setDisplayTacHandler(acceptedHandler -> UserThread.runAfter(() -> {
+        tuskexSetup.setDisplayTacHandler(acceptedHandler -> UserThread.runAfter(() -> {
             //noinspection FunctionalExpressionCanBeFolded
             tacWindow.onAction(acceptedHandler::run).show();
         }, 1));
 
-        havenoSetup.setDisplayTorNetworkSettingsHandler(show -> {
+        tuskexSetup.setDisplayTorNetworkSettingsHandler(show -> {
             if (show) {
                 torNetworkSettingsWindow.show();
             } else if (torNetworkSettingsWindow.isDisplayed()) {
@@ -342,12 +342,12 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
             }
         });
 
-        havenoSetup.setChainFileLockedExceptionHandler(msg -> new Popup().warning(msg)
+        tuskexSetup.setChainFileLockedExceptionHandler(msg -> new Popup().warning(msg)
                 .useShutDownButton()
                 .show());
         tradeManager.setLockedUpFundsHandler(msg -> new Popup().width(850).warning(msg).show());
 
-        havenoSetup.setDisplayUpdateHandler((alert, key) -> new DisplayUpdateDownloadWindow(alert, config)
+        tuskexSetup.setDisplayUpdateHandler((alert, key) -> new DisplayUpdateDownloadWindow(alert, config)
                 .actionButtonText(Res.get("displayUpdateDownloadWindow.button.downloadLater"))
                 .onAction(() -> {
                     preferences.dontShowAgain(key, false); // update later
@@ -357,51 +357,51 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
                     preferences.dontShowAgain(key, true); // ignore update
                 })
                 .show());
-        havenoSetup.setDisplayAlertHandler(alert -> new DisplayAlertMessageWindow()
+        tuskexSetup.setDisplayAlertHandler(alert -> new DisplayAlertMessageWindow()
                 .alertMessage(alert)
                 .closeButtonText(Res.get("shared.close"))
                 .onClose(() -> user.setDisplayedAlert(alert))
                 .show());
-        havenoSetup.setDisplayPrivateNotificationHandler(privateNotification ->
+        tuskexSetup.setDisplayPrivateNotificationHandler(privateNotification ->
                 new Popup().headLine(Res.get("popup.privateNotification.headline"))
                         .attention(privateNotification.getMessage())
                         .onClose(privateNotificationManager::removePrivateNotification)
                         .useIUnderstandButton()
                         .show());
-        havenoSetup.setDisplaySecurityRecommendationHandler(key -> {});
-        havenoSetup.setDisplayLocalhostHandler(key -> {
+        tuskexSetup.setDisplaySecurityRecommendationHandler(key -> {});
+        tuskexSetup.setDisplayLocalhostHandler(key -> {
             if (!DevEnv.isDevMode()) {
-                Popup popup = new Popup().backgroundInfo(Res.get("popup.xmrLocalNode.msg"))
+                Popup popup = new Popup().backgroundInfo(Res.get("popup.tskLocalNode.msg"))
                         .dontShowAgainId(key);
                 popup.setDisplayOrderPriority(5);
                 popupQueue.add(popup);
             }
         });
-        havenoSetup.setDisplaySignedByArbitratorHandler(key -> accountPresentation.showOneTimeAccountSigningPopup(
+        tuskexSetup.setDisplaySignedByArbitratorHandler(key -> accountPresentation.showOneTimeAccountSigningPopup(
                 key, "popup.accountSigning.signedByArbitrator"));
-        havenoSetup.setDisplaySignedByPeerHandler(key -> accountPresentation.showOneTimeAccountSigningPopup(
+        tuskexSetup.setDisplaySignedByPeerHandler(key -> accountPresentation.showOneTimeAccountSigningPopup(
                 key, "popup.accountSigning.signedByPeer", String.valueOf(SignedWitnessService.SIGNER_AGE_DAYS)));
-        havenoSetup.setDisplayPeerLimitLiftedHandler(key -> accountPresentation.showOneTimeAccountSigningPopup(
+        tuskexSetup.setDisplayPeerLimitLiftedHandler(key -> accountPresentation.showOneTimeAccountSigningPopup(
                 key, "popup.accountSigning.peerLimitLifted"));
-        havenoSetup.setDisplayPeerSignerHandler(key -> accountPresentation.showOneTimeAccountSigningPopup(
+        tuskexSetup.setDisplayPeerSignerHandler(key -> accountPresentation.showOneTimeAccountSigningPopup(
                 key, "popup.accountSigning.peerSigner"));
 
-        havenoSetup.setWrongOSArchitectureHandler(msg -> new Popup().warning(msg).show());
+        tuskexSetup.setWrongOSArchitectureHandler(msg -> new Popup().warning(msg).show());
 
-        havenoSetup.setRejectedTxErrorMessageHandler(msg -> new Popup().width(850).warning(msg).show());
+        tuskexSetup.setRejectedTxErrorMessageHandler(msg -> new Popup().width(850).warning(msg).show());
 
-        havenoSetup.setShowPopupIfInvalidBtcConfigHandler(this::showPopupIfInvalidBtcConfig);
+        tuskexSetup.setShowPopupIfInvalidBtcConfigHandler(this::showPopupIfInvalidBtcConfig);
 
-        havenoSetup.setRevolutAccountsUpdateHandler(revolutAccountList -> {
+        tuskexSetup.setRevolutAccountsUpdateHandler(revolutAccountList -> {
             // We copy the array as we will mutate it later
             showRevolutAccountUpdateWindow(new ArrayList<>(revolutAccountList));
         });
-        havenoSetup.setAmazonGiftCardAccountsUpdateHandler(amazonGiftCardAccountList -> {
+        tuskexSetup.setAmazonGiftCardAccountsUpdateHandler(amazonGiftCardAccountList -> {
             // We copy the array as we will mutate it later
             showAmazonGiftCardAccountUpdateWindow(new ArrayList<>(amazonGiftCardAccountList));
         });
-        havenoSetup.setOsxKeyLoggerWarningHandler(() -> { });
-        havenoSetup.setQubesOSInfoHandler(() -> {
+        tuskexSetup.setOsxKeyLoggerWarningHandler(() -> { });
+        tuskexSetup.setQubesOSInfoHandler(() -> {
             String key = "qubesOSSetupInfo";
             if (preferences.showAgain(key)) {
                 new Popup().information(Res.get("popup.info.qubesOSSetupInfo"))
@@ -411,14 +411,14 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
             }
         });
 
-        havenoSetup.setDownGradePreventionHandler(lastVersion -> {
+        tuskexSetup.setDownGradePreventionHandler(lastVersion -> {
             new Popup().warning(Res.get("popup.warn.downGradePrevention", lastVersion, Version.VERSION))
                     .useShutDownButton()
                     .hideCloseButton()
                     .show();
         });
 
-        havenoSetup.setTorAddressUpgradeHandler(() -> new Popup().information(Res.get("popup.info.torMigration.msg"))
+        tuskexSetup.setTorAddressUpgradeHandler(() -> new Popup().information(Res.get("popup.info.torMigration.msg"))
                 .actionButtonTextWithGoTo("navigation.account.backup")
                 .onAction(() -> {
                     navigation.setReturnPath(navigation.getCurrentPath());
@@ -430,10 +430,10 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
                 .useShutDownButton()
                 .show());
 
-        havenoSetup.getXmrDaemonSyncProgress().addListener((observable, oldValue, newValue) -> updateXmrDaemonSyncProgress());
-        havenoSetup.getXmrWalletSyncProgress().addListener((observable, oldValue, newValue) -> updateXmrWalletSyncProgress());
+        tuskexSetup.getTskDaemonSyncProgress().addListener((observable, oldValue, newValue) -> updateTskDaemonSyncProgress());
+        tuskexSetup.getTskWalletSyncProgress().addListener((observable, oldValue, newValue) -> updateTskWalletSyncProgress());
 
-        havenoSetup.setFilterWarningHandler(warning -> new Popup().warning(warning).show());
+        tuskexSetup.setFilterWarningHandler(warning -> new Popup().warning(warning).show());
 
         this.footerVersionInfo.setValue("v" + Version.VERSION);
         this.getNewVersionAvailableProperty().addListener((observable, oldValue, newValue) -> {
@@ -508,7 +508,7 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
 
     private void showPopupIfInvalidBtcConfig() {
         preferences.setMoneroNodesOptionOrdinal(0);
-        new Popup().warning(Res.get("settings.net.warn.invalidXmrConfig"))
+        new Popup().warning(Res.get("settings.net.warn.invalidTskConfig"))
                 .hideCloseButton()
                 .useShutDownButton()
                 .show();
@@ -544,17 +544,17 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
         }
     }
 
-    private void updateXmrDaemonSyncProgress() {
-        final DoubleProperty xmrDaemonSyncProgress = havenoSetup.getXmrDaemonSyncProgress();
+    private void updateTskDaemonSyncProgress() {
+        final DoubleProperty tskDaemonSyncProgress = tuskexSetup.getTskDaemonSyncProgress();
         UserThread.execute(() -> {
-            combinedSyncProgress.set(xmrDaemonSyncProgress.doubleValue());
+            combinedSyncProgress.set(tskDaemonSyncProgress.doubleValue());
         });
     }
     
-    private void updateXmrWalletSyncProgress() {
-        final DoubleProperty xmrWalletSyncProgress = havenoSetup.getXmrWalletSyncProgress();
+    private void updateTskWalletSyncProgress() {
+        final DoubleProperty tskWalletSyncProgress = tuskexSetup.getTskWalletSyncProgress();
         UserThread.execute(() -> {
-            combinedSyncProgress.set(xmrWalletSyncProgress.doubleValue());
+            combinedSyncProgress.set(tskWalletSyncProgress.doubleValue());
         });
     }
 
@@ -592,7 +592,7 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     BooleanProperty getNewVersionAvailableProperty() {
-        return havenoSetup.getNewVersionAvailableProperty();
+        return tuskexSetup.getNewVersionAvailableProperty();
     }
 
     StringProperty getNumOpenSupportTickets() {
@@ -625,9 +625,9 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
 
 
     // Wallet
-    StringProperty getXmrInfo() {
+    StringProperty getTskInfo() {
         final StringProperty combinedInfo = new SimpleStringProperty();
-        combinedInfo.bind(havenoSetup.getXmrInfo());
+        combinedInfo.bind(tuskexSetup.getTskInfo());
         return combinedInfo;
     }
 
@@ -642,48 +642,48 @@ public class MainViewModel implements ViewModel, HavenoSetup.HavenoSetupListener
     }
 
     StringProperty getConnectionServiceErrorMsg() {
-        return havenoSetup.getConnectionServiceErrorMsg();
+        return tuskexSetup.getConnectionServiceErrorMsg();
     }
 
     StringProperty getTopErrorMsg() {
-        return havenoSetup.getTopErrorMsg();
+        return tuskexSetup.getTopErrorMsg();
     }
 
-    StringProperty getXmrSplashSyncIconId() {
-        return havenoSetup.getXmrSplashSyncIconId();
+    StringProperty getTskSplashSyncIconId() {
+        return tuskexSetup.getTskSplashSyncIconId();
     }
 
-    ObjectProperty<UseTorForXmr> getUseTorForXmr() {
-        return havenoSetup.getUseTorForXmr();
+    ObjectProperty<UseTorForTsk> getUseTorForTsk() {
+        return tuskexSetup.getUseTorForTsk();
     }
 
     // P2P
     StringProperty getP2PNetworkInfo() {
-        return havenoSetup.getP2PNetworkInfo();
+        return tuskexSetup.getP2PNetworkInfo();
     }
 
     BooleanProperty getSplashP2PNetworkAnimationVisible() {
-        return havenoSetup.getSplashP2PNetworkAnimationVisible();
+        return tuskexSetup.getSplashP2PNetworkAnimationVisible();
     }
 
     StringProperty getP2pNetworkWarnMsg() {
-        return havenoSetup.getP2pNetworkWarnMsg();
+        return tuskexSetup.getP2pNetworkWarnMsg();
     }
 
     StringProperty getP2PNetworkIconId() {
-        return havenoSetup.getP2PNetworkIconId();
+        return tuskexSetup.getP2PNetworkIconId();
     }
 
     StringProperty getP2PNetworkStatusIconId() {
-        return havenoSetup.getP2PNetworkStatusIconId();
+        return tuskexSetup.getP2PNetworkStatusIconId();
     }
 
     BooleanProperty getUpdatedDataReceived() {
-        return havenoSetup.getUpdatedDataReceived();
+        return tuskexSetup.getUpdatedDataReceived();
     }
 
     StringProperty getP2pNetworkLabelId() {
-        return havenoSetup.getP2pNetworkLabelId();
+        return tuskexSetup.getP2pNetworkLabelId();
     }
 
     // marketPricePresentation

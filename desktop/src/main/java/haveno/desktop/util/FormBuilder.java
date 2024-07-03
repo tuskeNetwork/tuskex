@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
 import com.jfoenix.controls.JFXComboBox;
 //import com.jfoenix.controls.JFXDatePicker;
@@ -25,35 +25,35 @@ import de.jensd.fx.fontawesome.AwesomeDude;
 import de.jensd.fx.fontawesome.AwesomeIcon;
 import de.jensd.fx.glyphs.GlyphIcons;
 import de.jensd.fx.glyphs.materialdesignicons.utils.MaterialDesignIconFactory;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple3;
-import haveno.common.util.Tuple4;
-import haveno.common.util.Utilities;
-import haveno.core.locale.Res;
-import haveno.desktop.components.AddressTextField;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipCheckBox;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.AutoTooltipRadioButton;
-import haveno.desktop.components.AutoTooltipSlideToggleButton;
-import haveno.desktop.components.AutocompleteComboBox;
-import haveno.desktop.components.BalanceTextField;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.components.ExplorerAddressTextField;
-import haveno.desktop.components.ExternalHyperlink;
-import haveno.desktop.components.FundsTextField;
-import haveno.desktop.components.HavenoTextArea;
-import haveno.desktop.components.HavenoTextField;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.components.InfoInputTextField;
-import haveno.desktop.components.InfoTextField;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.components.PasswordTextField;
-import haveno.desktop.components.SimpleMarkdownLabel;
-import haveno.desktop.components.TextFieldWithCopyIcon;
-import haveno.desktop.components.TextFieldWithIcon;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.components.TxIdTextField;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple3;
+import tuskex.common.util.Tuple4;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.AddressTextField;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipCheckBox;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.AutoTooltipRadioButton;
+import tuskex.desktop.components.AutoTooltipSlideToggleButton;
+import tuskex.desktop.components.AutocompleteComboBox;
+import tuskex.desktop.components.BalanceTextField;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.components.ExplorerAddressTextField;
+import tuskex.desktop.components.ExternalHyperlink;
+import tuskex.desktop.components.FundsTextField;
+import tuskex.desktop.components.TuskexTextArea;
+import tuskex.desktop.components.TuskexTextField;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.components.InfoInputTextField;
+import tuskex.desktop.components.InfoTextField;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.components.PasswordTextField;
+import tuskex.desktop.components.SimpleMarkdownLabel;
+import tuskex.desktop.components.TextFieldWithCopyIcon;
+import tuskex.desktop.components.TextFieldWithIcon;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.components.TxIdTextField;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -85,7 +85,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import static haveno.desktop.util.GUIUtil.getComboBoxButtonCell;
+import static tuskex.desktop.util.GUIUtil.getComboBoxButtonCell;
 
 public class FormBuilder {
     private static final String MATERIAL_DESIGN_ICONS = "'Material Design Icons'";
@@ -340,7 +340,7 @@ public class FormBuilder {
                                                                       String title,
                                                                       String value,
                                                                       double top) {
-        TextField textField = new HavenoTextField(value);
+        TextField textField = new TuskexTextField(value);
         textField.setEditable(false);
         textField.setFocusTraversable(false);
 
@@ -353,7 +353,7 @@ public class FormBuilder {
     }
 
     public static Tuple2<TextField, Button> addTextFieldWithEditButton(GridPane gridPane, int rowIndex, String title) {
-        TextField textField = new HavenoTextField();
+        TextField textField = new TuskexTextField();
         textField.setPromptText(title);
         textField.setEditable(false);
         textField.setFocusTraversable(false);
@@ -438,7 +438,7 @@ public class FormBuilder {
                                                                          double top) {
         Label label1 = addLabel(gridPane, rowIndex, title1);
         label1.getStyleClass().add("confirmation-label");
-        TextField label2 = new HavenoTextField(title2);
+        TextField label2 = new TuskexTextField(title2);
         gridPane.getChildren().add(label2);
         label2.getStyleClass().add("confirmation-text-field-as-label");
         label2.setEditable(false);
@@ -613,7 +613,7 @@ public class FormBuilder {
 
     public static TextArea addTextArea(GridPane gridPane, int rowIndex, String prompt, double top) {
 
-        JFXTextArea textArea = new HavenoTextArea();
+        JFXTextArea textArea = new TuskexTextArea();
         textArea.setPromptText(prompt);
         textArea.setLabelFloat(true);
         textArea.setWrapText(true);
@@ -672,7 +672,7 @@ public class FormBuilder {
     public static Tuple2<Label, TextArea> addTopLabelTextArea(GridPane gridPane, int rowIndex, int colIndex,
                                                               String title, String prompt, double top) {
 
-        TextArea textArea = new HavenoTextArea();
+        TextArea textArea = new TuskexTextArea();
         textArea.setPromptText(prompt);
         textArea.setWrapText(true);
         textArea.setPrefHeight(100);
@@ -975,7 +975,7 @@ public class FormBuilder {
                                                                               String buttonTitle,
                                                                               double top) {
 
-        TextField textField = new HavenoTextField();
+        TextField textField = new TuskexTextField();
         textField.setEditable(false);
         textField.setMouseTransparent(true);
         textField.setFocusTraversable(false);
@@ -1029,14 +1029,14 @@ public class FormBuilder {
                                                                                                           int rowIndex,
                                                                                                           String title1,
                                                                                                           String title2) {
-        TextField textField1 = new HavenoTextField();
+        TextField textField1 = new TuskexTextField();
         textField1.setEditable(false);
         textField1.setMouseTransparent(true);
         textField1.setFocusTraversable(false);
 
         final Tuple2<Label, VBox> topLabelWithVBox1 = getTopLabelWithVBox(title1, textField1);
 
-        TextField textField2 = new HavenoTextField();
+        TextField textField2 = new TuskexTextField();
         textField2.setEditable(false);
         textField2.setMouseTransparent(true);
         textField2.setFocusTraversable(false);
@@ -1168,7 +1168,7 @@ public class FormBuilder {
                                                                                             String textFieldTitle,
                                                                                             String maxButtonTitle,
                                                                                             double top) {
-        TextField textField = new HavenoTextField();
+        TextField textField = new TuskexTextField();
         textField.setPromptText(textFieldTitle);
 
         HyperlinkWithIcon maxLink = new ExternalHyperlink(maxButtonTitle);
@@ -1344,7 +1344,7 @@ public class FormBuilder {
         HBox hBox = new HBox();
         hBox.setSpacing(10);
 
-        TextField textField = new HavenoTextField();
+        TextField textField = new TuskexTextField();
 
         final VBox topLabelVBox = getTopLabelVBox(5);
         final Label topLabel = getTopLabel(titleTextfield);
@@ -1428,7 +1428,7 @@ public class FormBuilder {
 
         final VBox topLabelVBox1 = getTopLabelVBox(5);
         final Label topLabel1 = getTopLabel(titleTextfield);
-        final TextField textField = new HavenoTextField();
+        final TextField textField = new TuskexTextField();
         topLabelVBox1.getChildren().addAll(topLabel1, textField);
 
         final VBox topLabelVBox2 = getTopLabelVBox(5);
@@ -1496,7 +1496,7 @@ public class FormBuilder {
         comboBox.setPromptText(titleCombobox);
         comboBox.setLabelFloat(true);
 
-        TextField textField = new HavenoTextField();
+        TextField textField = new TuskexTextField();
 
         final VBox topLabelVBox = getTopLabelVBox(5);
         final Label topLabel = getTopLabel(titleTextfield);

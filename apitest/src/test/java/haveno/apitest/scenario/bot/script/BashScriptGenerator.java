@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario.bot.script;
+package tuskex.apitest.scenario.bot.script;
 
 import com.google.common.io.Files;
-import haveno.common.file.FileUtil;
-import haveno.proto.grpc.OfferInfo;
-import haveno.proto.grpc.TradeInfo;
+import tuskex.common.file.FileUtil;
+import tuskex.proto.grpc.OfferInfo;
+import tuskex.proto.grpc.TradeInfo;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -55,7 +55,7 @@ public class BashScriptGenerator {
         this.apiPort = apiPort;
         this.paymentAccountId = paymentAccountId;
         this.printCliScripts = printCliScripts;
-        this.cliBase = format("./haveno-cli --password=%s --port=%d", apiPassword, apiPort);
+        this.cliBase = format("./tuskex-cli --password=%s --port=%d", apiPassword, apiPort);
     }
 
     public File createMakeMarginPricedOfferScript(String direction,

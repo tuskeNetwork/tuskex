@@ -15,17 +15,17 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop;
+package tuskex.desktop;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import haveno.common.persistence.PersistenceManager;
-import haveno.common.proto.persistable.NavigationPath;
-import haveno.common.proto.persistable.PersistedDataHost;
-import haveno.desktop.common.view.View;
-import haveno.desktop.common.view.ViewPath;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.market.MarketView;
+import tuskex.common.persistence.PersistenceManager;
+import tuskex.common.proto.persistable.NavigationPath;
+import tuskex.common.proto.persistable.PersistedDataHost;
+import tuskex.desktop.common.view.View;
+import tuskex.desktop.common.view.ViewPath;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.market.MarketView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

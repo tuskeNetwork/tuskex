@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows.downloadupdate;
+package tuskex.desktop.main.overlays.windows.downloadupdate;
 
 import com.google.common.collect.Lists;
-import haveno.desktop.main.overlays.windows.downloadupdate.HavenoInstaller.FileDescriptor;
+import tuskex.desktop.main.overlays.windows.downloadupdate.TuskexInstaller.FileDescriptor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-public class HavenoInstallerTest {
+public class TuskexInstallerTest {
     @Test
     public void call() throws Exception {
     }
@@ -43,7 +43,7 @@ public class HavenoInstallerTest {
         url = this.getClass().getResource("/downloadUpdate/F379A1C6.asc");
         File pubKeyFile = new File(url.toURI().getPath());
 
-        assertEquals(HavenoInstaller.VerifyStatusEnum.OK, HavenoInstaller.verifySignature(pubKeyFile, sigFile, dataFile));
+        assertEquals(TuskexInstaller.VerifyStatusEnum.OK, TuskexInstaller.verifySignature(pubKeyFile, sigFile, dataFile));
 
         url = this.getClass().getResource("/downloadUpdate/test_bad.txt");
         dataFile = new File(url.toURI().getPath());
@@ -52,8 +52,8 @@ public class HavenoInstallerTest {
         url = this.getClass().getResource("/downloadUpdate/F379A1C6.asc");
         pubKeyFile = new File(url.toURI().getPath());
 
-        HavenoInstaller.verifySignature(pubKeyFile, sigFile, dataFile);
-        assertEquals(HavenoInstaller.VerifyStatusEnum.FAIL, HavenoInstaller.verifySignature(pubKeyFile, sigFile, dataFile));
+        TuskexInstaller.verifySignature(pubKeyFile, sigFile, dataFile);
+        assertEquals(TuskexInstaller.VerifyStatusEnum.FAIL, TuskexInstaller.verifySignature(pubKeyFile, sigFile, dataFile));
     }
 
     @Test
@@ -70,13 +70,13 @@ public class HavenoInstallerTest {
 
     @Test
     public void getSigFileDescriptors() throws Exception {
-        HavenoInstaller havenoInstaller = new HavenoInstaller();
+        TuskexInstaller tuskexInstaller = new TuskexInstaller();
         FileDescriptor installerFileDescriptor = FileDescriptor.builder().fileName("filename.txt").id("filename").loadUrl("url://filename.txt").build();
         FileDescriptor key1 = FileDescriptor.builder().fileName("key1").id("key1").loadUrl("").build();
         FileDescriptor key2 = FileDescriptor.builder().fileName("key2").id("key2").loadUrl("").build();
-        List<FileDescriptor> sigFileDescriptors = havenoInstaller.getSigFileDescriptors(installerFileDescriptor, Lists.newArrayList(key1));
+        List<FileDescriptor> sigFileDescriptors = tuskexInstaller.getSigFileDescriptors(installerFileDescriptor, Lists.newArrayList(key1));
         assertEquals(1, sigFileDescriptors.size());
-        sigFileDescriptors = havenoInstaller.getSigFileDescriptors(installerFileDescriptor, Lists.newArrayList(key1, key2));
+        sigFileDescriptors = tuskexInstaller.getSigFileDescriptors(installerFileDescriptor, Lists.newArrayList(key1, key2));
         assertEquals(2, sigFileDescriptors.size());
         log.info("test");
 

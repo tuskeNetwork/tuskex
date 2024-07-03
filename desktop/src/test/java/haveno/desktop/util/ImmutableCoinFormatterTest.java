@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
-import haveno.common.config.Config;
-import haveno.core.locale.Res;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.coin.ImmutableCoinFormatter;
+import tuskex.common.config.Config;
+import tuskex.core.locale.Res;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.coin.ImmutableCoinFormatter;
 import org.bitcoinj.core.CoinMaker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ public class ImmutableCoinFormatterTest {
     @BeforeEach
     public void setUp() {
         Locale.setDefault(new Locale("en", "US"));
-        Res.setBaseCurrencyCode("XMR");
+        Res.setBaseCurrencyCode("TSK");
         Res.setBaseCurrencyName("Monero");
     }
 

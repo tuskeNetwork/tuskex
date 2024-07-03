@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.notifications;
+package tuskex.core.notifications;
 
-import haveno.common.util.Tuple2;
+import tuskex.common.util.Tuple2;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 

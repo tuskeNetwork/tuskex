@@ -15,25 +15,25 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.app.DevEnv;
-import haveno.common.config.Config;
-import haveno.common.util.Tuple2;
-import haveno.core.alert.Alert;
-import haveno.core.alert.AlertManager;
-import haveno.core.locale.Res;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.FormBuilder;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addLabelCheckBox;
-import static haveno.desktop.util.FormBuilder.addRadioButton;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextArea;
+import tuskex.common.app.DevEnv;
+import tuskex.common.config.Config;
+import tuskex.common.util.Tuple2;
+import tuskex.core.alert.Alert;
+import tuskex.core.alert.AlertManager;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.FormBuilder;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addLabelCheckBox;
+import static tuskex.desktop.util.FormBuilder.addRadioButton;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextArea;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

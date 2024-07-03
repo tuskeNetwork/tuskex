@@ -1,6 +1,6 @@
-package haveno.apitest.method.payment;
+package tuskex.apitest.method.payment;
 
-import haveno.apitest.method.MethodTest;
+import tuskex.apitest.method.MethodTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,8 +14,8 @@ import protobuf.PaymentMethod;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static haveno.apitest.Scaffold.BitcoinCoreApp.bitcoind;
-import static haveno.apitest.config.HavenoAppConfig.alicedaemon;
+import static tuskex.apitest.Scaffold.BitcoinCoreApp.bitcoind;
+import static tuskex.apitest.config.TuskexAppConfig.alicedaemon;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 

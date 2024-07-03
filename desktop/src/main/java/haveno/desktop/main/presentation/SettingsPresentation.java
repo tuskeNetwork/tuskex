@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.presentation;
+package tuskex.desktop.main.presentation;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import haveno.core.user.Preferences;
+import tuskex.core.user.Preferences;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.MapChangeListener;

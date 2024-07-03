@@ -40,10 +40,10 @@
  * questions.
  */
 
-package haveno.desktop.components.indicator;
+package tuskex.desktop.components.indicator;
 
-import haveno.common.UserThread;
-import haveno.desktop.components.indicator.skin.StaticProgressIndicatorSkin;
+import tuskex.common.UserThread;
+import tuskex.desktop.components.indicator.skin.StaticProgressIndicatorSkin;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.DoublePropertyBase;
 import javafx.beans.property.ReadOnlyBooleanProperty;

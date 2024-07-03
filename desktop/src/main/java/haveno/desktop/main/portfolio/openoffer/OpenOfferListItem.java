@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.openoffer;
+package tuskex.desktop.main.portfolio.openoffer;
 
-import haveno.core.offer.Offer;
-import haveno.core.offer.OpenOffer;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OpenOffer;
 import lombok.Getter;
 
 /**

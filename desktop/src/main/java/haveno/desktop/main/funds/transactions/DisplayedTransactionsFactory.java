@@ -15,32 +15,32 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import haveno.core.xmr.wallet.XmrWalletService;
+import tuskex.core.tsk.wallet.TskWalletService;
 
 @Singleton
 public class DisplayedTransactionsFactory {
-    private final XmrWalletService xmrWalletService;
+    private final TskWalletService tskWalletService;
     private final TradableRepository tradableRepository;
     private final TransactionListItemFactory transactionListItemFactory;
     private final TransactionAwareTradableFactory transactionAwareTradableFactory;
 
     @Inject
-    DisplayedTransactionsFactory(XmrWalletService xmrWalletService,
+    DisplayedTransactionsFactory(TskWalletService tskWalletService,
                                  TradableRepository tradableRepository,
                                  TransactionListItemFactory transactionListItemFactory,
                                  TransactionAwareTradableFactory transactionAwareTradableFactory) {
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.tradableRepository = tradableRepository;
         this.transactionListItemFactory = transactionListItemFactory;
         this.transactionAwareTradableFactory = transactionAwareTradableFactory;
     }
 
     DisplayedTransactions create() {
-        return new DisplayedTransactions(xmrWalletService, tradableRepository, transactionListItemFactory,
+        return new DisplayedTransactions(tskWalletService, tradableRepository, transactionListItemFactory,
                 transactionAwareTradableFactory);
     }
 }

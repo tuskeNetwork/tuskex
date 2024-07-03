@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.method.offer;
+package tuskex.apitest.method.offer;
 
-import haveno.core.payment.PaymentAccount;
+import tuskex.core.payment.PaymentAccount;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
@@ -25,9 +25,9 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static haveno.apitest.config.ApiTestConfig.EUR;
-import static haveno.apitest.config.ApiTestConfig.USD;
-import static haveno.apitest.config.ApiTestConfig.XMR;
+import static tuskex.apitest.config.ApiTestConfig.EUR;
+import static tuskex.apitest.config.ApiTestConfig.USD;
+import static tuskex.apitest.config.ApiTestConfig.TSK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -67,7 +67,7 @@ public class CreateOfferUsingFixedPriceTest extends AbstractOfferTest {
         assertEquals(.15, newOffer.getBuyerSecurityDepositPct());
         assertEquals(.15, newOffer.getSellerSecurityDepositPct());
         assertEquals(audAccount.getId(), newOffer.getPaymentAccountId());
-        assertEquals(XMR, newOffer.getBaseCurrencyCode());
+        assertEquals(TSK, newOffer.getBaseCurrencyCode());
         assertEquals("AUD", newOffer.getCounterCurrencyCode());
 
         newOffer = aliceClient.getOffer(newOfferId);
@@ -84,7 +84,7 @@ public class CreateOfferUsingFixedPriceTest extends AbstractOfferTest {
         assertEquals(.15, newOffer.getBuyerSecurityDepositPct());
         assertEquals(.15, newOffer.getSellerSecurityDepositPct());
         assertEquals(audAccount.getId(), newOffer.getPaymentAccountId());
-        assertEquals(XMR, newOffer.getBaseCurrencyCode());
+        assertEquals(TSK, newOffer.getBaseCurrencyCode());
         assertEquals("AUD", newOffer.getCounterCurrencyCode());
     }
 
@@ -115,7 +115,7 @@ public class CreateOfferUsingFixedPriceTest extends AbstractOfferTest {
         assertEquals(.15, newOffer.getBuyerSecurityDepositPct());
         assertEquals(.15, newOffer.getSellerSecurityDepositPct());
         assertEquals(usdAccount.getId(), newOffer.getPaymentAccountId());
-        assertEquals(XMR, newOffer.getBaseCurrencyCode());
+        assertEquals(TSK, newOffer.getBaseCurrencyCode());
         assertEquals(USD, newOffer.getCounterCurrencyCode());
 
         newOffer = aliceClient.getOffer(newOfferId);
@@ -132,7 +132,7 @@ public class CreateOfferUsingFixedPriceTest extends AbstractOfferTest {
         assertEquals(.15, newOffer.getBuyerSecurityDepositPct());
         assertEquals(.15, newOffer.getSellerSecurityDepositPct());
         assertEquals(usdAccount.getId(), newOffer.getPaymentAccountId());
-        assertEquals(XMR, newOffer.getBaseCurrencyCode());
+        assertEquals(TSK, newOffer.getBaseCurrencyCode());
         assertEquals(USD, newOffer.getCounterCurrencyCode());
     }
 
@@ -163,7 +163,7 @@ public class CreateOfferUsingFixedPriceTest extends AbstractOfferTest {
         assertEquals(.15, newOffer.getBuyerSecurityDepositPct());
         assertEquals(.15, newOffer.getSellerSecurityDepositPct());
         assertEquals(eurAccount.getId(), newOffer.getPaymentAccountId());
-        assertEquals(XMR, newOffer.getBaseCurrencyCode());
+        assertEquals(TSK, newOffer.getBaseCurrencyCode());
         assertEquals(EUR, newOffer.getCounterCurrencyCode());
 
         newOffer = aliceClient.getOffer(newOfferId);
@@ -180,7 +180,7 @@ public class CreateOfferUsingFixedPriceTest extends AbstractOfferTest {
         assertEquals(.15, newOffer.getBuyerSecurityDepositPct());
         assertEquals(.15, newOffer.getSellerSecurityDepositPct());
         assertEquals(eurAccount.getId(), newOffer.getPaymentAccountId());
-        assertEquals(XMR, newOffer.getBaseCurrencyCode());
+        assertEquals(TSK, newOffer.getBaseCurrencyCode());
         assertEquals(EUR, newOffer.getCounterCurrencyCode());
     }
 }

@@ -15,24 +15,24 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Country;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.SepaAccount;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.payload.SepaAccountPayload;
-import haveno.core.payment.validation.BICValidator;
-import haveno.core.payment.validation.SepaIBANValidator;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.normalization.IBANNormalizer;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Country;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.SepaAccount;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.payload.SepaAccountPayload;
+import tuskex.core.payment.validation.BICValidator;
+import tuskex.core.payment.validation.SepaIBANValidator;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.normalization.IBANNormalizer;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextFormatter;
@@ -41,8 +41,8 @@ import javafx.scene.layout.GridPane;
 import java.util.List;
 import java.util.Optional;
 
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
 
 public class SepaForm extends GeneralSepaForm {
 

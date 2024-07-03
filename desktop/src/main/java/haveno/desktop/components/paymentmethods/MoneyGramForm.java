@@ -15,33 +15,33 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
-import haveno.common.util.Tuple2;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.BankUtil;
-import haveno.core.locale.Country;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.Res;
-import haveno.core.payment.MoneyGramAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.MoneyGramAccountPayload;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.payment.validation.EmailValidator;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.Layout;
+import tuskex.common.util.Tuple2;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.BankUtil;
+import tuskex.core.locale.Country;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.MoneyGramAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.MoneyGramAccountPayload;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.payment.validation.EmailValidator;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.Layout;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import lombok.extern.slf4j.Slf4j;
 
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addTopLabelFlowPane;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextFieldWithCopyIcon;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addTopLabelFlowPane;
 
 @Slf4j
 public class MoneyGramForm extends PaymentMethodForm {

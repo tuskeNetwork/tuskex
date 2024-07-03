@@ -15,58 +15,58 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.settings.preferences;
+package tuskex.desktop.main.settings.preferences;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.common.config.Config;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple3;
-import haveno.common.util.Utilities;
-import haveno.core.filter.Filter;
-import haveno.core.filter.FilterManager;
-import haveno.core.locale.Country;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.LanguageUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.locale.TraditionalCurrency;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.payment.validation.XmrValidator;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.ParsingUtils;
-import haveno.core.util.validation.IntegerValidator;
-import haveno.core.util.validation.RegexValidator;
-import haveno.core.util.validation.RegexValidatorFactory;
-import haveno.core.xmr.wallet.Restrictions;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.components.PasswordTextField;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.EditCustomExplorerWindow;
-import static haveno.desktop.util.FormBuilder.addButton;
-import static haveno.desktop.util.FormBuilder.addComboBox;
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addSlideToggleButton;
-import static haveno.desktop.util.FormBuilder.addTextFieldWithEditButton;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelListView;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.ImageUtil;
-import haveno.desktop.util.Layout;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.common.config.Config;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple3;
+import tuskex.common.util.Utilities;
+import tuskex.core.filter.Filter;
+import tuskex.core.filter.FilterManager;
+import tuskex.core.locale.Country;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.LanguageUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.locale.TraditionalCurrency;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.payment.validation.TskValidator;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.ParsingUtils;
+import tuskex.core.util.validation.IntegerValidator;
+import tuskex.core.util.validation.RegexValidator;
+import tuskex.core.util.validation.RegexValidatorFactory;
+import tuskex.core.tsk.wallet.Restrictions;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.components.PasswordTextField;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.EditCustomExplorerWindow;
+import static tuskex.desktop.util.FormBuilder.addButton;
+import static tuskex.desktop.util.FormBuilder.addComboBox;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addSlideToggleButton;
+import static tuskex.desktop.util.FormBuilder.addTextFieldWithEditButton;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelListView;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.ImageUtil;
+import tuskex.desktop.util.Layout;
 import java.io.File;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -108,7 +108,7 @@ public class PreferencesView extends ActivatableViewAndModel<GridPane, Preferenc
     private ComboBox<TradeCurrency> preferredTradeCurrencyComboBox;
 
     private ToggleButton showOwnOffersInOfferBook, useAnimations, useDarkMode, sortMarketCurrenciesNumerically,
-            avoidStandbyMode, useCustomFee, autoConfirmXmrToggle, hideNonAccountPaymentMethodsToggle, denyApiTakerToggle,
+            avoidStandbyMode, useCustomFee, autoConfirmTskToggle, hideNonAccountPaymentMethodsToggle, denyApiTakerToggle,
             notifyOnPreReleaseToggle;
     private int gridRow = 0;
     private int displayCurrenciesGridRowIndex = 0;
@@ -143,7 +143,7 @@ public class PreferencesView extends ActivatableViewAndModel<GridPane, Preferenc
     private final boolean displayStandbyModeFeature;
     private ChangeListener<Filter> filterChangeListener;
 
-    private boolean hideXmrAutoConf = true; // TODO: remove xmr auto conf or use as a model for other blockchains
+    private boolean hideTskAutoConf = true; // TODO: remove tsk auto conf or use as a model for other blockchains
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -300,7 +300,7 @@ public class PreferencesView extends ActivatableViewAndModel<GridPane, Preferenc
     private void initializeDisplayCurrencies() {
 
         TitledGroupBg titledGroupBg = addTitledGroupBg(root, displayCurrenciesGridRowIndex, 8,
-                Res.get("setting.preferences.currenciesInList"), hideXmrAutoConf ? 0.0 :Layout.GROUP_DISTANCE);
+                Res.get("setting.preferences.currenciesInList"), hideTskAutoConf ? 0.0 :Layout.GROUP_DISTANCE);
         GridPane.setColumnIndex(titledGroupBg, 2);
         GridPane.setColumnSpan(titledGroupBg, 2);
 
@@ -521,20 +521,20 @@ public class PreferencesView extends ActivatableViewAndModel<GridPane, Preferenc
     private void initializeAutoConfirmOptions() {
         GridPane autoConfirmGridPane = new GridPane();
         GridPane.setHgrow(autoConfirmGridPane, Priority.ALWAYS);
-        if (!hideXmrAutoConf) root.add(autoConfirmGridPane, 2, displayCurrenciesGridRowIndex, 2, 10);
-        addTitledGroupBg(autoConfirmGridPane, 0, 4, Res.get("setting.preferences.autoConfirmXMR"), 0);
+        if (!hideTskAutoConf) root.add(autoConfirmGridPane, 2, displayCurrenciesGridRowIndex, 2, 10);
+        addTitledGroupBg(autoConfirmGridPane, 0, 4, Res.get("setting.preferences.autoConfirmTSK"), 0);
         int localRowIndex = 0;
-        autoConfirmXmrToggle = addSlideToggleButton(autoConfirmGridPane, localRowIndex, Res.get("setting.preferences.autoConfirmEnabled"), Layout.FIRST_ROW_DISTANCE);
+        autoConfirmTskToggle = addSlideToggleButton(autoConfirmGridPane, localRowIndex, Res.get("setting.preferences.autoConfirmEnabled"), Layout.FIRST_ROW_DISTANCE);
 
         autoConfRequiredConfirmationsTf = addInputTextField(autoConfirmGridPane, ++localRowIndex, Res.get("setting.preferences.autoConfirmRequiredConfirmations"));
         autoConfRequiredConfirmationsTf.setValidator(new IntegerValidator(1, DevEnv.isDevMode() ? 100000000 : 1000));
 
         autoConfTradeLimitTf = addInputTextField(autoConfirmGridPane, ++localRowIndex, Res.get("setting.preferences.autoConfirmMaxTradeSize"));
-        autoConfTradeLimitTf.setValidator(new XmrValidator());
+        autoConfTradeLimitTf.setValidator(new TskValidator());
 
         autoConfServiceAddressTf = addInputTextField(autoConfirmGridPane, ++localRowIndex, Res.get("setting.preferences.autoConfirmServiceAddresses"));
         GridPane.setHgrow(autoConfServiceAddressTf, Priority.ALWAYS);
-        if (!hideXmrAutoConf) displayCurrenciesGridRowIndex += 4;
+        if (!hideTskAutoConf) displayCurrenciesGridRowIndex += 4;
 
         autoConfServiceAddressListener = (observable, oldValue, newValue) -> {
             if (!newValue.equals(oldValue)) {
@@ -547,10 +547,10 @@ public class PreferencesView extends ActivatableViewAndModel<GridPane, Preferenc
 
                 // revert to default service providers when user empties the list
                 if (serviceAddressesRaw.size() == 1 && serviceAddressesRaw.get(0).isEmpty()) {
-                    serviceAddressesRaw = preferences.getDefaultXmrTxProofServices();
+                    serviceAddressesRaw = preferences.getDefaultTskTxProofServices();
                 }
 
-                // we must always communicate with XMR explorer API securely
+                // we must always communicate with TSK explorer API securely
                 // if *.onion hostname, we use Tor normally
                 // if localhost, LAN address, or *.local FQDN we use HTTP without Tor
                 // otherwise we enforce https:// for any clearnet FQDN hostname
@@ -572,14 +572,14 @@ public class PreferencesView extends ActivatableViewAndModel<GridPane, Preferenc
                     }
                 });
 
-                preferences.setAutoConfServiceAddresses("XMR", serviceAddressesParsed);
+                preferences.setAutoConfServiceAddresses("TSK", serviceAddressesParsed);
             }
         };
 
         autoConfTradeLimitListener = (observable, oldValue, newValue) -> {
             if (!newValue.equals(oldValue) && autoConfTradeLimitTf.getValidator().validate(newValue).isValid) {
-                BigInteger amount = HavenoUtils.parseXmr(newValue);
-                preferences.setAutoConfTradeLimit("XMR", amount.longValueExact());
+                BigInteger amount = TuskexUtils.parseTsk(newValue);
+                preferences.setAutoConfTradeLimit("TSK", amount.longValueExact());
             }
         };
 
@@ -587,7 +587,7 @@ public class PreferencesView extends ActivatableViewAndModel<GridPane, Preferenc
             if (oldValue && !newValue) {
                 log.info("Service address focus out, check and re-display default option");
                 if (autoConfServiceAddressTf.getText().isEmpty()) {
-                    preferences.findAutoConfirmSettings("XMR").ifPresent(autoConfirmSettings -> {
+                    preferences.findAutoConfirmSettings("TSK").ifPresent(autoConfirmSettings -> {
                         List<String> serviceAddresses = autoConfirmSettings.getServiceAddresses();
                         autoConfServiceAddressTf.setText(String.join(", ", serviceAddresses));
                     });
@@ -608,9 +608,9 @@ public class PreferencesView extends ActivatableViewAndModel<GridPane, Preferenc
                 String txt = autoConfRequiredConfirmationsTf.getText();
                 if (autoConfRequiredConfirmationsTf.getValidator().validate(txt).isValid) {
                     int requiredConfirmations = Integer.parseInt(txt);
-                    preferences.setAutoConfRequiredConfirmations("XMR", requiredConfirmations);
+                    preferences.setAutoConfRequiredConfirmations("TSK", requiredConfirmations);
                 } else {
-                    preferences.findAutoConfirmSettings("XMR")
+                    preferences.findAutoConfirmSettings("TSK")
                             .ifPresent(e -> autoConfRequiredConfirmationsTf
                                     .setText(String.valueOf(e.getRequiredConfirmations())));
                 }
@@ -769,7 +769,7 @@ public class PreferencesView extends ActivatableViewAndModel<GridPane, Preferenc
         resetDontShowAgainButton.setOnAction(e -> preferences.resetDontShowAgain());
 
         editCustomBtcExplorer.setOnAction(e -> {
-            EditCustomExplorerWindow urlWindow = new EditCustomExplorerWindow("XMR",
+            EditCustomExplorerWindow urlWindow = new EditCustomExplorerWindow("TSK",
                     preferences.getBlockChainExplorer(), preferences.getBlockChainExplorers());
             urlWindow
                     .actionButtonText(Res.get("shared.save"))
@@ -793,17 +793,17 @@ public class PreferencesView extends ActivatableViewAndModel<GridPane, Preferenc
     }
 
     private void activateAutoConfirmPreferences() {
-        preferences.findAutoConfirmSettings("XMR").ifPresent(autoConfirmSettings -> {
-            autoConfirmXmrToggle.setSelected(autoConfirmSettings.isEnabled());
+        preferences.findAutoConfirmSettings("TSK").ifPresent(autoConfirmSettings -> {
+            autoConfirmTskToggle.setSelected(autoConfirmSettings.isEnabled());
             autoConfRequiredConfirmationsTf.setText(String.valueOf(autoConfirmSettings.getRequiredConfirmations()));
-            autoConfTradeLimitTf.setText(HavenoUtils.formatXmr(autoConfirmSettings.getTradeLimit()));
+            autoConfTradeLimitTf.setText(TuskexUtils.formatTsk(autoConfirmSettings.getTradeLimit()));
             autoConfServiceAddressTf.setText(String.join(", ", autoConfirmSettings.getServiceAddresses()));
             autoConfRequiredConfirmationsTf.focusedProperty().addListener(autoConfRequiredConfirmationsFocusOutListener);
             autoConfTradeLimitTf.textProperty().addListener(autoConfTradeLimitListener);
             autoConfServiceAddressTf.textProperty().addListener(autoConfServiceAddressListener);
             autoConfServiceAddressTf.focusedProperty().addListener(autoConfServiceAddressFocusOutListener);
-            autoConfirmXmrToggle.setOnAction(e -> {
-                preferences.setAutoConfEnabled(autoConfirmSettings.getCurrencyCode(), autoConfirmXmrToggle.isSelected());
+            autoConfirmTskToggle.setOnAction(e -> {
+                preferences.setAutoConfEnabled(autoConfirmSettings.getCurrencyCode(), autoConfirmTskToggle.isSelected());
             });
             filterManager.filterProperty().addListener(filterChangeListener);
         });
@@ -845,8 +845,8 @@ public class PreferencesView extends ActivatableViewAndModel<GridPane, Preferenc
     }
 
     private void deactivateAutoConfirmPreferences() {
-        preferences.findAutoConfirmSettings("XMR").ifPresent(autoConfirmSettings -> {
-            autoConfirmXmrToggle.setOnAction(null);
+        preferences.findAutoConfirmSettings("TSK").ifPresent(autoConfirmSettings -> {
+            autoConfirmTskToggle.setOnAction(null);
             autoConfTradeLimitTf.textProperty().removeListener(autoConfTradeLimitListener);
             autoConfServiceAddressTf.textProperty().removeListener(autoConfServiceAddressListener);
             autoConfServiceAddressTf.focusedProperty().removeListener(autoConfServiceAddressFocusOutListener);

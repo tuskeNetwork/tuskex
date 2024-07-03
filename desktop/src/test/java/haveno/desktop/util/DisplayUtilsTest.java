@@ -1,14 +1,14 @@
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
-import haveno.common.config.Config;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
-import haveno.core.monetary.Volume;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferPayload;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.coin.ImmutableCoinFormatter;
+import tuskex.common.config.Config;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
+import tuskex.core.monetary.Volume;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferPayload;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.coin.ImmutableCoinFormatter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,9 +18,9 @@ import java.util.concurrent.TimeUnit;
 
 import static com.natpryce.makeiteasy.MakeItEasy.make;
 import static com.natpryce.makeiteasy.MakeItEasy.with;
-import static haveno.desktop.maker.OfferMaker.xmrUsdOffer;
-import static haveno.desktop.maker.VolumeMaker.usdVolume;
-import static haveno.desktop.maker.VolumeMaker.volumeString;
+import static tuskex.desktop.maker.OfferMaker.tskUsdOffer;
+import static tuskex.desktop.maker.VolumeMaker.usdVolume;
+import static tuskex.desktop.maker.VolumeMaker.volumeString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -32,7 +32,7 @@ public class DisplayUtilsTest {
     public void setUp() {
         Locale.setDefault(Locale.US);
         GlobalSettings.setLocale(Locale.US);
-        Res.setBaseCurrencyCode("XMR");
+        Res.setBaseCurrencyCode("TSK");
         Res.setBaseCurrencyName("Monero");
     }
 
@@ -49,7 +49,7 @@ public class DisplayUtilsTest {
 
     @Test
     public void testFormatVolume() {
-        assertEquals("1", VolumeUtil.formatVolume(make(xmrUsdOffer), true, 4));
+        assertEquals("1", VolumeUtil.formatVolume(make(tskUsdOffer), true, 4));
         assertEquals("100", VolumeUtil.formatVolume(make(usdVolume)));
         assertEquals("1775", VolumeUtil.formatVolume(make(usdVolume.but(with(volumeString, "1774.62")))));
     }
@@ -57,9 +57,9 @@ public class DisplayUtilsTest {
     @Test
     public void testFormatSameVolume() {
         Offer offer = mock(Offer.class);
-        Volume xmr = Volume.parse("0.10", "XMR");
-        when(offer.getMinVolume()).thenReturn(xmr);
-        when(offer.getVolume()).thenReturn(xmr);
+        Volume tsk = Volume.parse("0.10", "TSK");
+        when(offer.getMinVolume()).thenReturn(tsk);
+        when(offer.getVolume()).thenReturn(tsk);
 
         assertEquals("0.10000000", VolumeUtil.formatVolume(offer.getVolume()));
     }
@@ -67,11 +67,11 @@ public class DisplayUtilsTest {
     @Test
     public void testFormatDifferentVolume() {
         Offer offer = mock(Offer.class);
-        Volume xmrMin = Volume.parse("0.10", "XMR");
-        Volume xmrMax = Volume.parse("0.25", "XMR");
+        Volume tskMin = Volume.parse("0.10", "TSK");
+        Volume tskMax = Volume.parse("0.25", "TSK");
         when(offer.isRange()).thenReturn(true);
-        when(offer.getMinVolume()).thenReturn(xmrMin);
-        when(offer.getVolume()).thenReturn(xmrMax);
+        when(offer.getMinVolume()).thenReturn(tskMin);
+        when(offer.getVolume()).thenReturn(tskMax);
 
         assertEquals("0.10000000 - 0.25000000", VolumeUtil.formatVolume(offer, false, 0));
     }

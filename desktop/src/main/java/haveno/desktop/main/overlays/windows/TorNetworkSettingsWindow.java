@@ -16,31 +16,31 @@
  */
 
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import haveno.common.UserThread;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple4;
-import haveno.common.util.Utilities;
-import haveno.core.app.TorSetup;
-import haveno.core.locale.Res;
-import haveno.core.user.Preferences;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.overlays.popups.Popup;
-import static haveno.desktop.util.FormBuilder.addButtonBusyAnimationLabelAfterGroup;
-import static haveno.desktop.util.FormBuilder.addComboBox;
-import static haveno.desktop.util.FormBuilder.addLabel;
-import static haveno.desktop.util.FormBuilder.addRadioButton;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextArea;
-import haveno.desktop.util.Layout;
-import haveno.network.p2p.network.DefaultPluggableTransports;
-import haveno.network.p2p.network.NetworkNode;
+import tuskex.common.UserThread;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple4;
+import tuskex.common.util.Utilities;
+import tuskex.core.app.TorSetup;
+import tuskex.core.locale.Res;
+import tuskex.core.user.Preferences;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.overlays.popups.Popup;
+import static tuskex.desktop.util.FormBuilder.addButtonBusyAnimationLabelAfterGroup;
+import static tuskex.desktop.util.FormBuilder.addComboBox;
+import static tuskex.desktop.util.FormBuilder.addLabel;
+import static tuskex.desktop.util.FormBuilder.addRadioButton;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextArea;
+import tuskex.desktop.util.Layout;
+import tuskex.network.p2p.network.DefaultPluggableTransports;
+import tuskex.network.p2p.network.NetworkNode;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Arrays;

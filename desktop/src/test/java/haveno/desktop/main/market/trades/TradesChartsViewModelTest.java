@@ -15,20 +15,20 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.trades;
+package tuskex.desktop.main.market.trades;
 
-import haveno.core.locale.TraditionalCurrency;
-import haveno.core.monetary.Price;
-import haveno.core.monetary.TraditionalMoney;
-import haveno.core.offer.OfferPayload;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.statistics.TradeStatistics3;
-import haveno.core.trade.statistics.TradeStatisticsManager;
-import haveno.core.user.Preferences;
-import haveno.desktop.Navigation;
-import haveno.desktop.main.market.trades.charts.CandleData;
+import tuskex.core.locale.TraditionalCurrency;
+import tuskex.core.monetary.Price;
+import tuskex.core.monetary.TraditionalMoney;
+import tuskex.core.offer.OfferPayload;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.statistics.TradeStatistics3;
+import tuskex.core.trade.statistics.TradeStatisticsManager;
+import tuskex.core.user.Preferences;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.main.market.trades.charts.CandleData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.util.Pair;
@@ -72,7 +72,7 @@ public class TradesChartsViewModelTest {
             0,
             0,
             0,
-            "XMR",
+            "TSK",
             "EUR",
             null,
             null,
@@ -120,7 +120,7 @@ public class TradesChartsViewModelTest {
         long high = TraditionalMoney.parseTraditionalMoney("EUR", "600").value;
         long average = TraditionalMoney.parseTraditionalMoney("EUR", "550").value;
         long median = TraditionalMoney.parseTraditionalMoney("EUR", "550").value;
-        long amount = HavenoUtils.xmrToAtomicUnits(4).longValue();
+        long amount = TuskexUtils.tskToAtomicUnits(4).longValue();
         long volume = TraditionalMoney.parseTraditionalMoney("EUR", "2200").value;
         boolean isBullish = true;
 
@@ -129,7 +129,7 @@ public class TradesChartsViewModelTest {
 
         set.add(new TradeStatistics3(offer.getCurrencyCode(),
                 Price.parse("EUR", "520").getValue(),
-                HavenoUtils.xmrToAtomicUnits(1).longValue(),
+                TuskexUtils.tskToAtomicUnits(1).longValue(),
                 PaymentMethod.BLOCK_CHAINS_ID,
                 now.getTime(),
                 null,
@@ -137,7 +137,7 @@ public class TradesChartsViewModelTest {
                 null));
         set.add(new TradeStatistics3(offer.getCurrencyCode(),
                 Price.parse("EUR", "500").getValue(),
-                HavenoUtils.xmrToAtomicUnits(1).longValue(),
+                TuskexUtils.tskToAtomicUnits(1).longValue(),
                 PaymentMethod.BLOCK_CHAINS_ID,
                 now.getTime() + 100,
                 null,
@@ -145,7 +145,7 @@ public class TradesChartsViewModelTest {
                 null));
         set.add(new TradeStatistics3(offer.getCurrencyCode(),
                 Price.parse("EUR", "600").getValue(),
-                HavenoUtils.xmrToAtomicUnits(1).longValue(),
+                TuskexUtils.tskToAtomicUnits(1).longValue(),
                 PaymentMethod.BLOCK_CHAINS_ID,
                 now.getTime() + 200,
                 null,
@@ -153,7 +153,7 @@ public class TradesChartsViewModelTest {
                 null));
         set.add(new TradeStatistics3(offer.getCurrencyCode(),
                 Price.parse("EUR", "580").getValue(),
-                HavenoUtils.xmrToAtomicUnits(1).longValue(),
+                TuskexUtils.tskToAtomicUnits(1).longValue(),
                 PaymentMethod.BLOCK_CHAINS_ID,
                 now.getTime() + 300,
                 null,

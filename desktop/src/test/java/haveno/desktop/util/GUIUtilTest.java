@@ -15,14 +15,14 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.user.Preferences;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.user.Preferences;
 import javafx.util.StringConverter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,8 +32,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static haveno.desktop.maker.TradeCurrencyMakers.euro;
-import static haveno.desktop.maker.TradeCurrencyMakers.monero;
+import static tuskex.desktop.maker.TradeCurrencyMakers.euro;
+import static tuskex.desktop.maker.TradeCurrencyMakers.monero;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -52,7 +52,7 @@ public class GUIUtilTest {
     @Test
     public void testTradeCurrencyConverter() {
         Map<String, Integer> offerCounts = new HashMap<>() {{
-            put("XMR", 11);
+            put("TSK", 11);
             put("EUR", 10);
         }};
         StringConverter<TradeCurrency> tradeCurrencyConverter = GUIUtil.getTradeCurrencyConverter(
@@ -61,7 +61,7 @@ public class GUIUtilTest {
                 offerCounts
         );
 
-        assertEquals("✦ Monero (XMR) - 11 offers", tradeCurrencyConverter.toString(monero));
+        assertEquals("✦ Monero (TSK) - 11 offers", tradeCurrencyConverter.toString(monero));
         assertEquals("★ Euro (EUR) - 10 offers", tradeCurrencyConverter.toString(euro));
     }
 
@@ -76,13 +76,13 @@ public class GUIUtilTest {
 /*        PowerMockito.mockStatic(Utilities.class);
         ArgumentCaptor<URI> captor = ArgumentCaptor.forClass(URI.class);
         PowerMockito.doNothing().when(Utilities.class, "openURI", captor.capture());
-        GUIUtil.openWebPage("https://haveno.exchange");
+        GUIUtil.openWebPage("https://tuskex.exchange");
 
-        assertEquals("https://haveno.exchange?utm_source=desktop-client&utm_medium=in-app-link&utm_campaign=language_en", captor.getValue().toString());
+        assertEquals("https://tuskex.exchange?utm_source=desktop-client&utm_medium=in-app-link&utm_campaign=language_en", captor.getValue().toString());
 
-        GUIUtil.openWebPage("https://docs.haveno.exchange/trading-rules.html#f2f-trading");
+        GUIUtil.openWebPage("https://docs.tuskex.exchange/trading-rules.html#f2f-trading");
 
-        assertEquals("https://docs.haveno.exchange/trading-rules.html?utm_source=desktop-client&utm_medium=in-app-link&utm_campaign=language_en#f2f-trading", captor.getValue().toString());
+        assertEquals("https://docs.tuskex.exchange/trading-rules.html?utm_source=desktop-client&utm_medium=in-app-link&utm_campaign=language_en#f2f-trading", captor.getValue().toString());
 */
     }
 
@@ -107,7 +107,7 @@ public class GUIUtilTest {
 
         BigInteger fee = BigInteger.valueOf(200000000L);
 
-        assertEquals(" (0.02% of trade amount)", GUIUtil.getPercentageOfTradeAmount(fee, HavenoUtils.xmrToAtomicUnits(1.0)));
+        assertEquals(" (0.02% of trade amount)", GUIUtil.getPercentageOfTradeAmount(fee, TuskexUtils.tskToAtomicUnits(1.0)));
     }
 
     @Test
@@ -116,6 +116,6 @@ public class GUIUtilTest {
         BigInteger fee = BigInteger.valueOf(100000000L);
 
         assertEquals(" (0.01% of trade amount)",
-                GUIUtil.getPercentageOfTradeAmount(fee, HavenoUtils.xmrToAtomicUnits(1.0)));
+                GUIUtil.getPercentageOfTradeAmount(fee, TuskexUtils.tskToAtomicUnits(1.0)));
     }
 }

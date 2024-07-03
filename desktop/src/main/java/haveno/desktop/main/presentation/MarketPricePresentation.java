@@ -15,21 +15,21 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.presentation;
+package tuskex.desktop.main.presentation;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import haveno.common.UserThread;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.provider.price.MarketPrice;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.components.TxIdTextField;
-import haveno.desktop.main.shared.PriceFeedComboBoxItem;
+import tuskex.common.UserThread;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.provider.price.MarketPrice;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.components.TxIdTextField;
+import tuskex.desktop.main.shared.PriceFeedComboBoxItem;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -76,7 +76,7 @@ public class MarketPricePresentation {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     @Inject
-    public MarketPricePresentation(XmrWalletService xmrWalletService,
+    public MarketPricePresentation(TskWalletService tskWalletService,
                                    PriceFeedService priceFeedService,
                                    Preferences preferences) {
         this.priceFeedService = priceFeedService;
@@ -84,7 +84,7 @@ public class MarketPricePresentation {
 
         TxIdTextField.setPreferences(preferences);
 
-        TxIdTextField.setXmrWalletService(xmrWalletService);
+        TxIdTextField.setTskWalletService(tskWalletService);
     }
 
     public void setup() {

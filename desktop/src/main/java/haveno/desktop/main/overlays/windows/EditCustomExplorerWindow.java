@@ -15,18 +15,18 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
-import haveno.common.util.Tuple2;
-import haveno.core.locale.Res;
-import haveno.core.payment.validation.LengthValidator;
-import haveno.core.user.BlockChainExplorer;
-import haveno.core.util.validation.UrlInputValidator;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.util.Layout;
+import tuskex.common.util.Tuple2;
+import tuskex.core.locale.Res;
+import tuskex.core.payment.validation.LengthValidator;
+import tuskex.core.user.BlockChainExplorer;
+import tuskex.core.util.validation.UrlInputValidator;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.util.Layout;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -46,10 +46,10 @@ import javafx.util.Callback;
 
 import java.util.ArrayList;
 
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.getTopLabelWithVBox;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.getTopLabelWithVBox;
 import static javafx.beans.binding.Bindings.createBooleanBinding;
 
 public class EditCustomExplorerWindow extends Overlay<EditCustomExplorerWindow> {

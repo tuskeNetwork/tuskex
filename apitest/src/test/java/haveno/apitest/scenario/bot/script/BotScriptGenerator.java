@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario.bot.script;
+package tuskex.apitest.scenario.bot.script;
 
-import haveno.common.file.JsonFileManager;
-import haveno.core.util.JsonUtil;
+import tuskex.common.file.JsonFileManager;
+import tuskex.core.util.JsonUtil;
 import joptsimple.BuiltinHelpFormatter;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;

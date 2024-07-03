@@ -10,8 +10,8 @@ getversion
 
 DESCRIPTION
 -----------
-Returns the Haveno server version.
+Returns the Tuskex server version.
 
 EXAMPLES
 --------
-$ ./haveno-cli --password=xyz --port=9998 getversion
+$ ./tuskex-cli --password=xyz --port=9998 getversion

@@ -15,55 +15,55 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.pendingtrades;
+package tuskex.desktop.main.portfolio.pendingtrades;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.UserThread;
-import haveno.common.crypto.PubKeyRing;
-import haveno.common.crypto.PubKeyRingProvider;
-import haveno.common.handlers.ErrorMessageHandler;
-import haveno.common.handlers.FaultHandler;
-import haveno.common.handlers.ResultHandler;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.api.CoreDisputesService;
-import haveno.core.api.XmrConnectionService;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.offer.OfferUtil;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.support.SupportType;
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.DisputeAlreadyOpenException;
-import haveno.core.support.dispute.DisputeList;
-import haveno.core.support.dispute.DisputeManager;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.support.dispute.mediation.MediationManager;
-import haveno.core.support.traderchat.TraderChatManager;
-import haveno.core.trade.BuyerTrade;
-import haveno.core.trade.SellerTrade;
-import haveno.core.trade.Trade;
-import haveno.core.trade.TradeManager;
-import haveno.core.trade.protocol.BuyerProtocol;
-import haveno.core.trade.protocol.SellerProtocol;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.model.ActivatableDataModel;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.overlays.notifications.NotificationCenter;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.WalletPasswordWindow;
-import haveno.desktop.main.support.SupportView;
-import haveno.desktop.main.support.dispute.client.arbitration.ArbitrationClientView;
-import haveno.desktop.main.support.dispute.client.mediation.MediationClientView;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.P2PService;
+import tuskex.common.UserThread;
+import tuskex.common.crypto.PubKeyRing;
+import tuskex.common.crypto.PubKeyRingProvider;
+import tuskex.common.handlers.ErrorMessageHandler;
+import tuskex.common.handlers.FaultHandler;
+import tuskex.common.handlers.ResultHandler;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.api.CoreDisputesService;
+import tuskex.core.api.TskConnectionService;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.support.SupportType;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.DisputeAlreadyOpenException;
+import tuskex.core.support.dispute.DisputeList;
+import tuskex.core.support.dispute.DisputeManager;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.support.dispute.mediation.MediationManager;
+import tuskex.core.support.traderchat.TraderChatManager;
+import tuskex.core.trade.BuyerTrade;
+import tuskex.core.trade.SellerTrade;
+import tuskex.core.trade.Trade;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.trade.protocol.BuyerProtocol;
+import tuskex.core.trade.protocol.SellerProtocol;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.model.ActivatableDataModel;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.overlays.notifications.NotificationCenter;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.WalletPasswordWindow;
+import tuskex.desktop.main.support.SupportView;
+import tuskex.desktop.main.support.dispute.client.arbitration.ArbitrationClientView;
+import tuskex.desktop.main.support.dispute.client.mediation.MediationClientView;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.P2PService;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashSet;
@@ -85,11 +85,11 @@ import org.bouncycastle.crypto.params.KeyParameter;
 public class PendingTradesDataModel extends ActivatableDataModel {
     @Getter
     public final TradeManager tradeManager;
-    public final XmrWalletService xmrWalletService;
+    public final TskWalletService tskWalletService;
     public final ArbitrationManager arbitrationManager;
     public final MediationManager mediationManager;
     private final P2PService p2PService;
-    private final XmrConnectionService xmrConnectionService;
+    private final TskConnectionService tskConnectionService;
     @Getter
     private final AccountAgeWitnessService accountAgeWitnessService;
     public final Navigation navigation;
@@ -127,14 +127,14 @@ public class PendingTradesDataModel extends ActivatableDataModel {
 
     @Inject
     public PendingTradesDataModel(TradeManager tradeManager,
-                                  XmrWalletService xmrWalletService,
+                                  TskWalletService tskWalletService,
                                   PubKeyRingProvider pubKeyRingProvider,
                                   ArbitrationManager arbitrationManager,
                                   MediationManager mediationManager,
                                   TraderChatManager traderChatManager,
                                   Preferences preferences,
                                   P2PService p2PService,
-                                  XmrConnectionService xmrConnectionService,
+                                  TskConnectionService tskConnectionService,
                                   AccountAgeWitnessService accountAgeWitnessService,
                                   Navigation navigation,
                                   WalletPasswordWindow walletPasswordWindow,
@@ -143,14 +143,14 @@ public class PendingTradesDataModel extends ActivatableDataModel {
                                   CoreDisputesService disputesService,
                                   @Named(FormattingUtils.BTC_FORMATTER_KEY) CoinFormatter formatter) {
         this.tradeManager = tradeManager;
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.pubKeyRingProvider = pubKeyRingProvider;
         this.arbitrationManager = arbitrationManager;
         this.mediationManager = mediationManager;
         this.traderChatManager = traderChatManager;
         this.preferences = preferences;
         this.p2PService = p2PService;
-        this.xmrConnectionService = xmrConnectionService;
+        this.tskConnectionService = tskConnectionService;
         this.accountAgeWitnessService = accountAgeWitnessService;
         this.navigation = navigation;
         this.walletPasswordWindow = walletPasswordWindow;
@@ -467,7 +467,7 @@ public class PendingTradesDataModel extends ActivatableDataModel {
       byte[] payoutTxSerialized = null;
       String payoutTxHashAsString = null;
       if (trade.getPayoutTxId() != null) {
-//          payoutTxSerialized = payoutTx.bitcoinSerialize(); // TODO (woodser): no need to pass serialized txs for xmr
+//          payoutTxSerialized = payoutTx.bitcoinSerialize(); // TODO (woodser): no need to pass serialized txs for tsk
 //          payoutTxHashAsString = payoutTx.getHashAsString();
       }
       Trade.DisputeState disputeState = trade.getDisputeState();
@@ -475,7 +475,7 @@ public class PendingTradesDataModel extends ActivatableDataModel {
       boolean useMediation;
       boolean useArbitration;
       // If mediation is not activated we use arbitration
-      if (false) {  // TODO (woodser): use mediation for xmr? if (MediationManager.isMediationActivated()) {
+      if (false) {  // TODO (woodser): use mediation for tsk? if (MediationManager.isMediationActivated()) {
           // In case we re-open a dispute we allow Trade.DisputeState.MEDIATION_REQUESTED or
           useMediation = disputeState == Trade.DisputeState.NO_DISPUTE || disputeState == Trade.DisputeState.MEDIATION_REQUESTED || disputeState == Trade.DisputeState.DISPUTE_OPENED;
           // in case of arbitration disputeState == Trade.DisputeState.ARBITRATION_REQUESTED
@@ -490,7 +490,7 @@ public class PendingTradesDataModel extends ActivatableDataModel {
 //          disputeManager = mediationManager;
 //          PubKeyRing mediatorPubKeyRing = trade.getMediatorPubKeyRing();
 //          checkNotNull(mediatorPubKeyRing, "mediatorPubKeyRing must not be null");
-//          byte[] depositTxSerialized = null;  // depositTx.bitcoinSerialize();  // TODO (woodser): no serialized txs in xmr
+//          byte[] depositTxSerialized = null;  // depositTx.bitcoinSerialize();  // TODO (woodser): no serialized txs in tsk
 //          String depositTxHashAsString = null;  // depositTx.getHashAsString(); // TODO (woodser): two deposit txs for dispute
 //          Dispute dispute = new Dispute(new Date().getTime(),
 //                  trade.getId(),
@@ -519,7 +519,7 @@ public class PendingTradesDataModel extends ActivatableDataModel {
             disputeManager = mediationManager;
             PubKeyRing arbitratorPubKeyRing = trade.getArbitrator().getPubKeyRing();
             checkNotNull(arbitratorPubKeyRing, "arbitratorPubKeyRing must not be null");
-            byte[] depositTxSerialized = null;  // depositTx.bitcoinSerialize();  // TODO (woodser): no serialized txs in xmr
+            byte[] depositTxSerialized = null;  // depositTx.bitcoinSerialize();  // TODO (woodser): no serialized txs in tsk
             Dispute dispute = new Dispute(new Date().getTime(),
                     trade.getId(),
                     pubKeyRingProvider.get().hashCode(), // trader id
@@ -574,7 +574,7 @@ public class PendingTradesDataModel extends ActivatableDataModel {
     }
 
     public boolean isReadyForTxBroadcast() {
-        return GUIUtil.isBootstrappedOrShowPopup(p2PService) && GUIUtil.isReadyForTxBroadcastOrShowPopup(xmrWalletService);
+        return GUIUtil.isBootstrappedOrShowPopup(p2PService) && GUIUtil.isReadyForTxBroadcastOrShowPopup(tskWalletService);
     }
 
     public boolean isBootstrappedOrShowPopup() {

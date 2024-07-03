@@ -15,17 +15,17 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
-import haveno.common.util.Tuple5;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.trade.Trade;
-import haveno.core.user.Preferences;
-import haveno.network.p2p.NodeAddress;
+import tuskex.common.util.Tuple5;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.trade.Trade;
+import tuskex.core.user.Preferences;
+import tuskex.network.p2p.NodeAddress;
 import javafx.scene.paint.Color;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -34,10 +34,10 @@ import javax.annotation.Nullable;
 import java.util.Date;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static haveno.desktop.util.Colors.AVATAR_BLUE;
-import static haveno.desktop.util.Colors.AVATAR_GREEN;
-import static haveno.desktop.util.Colors.AVATAR_ORANGE;
-import static haveno.desktop.util.Colors.AVATAR_RED;
+import static tuskex.desktop.util.Colors.AVATAR_BLUE;
+import static tuskex.desktop.util.Colors.AVATAR_GREEN;
+import static tuskex.desktop.util.Colors.AVATAR_ORANGE;
+import static tuskex.desktop.util.Colors.AVATAR_RED;
 
 @Slf4j
 public class PeerInfoIconTrading extends PeerInfoIcon {

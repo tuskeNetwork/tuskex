@@ -15,29 +15,29 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.debug;
+package tuskex.desktop.main.debug;
 
 import com.google.inject.Inject;
-import haveno.common.taskrunner.Task;
-import haveno.common.util.Tuple2;
-import haveno.core.offer.availability.tasks.ProcessOfferAvailabilityResponse;
-import haveno.core.offer.availability.tasks.SendOfferAvailabilityRequest;
-import haveno.core.offer.placeoffer.tasks.AddToOfferBook;
-import haveno.core.offer.placeoffer.tasks.MakerReserveOfferFunds;
-import haveno.core.offer.placeoffer.tasks.ValidateOffer;
-import haveno.core.trade.protocol.tasks.ApplyFilter;
-import haveno.core.trade.protocol.tasks.BuyerPreparePaymentSentMessage;
-import haveno.core.trade.protocol.tasks.BuyerSendPaymentSentMessage;
-import haveno.core.trade.protocol.tasks.MakerSetLockTime;
-import haveno.core.trade.protocol.tasks.ProcessPaymentReceivedMessage;
-import haveno.core.trade.protocol.tasks.ProcessPaymentSentMessage;
-import haveno.core.trade.protocol.tasks.SellerPreparePaymentReceivedMessage;
-import haveno.core.trade.protocol.tasks.SellerSendPaymentReceivedMessageToBuyer;
-import haveno.core.trade.protocol.tasks.VerifyPeersAccountAgeWitness;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.common.view.InitializableView;
-import haveno.desktop.components.TitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelComboBox;
+import tuskex.common.taskrunner.Task;
+import tuskex.common.util.Tuple2;
+import tuskex.core.offer.availability.tasks.ProcessOfferAvailabilityResponse;
+import tuskex.core.offer.availability.tasks.SendOfferAvailabilityRequest;
+import tuskex.core.offer.placeoffer.tasks.AddToOfferBook;
+import tuskex.core.offer.placeoffer.tasks.MakerReserveOfferFunds;
+import tuskex.core.offer.placeoffer.tasks.ValidateOffer;
+import tuskex.core.trade.protocol.tasks.ApplyFilter;
+import tuskex.core.trade.protocol.tasks.BuyerPreparePaymentSentMessage;
+import tuskex.core.trade.protocol.tasks.BuyerSendPaymentSentMessage;
+import tuskex.core.trade.protocol.tasks.MakerSetLockTime;
+import tuskex.core.trade.protocol.tasks.ProcessPaymentReceivedMessage;
+import tuskex.core.trade.protocol.tasks.ProcessPaymentSentMessage;
+import tuskex.core.trade.protocol.tasks.SellerPreparePaymentReceivedMessage;
+import tuskex.core.trade.protocol.tasks.SellerSendPaymentReceivedMessageToBuyer;
+import tuskex.core.trade.protocol.tasks.VerifyPeersAccountAgeWitness;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.common.view.InitializableView;
+import tuskex.desktop.components.TitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelComboBox;
 import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

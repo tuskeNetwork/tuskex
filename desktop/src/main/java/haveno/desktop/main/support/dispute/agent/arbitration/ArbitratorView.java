@@ -15,29 +15,29 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.support.dispute.agent.arbitration;
+package tuskex.desktop.main.support.dispute.agent.arbitration;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.config.Config;
-import haveno.common.crypto.KeyRing;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.support.SupportType;
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.DisputeSession;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.support.dispute.arbitration.ArbitrationSession;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.core.trade.TradeManager;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.main.overlays.windows.ContractWindow;
-import haveno.desktop.main.overlays.windows.DisputeSummaryWindow;
-import haveno.desktop.main.overlays.windows.TradeDetailsWindow;
-import haveno.desktop.main.support.dispute.agent.DisputeAgentView;
+import tuskex.common.config.Config;
+import tuskex.common.crypto.KeyRing;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.support.SupportType;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.DisputeSession;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.support.dispute.arbitration.ArbitrationSession;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.main.overlays.windows.ContractWindow;
+import tuskex.desktop.main.overlays.windows.DisputeSummaryWindow;
+import tuskex.desktop.main.overlays.windows.TradeDetailsWindow;
+import tuskex.desktop.main.support.dispute.agent.DisputeAgentView;
 
 @FxmlView
 public class ArbitratorView extends DisputeAgentView {
@@ -84,7 +84,7 @@ public class ArbitratorView extends DisputeAgentView {
         long protocolVersion = dispute.getContract().getOfferPayload().getProtocolVersion();
         // Only cases with protocolVersion 1 are candidates for legacy arbitration.
         // This code path is not tested and it is not assumed that it is still be used as old arbitrators would use
-        // their old Haveno version if still cases are pending.
+        // their old Tuskex version if still cases are pending.
 //        if (protocolVersion == 1) {
             chatPopup.closeChat();
             disputeSummaryWindow.show(dispute);

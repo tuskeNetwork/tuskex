@@ -15,17 +15,17 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.settings.network;
+package tuskex.desktop.main.settings.network;
 
-import haveno.common.ClockWatcher;
-import haveno.core.locale.Res;
-import haveno.core.util.FormattingUtils;
-import haveno.desktop.util.DisplayUtils;
-import haveno.network.p2p.network.Connection;
-import haveno.network.p2p.network.ConnectionState;
-import haveno.network.p2p.network.OutboundConnection;
-import haveno.network.p2p.network.PeerType;
-import haveno.network.p2p.network.Statistic;
+import tuskex.common.ClockWatcher;
+import tuskex.core.locale.Res;
+import tuskex.core.util.FormattingUtils;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.network.p2p.network.Connection;
+import tuskex.network.p2p.network.ConnectionState;
+import tuskex.network.p2p.network.OutboundConnection;
+import tuskex.network.p2p.network.PeerType;
+import tuskex.network.p2p.network.Statistic;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.apache.commons.lang3.time.DurationFormatUtils;

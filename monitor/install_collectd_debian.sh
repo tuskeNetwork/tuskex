@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-echo "[*] Haveno Server Monitoring installation script"
+echo "[*] Tuskex Server Monitoring installation script"
 
 ##### change paths if necessary for your system
-HAVENO_REPO_URL=https://raw.githubusercontent.com/bisq-network/bisq
-HAVENO_REPO_TAG=master
+TUSKEX_REPO_URL=https://raw.githubusercontent.com/bisq-network/bisq
+TUSKEX_REPO_TAG=master
 ROOT_USER=root
 ROOT_GROUP=root
 ROOT_HOME=~root
@@ -27,9 +27,9 @@ sudo -H -i -u "${ROOT_USER}" DEBIAN_FRONTEND=noninteractive apt-get upgrade -qq 
 echo "[*] Installing base packages"
 sudo -H -i -u "${ROOT_USER}" DEBIAN_FRONTEND=noninteractive apt-get install -qq -y ${ROOT_PKG[@]}
 
-echo "[*] Preparing Haveno init script for monitoring"
+echo "[*] Preparing Tuskex init script for monitoring"
 # remove stuff it it is there already
-for file in "${SYSTEMD_ENV_HOME}/haveno.env" "${SYSTEMD_ENV_HOME}/haveno-pricenode.env"
+for file in "${SYSTEMD_ENV_HOME}/tuskex.env" "${SYSTEMD_ENV_HOME}/tuskex-pricenode.env"
 do
     if [ -f "$file" ];then
         sudo -H -i -u "${ROOT_USER}" sed -i -e 's/-Dcom.sun.management.jmxremote //g' -e 's/-Dcom.sun.management.jmxremote.local.only=true//g' -e 's/ -Dcom.sun.management.jmxremote.host=127.0.0.1//g' -e 's/ -Dcom.sun.management.jmxremote.port=6969//g' -e 's/ -Dcom.sun.management.jmxremote.rmi.port=6969//g' -e 's/ -Dcom.sun.management.jmxremote.ssl=false//g' -e 's/ -Dcom.sun.management.jmxremote.authenticate=false//g' "${file}"
@@ -40,12 +40,12 @@ done
 echo "[*] Seeding entropy from /dev/urandom"
 sudo -H -i -u "${ROOT_USER}" /bin/sh -c "head -1500 /dev/urandom > ${ROOT_HOME}/.rnd"
 echo "[*] Installing Nginx config"
-sudo -H -i -u "${ROOT_USER}" openssl req -x509 -nodes -newkey rsa:2048 -days 3000 -keyout /etc/nginx/cert.key -out /etc/nginx/cert.crt -subj="/O=Haveno/OU=Haveno Infrastructure/CN=$onionaddress"
-curl -s "${HAVENO_REPO_URL}/${HAVENO_REPO_TAG}/monitor/nginx.conf" > /tmp/nginx.conf
+sudo -H -i -u "${ROOT_USER}" openssl req -x509 -nodes -newkey rsa:2048 -days 3000 -keyout /etc/nginx/cert.key -out /etc/nginx/cert.crt -subj="/O=Tuskex/OU=Tuskex Infrastructure/CN=$onionaddress"
+curl -s "${TUSKEX_REPO_URL}/${TUSKEX_REPO_TAG}/monitor/nginx.conf" > /tmp/nginx.conf
 sudo -H -i -u "${ROOT_USER}" install -c -o "${ROOT_USER}" -g "${ROOT_GROUP}" -m 644 /tmp/nginx.conf /etc/nginx/nginx.conf
 
 echo "[*] Installing collectd config"
-curl -s "${HAVENO_REPO_URL}/${HAVENO_REPO_TAG}/monitor/collectd.conf" > /tmp/collectd.conf
+curl -s "${TUSKEX_REPO_URL}/${TUSKEX_REPO_TAG}/monitor/collectd.conf" > /tmp/collectd.conf
 sudo -H -i -u "${ROOT_USER}" install -c -o "${ROOT_USER}" -g "${ROOT_GROUP}" -m 644 /tmp/collectd.conf /etc/collectd/collectd.conf
 sudo -H -i -u "${ROOT_USER}" sed -i -e "s/__ONION_ADDRESS__/$onionaddress/" /etc/collectd/collectd.conf
 
@@ -56,10 +56,10 @@ sudo -H -i -u "${ROOT_USER}" systemctl enable collectd.service
 
 echo "[*] Restarting services"
 set +e
-service haveno status >/dev/null 2>&1
-[ $? != 4 ] && sudo -H -i -u "${ROOT_USER}" systemctl restart haveno.service
-service haveno-pricenode status >/dev/null 2>&1
-[ $? != 4 ] && sudo -H -i -u "${ROOT_USER}" systemctl restart haveno-pricenode.service
+service tuskex status >/dev/null 2>&1
+[ $? != 4 ] && sudo -H -i -u "${ROOT_USER}" systemctl restart tuskex.service
+service tuskex-pricenode status >/dev/null 2>&1
+[ $? != 4 ] && sudo -H -i -u "${ROOT_USER}" systemctl restart tuskex-pricenode.service
 sudo -H -i -u "${ROOT_USER}" systemctl restart nginx.service
 sudo -H -i -u "${ROOT_USER}" systemctl restart collectd.service
 

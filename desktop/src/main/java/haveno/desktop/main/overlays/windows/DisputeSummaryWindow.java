@@ -15,41 +15,41 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.common.handlers.ResultHandler;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple3;
-import haveno.core.api.CoreDisputesService;
-import haveno.core.locale.Res;
-import haveno.core.support.SupportType;
-import haveno.core.support.dispute.Dispute;
-import haveno.core.support.dispute.DisputeList;
-import haveno.core.support.dispute.DisputeManager;
-import haveno.core.support.dispute.DisputeResult;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.support.dispute.mediation.MediationManager;
-import haveno.core.support.dispute.refund.RefundManager;
-import haveno.core.trade.Contract;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.Trade;
-import haveno.core.trade.TradeManager;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.wallet.TradeWalletService;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.components.AutoTooltipRadioButton;
-import haveno.desktop.components.HavenoTextArea;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.DisplayUtils;
-import haveno.desktop.util.Layout;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.common.handlers.ResultHandler;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple3;
+import tuskex.core.api.CoreDisputesService;
+import tuskex.core.locale.Res;
+import tuskex.core.support.SupportType;
+import tuskex.core.support.dispute.Dispute;
+import tuskex.core.support.dispute.DisputeList;
+import tuskex.core.support.dispute.DisputeManager;
+import tuskex.core.support.dispute.DisputeResult;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.support.dispute.mediation.MediationManager;
+import tuskex.core.support.dispute.refund.RefundManager;
+import tuskex.core.trade.Contract;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.Trade;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.wallet.TradeWalletService;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.components.AutoTooltipRadioButton;
+import tuskex.desktop.components.TuskexTextArea;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.DisplayUtils;
+import tuskex.desktop.util.Layout;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.HPos;
@@ -75,10 +75,10 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static haveno.desktop.util.FormBuilder.add2ButtonsWithBox;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelLabel;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelWithVBox;
+import static tuskex.desktop.util.FormBuilder.add2ButtonsWithBox;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelLabel;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelWithVBox;
 
 @Slf4j
 public class DisputeSummaryWindow extends Overlay<DisputeSummaryWindow> {
@@ -121,7 +121,7 @@ public class DisputeSummaryWindow extends Overlay<DisputeSummaryWindow> {
                                 TradeManager tradeManager,
                                 ArbitrationManager arbitrationManager,
                                 MediationManager mediationManager,
-                                XmrWalletService walletService,
+                                TskWalletService walletService,
                                 TradeWalletService tradeWalletService,
                                 CoreDisputesService disputesService) {
 
@@ -271,26 +271,26 @@ public class DisputeSummaryWindow extends Overlay<DisputeSummaryWindow> {
         }
         addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("disputeSummaryWindow.role"), role);
         addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("shared.tradeAmount"),
-                HavenoUtils.formatXmr(contract.getTradeAmount(), true));
+                TuskexUtils.formatTsk(contract.getTradeAmount(), true));
         addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("shared.tradePrice"),
             FormattingUtils.formatPrice(contract.getPrice()));
         addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("shared.tradeVolume"),
             VolumeUtil.formatVolumeWithCode(contract.getTradeVolume()));
         String tradeFee = Res.getWithColAndCap("shared.buyer") +
                 " " +
-                HavenoUtils.formatXmr(trade.getBuyer() == trade.getMaker() ? trade.getMakerFee() : trade.getTakerFee(), true) +
+                TuskexUtils.formatTsk(trade.getBuyer() == trade.getMaker() ? trade.getMakerFee() : trade.getTakerFee(), true) +
                 " / " +
                 Res.getWithColAndCap("shared.seller") +
                 " " +
-                HavenoUtils.formatXmr(trade.getSeller() == trade.getMaker() ? trade.getMakerFee() : trade.getTakerFee(), true);
+                TuskexUtils.formatTsk(trade.getSeller() == trade.getMaker() ? trade.getMakerFee() : trade.getTakerFee(), true);
         addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("shared.tradeFee"), tradeFee);
         String securityDeposit = Res.getWithColAndCap("shared.buyer") +
                 " " +
-                HavenoUtils.formatXmr(trade.getBuyer().getSecurityDeposit(), true) +
+                TuskexUtils.formatTsk(trade.getBuyer().getSecurityDeposit(), true) +
                 " / " +
                 Res.getWithColAndCap("shared.seller") +
                 " " +
-                HavenoUtils.formatXmr(trade.getSeller().getSecurityDeposit(), true);
+                TuskexUtils.formatTsk(trade.getSeller().getSecurityDeposit(), true);
         addConfirmationLabelLabel(gridPane, ++rowIndex, Res.get("shared.securityDeposit"), securityDeposit);
     }
 
@@ -349,8 +349,8 @@ public class DisputeSummaryWindow extends Overlay<DisputeSummaryWindow> {
     }
 
     private boolean isPayoutAmountValid() {
-        BigInteger buyerAmount = HavenoUtils.parseXmr(buyerPayoutAmountInputTextField.getText());
-        BigInteger sellerAmount = HavenoUtils.parseXmr(sellerPayoutAmountInputTextField.getText());
+        BigInteger buyerAmount = TuskexUtils.parseTsk(buyerPayoutAmountInputTextField.getText());
+        BigInteger sellerAmount = TuskexUtils.parseTsk(sellerPayoutAmountInputTextField.getText());
         Contract contract = dispute.getContract();
         BigInteger tradeAmount = contract.getTradeAmount();
         BigInteger available = tradeAmount
@@ -382,14 +382,14 @@ public class DisputeSummaryWindow extends Overlay<DisputeSummaryWindow> {
         BigInteger available = contract.getTradeAmount()
                 .add(trade.getBuyer().getSecurityDeposit())
                 .add(trade.getSeller().getSecurityDeposit());
-        BigInteger enteredAmount = HavenoUtils.parseXmr(inputTextField.getText());
+        BigInteger enteredAmount = TuskexUtils.parseTsk(inputTextField.getText());
         if (enteredAmount.compareTo(available) > 0) {
             enteredAmount = available;
             BigInteger finalEnteredAmount = enteredAmount;
-            inputTextField.setText(HavenoUtils.formatXmr(finalEnteredAmount));
+            inputTextField.setText(TuskexUtils.formatTsk(finalEnteredAmount));
         }
         BigInteger counterPart = available.subtract(enteredAmount);
-        String formattedCounterPartAmount = HavenoUtils.formatXmr(counterPart);
+        String formattedCounterPartAmount = TuskexUtils.formatTsk(counterPart);
         BigInteger buyerAmount;
         BigInteger sellerAmount;
         if (inputTextField == buyerPayoutAmountInputTextField) {
@@ -551,7 +551,7 @@ public class DisputeSummaryWindow extends Overlay<DisputeSummaryWindow> {
     }
 
     private void addSummaryNotes() {
-        summaryNotesTextArea = new HavenoTextArea();
+        summaryNotesTextArea = new TuskexTextArea();
         summaryNotesTextArea.setPromptText(Res.get("disputeSummaryWindow.addSummaryNotes"));
         summaryNotesTextArea.setWrapText(true);
 
@@ -620,13 +620,13 @@ public class DisputeSummaryWindow extends Overlay<DisputeSummaryWindow> {
         String buyerDetails = "";
         if (buyerPayoutAmount.compareTo(BigInteger.ZERO) > 0) {
             buyerDetails = Res.get("disputeSummaryWindow.close.txDetails.buyer",
-                    HavenoUtils.formatXmr(buyerPayoutAmount, true),
+                    TuskexUtils.formatTsk(buyerPayoutAmount, true),
                     buyerPayoutAddressString);
         }
         String sellerDetails = "";
         if (sellerPayoutAmount.compareTo(BigInteger.ZERO) > 0) {
             sellerDetails = Res.get("disputeSummaryWindow.close.txDetails.seller",
-                    HavenoUtils.formatXmr(sellerPayoutAmount, true),
+                    TuskexUtils.formatTsk(sellerPayoutAmount, true),
                     sellerPayoutAddressString);
         }
         BigInteger outputAmount = buyerPayoutAmount.add(sellerPayoutAmount).add(payoutTx.getFee());
@@ -634,10 +634,10 @@ public class DisputeSummaryWindow extends Overlay<DisputeSummaryWindow> {
             new Popup().width(900)
                     .headLine(Res.get("disputeSummaryWindow.close.txDetails.headline"))
                     .confirmation(Res.get("disputeSummaryWindow.close.txDetails",
-                            HavenoUtils.formatXmr(outputAmount, true),
+                            TuskexUtils.formatTsk(outputAmount, true),
                             buyerDetails,
                             sellerDetails,
-                            formatter.formatCoinWithCode(HavenoUtils.atomicUnitsToCoin(payoutTx.getFee()))))
+                            formatter.formatCoinWithCode(TuskexUtils.atomicUnitsToCoin(payoutTx.getFee()))))
                     .actionButtonText(Res.get("shared.yes"))
                     .onAction(() -> resultHandler.handleResult())
                     .closeButtonText(Res.get("shared.cancel"))
@@ -712,8 +712,8 @@ public class DisputeSummaryWindow extends Overlay<DisputeSummaryWindow> {
             throw new IllegalStateException("Unknown radio button");
         }
         disputesService.applyPayoutAmountsToDisputeResult(payout, dispute, disputeResult, -1);
-        buyerPayoutAmountInputTextField.setText(HavenoUtils.formatXmr(disputeResult.getBuyerPayoutAmountBeforeCost()));
-        sellerPayoutAmountInputTextField.setText(HavenoUtils.formatXmr(disputeResult.getSellerPayoutAmountBeforeCost()));
+        buyerPayoutAmountInputTextField.setText(TuskexUtils.formatTsk(disputeResult.getBuyerPayoutAmountBeforeCost()));
+        sellerPayoutAmountInputTextField.setText(TuskexUtils.formatTsk(disputeResult.getSellerPayoutAmountBeforeCost()));
     }
 
     private void applyTradeAmountRadioButtonStates() {
@@ -725,8 +725,8 @@ public class DisputeSummaryWindow extends Overlay<DisputeSummaryWindow> {
         BigInteger buyerPayoutAmount = disputeResult.getBuyerPayoutAmountBeforeCost();
         BigInteger sellerPayoutAmount = disputeResult.getSellerPayoutAmountBeforeCost();
 
-        buyerPayoutAmountInputTextField.setText(HavenoUtils.formatXmr(buyerPayoutAmount));
-        sellerPayoutAmountInputTextField.setText(HavenoUtils.formatXmr(sellerPayoutAmount));
+        buyerPayoutAmountInputTextField.setText(TuskexUtils.formatTsk(buyerPayoutAmount));
+        sellerPayoutAmountInputTextField.setText(TuskexUtils.formatTsk(sellerPayoutAmount));
 
         if (buyerPayoutAmount.equals(tradeAmount.add(buyerSecurityDeposit)) &&
                 sellerPayoutAmount.equals(sellerSecurityDeposit)) {

@@ -15,30 +15,30 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.failedtrades;
+package tuskex.desktop.main.portfolio.failedtrades;
 
 import com.google.inject.Inject;
 import com.googlecode.jcsv.writer.CSVEntryConverter;
 import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.common.util.Utilities;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.trade.Contract;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.Trade;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.offer.OfferViewUtil;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.TradeDetailsWindow;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.trade.Contract;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.Trade;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.offer.OfferViewUtil;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.TradeDetailsWindow;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.GUIUtil;
 import java.math.BigInteger;
 import java.util.Comparator;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -97,16 +97,16 @@ public class FailedTradesView extends ActivatableViewAndModel<VBox, FailedTrades
     private EventHandler<KeyEvent> keyEventEventHandler;
     private ChangeListener<String> filterTextFieldListener;
     private Scene scene;
-    private XmrWalletService xmrWalletService;
+    private TskWalletService tskWalletService;
     private ContextMenu contextMenu;
 
     @Inject
     public FailedTradesView(FailedTradesViewModel model,
                             TradeDetailsWindow tradeDetailsWindow,
-                            XmrWalletService xmrWalletService) {
+                            TskWalletService tskWalletService) {
         super(model);
         this.tradeDetailsWindow = tradeDetailsWindow;
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
     }
 
     @Override
@@ -264,11 +264,11 @@ public class FailedTradesView extends ActivatableViewAndModel<VBox, FailedTrades
             new Popup().warning(Res.get(msgKey,
                     buyerOrSeller,
                     makerOrTaker,
-                    HavenoUtils.formatXmr(fee, true),
+                    TuskexUtils.formatTsk(fee, true),
                     "todo", // TODO: set reserve tx miner fee when verified
                     reserveTxHash
                     )
-            ).onAction(() -> OfferViewUtil.submitTransactionHex(xmrWalletService, tableView, reserveTxHex)).show();
+            ).onAction(() -> OfferViewUtil.submitTransactionHex(tskWalletService, tableView, reserveTxHex)).show();
         } else {
             new Popup().error(Res.get("portfolio.failed.error.msg")).show();
         }

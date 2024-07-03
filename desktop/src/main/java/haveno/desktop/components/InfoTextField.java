@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.fontawesome.AwesomeIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.desktop.components.controlsfx.control.PopOver;
+import tuskex.desktop.components.controlsfx.control.PopOver;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
@@ -31,8 +31,8 @@ import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static haveno.desktop.util.FormBuilder.getIcon;
-import static haveno.desktop.util.FormBuilder.getRegularIconForLabel;
+import static tuskex.desktop.util.FormBuilder.getIcon;
+import static tuskex.desktop.util.FormBuilder.getRegularIconForLabel;
 
 public class InfoTextField extends AnchorPane {
     public static final Logger log = LoggerFactory.getLogger(InfoTextField.class);
@@ -49,7 +49,7 @@ public class InfoTextField extends AnchorPane {
     public InfoTextField() {
 
         arrowLocation = PopOver.ArrowLocation.RIGHT_TOP;
-        textField = new HavenoTextField();
+        textField = new TuskexTextField();
         textField.setLabelFloat(true);
         textField.setEditable(false);
         textField.textProperty().bind(text);

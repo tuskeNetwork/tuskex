@@ -15,12 +15,12 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
-import haveno.core.offer.OpenOffer;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.trade.Tradable;
-import haveno.core.trade.Trade;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.trade.Tradable;
+import tuskex.core.trade.Trade;
 import monero.wallet.model.MoneroTxWallet;
 import org.junit.jupiter.api.Test;
 

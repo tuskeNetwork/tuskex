@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop;
+package tuskex.desktop;
 
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.TraditionalCurrency;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.TraditionalCurrency;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -34,19 +34,19 @@ public class MarketsPrintTool {
         StringBuilder sb = new StringBuilder();
         Locale.setDefault(new Locale("en", "US"));
 
-        // <option value="onion_xmr">DeepOnion (ONION)</option>
-        // <option value="xmr_bhd">Bahraini Dinar (BHD)</option>
+        // <option value="onion_tsk">DeepOnion (ONION)</option>
+        // <option value="tsk_bhd">Bahraini Dinar (BHD)</option>
 
         final Collection<TraditionalCurrency> allSortedTraditionalCurrencies = CurrencyUtil.getAllSortedTraditionalCurrencies();
         final Stream<MarketCurrency> traditionalStream = allSortedTraditionalCurrencies.stream()
-                .filter(e -> !e.getCode().equals("XMR"))
-                .map(e -> new MarketCurrency("xmr_" + e.getCode().toLowerCase(), e.getName(), e.getCode()))
+                .filter(e -> !e.getCode().equals("TSK"))
+                .map(e -> new MarketCurrency("tsk_" + e.getCode().toLowerCase(), e.getName(), e.getCode()))
                 .distinct();
 
         final Collection<CryptoCurrency> allSortedCryptoCurrencies = CurrencyUtil.getAllSortedCryptoCurrencies();
         final Stream<MarketCurrency> cryptoStream = allSortedCryptoCurrencies.stream()
-                .filter(e -> !e.getCode().equals("XMR"))
-                .map(e -> new MarketCurrency(e.getCode().toLowerCase() + "_xmr", e.getName(), e.getCode()))
+                .filter(e -> !e.getCode().equals("TSK"))
+                .map(e -> new MarketCurrency(e.getCode().toLowerCase() + "_tsk", e.getName(), e.getCode()))
                 .distinct();
 
         Stream.concat(traditionalStream, cryptoStream)

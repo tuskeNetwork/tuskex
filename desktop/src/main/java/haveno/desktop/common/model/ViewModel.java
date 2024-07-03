@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.common.model;
+package tuskex.desktop.common.model;
 
 public interface ViewModel extends Model {
 }

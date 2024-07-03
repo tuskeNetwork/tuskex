@@ -15,13 +15,13 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
 import com.google.common.collect.Lists;
-import haveno.core.locale.CryptoCurrency;
-import haveno.core.locale.TraditionalCurrency;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.user.Preferences;
+import tuskex.core.locale.CryptoCurrency;
+import tuskex.core.locale.TraditionalCurrency;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.user.Preferences;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

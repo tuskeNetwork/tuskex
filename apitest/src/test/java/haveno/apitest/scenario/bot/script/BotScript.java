@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.scenario.bot.script;
+package tuskex.apitest.scenario.bot.script;
 
 import lombok.Getter;
 import lombok.Setter;

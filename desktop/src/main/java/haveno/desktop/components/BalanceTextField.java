@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXTextField;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.util.coin.CoinFormatter;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.util.coin.CoinFormatter;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
@@ -45,7 +45,7 @@ public class BalanceTextField extends AnchorPane {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     public BalanceTextField(String label) {
-        textField = new HavenoTextField();
+        textField = new TuskexTextField();
         textField.setLabelFloat(true);
         textField.setPromptText(label);
         textField.setFocusTraversable(false);
@@ -81,7 +81,7 @@ public class BalanceTextField extends AnchorPane {
 
     private void updateBalance(BigInteger balance) {
         if (formatter != null)
-            textField.setText(HavenoUtils.formatXmr(balance, true));
+            textField.setText(TuskexUtils.formatTsk(balance, true));
 
         //TODO: replace with new validation logic
 //        if (targetAmount != null) {

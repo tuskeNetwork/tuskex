@@ -15,16 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.withdrawal;
+package tuskex.desktop.main.funds.withdrawal;
 
-import haveno.common.UserThread;
-import haveno.core.locale.Res;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.listeners.XmrBalanceListener;
-import haveno.core.xmr.model.XmrAddressEntry;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.components.AutoTooltipLabel;
+import tuskex.common.UserThread;
+import tuskex.core.locale.Res;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.listeners.TskBalanceListener;
+import tuskex.core.tsk.model.TskAddressEntry;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.components.AutoTooltipLabel;
 import javafx.scene.control.Label;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,10 +32,10 @@ import lombok.Setter;
 import java.math.BigInteger;
 
 class WithdrawalListItem {
-    private final XmrBalanceListener balanceListener;
+    private final TskBalanceListener balanceListener;
     private final Label balanceLabel;
-    private final XmrAddressEntry addressEntry;
-    private final XmrWalletService walletService;
+    private final TskAddressEntry addressEntry;
+    private final TskWalletService walletService;
     private final CoinFormatter formatter;
     private BigInteger balance;
     private final String addressString;
@@ -43,7 +43,7 @@ class WithdrawalListItem {
     @Getter
     private boolean isSelected;
 
-    public WithdrawalListItem(XmrAddressEntry addressEntry, XmrWalletService walletService,
+    public WithdrawalListItem(TskAddressEntry addressEntry, TskWalletService walletService,
                               CoinFormatter formatter) {
         this.addressEntry = addressEntry;
         this.walletService = walletService;
@@ -52,7 +52,7 @@ class WithdrawalListItem {
 
         // balance
         balanceLabel = new AutoTooltipLabel();
-        balanceListener = new XmrBalanceListener(addressEntry.getSubaddressIndex()) {
+        balanceListener = new TskBalanceListener(addressEntry.getSubaddressIndex()) {
             @Override
             public void onBalanceChanged(BigInteger balance) {
                 updateBalance();
@@ -70,7 +70,7 @@ class WithdrawalListItem {
     private void updateBalance() {
         balance = walletService.getBalanceForSubaddress(addressEntry.getSubaddressIndex());
         if (balance != null) {
-            UserThread.execute(() -> balanceLabel.setText(HavenoUtils.formatXmr(this.balance)));
+            UserThread.execute(() -> balanceLabel.setText(TuskexUtils.formatTsk(this.balance)));
         }
     }
 
@@ -79,7 +79,7 @@ class WithdrawalListItem {
             return Res.getWithCol("shared.offerId") + " " + addressEntry.getShortOfferId();
         else if (addressEntry.isTrade())
             return Res.getWithCol("shared.tradeId") + " " + addressEntry.getShortOfferId();
-        else if (addressEntry.getContext() == XmrAddressEntry.Context.ARBITRATOR)
+        else if (addressEntry.getContext() == TskAddressEntry.Context.ARBITRATOR)
             return Res.get("funds.withdrawal.arbitrationFee");
         else
             return "-";
@@ -100,7 +100,7 @@ class WithdrawalListItem {
         return addressEntry.hashCode();
     }
 
-    public XmrAddressEntry getAddressEntry() {
+    public TskAddressEntry getAddressEntry() {
         return addressEntry;
     }
 

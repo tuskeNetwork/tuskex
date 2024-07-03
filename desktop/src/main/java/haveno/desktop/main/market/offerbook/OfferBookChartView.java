@@ -15,37 +15,37 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.offerbook;
+package tuskex.desktop.main.market.offerbook;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.jfoenix.controls.JFXTabPane;
-import haveno.common.UserThread;
-import haveno.common.config.Config;
-import haveno.common.util.Tuple3;
-import haveno.common.util.Tuple4;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.AutoTooltipTableColumn;
-import haveno.desktop.components.AutocompleteComboBox;
-import haveno.desktop.components.ColoredDecimalPlacesWithZerosText;
-import haveno.desktop.components.PeerInfoIconSmall;
-import haveno.desktop.main.offer.offerbook.OfferBookListItem;
-import haveno.desktop.util.CurrencyListItem;
-import haveno.desktop.util.DisplayUtils;
-import static haveno.desktop.util.FormBuilder.addTopLabelAutocompleteComboBox;
-import haveno.desktop.util.GUIUtil;
-import static haveno.desktop.util.Layout.INITIAL_WINDOW_HEIGHT;
-import haveno.network.p2p.NodeAddress;
+import tuskex.common.UserThread;
+import tuskex.common.config.Config;
+import tuskex.common.util.Tuple3;
+import tuskex.common.util.Tuple4;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.AutoTooltipTableColumn;
+import tuskex.desktop.components.AutocompleteComboBox;
+import tuskex.desktop.components.ColoredDecimalPlacesWithZerosText;
+import tuskex.desktop.components.PeerInfoIconSmall;
+import tuskex.desktop.main.offer.offerbook.OfferBookListItem;
+import tuskex.desktop.util.CurrencyListItem;
+import tuskex.desktop.util.DisplayUtils;
+import static tuskex.desktop.util.FormBuilder.addTopLabelAutocompleteComboBox;
+import tuskex.desktop.util.GUIUtil;
+import static tuskex.desktop.util.Layout.INITIAL_WINDOW_HEIGHT;
+import tuskex.network.p2p.NodeAddress;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -113,7 +113,7 @@ public class OfferBookChartView extends ActivatableViewAndModel<VBox, OfferBookC
         int extraRows = screenSize <= INITIAL_WINDOW_HEIGHT ? 0 : (int) ((screenSize - INITIAL_WINDOW_HEIGHT) / pixelsPerOfferTableRow);
         return extraRows == 0 ? initialOfferTableViewHeight : Math.ceil(initialOfferTableViewHeight + ((extraRows + 1) * pixelsPerOfferTableRow));
     };
-    private ChangeListener<Number> havenoWindowVerticalSizeListener;
+    private ChangeListener<Number> tuskexWindowVerticalSizeListener;
 
     ///////////////////////////////////////////////////////////////////////////////////////////
     // Constructor, lifecycle
@@ -249,7 +249,7 @@ public class OfferBookChartView extends ActivatableViewAndModel<VBox, OfferBookC
         buyOfferTableView.getSelectionModel().selectedItemProperty().addListener(buyTableRowSelectionListener);
         sellOfferTableView.getSelectionModel().selectedItemProperty().addListener(sellTableRowSelectionListener);
 
-        root.getScene().heightProperty().addListener(havenoWindowVerticalSizeListener);
+        root.getScene().heightProperty().addListener(tuskexWindowVerticalSizeListener);
         layout();
 
         updateChartData();
@@ -286,7 +286,7 @@ public class OfferBookChartView extends ActivatableViewAndModel<VBox, OfferBookC
         buyTableRowSelectionListener = (observable, oldValue, newValue) -> model.goToOfferView(OfferDirection.BUY);
         sellTableRowSelectionListener = (observable, oldValue, newValue) -> model.goToOfferView(OfferDirection.SELL);
 
-        havenoWindowVerticalSizeListener = (observable, oldValue, newValue) -> layout();
+        tuskexWindowVerticalSizeListener = (observable, oldValue, newValue) -> layout();
     }
 
     @Override
@@ -541,7 +541,7 @@ public class OfferBookChartView extends ActivatableViewAndModel<VBox, OfferBookC
                 });
 
         // amount
-        TableColumn<OfferListItem, OfferListItem> amountColumn = new AutoTooltipTableColumn<>(Res.get("shared.XMRMinMax"));
+        TableColumn<OfferListItem, OfferListItem> amountColumn = new AutoTooltipTableColumn<>(Res.get("shared.TSKMinMax"));
         amountColumn.setMinWidth(115);
         amountColumn.setSortable(false);
         amountColumn.getStyleClass().add("number-column");

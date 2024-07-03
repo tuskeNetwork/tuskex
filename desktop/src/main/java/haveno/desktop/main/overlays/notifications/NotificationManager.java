@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.notifications;
+package tuskex.desktop.main.overlays.notifications;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

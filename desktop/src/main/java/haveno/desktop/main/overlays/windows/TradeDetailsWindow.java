@@ -15,38 +15,38 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.UserThread;
-import haveno.common.util.Tuple3;
-import haveno.common.util.Utilities;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.trade.Contract;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.Trade;
-import haveno.core.trade.TradeManager;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.VolumeUtil;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.wallet.BtcWalletService;
-import haveno.desktop.components.HavenoTextArea;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.util.DisplayUtils;
-import static haveno.desktop.util.DisplayUtils.getAccountWitnessDescription;
-import static haveno.desktop.util.FormBuilder.add2ButtonsWithBox;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelTextArea;
-import static haveno.desktop.util.FormBuilder.addConfirmationLabelTextField;
-import static haveno.desktop.util.FormBuilder.addLabelTxIdTextField;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import haveno.desktop.util.Layout;
-import haveno.network.p2p.NodeAddress;
+import tuskex.common.UserThread;
+import tuskex.common.util.Tuple3;
+import tuskex.common.util.Utilities;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.trade.Contract;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.Trade;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.VolumeUtil;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.wallet.BtcWalletService;
+import tuskex.desktop.components.TuskexTextArea;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.util.DisplayUtils;
+import static tuskex.desktop.util.DisplayUtils.getAccountWitnessDescription;
+import static tuskex.desktop.util.FormBuilder.add2ButtonsWithBox;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelTextArea;
+import static tuskex.desktop.util.FormBuilder.addConfirmationLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addLabelTxIdTextField;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import tuskex.desktop.util.Layout;
+import tuskex.network.p2p.NodeAddress;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -137,7 +137,7 @@ public class TradeDetailsWindow extends Overlay<TradeDetailsWindow> {
 
         boolean myOffer = tradeManager.isMyOffer(offer);
         String counterCurrencyDirectionInfo;
-        String xmrDirectionInfo;
+        String tskDirectionInfo;
         String toReceive = " " + Res.get("shared.toReceive");
         String toSpend = " " + Res.get("shared.toSpend");
         String offerType = Res.get("shared.offerType");
@@ -145,16 +145,16 @@ public class TradeDetailsWindow extends Overlay<TradeDetailsWindow> {
             addConfirmationLabelTextField(gridPane, rowIndex, offerType,
                     DisplayUtils.getDirectionForBuyer(myOffer, offer.getCurrencyCode()), Layout.TWICE_FIRST_ROW_DISTANCE);
             counterCurrencyDirectionInfo = toSpend;
-            xmrDirectionInfo = toReceive;
+            tskDirectionInfo = toReceive;
         } else {
             addConfirmationLabelTextField(gridPane, rowIndex, offerType,
                     DisplayUtils.getDirectionForSeller(myOffer, offer.getCurrencyCode()), Layout.TWICE_FIRST_ROW_DISTANCE);
             counterCurrencyDirectionInfo = toReceive;
-            xmrDirectionInfo = toSpend;
+            tskDirectionInfo = toSpend;
         }
 
-        addConfirmationLabelTextField(gridPane, ++rowIndex, Res.get("shared.xmrAmount") + xmrDirectionInfo,
-                HavenoUtils.formatXmr(trade.getAmount(), true));
+        addConfirmationLabelTextField(gridPane, ++rowIndex, Res.get("shared.tskAmount") + tskDirectionInfo,
+                TuskexUtils.formatTsk(trade.getAmount(), true));
         addConfirmationLabelTextField(gridPane, ++rowIndex,
                 VolumeUtil.formatVolumeLabel(offer.getCurrencyCode()) + counterCurrencyDirectionInfo,
                 VolumeUtil.formatVolumeWithCode(trade.getVolume()));
@@ -201,11 +201,11 @@ public class TradeDetailsWindow extends Overlay<TradeDetailsWindow> {
                 DisplayUtils.formatDateTime(trade.getDate()));
         String securityDeposit = Res.getWithColAndCap("shared.buyer") +
                 " " +
-                HavenoUtils.formatXmr(offer.getMaxBuyerSecurityDeposit(), true) +
+                TuskexUtils.formatTsk(offer.getMaxBuyerSecurityDeposit(), true) +
                 " / " +
                 Res.getWithColAndCap("shared.seller") +
                 " " +
-                HavenoUtils.formatXmr(offer.getMaxSellerSecurityDeposit(), true);
+                TuskexUtils.formatTsk(offer.getMaxSellerSecurityDeposit(), true);
         addConfirmationLabelTextField(gridPane, ++rowIndex, Res.get("shared.securityDeposit"), securityDeposit);
 
         NodeAddress arbitratorNodeAddress = trade.getArbitratorNodeAddress();
@@ -292,7 +292,7 @@ public class TradeDetailsWindow extends Overlay<TradeDetailsWindow> {
         String sellerPubKeyRingHash = Utilities.bytesAsHexString(trade.getSeller().getPubKeyRing().getSignaturePubKeyBytes());
 
         viewContractButton.setOnAction(e -> {
-            TextArea textArea = new HavenoTextArea();
+            TextArea textArea = new TuskexTextArea();
             textArea.setText(trade.getContractAsJson());
             String data = "Trade state: " + trade.getState();
             data += "\nTrade payout state: " + trade.getPayoutState();

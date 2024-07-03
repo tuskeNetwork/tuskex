@@ -1,60 +1,60 @@
-package haveno.desktop;
+package tuskex.desktop;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import haveno.common.ClockWatcher;
-import haveno.common.config.Config;
-import haveno.common.crypto.KeyRing;
-import haveno.common.crypto.KeyStorage;
-import haveno.common.file.CorruptedStorageFileHandler;
-import haveno.common.persistence.PersistenceManager;
-import haveno.common.proto.network.NetworkProtoResolver;
-import haveno.common.proto.persistable.PersistenceProtoResolver;
-import haveno.core.app.AvoidStandbyModeService;
-import haveno.core.app.P2PNetworkSetup;
-import haveno.core.app.TorSetup;
-import haveno.core.app.WalletAppSetup;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.network.p2p.seed.DefaultSeedNodeRepository;
-import haveno.core.notifications.MobileMessageEncryption;
-import haveno.core.notifications.MobileModel;
-import haveno.core.notifications.MobileNotificationService;
-import haveno.core.notifications.MobileNotificationValidator;
-import haveno.core.notifications.alerts.MyOfferTakenEvents;
-import haveno.core.notifications.alerts.TradeEvents;
-import haveno.core.notifications.alerts.market.MarketAlerts;
-import haveno.core.notifications.alerts.price.PriceAlert;
-import haveno.core.payment.ChargeBackRisk;
-import haveno.core.payment.TradeLimits;
-import haveno.core.proto.network.CoreNetworkProtoResolver;
-import haveno.core.proto.persistable.CorePersistenceProtoResolver;
-import haveno.core.support.dispute.arbitration.ArbitrationDisputeListService;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorService;
-import haveno.core.support.dispute.mediation.MediationDisputeListService;
-import haveno.core.support.dispute.mediation.MediationManager;
-import haveno.core.support.dispute.mediation.mediator.MediatorManager;
-import haveno.core.support.dispute.mediation.mediator.MediatorService;
-import haveno.core.support.traderchat.TraderChatManager;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.desktop.app.HavenoAppModule;
-import haveno.desktop.common.view.CachingViewLoader;
-import haveno.desktop.common.view.ViewLoader;
-import haveno.desktop.common.view.guice.InjectorViewFactory;
-import haveno.desktop.main.funds.transactions.DisplayedTransactionsFactory;
-import haveno.desktop.main.funds.transactions.TradableRepository;
-import haveno.desktop.main.funds.transactions.TransactionAwareTradableFactory;
-import haveno.desktop.main.funds.transactions.TransactionListItemFactory;
-import haveno.desktop.main.offer.offerbook.OfferBook;
-import haveno.desktop.main.overlays.notifications.NotificationCenter;
-import haveno.desktop.main.overlays.windows.TorNetworkSettingsWindow;
-import haveno.desktop.main.presentation.MarketPricePresentation;
-import haveno.desktop.util.Transitions;
-import haveno.network.p2p.network.BridgeAddressProvider;
-import haveno.network.p2p.seed.SeedNodeRepository;
+import tuskex.common.ClockWatcher;
+import tuskex.common.config.Config;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.crypto.KeyStorage;
+import tuskex.common.file.CorruptedStorageFileHandler;
+import tuskex.common.persistence.PersistenceManager;
+import tuskex.common.proto.network.NetworkProtoResolver;
+import tuskex.common.proto.persistable.PersistenceProtoResolver;
+import tuskex.core.app.AvoidStandbyModeService;
+import tuskex.core.app.P2PNetworkSetup;
+import tuskex.core.app.TorSetup;
+import tuskex.core.app.WalletAppSetup;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.network.p2p.seed.DefaultSeedNodeRepository;
+import tuskex.core.notifications.MobileMessageEncryption;
+import tuskex.core.notifications.MobileModel;
+import tuskex.core.notifications.MobileNotificationService;
+import tuskex.core.notifications.MobileNotificationValidator;
+import tuskex.core.notifications.alerts.MyOfferTakenEvents;
+import tuskex.core.notifications.alerts.TradeEvents;
+import tuskex.core.notifications.alerts.market.MarketAlerts;
+import tuskex.core.notifications.alerts.price.PriceAlert;
+import tuskex.core.payment.ChargeBackRisk;
+import tuskex.core.payment.TradeLimits;
+import tuskex.core.proto.network.CoreNetworkProtoResolver;
+import tuskex.core.proto.persistable.CorePersistenceProtoResolver;
+import tuskex.core.support.dispute.arbitration.ArbitrationDisputeListService;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorService;
+import tuskex.core.support.dispute.mediation.MediationDisputeListService;
+import tuskex.core.support.dispute.mediation.MediationManager;
+import tuskex.core.support.dispute.mediation.mediator.MediatorManager;
+import tuskex.core.support.dispute.mediation.mediator.MediatorService;
+import tuskex.core.support.traderchat.TraderChatManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.desktop.app.TuskexAppModule;
+import tuskex.desktop.common.view.CachingViewLoader;
+import tuskex.desktop.common.view.ViewLoader;
+import tuskex.desktop.common.view.guice.InjectorViewFactory;
+import tuskex.desktop.main.funds.transactions.DisplayedTransactionsFactory;
+import tuskex.desktop.main.funds.transactions.TradableRepository;
+import tuskex.desktop.main.funds.transactions.TransactionAwareTradableFactory;
+import tuskex.desktop.main.funds.transactions.TransactionListItemFactory;
+import tuskex.desktop.main.offer.offerbook.OfferBook;
+import tuskex.desktop.main.overlays.notifications.NotificationCenter;
+import tuskex.desktop.main.overlays.windows.TorNetworkSettingsWindow;
+import tuskex.desktop.main.presentation.MarketPricePresentation;
+import tuskex.desktop.util.Transitions;
+import tuskex.network.p2p.network.BridgeAddressProvider;
+import tuskex.network.p2p.seed.SeedNodeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -71,7 +71,7 @@ public class GuiceSetupTest {
         Res.setup();
         CurrencyUtil.setup();
 
-        injector = Guice.createInjector(new HavenoAppModule(new Config()));
+        injector = Guice.createInjector(new TuskexAppModule(new Config()));
     }
 
     @Test
@@ -93,7 +93,7 @@ public class GuiceSetupTest {
         assertSingleton(DisplayedTransactionsFactory.class);
 
         // core module
-//        assertSingleton(HavenoSetup.class); // this is a can of worms
+//        assertSingleton(TuskexSetup.class); // this is a can of worms
 //        assertSingleton(DisputeMsgEvents.class);
         assertSingleton(TorSetup.class);
         assertSingleton(P2PNetworkSetup.class);

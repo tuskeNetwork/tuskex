@@ -15,25 +15,25 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.createoffer;
+package tuskex.desktop.main.offer.createoffer;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.offer.CreateOfferService;
-import haveno.core.offer.OfferUtil;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.provider.price.PriceFeedService;
-import haveno.core.trade.statistics.TradeStatisticsManager;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.Navigation;
-import haveno.desktop.main.offer.MutableOfferDataModel;
-import haveno.network.p2p.P2PService;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.offer.CreateOfferService;
+import tuskex.core.offer.OfferUtil;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.provider.price.PriceFeedService;
+import tuskex.core.trade.statistics.TradeStatisticsManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.main.offer.MutableOfferDataModel;
+import tuskex.network.p2p.P2PService;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -49,7 +49,7 @@ class CreateOfferDataModel extends MutableOfferDataModel {
     public CreateOfferDataModel(CreateOfferService createOfferService,
                                 OpenOfferManager openOfferManager,
                                 OfferUtil offerUtil,
-                                XmrWalletService xmrWalletService,
+                                TskWalletService tskWalletService,
                                 Preferences preferences,
                                 User user,
                                 P2PService p2PService,
@@ -61,7 +61,7 @@ class CreateOfferDataModel extends MutableOfferDataModel {
         super(createOfferService,
                 openOfferManager,
                 offerUtil,
-                xmrWalletService,
+                tskWalletService,
                 preferences,
                 user,
                 p2PService,

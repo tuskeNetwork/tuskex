@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
-import haveno.core.util.SimpleMarkdownParser;
-import haveno.desktop.util.GUIUtil;
+import tuskex.core.util.SimpleMarkdownParser;
+import tuskex.desktop.util.GUIUtil;
 import javafx.scene.Node;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.text.Text;

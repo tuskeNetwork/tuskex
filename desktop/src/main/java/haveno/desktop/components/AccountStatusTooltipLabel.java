@@ -15,18 +15,18 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.common.UserThread;
-import haveno.core.account.sign.SignedWitnessService;
-import haveno.core.locale.Res;
-import haveno.core.offer.OfferRestrictions;
-import haveno.core.trade.HavenoUtils;
-import haveno.desktop.components.controlsfx.control.PopOver;
-import haveno.desktop.main.offer.offerbook.OfferBookListItem;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.UserThread;
+import tuskex.core.account.sign.SignedWitnessService;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OfferRestrictions;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.desktop.components.controlsfx.control.PopOver;
+import tuskex.desktop.main.offer.offerbook.OfferBookListItem;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.GUIUtil;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -55,7 +55,7 @@ public class AccountStatusTooltipLabel extends AutoTooltipLabel {
         this.textIcon = FormBuilder.getIcon(witnessAgeData.getIcon());
         this.popupTitle = witnessAgeData.isLimitLifted()
                 ? Res.get("offerbook.timeSinceSigning.tooltip.accountLimitLifted")
-                : Res.get("offerbook.timeSinceSigning.tooltip.accountLimit", HavenoUtils.formatXmr(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true));
+                : Res.get("offerbook.timeSinceSigning.tooltip.accountLimit", TuskexUtils.formatTsk(OfferRestrictions.TOLERATED_SMALL_TRADE_AMOUNT, true));
 
         positionAndActivateIcon();
     }
@@ -91,7 +91,7 @@ public class AccountStatusTooltipLabel extends AutoTooltipLabel {
         infoLabel.getStyleClass().add("small-text");
 
         Label buyLabel = createDetailsItem(
-                Res.get("offerbook.timeSinceSigning.tooltip.checkmark.buyXmr"),
+                Res.get("offerbook.timeSinceSigning.tooltip.checkmark.buyTsk"),
                 witnessAgeData.isAccountSigned()
         );
         Label waitLabel = createDetailsItem(
@@ -106,7 +106,7 @@ public class AccountStatusTooltipLabel extends AutoTooltipLabel {
         learnMoreLink.setWrapText(true);
         learnMoreLink.setPadding(new Insets(10, 10, 2, 10));
         learnMoreLink.getStyleClass().addAll("very-small-text");
-        learnMoreLink.setOnAction((e) -> GUIUtil.openWebPage("https://haveno.exchange/wiki/Account_limits"));
+        learnMoreLink.setOnAction((e) -> GUIUtil.openWebPage("https://tuskex.exchange/wiki/Account_limits"));
 
         VBox vBox = new VBox(2, titleLabel, infoLabel, buyLabel, waitLabel, learnMoreLink);
         vBox.setPadding(new Insets(2, 0, 2, 0));

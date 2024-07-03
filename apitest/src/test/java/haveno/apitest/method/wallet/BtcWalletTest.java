@@ -1,8 +1,8 @@
-package haveno.apitest.method.wallet;
+package tuskex.apitest.method.wallet;
 
-import haveno.apitest.method.MethodTest;
-import haveno.cli.table.builder.TableBuilder;
-import haveno.proto.grpc.BtcBalanceInfo;
+import tuskex.apitest.method.MethodTest;
+import tuskex.cli.table.builder.TableBuilder;
+import tuskex.proto.grpc.BtcBalanceInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,14 +12,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static haveno.apitest.Scaffold.BitcoinCoreApp.bitcoind;
-import static haveno.apitest.config.HavenoAppConfig.alicedaemon;
-import static haveno.apitest.config.HavenoAppConfig.bobdaemon;
-import static haveno.apitest.config.HavenoAppConfig.seednode;
-import static haveno.apitest.method.wallet.WalletTestUtil.INITIAL_BTC_BALANCES;
-import static haveno.apitest.method.wallet.WalletTestUtil.verifyBtcBalances;
-import static haveno.cli.table.builder.TableType.ADDRESS_BALANCE_TBL;
-import static haveno.cli.table.builder.TableType.BTC_BALANCE_TBL;
+import static tuskex.apitest.Scaffold.BitcoinCoreApp.bitcoind;
+import static tuskex.apitest.config.TuskexAppConfig.alicedaemon;
+import static tuskex.apitest.config.TuskexAppConfig.bobdaemon;
+import static tuskex.apitest.config.TuskexAppConfig.seednode;
+import static tuskex.apitest.method.wallet.WalletTestUtil.INITIAL_BTC_BALANCES;
+import static tuskex.apitest.method.wallet.WalletTestUtil.verifyBtcBalances;
+import static tuskex.cli.table.builder.TableType.ADDRESS_BALANCE_TBL;
+import static tuskex.cli.table.builder.TableType.BTC_BALANCE_TBL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
@@ -43,7 +43,7 @@ public class BtcWalletTest extends MethodTest {
     @Test
     @Order(1)
     public void testInitialBtcBalances(final TestInfo testInfo) {
-        // Bob & Alice's regtest Haveno wallets were initialized with 10 BTC.
+        // Bob & Alice's regtest Tuskex wallets were initialized with 10 BTC.
 
         BtcBalanceInfo alicesBalances = aliceClient.getBtcBalances();
         log.debug("{} Alice's BTC Balances:\n{}",
@@ -77,8 +77,8 @@ public class BtcWalletTest extends MethodTest {
 
         // New balance is 12.5 BTC
         btcBalanceInfo = aliceClient.getBtcBalances();
-        haveno.core.api.model.BtcBalanceInfo alicesExpectedBalances =
-                haveno.core.api.model.BtcBalanceInfo.valueOf(1250000000,
+        tuskex.core.api.model.BtcBalanceInfo alicesExpectedBalances =
+                tuskex.core.api.model.BtcBalanceInfo.valueOf(1250000000,
                         0,
                         1250000000,
                         0);

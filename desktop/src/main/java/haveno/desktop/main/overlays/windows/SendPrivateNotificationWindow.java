@@ -15,21 +15,21 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.common.crypto.PubKeyRing;
-import haveno.common.util.Tuple2;
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.alert.PrivateNotificationPayload;
-import haveno.core.locale.Res;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.network.p2p.NodeAddress;
-import haveno.network.p2p.SendMailboxMessageListener;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.common.crypto.PubKeyRing;
+import tuskex.common.util.Tuple2;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.alert.PrivateNotificationPayload;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.network.p2p.NodeAddress;
+import tuskex.network.p2p.SendMailboxMessageListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -44,8 +44,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
-import static haveno.desktop.util.FormBuilder.addInputTextField;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextArea;
+import static tuskex.desktop.util.FormBuilder.addInputTextField;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextArea;
 
 public class SendPrivateNotificationWindow extends Overlay<SendPrivateNotificationWindow> {
     private static final Logger log = LoggerFactory.getLogger(SendPrivateNotificationWindow.class);

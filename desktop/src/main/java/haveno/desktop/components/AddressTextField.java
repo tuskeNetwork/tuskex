@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.fontawesome.AwesomeDude;
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.common.util.Utilities;
-import haveno.core.locale.Res;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.Res;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.util.GUIUtil;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -51,7 +51,7 @@ public class AddressTextField extends AnchorPane {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     public AddressTextField(String label) {
-        JFXTextField textField = new HavenoTextField();
+        JFXTextField textField = new TuskexTextField();
         textField.setId("address-text-field");
         textField.setEditable(false);
         textField.setLabelFloat(true);

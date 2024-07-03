@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
 
 public class CurrencyListItem {
     public final TradeCurrency tradeCurrency;

@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.apitest.method.offer;
+package tuskex.apitest.method.offer;
 
-import haveno.core.payment.PaymentAccount;
+import tuskex.core.payment.PaymentAccount;
 import io.grpc.StatusRuntimeException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;

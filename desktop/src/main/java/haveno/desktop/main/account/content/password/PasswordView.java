@@ -15,32 +15,32 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.content.password;
+package tuskex.desktop.main.account.content.password;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import com.google.inject.Inject;
 import com.jfoenix.validation.RequiredFieldValidator;
-import haveno.common.util.Tuple4;
-import haveno.core.api.CoreAccountService;
-import haveno.core.locale.Res;
-import haveno.core.xmr.wallet.WalletsManager;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.components.PasswordTextField;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.account.AccountView;
-import haveno.desktop.main.account.content.backup.BackupView;
-import haveno.desktop.main.overlays.popups.Popup;
-import static haveno.desktop.util.FormBuilder.addButtonBusyAnimationLabel;
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
-import static haveno.desktop.util.FormBuilder.addPasswordTextField;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import haveno.desktop.util.Layout;
-import haveno.desktop.util.validation.PasswordValidator;
+import tuskex.common.util.Tuple4;
+import tuskex.core.api.CoreAccountService;
+import tuskex.core.locale.Res;
+import tuskex.core.tsk.wallet.WalletsManager;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.components.PasswordTextField;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.account.AccountView;
+import tuskex.desktop.main.account.content.backup.BackupView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import static tuskex.desktop.util.FormBuilder.addButtonBusyAnimationLabel;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
+import static tuskex.desktop.util.FormBuilder.addPasswordTextField;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import tuskex.desktop.util.Layout;
+import tuskex.desktop.util.validation.PasswordValidator;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.common.support;
+package tuskex.desktop.common.support;
 
-import haveno.desktop.common.view.AbstractView;
-import haveno.desktop.common.view.CachingViewLoader;
-import haveno.desktop.common.view.ViewLoader;
+import tuskex.desktop.common.view.AbstractView;
+import tuskex.desktop.common.view.CachingViewLoader;
+import tuskex.desktop.common.view.ViewLoader;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.BDDMockito.then;

@@ -15,26 +15,26 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components.paymentmethods;
+package tuskex.desktop.components.paymentmethods;
 
 import com.jfoenix.controls.JFXTextArea;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.payment.CashAtAtmAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.CashAtAtmAccountPayload;
-import haveno.core.payment.payload.PaymentAccountPayload;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.util.validation.InputValidator;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.payment.CashAtAtmAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.CashAtAtmAccountPayload;
+import tuskex.core.payment.payload.PaymentAccountPayload;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.util.validation.InputValidator;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextArea;
-import static haveno.desktop.util.FormBuilder.addCompactTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextArea;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextArea;
+import static tuskex.desktop.util.FormBuilder.addCompactTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextArea;
 
 public class CashAtAtmForm extends PaymentMethodForm {
     private final CashAtAtmAccount cashAtAtmAccount;

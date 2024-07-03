@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.signedoffer;
+package tuskex.desktop.main.offer.signedoffer;
 
 import com.google.inject.Inject;
 
@@ -23,8 +23,8 @@ import javafx.collections.ObservableList;
 
 
 
-import haveno.desktop.common.model.ActivatableWithDataModel;
-import haveno.desktop.common.model.ViewModel;
+import tuskex.desktop.common.model.ActivatableWithDataModel;
+import tuskex.desktop.common.model.ViewModel;
 
 class SignedOffersViewModel extends ActivatableWithDataModel<SignedOffersDataModel> implements ViewModel {
 

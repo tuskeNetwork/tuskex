@@ -15,18 +15,18 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
-import haveno.desktop.main.overlays.editor.PeerInfoWithTagEditor;
-import haveno.desktop.util.DisplayUtils;
+import tuskex.desktop.main.overlays.editor.PeerInfoWithTagEditor;
+import tuskex.desktop.util.DisplayUtils;
 
-import haveno.core.alert.PrivateNotificationManager;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.trade.Trade;
-import haveno.core.user.Preferences;
+import tuskex.core.alert.PrivateNotificationManager;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.trade.Trade;
+import tuskex.core.user.Preferences;
 
-import haveno.network.p2p.NodeAddress;
+import tuskex.network.p2p.NodeAddress;
 
 import com.google.common.base.Charsets;
 

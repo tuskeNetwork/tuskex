@@ -15,27 +15,27 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.content.walletinfo;
+package tuskex.desktop.main.account.content.walletinfo;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.config.Config;
-import haveno.core.locale.Res;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.listeners.BalanceListener;
-import haveno.core.xmr.wallet.BtcWalletService;
-import haveno.core.xmr.wallet.WalletService;
-import haveno.core.xmr.wallet.WalletsManager;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.ShowWalletDataWindow;
-import static haveno.desktop.util.FormBuilder.addButtonAfterGroup;
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextField;
-import haveno.desktop.util.Layout;
+import tuskex.common.config.Config;
+import tuskex.core.locale.Res;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.listeners.BalanceListener;
+import tuskex.core.tsk.wallet.BtcWalletService;
+import tuskex.core.tsk.wallet.WalletService;
+import tuskex.core.tsk.wallet.WalletsManager;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.ShowWalletDataWindow;
+import static tuskex.desktop.util.FormBuilder.addButtonAfterGroup;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextField;
+import tuskex.desktop.util.Layout;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;

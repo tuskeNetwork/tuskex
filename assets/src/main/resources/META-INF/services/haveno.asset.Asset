@@ -1,9 +1,9 @@
-# All assets available for trading on the Haveno network.
+# All assets available for trading on the Tuskex network.
 # Contents are sorted according to the output of `sort --ignore-case --dictionary-order`.
-# See haveno.asset.Asset and haveno.asset.AssetRegistry for further details.
-# See https://haveno.exchange/list-asset for complete instructions.
-haveno.asset.coins.Bitcoin$Mainnet
-haveno.asset.coins.BitcoinCash
-haveno.asset.coins.Ether
-haveno.asset.coins.Litecoin
-haveno.asset.coins.Monero
+# See tuskex.asset.Asset and tuskex.asset.AssetRegistry for further details.
+# See https://tuskex.exchange/list-asset for complete instructions.
+tuskex.asset.coins.Bitcoin$Mainnet
+tuskex.asset.coins.BitcoinCash
+tuskex.asset.coins.Ether
+tuskex.asset.coins.Litecoin
+tuskex.asset.coins.Monero

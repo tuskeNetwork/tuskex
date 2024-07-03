@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.setup;
+package tuskex.desktop.setup;
 
 import com.google.inject.Injector;
-import haveno.common.proto.persistable.PersistedDataHost;
-import haveno.desktop.Navigation;
+import tuskex.common.proto.persistable.PersistedDataHost;
+import tuskex.desktop.Navigation;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;

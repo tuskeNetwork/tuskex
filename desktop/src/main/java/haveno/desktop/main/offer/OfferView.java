@@ -15,31 +15,31 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer;
+package tuskex.desktop.main.offer;
 
-import haveno.common.UserThread;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.GlobalSettings;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.offer.Offer;
-import haveno.core.offer.OfferDirection;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.View;
-import haveno.desktop.common.view.ViewLoader;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.offer.createoffer.CreateOfferView;
-import haveno.desktop.main.offer.offerbook.XmrOfferBookView;
-import haveno.desktop.main.offer.offerbook.OfferBookView;
-import haveno.desktop.main.offer.offerbook.OtherOfferBookView;
-import haveno.desktop.main.offer.offerbook.TopCryptoOfferBookView;
-import haveno.desktop.main.offer.takeoffer.TakeOfferView;
-import haveno.desktop.util.GUIUtil;
-import haveno.network.p2p.P2PService;
+import tuskex.common.UserThread;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.GlobalSettings;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.offer.Offer;
+import tuskex.core.offer.OfferDirection;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.View;
+import tuskex.desktop.common.view.ViewLoader;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.offer.createoffer.CreateOfferView;
+import tuskex.desktop.main.offer.offerbook.TskOfferBookView;
+import tuskex.desktop.main.offer.offerbook.OfferBookView;
+import tuskex.desktop.main.offer.offerbook.OtherOfferBookView;
+import tuskex.desktop.main.offer.offerbook.TopCryptoOfferBookView;
+import tuskex.desktop.main.offer.takeoffer.TakeOfferView;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.network.p2p.P2PService;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -50,9 +50,9 @@ import java.util.Optional;
 
 public abstract class OfferView extends ActivatableView<TabPane, Void> {
 
-    private OfferBookView<?, ?> xmrOfferBookView, topCryptoOfferBookView, otherOfferBookView;
+    private OfferBookView<?, ?> tskOfferBookView, topCryptoOfferBookView, otherOfferBookView;
 
-    private Tab xmrOfferBookTab, topCryptoOfferBookTab, otherOfferBookTab;
+    private Tab tskOfferBookTab, topCryptoOfferBookTab, otherOfferBookTab;
 
     private final ViewLoader viewLoader;
     private final Navigation navigation;
@@ -95,11 +95,11 @@ public abstract class OfferView extends ActivatableView<TabPane, Void> {
         tabChangeListener = (observableValue, oldValue, newValue) -> {
             UserThread.execute(() -> {
                 if (newValue != null) {
-                    if (newValue.equals(xmrOfferBookTab)) {
-                        if (xmrOfferBookView != null) {
-                            xmrOfferBookView.onTabSelected(true);
+                    if (newValue.equals(tskOfferBookTab)) {
+                        if (tskOfferBookView != null) {
+                            tskOfferBookView.onTabSelected(true);
                         } else {
-                            loadView(XmrOfferBookView.class, null, null);
+                            loadView(TskOfferBookView.class, null, null);
                         }
                     } else if (newValue.equals(topCryptoOfferBookTab)) {
                         if (topCryptoOfferBookView != null) {
@@ -116,8 +116,8 @@ public abstract class OfferView extends ActivatableView<TabPane, Void> {
                     }
                 }
                 if (oldValue != null) {
-                    if (oldValue.equals(xmrOfferBookTab) && xmrOfferBookView != null) {
-                        xmrOfferBookView.onTabSelected(false);
+                    if (oldValue.equals(tskOfferBookTab) && tskOfferBookView != null) {
+                        tskOfferBookView.onTabSelected(false);
                     } else if (oldValue.equals(topCryptoOfferBookTab) && topCryptoOfferBookView != null) {
                         topCryptoOfferBookView.onTabSelected(false);
                     } else if (oldValue.equals(otherOfferBookTab) && otherOfferBookView != null) {
@@ -154,8 +154,8 @@ public abstract class OfferView extends ActivatableView<TabPane, Void> {
 
         root.getSelectionModel().selectedItemProperty().addListener(tabChangeListener);
         navigation.addListener(navigationListener);
-        if (xmrOfferBookView == null) {
-            navigation.navigateTo(MainView.class, this.getClass(), XmrOfferBookView.class);
+        if (tskOfferBookView == null) {
+            navigation.navigateTo(MainView.class, this.getClass(), TskOfferBookView.class);
         }
 
         GUIUtil.updateTopCrypto(preferences);
@@ -179,15 +179,15 @@ public abstract class OfferView extends ActivatableView<TabPane, Void> {
 
         if (OfferBookView.class.isAssignableFrom(viewClass)) {
 
-            if (viewClass == XmrOfferBookView.class && xmrOfferBookTab != null && xmrOfferBookView != null) {
+            if (viewClass == TskOfferBookView.class && tskOfferBookTab != null && tskOfferBookView != null) {
                 if (childViewClass == null) {
-                    xmrOfferBookTab.setContent(xmrOfferBookView.getRoot());
+                    tskOfferBookTab.setContent(tskOfferBookView.getRoot());
                 } else if (childViewClass == TakeOfferView.class) {
-                    loadTakeViewClass(viewClass, childViewClass, xmrOfferBookTab);
+                    loadTakeViewClass(viewClass, childViewClass, tskOfferBookTab);
                 } else {
-                    loadCreateViewClass(xmrOfferBookView, viewClass, childViewClass, xmrOfferBookTab, (PaymentMethod) data);
+                    loadCreateViewClass(tskOfferBookView, viewClass, childViewClass, tskOfferBookTab, (PaymentMethod) data);
                 }
-                tabPane.getSelectionModel().select(xmrOfferBookTab);
+                tabPane.getSelectionModel().select(tskOfferBookTab);
             } else if (viewClass == TopCryptoOfferBookView.class && topCryptoOfferBookTab != null && topCryptoOfferBookView != null) {
                 if (childViewClass == null) {
                     topCryptoOfferBookTab.setContent(topCryptoOfferBookView.getRoot());
@@ -215,23 +215,23 @@ public abstract class OfferView extends ActivatableView<TabPane, Void> {
                 }
                 tabPane.getSelectionModel().select(otherOfferBookTab);
             } else {
-                if (xmrOfferBookTab == null) {
-                    xmrOfferBookTab = new Tab(Res.getBaseCurrencyName().toUpperCase());
-                    xmrOfferBookTab.setClosable(false);
+                if (tskOfferBookTab == null) {
+                    tskOfferBookTab = new Tab(Res.getBaseCurrencyName().toUpperCase());
+                    tskOfferBookTab.setClosable(false);
                     topCryptoOfferBookTab = new Tab(GUIUtil.TOP_CRYPTO.getName().toUpperCase());
                     topCryptoOfferBookTab.setClosable(false);
                     otherOfferBookTab = new Tab(Res.get("shared.other").toUpperCase());
                     otherOfferBookTab.setClosable(false);
 
-                    tabPane.getTabs().addAll(xmrOfferBookTab, topCryptoOfferBookTab, otherOfferBookTab);
+                    tabPane.getTabs().addAll(tskOfferBookTab, topCryptoOfferBookTab, otherOfferBookTab);
                 }
-                if (viewClass == XmrOfferBookView.class) {
-                    xmrOfferBookView = (XmrOfferBookView) viewLoader.load(XmrOfferBookView.class);
-                    xmrOfferBookView.setOfferActionHandler(offerActionHandler);
-                    xmrOfferBookView.setDirection(direction);
-                    xmrOfferBookView.onTabSelected(true);
-                    tabPane.getSelectionModel().select(xmrOfferBookTab);
-                    xmrOfferBookTab.setContent(xmrOfferBookView.getRoot());
+                if (viewClass == TskOfferBookView.class) {
+                    tskOfferBookView = (TskOfferBookView) viewLoader.load(TskOfferBookView.class);
+                    tskOfferBookView.setOfferActionHandler(offerActionHandler);
+                    tskOfferBookView.setDirection(direction);
+                    tskOfferBookView.onTabSelected(true);
+                    tabPane.getSelectionModel().select(tskOfferBookTab);
+                    tskOfferBookTab.setContent(tskOfferBookView.getRoot());
                 } else if (viewClass == TopCryptoOfferBookView.class) {
                     topCryptoOfferBookView = (TopCryptoOfferBookView) viewLoader.load(TopCryptoOfferBookView.class);
                     topCryptoOfferBookView.setOfferActionHandler(offerActionHandler);
@@ -329,7 +329,7 @@ public abstract class OfferView extends ActivatableView<TabPane, Void> {
     private Class<? extends OfferBookView<?, ?>> getOfferBookViewClassFor(String currencyCode) {
         Class<? extends OfferBookView<?, ?>> offerBookViewClass;
         if (CurrencyUtil.isFiatCurrency(currencyCode)) {
-            offerBookViewClass = XmrOfferBookView.class;
+            offerBookViewClass = TskOfferBookView.class;
         } else if (currencyCode.equals(GUIUtil.TOP_CRYPTO.getCode())) {
             offerBookViewClass = TopCryptoOfferBookView.class;
         } else {

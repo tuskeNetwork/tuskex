@@ -15,22 +15,22 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.windows;
+package tuskex.desktop.main.overlays.windows;
 
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.main.overlays.Overlay;
-import haveno.desktop.main.portfolio.pendingtrades.steps.TradeWizardItem;
-import haveno.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep1View;
-import haveno.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep2View;
-import haveno.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep3View;
-import haveno.desktop.util.Layout;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.main.overlays.Overlay;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.TradeWizardItem;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep1View;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep2View;
+import tuskex.desktop.main.portfolio.pendingtrades.steps.buyer.BuyerStep3View;
+import tuskex.desktop.util.Layout;
 
-import haveno.core.locale.Res;
-import haveno.core.support.dispute.arbitration.ArbitrationManager;
-import haveno.core.support.dispute.mediation.FileTransferSender;
-import haveno.core.support.dispute.mediation.FileTransferSession;
+import tuskex.core.locale.Res;
+import tuskex.core.support.dispute.arbitration.ArbitrationManager;
+import tuskex.core.support.dispute.mediation.FileTransferSender;
+import tuskex.core.support.dispute.mediation.FileTransferSession;
 
-import haveno.common.UserThread;
+import tuskex.common.UserThread;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -52,7 +52,7 @@ import java.io.IOException;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
 
 @Slf4j
 public class SendLogFilesWindow extends Overlay<SendLogFilesWindow> implements FileTransferSession.FtpCallback {

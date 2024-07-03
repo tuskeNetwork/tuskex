@@ -47,12 +47,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package haveno.desktop.main.market.trades.charts.price;
+package tuskex.desktop.main.market.trades.charts.price;
 
-import haveno.core.locale.Res;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.main.market.trades.charts.CandleData;
-import haveno.desktop.util.Layout;
+import tuskex.core.locale.Res;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.main.market.trades.charts.CandleData;
+import tuskex.desktop.util.Layout;
 import javafx.geometry.HPos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;

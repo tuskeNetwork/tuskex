@@ -15,10 +15,10 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.core.network.p2p.seed;
+package tuskex.core.network.p2p.seed;
 
-import haveno.common.config.Config;
-import haveno.network.p2p.NodeAddress;
+import tuskex.common.config.Config;
+import tuskex.network.p2p.NodeAddress;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.String.format;

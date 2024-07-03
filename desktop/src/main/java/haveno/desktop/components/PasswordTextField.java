@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXPasswordField;
 import javafx.scene.control.Skin;
@@ -29,6 +29,6 @@ public class PasswordTextField extends JFXPasswordField {
 
     @Override
     protected Skin<?> createDefaultSkin() {
-        return new JFXTextFieldSkinHavenoStyle<>(this, 0);
+        return new JFXTextFieldSkinTuskexStyle<>(this, 0);
     }
 }

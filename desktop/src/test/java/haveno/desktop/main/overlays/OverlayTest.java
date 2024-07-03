@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays;
+package tuskex.desktop.main.overlays;
 
 import org.junit.jupiter.api.Test;
 

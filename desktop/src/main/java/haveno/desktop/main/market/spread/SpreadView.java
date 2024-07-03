@@ -15,22 +15,22 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.market.spread;
+package tuskex.desktop.main.market.spread;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.UserThread;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.AutoTooltipTableColumn;
-import haveno.desktop.components.ColoredDecimalPlacesWithZerosText;
-import haveno.desktop.util.GUIUtil;
+import tuskex.common.UserThread;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.AutoTooltipTableColumn;
+import tuskex.desktop.components.ColoredDecimalPlacesWithZerosText;
+import tuskex.desktop.util.GUIUtil;
 import java.math.BigInteger;
 import java.util.Comparator;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -124,7 +124,7 @@ public class SpreadView extends ActivatableViewAndModel<GridPane, SpreadViewMode
 
         BigInteger totalAmount = BigInteger.ZERO;
         for (SpreadItem item : sortedList) totalAmount = totalAmount.add(item.totalAmount);
-        String total = HavenoUtils.formatXmr(totalAmount);
+        String total = TuskexUtils.formatTsk(totalAmount);
 
         UserThread.execute(() -> {
             numberOfOffersColumn.setGraphic(new AutoTooltipLabel(Res.get("market.spread.numberOfOffersColumn", numberOfOffers)));

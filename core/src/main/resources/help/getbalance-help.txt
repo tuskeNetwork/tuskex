@@ -11,20 +11,20 @@ getbalance
 
 DESCRIPTION
 -----------
-Returns full balance information for Haveno XMR wallets.
+Returns full balance information for Tuskex TSK wallets.
 
 OPTIONS
 -------
 --currency-code=<btc>
-		The three letter Haveno wallet crypto currency code.
+		The three letter Tuskex wallet crypto currency code.
 
 EXAMPLES
 --------
-Show full XMR wallet balance information:
-$ ./haveno-cli --password=xyz --port=9998 getbalance
+Show full TSK wallet balance information:
+$ ./tuskex-cli --password=xyz --port=9998 getbalance
 
 Show full wallet balance information:
-$ ./haveno-cli --password=xyz --port=9998 getbalance --currency-code=bsq
+$ ./tuskex-cli --password=xyz --port=9998 getbalance --currency-code=bsq
 
-Show full XMR wallet balance information:
-$ ./haveno-cli --password=xyz --port=9998 getbalance --currency-code=btc
+Show full TSK wallet balance information:
+$ ./tuskex-cli --password=xyz --port=9998 getbalance --currency-code=btc

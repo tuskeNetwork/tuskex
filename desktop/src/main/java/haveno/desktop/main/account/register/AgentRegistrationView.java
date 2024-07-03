@@ -15,24 +15,24 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.account.register;
+package tuskex.desktop.main.account.register;
 
 
-import haveno.common.UserThread;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple3;
-import haveno.core.locale.LanguageUtil;
-import haveno.core.locale.Res;
-import haveno.core.support.dispute.agent.DisputeAgent;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.UnlockDisputeAgentRegistrationWindow;
-import haveno.desktop.util.FormBuilder;
-import haveno.desktop.util.ImageUtil;
-import haveno.desktop.util.Layout;
+import tuskex.common.UserThread;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple3;
+import tuskex.core.locale.LanguageUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.support.dispute.agent.DisputeAgent;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.UnlockDisputeAgentRegistrationWindow;
+import tuskex.desktop.util.FormBuilder;
+import tuskex.desktop.util.ImageUtil;
+import tuskex.desktop.util.Layout;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
@@ -52,10 +52,10 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
-import static haveno.desktop.util.FormBuilder.add2ButtonsAfterGroup;
-import static haveno.desktop.util.FormBuilder.addMultilineLabel;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.addTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.add2ButtonsAfterGroup;
+import static tuskex.desktop.util.FormBuilder.addMultilineLabel;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.addTopLabelTextField;
 
 public abstract class AgentRegistrationView<R extends DisputeAgent, T extends AgentRegistrationViewModel<R, ?>>
         extends ActivatableViewAndModel<VBox, T> {

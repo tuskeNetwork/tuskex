@@ -15,32 +15,32 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.reserved;
+package tuskex.desktop.main.funds.reserved;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.googlecode.jcsv.writer.CSVEntryConverter;
 import de.jensd.fx.fontawesome.AwesomeIcon;
-import haveno.core.locale.Res;
-import haveno.core.offer.OpenOffer;
-import haveno.core.offer.OpenOfferManager;
-import haveno.core.trade.Tradable;
-import haveno.core.trade.Trade;
-import haveno.core.trade.TradeManager;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.listeners.BalanceListener;
-import haveno.core.xmr.model.AddressEntry;
-import haveno.core.xmr.wallet.BtcWalletService;
-import haveno.desktop.common.view.ActivatableView;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.HyperlinkWithIcon;
-import haveno.desktop.main.overlays.windows.OfferDetailsWindow;
-import haveno.desktop.main.overlays.windows.TradeDetailsWindow;
-import haveno.desktop.util.GUIUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.offer.OpenOfferManager;
+import tuskex.core.trade.Tradable;
+import tuskex.core.trade.Trade;
+import tuskex.core.trade.TradeManager;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.listeners.BalanceListener;
+import tuskex.core.tsk.model.AddressEntry;
+import tuskex.core.tsk.wallet.BtcWalletService;
+import tuskex.desktop.common.view.ActivatableView;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.HyperlinkWithIcon;
+import tuskex.desktop.main.overlays.windows.OfferDetailsWindow;
+import tuskex.desktop.main.overlays.windows.TradeDetailsWindow;
+import tuskex.desktop.util.GUIUtil;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Objects;

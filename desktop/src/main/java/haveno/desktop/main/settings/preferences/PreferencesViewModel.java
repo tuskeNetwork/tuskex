@@ -15,15 +15,15 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.settings.preferences;
+package tuskex.desktop.main.settings.preferences;
 
 
 import com.google.inject.Inject;
-import haveno.core.locale.LanguageUtil;
-import haveno.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
-import haveno.core.support.dispute.mediation.mediator.MediatorManager;
-import haveno.core.user.Preferences;
-import haveno.desktop.common.model.ActivatableViewModel;
+import tuskex.core.locale.LanguageUtil;
+import tuskex.core.support.dispute.arbitration.arbitrator.ArbitratorManager;
+import tuskex.core.support.dispute.mediation.mediator.MediatorManager;
+import tuskex.core.user.Preferences;
+import tuskex.desktop.common.model.ActivatableViewModel;
 
 import java.util.stream.Collectors;
 

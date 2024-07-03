@@ -15,9 +15,9 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.overlays.popups;
+package tuskex.desktop.main.overlays.popups;
 
-import haveno.common.UserThread;
+import tuskex.common.UserThread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

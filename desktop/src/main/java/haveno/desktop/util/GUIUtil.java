@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.util;
+package tuskex.desktop.util;
 
 import com.google.common.base.Charsets;
 import com.google.gson.Gson;
@@ -26,45 +26,45 @@ import com.googlecode.jcsv.writer.CSVEntryConverter;
 import com.googlecode.jcsv.writer.CSVWriter;
 import com.googlecode.jcsv.writer.internal.CSVWriterBuilder;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.common.UserThread;
-import haveno.common.config.Config;
-import haveno.common.crypto.KeyRing;
-import haveno.common.file.CorruptedStorageFileHandler;
-import haveno.common.persistence.PersistenceManager;
-import haveno.common.proto.persistable.PersistableEnvelope;
-import haveno.common.proto.persistable.PersistenceProtoResolver;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple3;
-import haveno.common.util.Utilities;
-import haveno.core.account.witness.AccountAgeWitness;
-import haveno.core.account.witness.AccountAgeWitnessService;
-import haveno.core.api.XmrConnectionService;
-import haveno.core.locale.Country;
-import haveno.core.locale.CountryUtil;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.locale.TradeCurrency;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.PaymentAccountList;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.trade.Trade;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.user.Preferences;
-import haveno.core.user.User;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.wallet.XmrWalletService;
-import haveno.desktop.Navigation;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.HavenoTextArea;
-import haveno.desktop.components.InfoAutoTooltipLabel;
-import haveno.desktop.components.indicator.TxConfidenceIndicator;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.account.AccountView;
-import haveno.desktop.main.account.content.traditionalaccounts.TraditionalAccountsView;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.network.p2p.P2PService;
+import tuskex.common.UserThread;
+import tuskex.common.config.Config;
+import tuskex.common.crypto.KeyRing;
+import tuskex.common.file.CorruptedStorageFileHandler;
+import tuskex.common.persistence.PersistenceManager;
+import tuskex.common.proto.persistable.PersistableEnvelope;
+import tuskex.common.proto.persistable.PersistenceProtoResolver;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple3;
+import tuskex.common.util.Utilities;
+import tuskex.core.account.witness.AccountAgeWitness;
+import tuskex.core.account.witness.AccountAgeWitnessService;
+import tuskex.core.api.TskConnectionService;
+import tuskex.core.locale.Country;
+import tuskex.core.locale.CountryUtil;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.locale.TradeCurrency;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.PaymentAccountList;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.trade.Trade;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.user.Preferences;
+import tuskex.core.user.User;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.wallet.TskWalletService;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.TuskexTextArea;
+import tuskex.desktop.components.InfoAutoTooltipLabel;
+import tuskex.desktop.components.indicator.TxConfidenceIndicator;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.account.AccountView;
+import tuskex.desktop.main.account.content.traditionalaccounts.TraditionalAccountsView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.network.p2p.P2PService;
 import javafx.collections.FXCollections;
 import javafx.geometry.HPos;
 import javafx.geometry.Orientation;
@@ -118,7 +118,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static haveno.desktop.util.FormBuilder.addTopLabelComboBoxComboBox;
+import static tuskex.desktop.util.FormBuilder.addTopLabelComboBoxComboBox;
 
 @Slf4j
 public class GUIUtil {
@@ -550,7 +550,7 @@ public class GUIUtil {
                 txConfidenceIndicator.setProgress(0);
             } else if (tx.isConfirmed()) {
                 tooltip.setText(Res.get("confidence.confirmed", tx.getNumConfirmations()));
-                txConfidenceIndicator.setProgress((double) tx.getNumConfirmations() / (double) XmrWalletService.NUM_BLOCKS_UNLOCK);
+                txConfidenceIndicator.setProgress((double) tx.getNumConfirmations() / (double) TskWalletService.NUM_BLOCKS_UNLOCK);
             } else {
                 tooltip.setText(Res.get("confidence.confirmed", 0));
                 txConfidenceIndicator.setProgress(-1);
@@ -574,7 +574,7 @@ public class GUIUtil {
 
     public static void openWebPage(String target, boolean useReferrer, Runnable closeHandler) {
 
-        if (useReferrer && target.contains("haveno.network")) {
+        if (useReferrer && target.contains("tuskex.network")) {
             // add utm parameters
             target = appendURI(target, "utm_source=desktop-client&utm_medium=in-app-link&utm_campaign=language_" +
                     preferences.getUserLanguage());
@@ -646,7 +646,7 @@ public class GUIUtil {
     }
 
     public static String getPercentage(BigInteger part, BigInteger total) {
-        return FormattingUtils.formatToPercentWithSymbol(HavenoUtils.divide(part, total));
+        return FormattingUtils.formatToPercentWithSymbol(TuskexUtils.divide(part, total));
     }
 
     public static <T> T getParentOfType(Node node, Class<T> t) {
@@ -700,24 +700,24 @@ public class GUIUtil {
         return false;
     }
 
-    public static boolean isReadyForTxBroadcastOrShowPopup(XmrWalletService xmrWalletService) {
-        XmrConnectionService xmrConnectionService = xmrWalletService.getConnectionService();
-        if (!xmrConnectionService.hasSufficientPeersForBroadcast()) {
-            new Popup().information(Res.get("popup.warning.notSufficientConnectionsToXmrNetwork", xmrConnectionService.getMinBroadcastConnections())).show();
+    public static boolean isReadyForTxBroadcastOrShowPopup(TskWalletService tskWalletService) {
+        TskConnectionService tskConnectionService = tskWalletService.getConnectionService();
+        if (!tskConnectionService.hasSufficientPeersForBroadcast()) {
+            new Popup().information(Res.get("popup.warning.notSufficientConnectionsToTskNetwork", tskConnectionService.getMinBroadcastConnections())).show();
             return false;
         }
 
-        if (!xmrConnectionService.isDownloadComplete()) {
+        if (!tskConnectionService.isDownloadComplete()) {
             new Popup().information(Res.get("popup.warning.downloadNotComplete")).show();
             return false;
         }
 
-        if (!isWalletSyncedWithinToleranceOrShowPopup(xmrWalletService)) {
+        if (!isWalletSyncedWithinToleranceOrShowPopup(tskWalletService)) {
             return false;
         }
 
         try {
-            xmrConnectionService.verifyConnection();
+            tskConnectionService.verifyConnection();
         } catch (Exception e) {
             new Popup().information(e.getMessage()).show();
             return false;
@@ -726,8 +726,8 @@ public class GUIUtil {
         return true;
     }
 
-    public static boolean isWalletSyncedWithinToleranceOrShowPopup(XmrWalletService xmrWalletService) {
-        if (!xmrWalletService.isSyncedWithinTolerance()) {
+    public static boolean isWalletSyncedWithinToleranceOrShowPopup(TskWalletService tskWalletService) {
+        if (!tskWalletService.isSyncedWithinTolerance()) {
             new Popup().information(Res.get("popup.warning.walletNotSynced")).show();
             return false;
         }
@@ -757,7 +757,7 @@ public class GUIUtil {
     }
 
     public static void showWantToBurnBTCPopup(Coin miningFee, Coin amount, CoinFormatter btcFormatter) {
-        new Popup().warning(Res.get("popup.warning.burnXMR", btcFormatter.formatCoinWithCode(miningFee),
+        new Popup().warning(Res.get("popup.warning.burnTSK", btcFormatter.formatCoinWithCode(miningFee),
                 btcFormatter.formatCoinWithCode(amount))).show();
     }
 
@@ -771,7 +771,7 @@ public class GUIUtil {
                     .actionButtonText(Res.get("shared.yes"))
                     .onAction(() -> {
                         throw new RuntimeException("Rescanning wallet outputs not yet implemented");
-                        //UserThread.runAfter(HavenoApp.getShutDownHandler(), 100, TimeUnit.MILLISECONDS);
+                        //UserThread.runAfter(TuskexApp.getShutDownHandler(), 100, TimeUnit.MILLISECONDS);
                     })
                     .closeButtonText(Res.get("shared.cancel"))
                     .show();
@@ -781,7 +781,7 @@ public class GUIUtil {
     }
 
     public static void showSelectableTextModal(String title, String text) {
-        TextArea textArea = new HavenoTextArea();
+        TextArea textArea = new TuskexTextArea();
         textArea.setText(text);
         textArea.setEditable(false);
         textArea.setWrapText(true);
@@ -930,18 +930,18 @@ public class GUIUtil {
     public static int addRegionCountry(GridPane gridPane,
                                        int gridRow,
                                        Consumer<Country> onCountrySelectedHandler) {
-        Tuple3<Label, ComboBox<haveno.core.locale.Region>, ComboBox<Country>> tuple3 = addTopLabelComboBoxComboBox(gridPane, ++gridRow, Res.get("payment.country"));
+        Tuple3<Label, ComboBox<tuskex.core.locale.Region>, ComboBox<Country>> tuple3 = addTopLabelComboBoxComboBox(gridPane, ++gridRow, Res.get("payment.country"));
 
-        ComboBox<haveno.core.locale.Region> regionComboBox = tuple3.second;
+        ComboBox<tuskex.core.locale.Region> regionComboBox = tuple3.second;
         regionComboBox.setPromptText(Res.get("payment.select.region"));
         regionComboBox.setConverter(new StringConverter<>() {
             @Override
-            public String toString(haveno.core.locale.Region region) {
+            public String toString(tuskex.core.locale.Region region) {
                 return region.name;
             }
 
             @Override
-            public haveno.core.locale.Region fromString(String s) {
+            public tuskex.core.locale.Region fromString(String s) {
                 return null;
             }
         });
@@ -964,7 +964,7 @@ public class GUIUtil {
         });
 
         regionComboBox.setOnAction(e -> {
-            haveno.core.locale.Region selectedItem = regionComboBox.getSelectionModel().getSelectedItem();
+            tuskex.core.locale.Region selectedItem = regionComboBox.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
                 countryComboBox.setDisable(false);
                 countryComboBox.setItems(FXCollections.observableArrayList(CountryUtil.getAllCountriesForRegion(selectedItem)));

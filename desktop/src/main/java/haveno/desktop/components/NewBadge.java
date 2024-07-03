@@ -1,8 +1,8 @@
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXBadge;
-import haveno.core.locale.Res;
-import haveno.core.user.Preferences;
+import tuskex.core.locale.Res;
+import tuskex.core.user.Preferences;
 import javafx.collections.MapChangeListener;
 import javafx.scene.Node;
 

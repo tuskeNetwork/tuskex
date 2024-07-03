@@ -15,27 +15,27 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.portfolio.editoffer;
+package tuskex.desktop.main.portfolio.editoffer;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import haveno.common.util.Tuple4;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.offer.OpenOffer;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.main.offer.MutableOfferView;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.OfferDetailsWindow;
-import static haveno.desktop.util.FormBuilder.addButtonBusyAnimationLabelAfterGroup;
+import tuskex.common.util.Tuple4;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.OpenOffer;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.main.offer.MutableOfferView;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.OfferDetailsWindow;
+import static tuskex.desktop.util.FormBuilder.addButtonBusyAnimationLabelAfterGroup;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;

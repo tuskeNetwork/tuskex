@@ -15,37 +15,37 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.funds.transactions;
+package tuskex.desktop.main.funds.transactions;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
-import haveno.core.user.Preferences;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.core.xmr.wallet.XmrWalletService;
+import tuskex.core.user.Preferences;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.core.tsk.wallet.TskWalletService;
 import javax.annotation.Nullable;
 import monero.wallet.model.MoneroTxWallet;
 
 
 @Singleton
 public class TransactionListItemFactory {
-    private final XmrWalletService xmrWalletService;
+    private final TskWalletService tskWalletService;
     private final CoinFormatter formatter;
     private final Preferences preferences;
 
     @Inject
-    TransactionListItemFactory(XmrWalletService xmrWalletService,
+    TransactionListItemFactory(TskWalletService tskWalletService,
                                @Named(FormattingUtils.BTC_FORMATTER_KEY) CoinFormatter formatter,
                                Preferences preferences) {
-        this.xmrWalletService = xmrWalletService;
+        this.tskWalletService = tskWalletService;
         this.formatter = formatter;
         this.preferences = preferences;
     }
 
     TransactionsListItem create(MoneroTxWallet transaction, @Nullable TransactionAwareTradable tradable) {
         return new TransactionsListItem(transaction,
-                xmrWalletService,
+                tskWalletService,
                 tradable);
     }
 }

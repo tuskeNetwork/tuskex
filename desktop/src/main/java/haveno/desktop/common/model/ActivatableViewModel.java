@@ -15,7 +15,7 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.common.model;
+package tuskex.desktop.common.model;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -15,11 +15,11 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.components;
+package tuskex.desktop.components;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.skins.JFXComboBoxListViewSkin;
-import haveno.common.UserThread;
+import tuskex.common.UserThread;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;

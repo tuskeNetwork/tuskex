@@ -15,71 +15,71 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package haveno.desktop.main.offer.takeoffer;
+package tuskex.desktop.main.offer.takeoffer;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import haveno.common.UserThread;
-import haveno.common.app.DevEnv;
-import haveno.common.util.Tuple2;
-import haveno.common.util.Tuple3;
-import haveno.common.util.Tuple4;
-import haveno.common.util.Utilities;
-import haveno.core.locale.CurrencyUtil;
-import haveno.core.locale.Res;
-import haveno.core.offer.Offer;
-import haveno.core.payment.FasterPaymentsAccount;
-import haveno.core.payment.PaymentAccount;
-import haveno.core.payment.payload.PaymentMethod;
-import haveno.core.trade.HavenoUtils;
-import haveno.core.user.DontShowAgainLookup;
-import haveno.core.util.FormattingUtils;
-import haveno.core.util.coin.CoinFormatter;
-import haveno.desktop.Navigation;
-import haveno.desktop.common.view.ActivatableViewAndModel;
-import haveno.desktop.common.view.FxmlView;
-import haveno.desktop.components.AddressTextField;
-import haveno.desktop.components.AutoTooltipButton;
-import haveno.desktop.components.AutoTooltipLabel;
-import haveno.desktop.components.BalanceTextField;
-import haveno.desktop.components.BusyAnimation;
-import haveno.desktop.components.FundsTextField;
-import haveno.desktop.components.InfoInputTextField;
-import haveno.desktop.components.InputTextField;
-import haveno.desktop.components.TitledGroupBg;
-import haveno.desktop.main.MainView;
-import haveno.desktop.main.funds.FundsView;
-import haveno.desktop.main.funds.withdrawal.WithdrawalView;
-import haveno.desktop.main.offer.ClosableView;
-import haveno.desktop.main.offer.InitializableViewWithTakeOfferData;
-import haveno.desktop.main.offer.OfferView;
-import haveno.desktop.main.offer.OfferViewUtil;
-import static haveno.desktop.main.offer.OfferViewUtil.addPayInfoEntry;
-import haveno.desktop.main.offer.SelectableView;
-import haveno.desktop.main.overlays.notifications.Notification;
-import haveno.desktop.main.overlays.popups.Popup;
-import haveno.desktop.main.overlays.windows.GenericMessageWindow;
-import haveno.desktop.main.overlays.windows.OfferDetailsWindow;
-import haveno.desktop.main.overlays.windows.QRCodeWindow;
-import haveno.desktop.main.portfolio.PortfolioView;
-import haveno.desktop.main.portfolio.pendingtrades.PendingTradesView;
-import static haveno.desktop.util.FormBuilder.add2ButtonsWithBox;
-import static haveno.desktop.util.FormBuilder.addAddressTextField;
-import static haveno.desktop.util.FormBuilder.addBalanceTextField;
-import static haveno.desktop.util.FormBuilder.addComboBoxTopLabelTextField;
-import static haveno.desktop.util.FormBuilder.addFundsTextfield;
-import static haveno.desktop.util.FormBuilder.addTitledGroupBg;
-import static haveno.desktop.util.FormBuilder.getEditableValueBox;
-import static haveno.desktop.util.FormBuilder.getIconForLabel;
-import static haveno.desktop.util.FormBuilder.getNonEditableValueBox;
-import static haveno.desktop.util.FormBuilder.getNonEditableValueBoxWithInfo;
-import static haveno.desktop.util.FormBuilder.getSmallIconForLabel;
-import static haveno.desktop.util.FormBuilder.getTopLabelWithVBox;
-import haveno.desktop.util.GUIUtil;
-import haveno.desktop.util.Layout;
-import haveno.desktop.util.Transitions;
+import tuskex.common.UserThread;
+import tuskex.common.app.DevEnv;
+import tuskex.common.util.Tuple2;
+import tuskex.common.util.Tuple3;
+import tuskex.common.util.Tuple4;
+import tuskex.common.util.Utilities;
+import tuskex.core.locale.CurrencyUtil;
+import tuskex.core.locale.Res;
+import tuskex.core.offer.Offer;
+import tuskex.core.payment.FasterPaymentsAccount;
+import tuskex.core.payment.PaymentAccount;
+import tuskex.core.payment.payload.PaymentMethod;
+import tuskex.core.trade.TuskexUtils;
+import tuskex.core.user.DontShowAgainLookup;
+import tuskex.core.util.FormattingUtils;
+import tuskex.core.util.coin.CoinFormatter;
+import tuskex.desktop.Navigation;
+import tuskex.desktop.common.view.ActivatableViewAndModel;
+import tuskex.desktop.common.view.FxmlView;
+import tuskex.desktop.components.AddressTextField;
+import tuskex.desktop.components.AutoTooltipButton;
+import tuskex.desktop.components.AutoTooltipLabel;
+import tuskex.desktop.components.BalanceTextField;
+import tuskex.desktop.components.BusyAnimation;
+import tuskex.desktop.components.FundsTextField;
+import tuskex.desktop.components.InfoInputTextField;
+import tuskex.desktop.components.InputTextField;
+import tuskex.desktop.components.TitledGroupBg;
+import tuskex.desktop.main.MainView;
+import tuskex.desktop.main.funds.FundsView;
+import tuskex.desktop.main.funds.withdrawal.WithdrawalView;
+import tuskex.desktop.main.offer.ClosableView;
+import tuskex.desktop.main.offer.InitializableViewWithTakeOfferData;
+import tuskex.desktop.main.offer.OfferView;
+import tuskex.desktop.main.offer.OfferViewUtil;
+import static tuskex.desktop.main.offer.OfferViewUtil.addPayInfoEntry;
+import tuskex.desktop.main.offer.SelectableView;
+import tuskex.desktop.main.overlays.notifications.Notification;
+import tuskex.desktop.main.overlays.popups.Popup;
+import tuskex.desktop.main.overlays.windows.GenericMessageWindow;
+import tuskex.desktop.main.overlays.windows.OfferDetailsWindow;
+import tuskex.desktop.main.overlays.windows.QRCodeWindow;
+import tuskex.desktop.main.portfolio.PortfolioView;
+import tuskex.desktop.main.portfolio.pendingtrades.PendingTradesView;
+import static tuskex.desktop.util.FormBuilder.add2ButtonsWithBox;
+import static tuskex.desktop.util.FormBuilder.addAddressTextField;
+import static tuskex.desktop.util.FormBuilder.addBalanceTextField;
+import static tuskex.desktop.util.FormBuilder.addComboBoxTopLabelTextField;
+import static tuskex.desktop.util.FormBuilder.addFundsTextfield;
+import static tuskex.desktop.util.FormBuilder.addTitledGroupBg;
+import static tuskex.desktop.util.FormBuilder.getEditableValueBox;
+import static tuskex.desktop.util.FormBuilder.getIconForLabel;
+import static tuskex.desktop.util.FormBuilder.getNonEditableValueBox;
+import static tuskex.desktop.util.FormBuilder.getNonEditableValueBoxWithInfo;
+import static tuskex.desktop.util.FormBuilder.getSmallIconForLabel;
+import static tuskex.desktop.util.FormBuilder.getTopLabelWithVBox;
+import tuskex.desktop.util.GUIUtil;
+import tuskex.desktop.util.Layout;
+import tuskex.desktop.util.Transitions;
 import java.io.ByteArrayInputStream;
 import java.math.BigInteger;
 import java.net.URI;
@@ -135,7 +135,7 @@ public class TakeOfferView extends ActivatableViewAndModel<AnchorPane, TakeOffer
             priceCurrencyLabel, priceAsPercentageLabel,
             volumeCurrencyLabel, priceDescriptionLabel, volumeDescriptionLabel,
             waitingForFundsLabel, offerAvailabilityLabel, priceAsPercentageDescription,
-            tradeFeeDescriptionLabel, resultLabel, tradeFeeInXmrLabel, xLabel,
+            tradeFeeDescriptionLabel, resultLabel, tradeFeeInTskLabel, xLabel,
             fakeXLabel;
     private InputTextField amountTextField;
     private TextField paymentMethodTextField, currencyTextField, priceTextField, priceAsPercentageTextField,
@@ -194,7 +194,7 @@ public class TakeOfferView extends ActivatableViewAndModel<AnchorPane, TakeOffer
         addOfferAvailabilityLabel();
         addFundingGroup();
 
-        balanceTextField.setFormatter(model.getXmrFormatter());
+        balanceTextField.setFormatter(model.getTskFormatter());
 
         amountFocusedListener = (o, oldValue, newValue) -> {
             model.onFocusOutAmountTextField(oldValue, newValue, amountTextField.getText());
@@ -205,7 +205,7 @@ public class TakeOfferView extends ActivatableViewAndModel<AnchorPane, TakeOffer
             if (newValue) {
                 Notification walletFundedNotification = new Notification()
                         .headLine(Res.get("notification.walletUpdate.headline"))
-                        .notification(Res.get("notification.walletUpdate.msg", HavenoUtils.formatXmr(model.dataModel.getTotalToPay().get(), true)))
+                        .notification(Res.get("notification.walletUpdate.msg", TuskexUtils.formatTsk(model.dataModel.getTotalToPay().get(), true)))
                         .autoClose();
 
                 walletFundedNotification.show();
@@ -476,11 +476,11 @@ public class TakeOfferView extends ActivatableViewAndModel<AnchorPane, TakeOffer
                 model.getSecurityDepositWithCode(), model.getTakerFeePercentage()));
         totalToPayTextField.setContentForInfoPopOver(createInfoPopover());
 
-        if (model.dataModel.getIsXmrWalletFunded().get()) {
+        if (model.dataModel.getIsTskWalletFunded().get()) {
             if (walletFundedNotification == null) {
                 walletFundedNotification = new Notification()
                         .headLine(Res.get("notification.walletUpdate.headline"))
-                        .notification(Res.get("notification.takeOffer.walletUpdate.msg", HavenoUtils.formatXmr(model.dataModel.getTotalToPay().get(), true)))
+                        .notification(Res.get("notification.takeOffer.walletUpdate.msg", TuskexUtils.formatTsk(model.dataModel.getTotalToPay().get(), true)))
                         .autoClose();
                 walletFundedNotification.show();
             }
@@ -546,18 +546,18 @@ public class TakeOfferView extends ActivatableViewAndModel<AnchorPane, TakeOffer
         priceCurrencyLabel.textProperty().bind(createStringBinding(() -> CurrencyUtil.getCounterCurrency(model.dataModel.getCurrencyCode())));
         priceAsPercentageLabel.prefWidthProperty().bind(priceCurrencyLabel.widthProperty());
         nextButton.disableProperty().bind(model.isNextButtonDisabled);
-        tradeFeeInXmrLabel.textProperty().bind(model.tradeFeeInXmrWithFiat);
+        tradeFeeInTskLabel.textProperty().bind(model.tradeFeeInTskWithFiat);
         tradeFeeDescriptionLabel.textProperty().bind(model.tradeFeeDescription);
-        tradeFeeInXmrLabel.visibleProperty().bind(model.isTradeFeeVisible);
+        tradeFeeInTskLabel.visibleProperty().bind(model.isTradeFeeVisible);
         tradeFeeDescriptionLabel.visibleProperty().bind(model.isTradeFeeVisible);
         tradeFeeDescriptionLabel.managedProperty().bind(tradeFeeDescriptionLabel.visibleProperty());
 
         // funding
-        fundingHBox.visibleProperty().bind(model.dataModel.getIsXmrWalletFunded().not().and(model.showPayFundsScreenDisplayed));
-        fundingHBox.managedProperty().bind(model.dataModel.getIsXmrWalletFunded().not().and(model.showPayFundsScreenDisplayed));
+        fundingHBox.visibleProperty().bind(model.dataModel.getIsTskWalletFunded().not().and(model.showPayFundsScreenDisplayed));
+        fundingHBox.managedProperty().bind(model.dataModel.getIsTskWalletFunded().not().and(model.showPayFundsScreenDisplayed));
         waitingForFundsLabel.textProperty().bind(model.spinnerInfoText);
-        takeOfferBox.visibleProperty().bind(model.dataModel.getIsXmrWalletFunded().and(model.showPayFundsScreenDisplayed));
-        takeOfferBox.managedProperty().bind(model.dataModel.getIsXmrWalletFunded().and(model.showPayFundsScreenDisplayed));
+        takeOfferBox.visibleProperty().bind(model.dataModel.getIsTskWalletFunded().and(model.showPayFundsScreenDisplayed));
+        takeOfferBox.managedProperty().bind(model.dataModel.getIsTskWalletFunded().and(model.showPayFundsScreenDisplayed));
         takeOfferButton.disableProperty().bind(model.isTakeOfferButtonDisabled);
     }
 
@@ -570,9 +570,9 @@ public class TakeOfferView extends ActivatableViewAndModel<AnchorPane, TakeOffer
         priceCurrencyLabel.textProperty().unbind();
         priceAsPercentageLabel.prefWidthProperty().unbind();
         nextButton.disableProperty().unbind();
-        tradeFeeInXmrLabel.textProperty().unbind();
+        tradeFeeInTskLabel.textProperty().unbind();
         tradeFeeDescriptionLabel.textProperty().unbind();
-        tradeFeeInXmrLabel.visibleProperty().unbind();
+        tradeFeeInTskLabel.visibleProperty().unbind();
         tradeFeeDescriptionLabel.visibleProperty().unbind();
         tradeFeeDescriptionLabel.managedProperty().unbind();
 
@@ -643,7 +643,7 @@ public class TakeOfferView extends ActivatableViewAndModel<AnchorPane, TakeOffer
 
         showWarningInvalidBtcDecimalPlacesSubscription = EasyBind.subscribe(model.showWarningInvalidBtcDecimalPlaces, newValue -> {
             if (newValue) {
-                new Popup().warning(Res.get("takeOffer.amountPriceBox.warning.invalidXmrDecimalPlaces")).show();
+                new Popup().warning(Res.get("takeOffer.amountPriceBox.warning.invalidTskDecimalPlaces")).show();
                 model.showWarningInvalidBtcDecimalPlaces.set(false);
             }
         });
@@ -917,7 +917,7 @@ public class TakeOfferView extends ActivatableViewAndModel<AnchorPane, TakeOffer
 
         cancelButton2.setOnAction(e -> {
             String key = "CreateOfferCancelAndFunded";
-            if (model.dataModel.getIsXmrWalletFunded().get() &&
+            if (model.dataModel.getIsTskWalletFunded().get() &&
                     model.dataModel.preferences.showAgain(key)) {
                 new Popup().backgroundInfo(Res.get("takeOffer.alreadyFunded.askCancel"))
                         .closeButtonText(Res.get("shared.no"))
@@ -1048,15 +1048,15 @@ public class TakeOfferView extends ActivatableViewAndModel<AnchorPane, TakeOffer
     }
 
     private VBox getTradeFeeFieldsBox() {
-        tradeFeeInXmrLabel = new Label();
-        tradeFeeInXmrLabel.setMouseTransparent(true);
-        tradeFeeInXmrLabel.setId("trade-fee-textfield");
+        tradeFeeInTskLabel = new Label();
+        tradeFeeInTskLabel.setMouseTransparent(true);
+        tradeFeeInTskLabel.setId("trade-fee-textfield");
 
         VBox vBox = new VBox();
         vBox.setSpacing(6);
         vBox.setMaxWidth(300);
         vBox.setAlignment(Pos.CENTER_LEFT);
-        vBox.getChildren().addAll(tradeFeeInXmrLabel);
+        vBox.getChildren().addAll(tradeFeeInTskLabel);
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(vBox);
