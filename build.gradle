@@ -447,7 +447,7 @@ configure(project(':core')) {
         mainClass = 'tuskex.core.util.GenerateKeyPairs'
         classpath = sourceSets.main.runtimeClasspath
     }
-
+    /*
     task tuskexDeps {
         doLast {
             // get monero binaries download url
@@ -562,7 +562,7 @@ configure(project(':core')) {
             ext.dependencyDownloadedAndVerified = true
         }
     }
-
+    */
     processResources.dependsOn tuskexDeps // before both test and build
 }
 
