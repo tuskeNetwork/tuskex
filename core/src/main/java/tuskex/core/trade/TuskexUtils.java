@@ -67,7 +67,7 @@ import org.bitcoinj.core.Coin;
 public class TuskexUtils {
 
     // configure release date
-    private static final String RELEASE_DATE = "25-05-2024 00:00:00"; // optionally set to release date of the network in format dd-mm-yyyy to impose temporary limits, etc. e.g. "25-05-2024 00:00:00"
+    private static final String RELEASE_DATE = "12-05-2024 00:00:00"; // optionally set to release date of the network in format dd-mm-yyyy to impose temporary limits, etc. e.g. "25-05-2024 00:00:00"
     public static final int RELEASE_LIMIT_DAYS = 60; // number of days to limit sell offers to max buy limit for new accounts
     public static final int WARN_ON_OFFER_EXCEEDS_UNSIGNED_BUY_LIMIT_DAYS = 182; // number of days to warn if sell offer exceeds unsigned buy limit
     public static final int ARBITRATOR_ACK_TIMEOUT_SECONDS = 60;
@@ -397,7 +397,7 @@ public class TuskexUtils {
         case TSK_STAGENET:
             return "5B11hTJdG2XDNwjdKGLRxwSLwDhkbGg7C7UEAZBxjE6FbCeRMjudrpNACmDNtWPiSnNfjDQf39QRjdtdgoL69txv81qc2Mc";
         case TSK_MAINNET:
-            throw new RuntimeException("Mainnet fee address not implemented");
+            return "TuskeMdd3vkiYHb5UphN9QQkMcpALhFzdUmCyW5WHyJCBnpwjTnW72i94xcEk3KERy4vjFQKyAwfDKMjj65THR57HP7gi23WAdC3M";
         default:
             throw new RuntimeException("Unhandled base currency network: " + Config.baseCurrencyNetwork());
         }
@@ -410,7 +410,7 @@ public class TuskexUtils {
         case TSK_STAGENET:
             return "577XbZ8yGfrWJM3aAoCpHVgDCm5higshGVJBb4ZNpTYARp8rLcCdcA1J8QgRfFWTzmJ8QgRfFWTzmJ8QgRfFWTzmCbXF9hd";
         case TSK_MAINNET:
-            return "46uVWiE1d4kWJM3aAoCpHVgDCm5higshGVJBb4ZNpTYARp8rLcCdcA1J8QgRfFWTzmJ8QgRfFWTzmJ8QgRfFWTzmCag5CXT";
+            return "TuskeMddSG1ZjLpQsb76YYRDAzngTgqevPGyeK2TCk9UfofuY82EGJDXsTAYffvXEXTK7Vv8K5vvPTfraMFuotECJpbAm1d1quR3E";
         default:
             throw new RuntimeException("Unhandled base currency network: " + Config.baseCurrencyNetwork());
         }
