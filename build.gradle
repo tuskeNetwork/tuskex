@@ -459,7 +459,7 @@ configure(project(':core')) {
                 'mac'                  : 'https://github.com/tuskeNetwork/tuskeDex/releases/download/rpc/tuske-mac-x64.tar.gz',
                 'mac-sha256'           : 'daa8c24c5f46e1d18f44c4ca6ff8e08974fc4d0e619786394941b9f21742000f',
                 'windows'              : 'https://github.com/tuskeNetwork/tuskeDex/releases/download/rpc/tuske-windows-x64-v1.0.1.zip',
-                'windows-sha256'       : '13D0291685A8FD9604EA51446206FF8DF8AE1655562B12B1AD6113DBCD4FDEB9'
+                'windows-sha256'       : '13d0291685a8fd9604ea51446206ff8df8ae1655562b12b1ad6113dbcd4fdeb9'
             ]
 
             String osKey
