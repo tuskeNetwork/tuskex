@@ -73,13 +73,13 @@ public class TskNodes {
             case TSK_STAGENET:
                 return Arrays.asList(
                     new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 40241, 1, "@local"),
-                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 40241, 1, "@local"),
+                    new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 40241, 1, "@local")
                 );
             case TSK_MAINNET:
                 return Arrays.asList(
                     new TskNode(MoneroNodesOption.PROVIDED, null, null, "127.0.0.1", 20241, 1, "@local"),
                     new TskNode(MoneroNodesOption.PUBLIC, null, null, "node-us.tuske.network", 2024, 2, "@tuskeTeam"),
-                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "node-jp.tuske.network", 2024, 2, "@tuskeTeam")
+                    new TskNode(MoneroNodesOption.PUBLIC, null, null, "node-jp.tuske.network", 2024, 2, "@tuskeTeam"),
                     new TskNode(MoneroNodesOption.PROVIDED, null, "tuske5hkcseb6srksudc2eiuhkcetf7ibbkz3hsbfbar2kyi2lykkrid.onion",null, 20243, 2, "@tuskeTeam"),
                     new TskNode(MoneroNodesOption.PROVIDED, null, "tusketluwz3igsax57dpwetybs5oacvrfcre6xdwl6cheax3i5wh5uyd.onion",null, 20243, 2, "@tuskeTeam")
                 );

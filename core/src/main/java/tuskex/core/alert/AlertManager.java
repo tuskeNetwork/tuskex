@@ -101,13 +101,14 @@ public class AlertManager {
         switch (Config.baseCurrencyNetwork()) {
         case TSK_LOCAL:
             return List.of(
-                    "027a381b5333a56e1cc3d90d3a7d07f26509adf7029ed06fc997c656621f8da1ee",
-                    "024baabdba90e7cc0dc4626ef73ea9d722ea7085d1104491da8c76f28187513492");
+                    "0280c207a23a361cdab1d6f34ec65d39bbd681da7372358b0404a2a26717829bc5",
+                    "02ee9dd4be096ece5ccc7d4dd546302178e0ba3b9720062e7ba68dfacf5bfacb13",
+                    "0347fc95e1d445523e909c1717cf1208721d68af945da628a66b9db7c6c9f10b23");
         case TSK_STAGENET:
             return List.of(
-                    "036d8a1dfcb406886037d2381da006358722823e1940acc2598c844bbc0fd1026f",
-                    "026c581ad773d987e6bd10785ac7f7e0e64864aedeb8bce5af37046de812a37854",
-                    "025b058c9f2c60d839669dbfa5578cf5a8117d60e6b70e2f0946f8a691273c6a36");
+                    "0280c207a23a361cdab1d6f34ec65d39bbd681da7372358b0404a2a26717829bc5",
+                    "02ee9dd4be096ece5ccc7d4dd546302178e0ba3b9720062e7ba68dfacf5bfacb13",
+                    "0347fc95e1d445523e909c1717cf1208721d68af945da628a66b9db7c6c9f10b23");
         case TSK_MAINNET:
             return List.of();
         default:
