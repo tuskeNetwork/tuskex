@@ -77,10 +77,10 @@ public final class Preferences implements PersistedDataHost, BridgeAddressProvid
     }
 
     private static final ArrayList<BlockChainExplorer> TSK_MAIN_NET_EXPLORERS = new ArrayList<>(Arrays.asList(
-            new BlockChainExplorer("tskchain.net", "https://tskchain.net/tx/")
+            new BlockChainExplorer("explorer.tuske.network", "https://explorer.tuske.network/tx/")
     ));
     private static final ArrayList<BlockChainExplorer> TSK_STAGE_NET_EXPLORERS = new ArrayList<>(Arrays.asList(
-            new BlockChainExplorer("stagenet.tskchain.net", "https://stagenet.tskchain.net/tx/")
+            new BlockChainExplorer("stagenet.tuske.network", "https://stagenet.tuske.network/tx/")
     ));
 
     private static final ArrayList<String> TSK_TX_PROOF_SERVICES_CLEAR_NET = new ArrayList<>(Arrays.asList(
