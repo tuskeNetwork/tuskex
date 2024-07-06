@@ -278,8 +278,8 @@ public final class Preferences implements PersistedDataHost, BridgeAddressProvid
 
         if (tskNodesFromOptions != null && !tskNodesFromOptions.isEmpty()) {
             if (getMoneroNodes() != null && !getMoneroNodes().equals(tskNodesFromOptions)) {
-                log.warn("The Monero node(s) from the program argument and the one(s) persisted in the UI are different. " +
-                        "The Monero node(s) {} from the program argument will be used.", tskNodesFromOptions);
+                log.warn("The Tuske node(s) from the program argument and the one(s) persisted in the UI are different. " +
+                        "The Tuske node(s) {} from the program argument will be used.", tskNodesFromOptions);
             }
             setMoneroNodes(tskNodesFromOptions);
             setMoneroNodesOptionOrdinal(TskNodes.MoneroNodesOption.CUSTOM.ordinal());

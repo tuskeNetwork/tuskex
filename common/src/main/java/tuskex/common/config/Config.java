@@ -336,7 +336,7 @@ public class Config {
 
         ArgumentAcceptingOptionSpec<Boolean> ignoreLocalTskNodeOpt = // TODO: update this to ignore local TSK node
                 parser.accepts(IGNORE_LOCAL_TSK_NODE,
-                        "If set to true a Monero node running locally will be ignored")
+                        "If set to true a Tuske node running locally will be ignored")
                         .withRequiredArg()
                         .ofType(Boolean.class)
                         .defaultsTo(false);
@@ -514,22 +514,22 @@ public class Config {
                         .defaultsTo(50); // Pause in ms to sleep if we get too many messages to send
 
         ArgumentAcceptingOptionSpec<String> tskNodeOpt =
-                parser.accepts(TSK_NODE, "URI of custom Monero node to use")
+                parser.accepts(TSK_NODE, "URI of custom Tuske node to use")
                         .withRequiredArg()
                         .defaultsTo("");
 
         ArgumentAcceptingOptionSpec<String> tskNodeUsernameOpt =
-                parser.accepts(TSK_NODE_USERNAME, "Username of custom Monero node to use")
+                parser.accepts(TSK_NODE_USERNAME, "Username of custom Tuske node to use")
                         .withRequiredArg()
                         .defaultsTo("");
 
         ArgumentAcceptingOptionSpec<String> tskNodePasswordOpt =
-                parser.accepts(TSK_NODE_PASSWORD, "Password of custom Monero node to use")
+                parser.accepts(TSK_NODE_PASSWORD, "Password of custom Tuske node to use")
                         .withRequiredArg()
                         .defaultsTo("");
 
         ArgumentAcceptingOptionSpec<String> tskNodesOpt =
-                parser.accepts(TSK_NODES, "Custom nodes used for Monero as comma separated IP addresses.")
+                parser.accepts(TSK_NODES, "Custom nodes used for Tuske as comma separated IP addresses.")
                         .withRequiredArg()
                         .describedAs("ip[,...]")
                         .defaultsTo("");
@@ -542,7 +542,7 @@ public class Config {
 
         //noinspection rawtypes
         ArgumentAcceptingOptionSpec<Enum> useTorForTskOpt =
-                parser.accepts(USE_TOR_FOR_TSK, "Configure TOR for Monero connections, one of: after_sync, off, or on.")
+                parser.accepts(USE_TOR_FOR_TSK, "Configure TOR for Tuske connections, one of: after_sync, off, or on.")
                         .withRequiredArg()
                         .ofType(UseTorForTsk.class)
                         .withValuesConvertedBy(new EnumValueConverter(UseTorForTsk.class))

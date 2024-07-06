@@ -829,7 +829,7 @@ public abstract class Trade implements Tradable, Model {
     }
 
     public void verifyDaemonConnection() {
-        if (!Boolean.TRUE.equals(tskConnectionService.isConnected())) throw new RuntimeException("Connection service is not connected to a Monero node");
+        if (!Boolean.TRUE.equals(tskConnectionService.isConnected())) throw new RuntimeException("Connection service is not connected to a Tuske node");
     }
 
     public boolean isWalletConnectedToDaemon() {
@@ -2322,7 +2322,7 @@ public abstract class Trade implements Tradable, Model {
 
     private void syncWallet(boolean pollWallet) {
         if (getWallet() == null) throw new RuntimeException("Cannot sync trade wallet because it doesn't exist for " + getClass().getSimpleName() + ", " + getId());
-        if (getWallet().getDaemonConnection() == null) throw new RuntimeException("Cannot sync trade wallet because it's not connected to a Monero daemon for " + getClass().getSimpleName() + ", " + getId());
+        if (getWallet().getDaemonConnection() == null) throw new RuntimeException("Cannot sync trade wallet because it's not connected to a Tuske daemon for " + getClass().getSimpleName() + ", " + getId());
         if (isWalletBehind()) {
             log.info("Syncing wallet for {} {}", getClass().getSimpleName(), getShortId());
             long startTime = System.currentTimeMillis();

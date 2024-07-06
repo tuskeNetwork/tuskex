@@ -75,7 +75,7 @@ public class AboutView extends ActivatableView<GridPane, Void> {
         addCompactTopLabelTextField(root, ++gridRow, Res.get("setting.about.pricesProvided"),
                 "Tuskex's pricenode (https://price.tuskex.network)");
         if (isTsk)
-            addCompactTopLabelTextField(root, ++gridRow, Res.get("setting.about.feeEstimation.label"), "Monero node");
+            addCompactTopLabelTextField(root, ++gridRow, Res.get("setting.about.feeEstimation.label"), "Tuske node");
 
         addTitledGroupBg(root, ++gridRow, 2, Res.get("setting.about.versionDetails"), Layout.GROUP_DISTANCE);
         addCompactTopLabelTextField(root, gridRow, Res.get("setting.about.version"), Version.VERSION, Layout.TWICE_FIRST_ROW_AND_GROUP_DISTANCE);
