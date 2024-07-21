@@ -110,8 +110,8 @@ public class Res {
         try {
             return resourceBundle.getString(key)
                     .replace("TSK", baseCurrencyCode)
-                    .replace("Monero", baseCurrencyName)
-                    .replace("monero", baseCurrencyNameLowerCase);
+                    .replace("Tuske", baseCurrencyName)
+                    .replace("tsk", baseCurrencyNameLowerCase);
         } catch (MissingResourceException e) {
             log.warn("Missing resource for key: {}", key);
             if (DevEnv.isDevMode()) {

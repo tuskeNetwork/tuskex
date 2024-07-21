@@ -22,6 +22,7 @@ import com.google.inject.name.Named;
 import tuskex.asset.Asset;
 import tuskex.asset.CryptoAccountDisclaimer;
 import tuskex.asset.coins.Monero;
+import tuskex.asset.coins.Tuske;
 import tuskex.common.util.Tuple2;
 import tuskex.common.util.Tuple3;
 import tuskex.core.account.witness.AccountAgeWitnessService;

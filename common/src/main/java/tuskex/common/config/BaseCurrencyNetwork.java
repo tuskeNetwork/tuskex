@@ -24,9 +24,9 @@ import org.bitcoinj.params.RegTestParams;
 import org.bitcoinj.utils.MonetaryFormat;
 
 public enum BaseCurrencyNetwork {
-    TSK_MAINNET(new TskMainNetParams(), "TSK", "MAINNET", "Monero"), // TODO (woodser): network params are part of bitcoinj and shouldn't be needed. only used to get MonetaryFormat? replace with MonetaryFormat if so
-    TSK_STAGENET(new TskStageNetParams(), "TSK", "STAGENET", "Monero"),
-    TSK_LOCAL(new TskTestNetParams(), "TSK", "TESTNET", "Monero");
+    TSK_MAINNET(new TskMainNetParams(), "TSK", "MAINNET", "Tuske"), // TODO (woodser): network params are part of bitcoinj and shouldn't be needed. only used to get MonetaryFormat? replace with MonetaryFormat if so
+    TSK_STAGENET(new TskStageNetParams(), "TSK", "STAGENET", "Tuske"),
+    TSK_LOCAL(new TskTestNetParams(), "TSK", "TESTNET", "Tuske");
 
     @Getter
     private final NetworkParameters parameters;

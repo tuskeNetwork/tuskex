@@ -380,7 +380,7 @@ public class CurrencyUtil {
                     .filter(cryptoCurrency -> cryptoCurrency.getCode().equals(currencyCode))
                     .findAny();
 
-            String tskOrRemovedAsset = "TSK".equals(currencyCode) ? "Monero" :
+            String tskOrRemovedAsset = "TSK".equals(currencyCode) ? "Tuske" :
                 removedCryptoCurrency.isPresent() ? removedCryptoCurrency.get().getName() : Res.get("shared.na");
             return getCryptoCurrency(currencyCode).map(TradeCurrency::getName).orElse(tskOrRemovedAsset);
         }
