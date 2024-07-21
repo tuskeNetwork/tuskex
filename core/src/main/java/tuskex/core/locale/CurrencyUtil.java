@@ -200,6 +200,7 @@ public class CurrencyUtil {
         result.add(new CryptoCurrency("BCH", "Bitcoin Cash"));
         result.add(new CryptoCurrency("ETH", "Ether"));
         result.add(new CryptoCurrency("LTC", "Litecoin"));
+        result.add(new CryptoCurrency("TSK", "Tuske"));
         result.sort(TradeCurrency::compareTo);
         return result;
     }
